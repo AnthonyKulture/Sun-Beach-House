@@ -34,7 +34,7 @@ const SANITY_API_URL = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data
 const fetchSanity = async (query: string, params?: Record<string, string>) => {
   const url = new URL(SANITY_API_URL);
   url.searchParams.set('query', query);
-  
+
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       url.searchParams.set(`$${key}`, JSON.stringify(value));
@@ -109,6 +109,7 @@ const mapSanityVilla = (doc: any): Villa => {
     seasonalPrices,
     featuredOnHomepage: doc.featuredOnHomepage || false,
     homepageOrder: doc.homepageOrder,
+    pdfOptions: doc.pdfOptions || {},
   };
 };
 
@@ -140,6 +141,11 @@ const villaFields = `
     seasonName,
     dates,
     prices[] { _key, bedrooms, price }
+  },
+  pdfOptions {
+    includePrice,
+    customFooterText,
+    highlightedAmenities
   }
 `;
 

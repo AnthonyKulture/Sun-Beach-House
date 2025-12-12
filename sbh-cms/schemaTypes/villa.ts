@@ -1,4 +1,4 @@
-import {defineType, defineField, defineArrayMember} from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 // ═══════════════════════════════════════════════════════════════
 // OBJETS RÉUTILISABLES
@@ -18,7 +18,7 @@ const bedroomPrice = defineType({
     }),
     defineField({
       name: 'price',
-      title: 'Prix (USD / semaine)',
+      title: 'Prix (EUR / semaine)',
       type: 'number',
       validation: (rule) => rule.required().min(0)
         .error('Le prix doit être positif'),
@@ -26,9 +26,9 @@ const bedroomPrice = defineType({
   ],
   preview: {
     select: { bedrooms: 'bedrooms', price: 'price' },
-    prepare({bedrooms, price}) {
+    prepare({ bedrooms, price }) {
       return {
-        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → ${price?.toLocaleString('fr-FR')} $`,
+        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → ${price?.toLocaleString('fr-FR')} €`,
       }
     },
   },
@@ -46,12 +46,12 @@ const seasonalPrice = defineType({
       description: 'Exemple : "Haute Saison", "Noël", "Été"',
       options: {
         list: [
-          {title: 'Basse Saison (Low Season)', value: 'Low Season'},
-          {title: 'Été (Summer)', value: 'Summer'},
-          {title: 'Haute Saison (High Season)', value: 'High Season'},
-          {title: 'Thanksgiving', value: 'Thanksgiving & Bucket'},
-          {title: 'Noël (Christmas)', value: 'Christmas'},
-          {title: 'Nouvel An (New Year)', value: 'New Year'},
+          { title: 'Basse Saison (Low Season)', value: 'Low Season' },
+          { title: 'Été (Summer)', value: 'Summer' },
+          { title: 'Haute Saison (High Season)', value: 'High Season' },
+          { title: 'Thanksgiving', value: 'Thanksgiving & Bucket' },
+          { title: 'Noël (Christmas)', value: 'Christmas' },
+          { title: 'Nouvel An (New Year)', value: 'New Year' },
         ],
       },
       validation: (rule) => rule.required().error('Choisissez une saison'),
@@ -68,14 +68,14 @@ const seasonalPrice = defineType({
       title: 'Grille tarifaire',
       description: 'Ajoutez un prix pour chaque configuration de chambres disponible',
       type: 'array',
-      of: [{type: 'bedroomPrice'}],
+      of: [{ type: 'bedroomPrice' }],
       validation: (rule) => rule.required().min(1)
         .error('Ajoutez au moins un tarif'),
     }),
   ],
   preview: {
     select: { seasonName: 'seasonName', dates: 'dates', prices: 'prices' },
-    prepare({seasonName, dates, prices}) {
+    prepare({ seasonName, dates, prices }) {
       const priceCount = prices?.length || 0
       return {
         title: seasonName,
@@ -120,25 +120,25 @@ const amenity = defineType({
       description: 'Sélectionnez un équipement dans la liste',
       options: {
         list: [
-          {title: '📶 Wifi Haut Débit', value: 'Wifi'},
-          {title: '❄️ Climatisation', value: 'Wind'},
-          {title: '🌊 Accès Plage Direct', value: 'Waves'},
-          {title: '👨‍🍳 Cuisine Équipée', value: 'ChefHat'},
-          {title: '🚗 Parking Privé', value: 'Car'},
-          {title: '🏊 Piscine', value: 'Droplets'},
-          {title: '☀️ Terrasse / Solarium', value: 'Sun'},
-          {title: '☕ Machine à Café', value: 'Coffee'},
-          {title: '🌺 Jardin Tropical', value: 'Flower2'},
-          {title: '🔊 Système Audio Sonos', value: 'Speaker'},
-          {title: '💪 Salle de Fitness', value: 'Dumbbell'},
-          {title: '📺 TV / Cinéma', value: 'Tv'},
-          {title: '🔒 Sécurité 24/7', value: 'Shield'},
-          {title: '🍖 Barbecue', value: 'Utensils'},
-          {title: '🛍️ Proche Commerces', value: 'ShoppingBag'},
-          {title: '🍸 Bar Extérieur', value: 'Martini'},
-          {title: '🎵 Sonorisation', value: 'Music'},
-          {title: '🔑 Service Conciergerie', value: 'Key'},
-          {title: '⭐ Autre (personnalisé)...', value: 'Star'},
+          { title: '📶 Wifi Haut Débit', value: 'Wifi' },
+          { title: '❄️ Climatisation', value: 'Wind' },
+          { title: '🌊 Accès Plage Direct', value: 'Waves' },
+          { title: '👨‍🍳 Cuisine Équipée', value: 'ChefHat' },
+          { title: '🚗 Parking Privé', value: 'Car' },
+          { title: '🏊 Piscine', value: 'Droplets' },
+          { title: '☀️ Terrasse / Solarium', value: 'Sun' },
+          { title: '☕ Machine à Café', value: 'Coffee' },
+          { title: '🌺 Jardin Tropical', value: 'Flower2' },
+          { title: '🔊 Système Audio Sonos', value: 'Speaker' },
+          { title: '💪 Salle de Fitness', value: 'Dumbbell' },
+          { title: '📺 TV / Cinéma', value: 'Tv' },
+          { title: '🔒 Sécurité 24/7', value: 'Shield' },
+          { title: '🍖 Barbecue', value: 'Utensils' },
+          { title: '🛍️ Proche Commerces', value: 'ShoppingBag' },
+          { title: '🍸 Bar Extérieur', value: 'Martini' },
+          { title: '🎵 Sonorisation', value: 'Music' },
+          { title: '🔑 Service Conciergerie', value: 'Key' },
+          { title: '⭐ Autre (personnalisé)...', value: 'Star' },
         ],
         layout: 'dropdown',
       },
@@ -149,9 +149,9 @@ const amenity = defineType({
       title: 'Nom personnalisé',
       type: 'string',
       description: 'Donnez un nom à votre équipement personnalisé',
-      hidden: ({parent}) => parent?.icon !== 'Star',
+      hidden: ({ parent }) => parent?.icon !== 'Star',
       validation: (rule) => rule.custom((value, context) => {
-        const parent = context.parent as {icon?: string}
+        const parent = context.parent as { icon?: string }
         if (parent?.icon === 'Star' && !value) {
           return 'Entrez le nom de votre équipement personnalisé'
         }
@@ -161,7 +161,7 @@ const amenity = defineType({
   ],
   preview: {
     select: { icon: 'icon', label: 'label' },
-    prepare({icon, label}) {
+    prepare({ icon, label }) {
       const iconEmojis: Record<string, string> = {
         'Wifi': '📶', 'Wind': '❄️', 'Waves': '🌊', 'ChefHat': '👨‍🍳',
         'Car': '🚗', 'Droplets': '🏊', 'Sun': '☀️', 'Coffee': '☕',
@@ -186,12 +186,13 @@ const villa = defineType({
   title: 'Villa',
   type: 'document',
   groups: [
-    {name: 'essential', title: 'Essentiel', default: true},
-    {name: 'description', title: 'Description'},
-    {name: 'pricing', title: 'Tarification'},
-    {name: 'features', title: 'Caractéristiques'},
-    {name: 'media', title: 'Photos'},
-    {name: 'extras', title: 'Équipements & Tags'},
+    { name: 'essential', title: 'Essentiel', default: true },
+    { name: 'description', title: 'Description' },
+    { name: 'pricing', title: 'Tarification' },
+    { name: 'features', title: 'Caractéristiques' },
+    { name: 'media', title: 'Photos' },
+    { name: 'extras', title: 'Équipements & Tags' },
+    { name: 'pdfExport', title: 'Export PDF' },
   ],
   fields: [
     // ═══════════════════════════════════════════════════════════
@@ -237,8 +238,8 @@ const villa = defineType({
       description: 'Cette villa est-elle à louer ou à vendre ?',
       options: {
         list: [
-          {title: 'Location (vacances)', value: 'rent'},
-          {title: 'Vente (immobilier)', value: 'sale'},
+          { title: 'Location (vacances)', value: 'rent' },
+          { title: 'Vente (immobilier)', value: 'sale' },
         ],
         layout: 'radio',
       },
@@ -253,21 +254,21 @@ const villa = defineType({
       description: 'Où se situe cette villa à Saint-Barthélemy ?',
       options: {
         list: [
-          {title: 'Flamands', value: 'Flamands'},
-          {title: 'Toiny', value: 'Toiny'},
-          {title: 'Saline', value: 'Saline'},
-          {title: 'Gustavia', value: 'Gustavia'},
-          {title: 'Lorient', value: 'Lorient'},
-          {title: 'Gouverneur', value: 'Gouverneur'},
-          {title: 'St Jean', value: 'St Jean'},
-          {title: 'Colombier', value: 'Colombier'},
-          {title: 'Corossol', value: 'Corossol'},
-          {title: 'Marigot', value: 'Marigot'},
-          {title: 'Grand Cul de Sac', value: 'Grand Cul de Sac'},
-          {title: 'Petit Cul de Sac', value: 'Petit Cul de Sac'},
-          {title: 'Pointe Milou', value: 'Pointe Milou'},
-          {title: 'Lurin', value: 'Lurin'},
-          {title: 'Vitet', value: 'Vitet'},
+          { title: 'Flamands', value: 'Flamands' },
+          { title: 'Toiny', value: 'Toiny' },
+          { title: 'Saline', value: 'Saline' },
+          { title: 'Gustavia', value: 'Gustavia' },
+          { title: 'Lorient', value: 'Lorient' },
+          { title: 'Gouverneur', value: 'Gouverneur' },
+          { title: 'St Jean', value: 'St Jean' },
+          { title: 'Colombier', value: 'Colombier' },
+          { title: 'Corossol', value: 'Corossol' },
+          { title: 'Marigot', value: 'Marigot' },
+          { title: 'Grand Cul de Sac', value: 'Grand Cul de Sac' },
+          { title: 'Petit Cul de Sac', value: 'Petit Cul de Sac' },
+          { title: 'Pointe Milou', value: 'Pointe Milou' },
+          { title: 'Lurin', value: 'Lurin' },
+          { title: 'Vitet', value: 'Vitet' },
         ],
         layout: 'dropdown',
       },
@@ -278,28 +279,81 @@ const villa = defineType({
       title: 'Afficher sur la page d\'accueil',
       type: 'boolean',
       group: 'essential',
-      description: 'Cochez cette case pour afficher cette villa dans la section "Collection Exclusive" de la page d\'accueil',
+      description: 'Cochez cette case pour afficher cette villa dans la section "Collection Exclusive" de la page d\'accueil (uniquement pour les locations)',
       initialValue: false,
+      hidden: ({ document }) => document?.listingType === 'sale',
+      validation: (rule) => rule.custom((value, context) => {
+        if (value && context.document?.listingType === 'sale') {
+          return 'Seules les villas de location peuvent être affichées sur la page d\'accueil'
+        }
+        return true
+      }),
     }),
     defineField({
       name: 'homepageOrder',
       title: 'Position sur la page d\'accueil',
       type: 'number',
       group: 'essential',
-      description: 'Choisissez la position (1, 2, 3 ou 4) où cette villa apparaîtra. Seules les 4 premières villas avec cette option activée seront affichées.',
-      hidden: ({document}) => !document?.featuredOnHomepage,
+      description: 'Choisissez la position (1, 2, 3 ou 4) où cette villa apparaîtra. Si vous décochez "Afficher sur la page d\'accueil", videz ce champ (menu "..." → Unset).',
+      hidden: ({ document }) => document?.listingType === 'sale', // Caché pour les villas à vendre
       options: {
         list: [
-          {title: 'Position 1', value: 1},
-          {title: 'Position 2', value: 2},
-          {title: 'Position 3', value: 3},
-          {title: 'Position 4', value: 4},
+          { title: 'Position 1', value: 1 },
+          { title: 'Position 2', value: 2 },
+          { title: 'Position 3', value: 3 },
+          { title: 'Position 4', value: 4 },
         ],
       },
-      validation: (rule) => rule.custom((value, context) => {
+      validation: (rule) => rule.custom(async (value, context) => {
+        // IMPORTANT: Si la villa n'est plus featured mais a encore une position
+        if (!context.document?.featuredOnHomepage && value) {
+          return {
+            level: 'error',
+            message: `❌ Veuillez vider ce champ. Une position ne devrait être définie que si "Afficher sur la page d\'accueil" est coché.`
+          }
+        }
+
+        // Vérifier que la position est valide
         if (context.document?.featuredOnHomepage && (!value || value < 1 || value > 4)) {
           return 'Choisissez une position entre 1 et 4'
         }
+
+        // Si la villa n'est pas featured, pas besoin de vérifier les conflits
+        if (!context.document?.featuredOnHomepage || !value) {
+          return true
+        }
+
+        // Vérifier s'il y a un conflit de position avec une autre villa
+        const { getClient } = context
+        const client = getClient({ apiVersion: '2024-03-01' })
+
+        // Obtenir l'ID sans le préfixe "drafts." pour la comparaison
+        const currentId = context.document._id
+        const publishedId = currentId?.replace(/^drafts\./, '')
+
+        const query = `*[
+          _type == "villa" && 
+          featuredOnHomepage == true && 
+          homepageOrder == $position && 
+          !(_id in [$draftId, $publishedId])
+        ][0]{
+          _id,
+          name
+        }`
+
+        const existingVilla = await client.fetch(query, {
+          position: value,
+          draftId: `drafts.${publishedId}`,
+          publishedId: publishedId
+        })
+
+        if (existingVilla) {
+          return {
+            level: 'warning',
+            message: `⚠️ La position ${value} est déjà occupée par "${existingVilla.name}". En sauvegardant, vous la remplacerez automatiquement.`
+          }
+        }
+
         return true
       }),
     }),
@@ -344,7 +398,7 @@ const villa = defineType({
       type: 'number',
       group: 'pricing',
       description: 'Prix de base affiché (pour les locations uniquement)',
-      hidden: ({document}) => document?.listingType === 'sale',
+      hidden: ({ document }) => document?.listingType === 'sale',
       validation: (rule) => rule.custom((value, context) => {
         if (context.document?.listingType === 'rent' && !value) {
           return 'Le prix par nuit est obligatoire pour les locations'
@@ -358,7 +412,7 @@ const villa = defineType({
       type: 'number',
       group: 'pricing',
       description: 'Prix de vente (pour les biens à vendre uniquement)',
-      hidden: ({document}) => document?.listingType === 'rent',
+      hidden: ({ document }) => document?.listingType === 'rent',
       validation: (rule) => rule.custom((value, context) => {
         if (context.document?.listingType === 'sale' && !value) {
           return 'Le prix de vente est obligatoire'
@@ -371,9 +425,9 @@ const villa = defineType({
       title: 'Grille tarifaire saisonnière',
       type: 'array',
       group: 'pricing',
-      of: [{type: 'seasonalPrice'}],
+      of: [{ type: 'seasonalPrice' }],
       description: 'Ajoutez les tarifs pour chaque saison (locations uniquement)',
-      hidden: ({document}) => document?.listingType === 'sale',
+      hidden: ({ document }) => document?.listingType === 'sale',
     }),
 
     // ═══════════════════════════════════════════════════════════
@@ -476,7 +530,7 @@ const villa = defineType({
       title: 'OU liens vers photos galerie',
       type: 'array',
       group: 'media',
-      of: [{type: 'url'}],
+      of: [{ type: 'url' }],
       description: 'Alternative : collez des liens vers les images',
     }),
 
@@ -488,7 +542,7 @@ const villa = defineType({
       title: 'Équipements & Services',
       type: 'array',
       group: 'extras',
-      of: [{type: 'amenity'}],
+      of: [{ type: 'amenity' }],
       description: 'Listez tous les équipements de la villa',
       validation: (rule) => rule.min(1).error('Ajoutez au moins un équipement'),
     }),
@@ -497,9 +551,66 @@ const villa = defineType({
       title: 'Mots-clés',
       type: 'array',
       group: 'extras',
-      of: [{type: 'string'}],
+      of: [{ type: 'string' }],
       options: { layout: 'tags' },
       description: 'Ajoutez des mots-clés pour le référencement. Ex: "Vue mer", "Piscine", "Luxe"',
+    }),
+
+    // ═══════════════════════════════════════════════════════════
+    // GROUPE : EXPORT PDF
+    // ═══════════════════════════════════════════════════════════
+    defineField({
+      name: 'pdfOptions',
+      title: 'Options d\'export PDF',
+      type: 'object',
+      group: 'pdfExport',
+      description: 'Configurez les éléments à inclure dans la brochure PDF téléchargeable',
+      fields: [
+        defineField({
+          name: 'includePrice',
+          title: 'Inclure les tarifs dans le PDF',
+          type: 'boolean',
+          initialValue: true,
+          description: 'Si décoché, la grille tarifaire saisonnière sera masquée dans la brochure PDF (page 2)',
+        }),
+        defineField({
+          name: 'customFooterText',
+          title: 'Texte de pied de page personnalisé',
+          type: 'text',
+          rows: 3,
+          description: 'Ajoutez une note légale ou un message personnalisé (laissez vide pour le texte par défaut)',
+        }),
+        defineField({
+          name: 'highlightedAmenities',
+          title: 'Équipements à mettre en avant (max 8)',
+          type: 'array',
+          of: [{ type: 'string' }],
+          options: {
+            list: [
+              { title: '📶 Wifi Haut Débit', value: 'Wifi' },
+              { title: '❄️ Climatisation', value: 'Wind' },
+              { title: '🌊 Accès Plage Direct', value: 'Waves' },
+              { title: '👨‍🍳 Cuisine Équipée', value: 'ChefHat' },
+              { title: '🚗 Parking Privé', value: 'Car' },
+              { title: '🏊 Piscine', value: 'Droplets' },
+              { title: '☀️ Terrasse / Solarium', value: 'Sun' },
+              { title: '☕ Machine à Café', value: 'Coffee' },
+              { title: '🌺 Jardin Tropical', value: 'Flower2' },
+              { title: '🔊 Système Audio Sonos', value: 'Speaker' },
+              { title: '💪 Salle de Fitness', value: 'Dumbbell' },
+              { title: '📺 TV / Cinéma', value: 'Tv' },
+              { title: '🔒 Sécurité 24/7', value: 'Shield' },
+              { title: '🍖 Barbecue', value: 'Utensils' },
+              { title: '🛍️ Proche Commerces', value: 'ShoppingBag' },
+              { title: '🍸 Bar Extérieur', value: 'Martini' },
+              { title: '🎵 Sonorisation', value: 'Music' },
+              { title: '🔑 Service Conciergerie', value: 'Key' },
+            ],
+          },
+          validation: (rule) => rule.max(8).warning('Maximum 8 équipements pour un affichage optimal'),
+          description: 'Sélectionnez les équipements clés qui apparaîtront dans la brochure PDF. Si vide, les premiers équipements seront utilisés.',
+        }),
+      ],
     }),
   ],
 
@@ -516,12 +627,12 @@ const villa = defineType({
       price: 'pricePerNight',
       salePrice: 'salePrice',
     },
-    prepare({title, location, listingType, media, bedrooms, price, salePrice}) {
+    prepare({ title, location, listingType, media, bedrooms, price, salePrice }) {
       const typeLabel = listingType === 'sale' ? 'VENTE' : 'LOCATION'
-      const displayPrice = listingType === 'sale' 
+      const displayPrice = listingType === 'sale'
         ? `${(salePrice || 0).toLocaleString('fr-FR')} €`
         : `${price || 0} €/nuit`
-      
+
       return {
         title: title || 'Nouvelle villa',
         subtitle: `${typeLabel} • ${location || '?'} • ${bedrooms || '?'} ch. • ${displayPrice}`,
@@ -537,24 +648,24 @@ const villa = defineType({
     {
       title: 'Nom (A → Z)',
       name: 'nameAsc',
-      by: [{field: 'name', direction: 'asc'}],
+      by: [{ field: 'name', direction: 'asc' }],
     },
     {
       title: 'Prix croissant',
       name: 'priceAsc',
-      by: [{field: 'pricePerNight', direction: 'asc'}],
+      by: [{ field: 'pricePerNight', direction: 'asc' }],
     },
     {
       title: 'Prix décroissant',
       name: 'priceDesc',
-      by: [{field: 'pricePerNight', direction: 'desc'}],
+      by: [{ field: 'pricePerNight', direction: 'desc' }],
     },
     {
       title: 'Par quartier',
       name: 'locationAsc',
-      by: [{field: 'location', direction: 'asc'}],
+      by: [{ field: 'location', direction: 'asc' }],
     },
   ],
 })
 
-export {bedroomPrice, seasonalPrice, amenity, villa}
+export { bedroomPrice, seasonalPrice, amenity, villa }

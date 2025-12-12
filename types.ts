@@ -17,6 +17,12 @@ export interface SeasonalPrice {
   prices: BedroomPrice[]; // Array of prices based on bedroom count opened
 }
 
+export interface PDFOptions {
+  includePrice?: boolean;
+  customFooterText?: string;
+  highlightedAmenities?: string[];
+}
+
 export interface Villa {
   id: string;
   name: string;
@@ -38,7 +44,9 @@ export interface Villa {
   tags: string[];
   featuredOnHomepage?: boolean; // Whether to show on homepage
   homepageOrder?: number; // Position on homepage (1-4)
+  pdfOptions?: PDFOptions; // PDF export configuration
 }
+
 
 export interface ServiceItem {
   id: string;
