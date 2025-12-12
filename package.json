@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react-dom": "18.2.0",
+    "@sanity/client": "^7.13.2",
+    "@sanity/image-url": "^2.0.2",
+    "lucide-react": "0.292.0",
     "react": "18.2.0",
-    "lucide-react": "0.292.0"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

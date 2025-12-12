@@ -36,6 +36,8 @@ export interface Villa {
   galleryImages: string[]; // Array of image URLs
   amenities: Amenity[];
   tags: string[];
+  featuredOnHomepage?: boolean; // Whether to show on homepage
+  homepageOrder?: number; // Position on homepage (1-4)
 }
 
 export interface ServiceItem {

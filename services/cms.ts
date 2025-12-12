@@ -1,101 +1,179 @@
+import { Villa, SeasonalPrice, BedroomPrice, Amenity } from '../types';
 
-import { Villa } from '../types';
-import { VILLAS_DATA } from '../data/villas';
+// Labels par défaut pour les équipements
+const EQUIPMENT_LABELS: Record<string, string> = {
+  'Wifi': 'Wifi Haut Débit',
+  'Wind': 'Climatisation',
+  'Waves': 'Accès Plage Direct',
+  'ChefHat': 'Cuisine Équipée',
+  'Car': 'Parking Privé',
+  'Droplets': 'Piscine',
+  'Sun': 'Terrasse / Solarium',
+  'Coffee': 'Machine à Café',
+  'Flower2': 'Jardin Tropical',
+  'Speaker': 'Système Audio Sonos',
+  'Dumbbell': 'Salle de Fitness',
+  'Tv': 'TV / Cinéma',
+  'Shield': 'Sécurité 24/7',
+  'Utensils': 'Barbecue',
+  'ShoppingBag': 'Proche Commerces',
+  'Martini': 'Bar Extérieur',
+  'Music': 'Sonorisation',
+  'Key': 'Service Conciergerie',
+  'Star': 'Équipement',
+};
 
-// --- ÉTAPE 1 : INSTALLATION ---
-// Installez le client sanity : npm install @sanity/client @sanity/image-url
-// Puis décommentez les lignes ci-dessous :
+// Configuration Sanity
+const PROJECT_ID = 'i6dkdu7j';
+const DATASET = 'production';
+const API_VERSION = '2024-03-01';
 
-/*
-import { createClient } from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
+const SANITY_API_URL = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/query/${DATASET}`;
 
-const client = createClient({
-  projectId: 'VOTRE_PROJECT_ID', // À récupérer sur manage.sanity.io
-  dataset: 'production',
-  useCdn: true, // true pour la rapidité, false pour des données fraîches instantanées
-  apiVersion: '2024-03-01',
-});
+// Fonction pour exécuter une requête GROQ
+const fetchSanity = async (query: string, params?: Record<string, string>) => {
+  const url = new URL(SANITY_API_URL);
+  url.searchParams.set('query', query);
+  
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      url.searchParams.set(`$${key}`, JSON.stringify(value));
+    });
+  }
 
-const builder = imageUrlBuilder(client);
-*/
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error(`Sanity API error: ${response.status}`);
+  }
+  const data = await response.json();
+  return data.result;
+};
+
+// Helper pour construire les URLs d'images Sanity
+const buildImageUrl = (ref: string) => {
+  if (!ref) return '';
+  const [, id, dimensions, format] = ref.split('-');
+  if (!id || !dimensions || !format) return '';
+  return `https://cdn.sanity.io/images/${PROJECT_ID}/${DATASET}/${id}-${dimensions}.${format}`;
+};
+
+// Mapping des données Sanity vers le format Villa
+const mapSanityVilla = (doc: any): Villa => {
+  const seasonalPrices: SeasonalPrice[] | undefined = doc.seasonalPrices?.map((sp: any, index: number) => ({
+    id: sp._key || `season-${index}`,
+    seasonName: sp.seasonName,
+    dates: sp.dates,
+    prices: sp.prices?.map((p: any): BedroomPrice => ({
+      bedrooms: p.bedrooms,
+      price: p.price,
+    })) || [],
+  }));
+
+  const amenities: Amenity[] = doc.amenities?.map((a: any) => ({
+    icon: a.icon,
+    label: a.label || EQUIPMENT_LABELS[a.icon] || a.icon,
+  })) || [];
+
+  let mainImage = doc.mainImageUrl || '';
+  if (doc.mainImage?.asset?._ref) {
+    mainImage = buildImageUrl(doc.mainImage.asset._ref);
+  }
+
+  let galleryImages: string[] = [];
+  if (doc.galleryImages?.length > 0 && doc.galleryImages[0]?.asset?._ref) {
+    galleryImages = doc.galleryImages
+      .map((img: any) => buildImageUrl(img.asset?._ref))
+      .filter(Boolean);
+  } else if (doc.galleryImageUrls?.length > 0) {
+    galleryImages = doc.galleryImageUrls;
+  }
+
+  return {
+    id: doc._id,
+    name: doc.name,
+    location: doc.location,
+    listingType: doc.listingType,
+    description: doc.description,
+    fullDescription: doc.fullDescription,
+    pricePerNight: doc.pricePerNight,
+    salePrice: doc.salePrice,
+    bedrooms: doc.bedrooms,
+    bathrooms: doc.bathrooms,
+    guests: doc.guests,
+    surface: doc.surface,
+    viewType: doc.viewType,
+    mainImage,
+    galleryImages,
+    amenities,
+    tags: doc.tags || [],
+    seasonalPrices,
+    featuredOnHomepage: doc.featuredOnHomepage || false,
+    homepageOrder: doc.homepageOrder,
+  };
+};
+
+const villaFields = `
+  _id,
+  name,
+  "slug": slug.current,
+  location,
+  listingType,
+  description,
+  fullDescription,
+  pricePerNight,
+  salePrice,
+  bedrooms,
+  bathrooms,
+  guests,
+  surface,
+  viewType,
+  mainImage,
+  mainImageUrl,
+  galleryImages,
+  galleryImageUrls,
+  amenities[] { _key, icon, label },
+  tags,
+  featuredOnHomepage,
+  homepageOrder,
+  seasonalPrices[] {
+    _key,
+    seasonName,
+    dates,
+    prices[] { _key, bedrooms, price }
+  }
+`;
 
 export const CmsService = {
-  /**
-   * Récupère toutes les villas.
-   */
   getAllVillas: async (): Promise<Villa[]> => {
-    // --- MODE DÉMO (Actuel) ---
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(VILLAS_DATA), 400);
-    });
-
-    // --- MODE RÉEL (À décommenter) ---
-    /*
-    // La requête GROQ pour récupérer les champs nécessaires
-    const query = `*[_type == "villa"] {
-      _id,
-      name,
-      location,
-      listingType,
-      description,
-      fullDescription,
-      pricePerNight,
-      salePrice,
-      bedrooms,
-      bathrooms,
-      guests,
-      surface,
-      viewType,
-      amenities,
-      tags,
-      "mainImage": mainImage.asset->url,
-      "galleryImages": galleryImages[].asset->url,
-      seasonalPrices
-    }`;
-
-    const villas = await client.fetch(query);
-    
-    // Mapping pour s'assurer que _id devient id pour notre front-end
-    return villas.map((v: any) => ({
-      ...v,
-      id: v._id
-    }));
-    */
+    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { ${villaFields} }`;
+    try {
+      const docs = await fetchSanity(query);
+      return docs.map(mapSanityVilla);
+    } catch (error) {
+      console.error('Erreur CMS:', error);
+      return [];
+    }
   },
 
-  /**
-   * Récupère une villa par son ID.
-   */
   getVillaById: async (id: string): Promise<Villa | undefined> => {
-    // --- MODE DÉMO (Actuel) ---
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(VILLAS_DATA.find(v => v.id === id)), 300);
-    });
-
-    // --- MODE RÉEL (À décommenter) ---
-    /*
-    const query = `*[_type == "villa" && _id == $id][0] {
-      ...,
-      "mainImage": mainImage.asset->url,
-      "galleryImages": galleryImages[].asset->url
-    }`;
-    
-    const villa = await client.fetch(query, { id });
-    if (!villa) return undefined;
-    
-    return { ...villa, id: villa._id };
-    */
+    const query = `*[_type == "villa" && _id == $id][0] { ${villaFields} }`;
+    try {
+      const doc = await fetchSanity(query, { id });
+      return doc ? mapSanityVilla(doc) : undefined;
+    } catch (error) {
+      console.error('Erreur CMS:', error);
+      return undefined;
+    }
   },
 
-  /**
-   * Helper pour générer les URLs d'images optimisées
-   */
-  urlFor: (source: any) => {
-    // --- MODE DÉMO ---
-    return source;
-
-    // --- MODE RÉEL (À décommenter) ---
-    // return builder.image(source).auto('format').fit('max').url();
-  }
+  getVillaBySlug: async (slug: string): Promise<Villa | undefined> => {
+    const query = `*[_type == "villa" && slug.current == $slug][0] { ${villaFields} }`;
+    try {
+      const doc = await fetchSanity(query, { slug });
+      return doc ? mapSanityVilla(doc) : undefined;
+    } catch (error) {
+      console.error('Erreur CMS:', error);
+      return undefined;
+    }
+  },
 };

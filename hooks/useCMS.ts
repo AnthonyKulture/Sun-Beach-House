@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Villa } from '../types';
 import { CmsService } from '../services/cms';

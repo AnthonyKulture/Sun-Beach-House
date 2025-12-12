@@ -12,8 +12,17 @@ interface VillasProps {
 export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToCollections }) => {
   const { villas, loading } = useVillas();
   
-  // Only display rentals on the homepage "Collection Exclusive"
-  const rentalVillas = villas.filter(v => v.listingType === 'rent');
+  // Filtrer les villas de location qui sont marquées pour la page d'accueil
+  // et les trier par homepageOrder (1, 2, 3, 4)
+  const featuredVillas = villas
+    .filter(v => v.listingType === 'rent' && v.featuredOnHomepage && v.homepageOrder)
+    .sort((a, b) => (a.homepageOrder || 999) - (b.homepageOrder || 999))
+    .slice(0, 4); // Limiter à 4 villas maximum
+  
+  // Fallback : si aucune villa n'est marquée, utiliser les 4 premières locations
+  const rentalVillas = featuredVillas.length > 0 
+    ? featuredVillas 
+    : villas.filter(v => v.listingType === 'rent').slice(0, 4);
 
   if (loading) {
       return (

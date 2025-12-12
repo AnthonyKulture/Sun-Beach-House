@@ -25,8 +25,8 @@ const POPULAR_AMENITIES = [
 
 export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchParams, filters, onUpdateFilters, mode }) => {
   const { villas, loading } = useVillas();
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // Mobile filter toggle
-  const [isAmenitiesOpen, setIsAmenitiesOpen] = useState(false); // Dropdown for amenities
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isAmenitiesOpen, setIsAmenitiesOpen] = useState(false);
   const amenitiesRef = useRef<HTMLDivElement>(null);
 
   // Reset filters when mode changes
@@ -34,9 +34,10 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
      onUpdateFilters({
          location: 'all',
          guests: 1,
-         price: mode === 'rent' ? 5000 : 25000000, // Adjust default max price
+         price: mode === 'rent' ? 5000 : 25000000,
          amenities: []
      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
   // Close amenities dropdown when clicking outside
