@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Integration de la police Classico (Titres) */
+@font-face {
+  font-family: 'Classico';
+  src: url('https://storage.googleapis.com/images-sbh/Classico.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Integration de la police Advera Script (Signature) */
+@font-face {
+  font-family: 'Advera Script';
+  src: url('https://storage.googleapis.com/images-sbh/Advera-Script.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Integration de la police IvyOra Display (Textes globaux) */
+@font-face {
+  font-family: 'IvyOra Display';
+  src: url('https://storage.googleapis.com/images-sbh/IvyOraDisplay-Thin.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IvyOra Display';
+  src: url('https://storage.googleapis.com/images-sbh/IvyOraDisplay-Regular.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mapping weights for better safety */
+@font-face {
+  font-family: 'IvyOra Display';
+  src: url('https://storage.googleapis.com/images-sbh/IvyOraDisplay-Regular.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IvyOra Display';
+  src: url('https://storage.googleapis.com/images-sbh/IvyOraDisplay-Regular.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IvyOra Display';
+  src: url('https://storage.googleapis.com/images-sbh/IvyOraDisplay-ThinItalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* GLOBAL TYPOGRAPHY RESET */
+html {
+  font-size: 112.5%; /* Base font size = 18px (16px * 1.125) */
+}
+
+body {
+  background-color: #F6F5F1;
+  color: #2D2D2D;
+  font-family: 'IvyOra Display', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+}
+
+/* Elegant Selection */
+::selection {
+  background: #C3CBC4;
+  color: #fff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F6F5F1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2D2D2D;
+  border-radius: 4px;
+}
+
+/* Utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Minimum touch target size for mobile accessibility */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* --- SCROLL REVEAL ANIMATION (Global) --- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility: Disable motion for users with vestibular disorders */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Image zoom effect on hover wrapper */
+.img-zoom-wrapper {
+  overflow: hidden;
+}
+
+.img-zoom-wrapper img {
+  transition: transform 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.img-zoom-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+/* --- DATE PICKER FIX for Desktop Chrome/Iframes --- */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}

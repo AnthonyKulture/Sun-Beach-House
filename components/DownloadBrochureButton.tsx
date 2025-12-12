@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { Download, Loader2 } from 'lucide-react';
 import { Villa } from '../types';
-import { VillaBrochurePDF } from './VillaBrochurePDF';
 import { generatePDFFileName } from '../utils/pdfHelpers';
 
 interface DownloadBrochureButtonProps {
@@ -25,8 +23,15 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
             setIsGenerating(true);
             setError(null);
 
-            // Generate PDF blob
-            const blob = await pdf(<VillaBrochurePDF villa={villa} />).toBlob();
+            // Call server-side API to generate PDF
+            const response = await fetch(`/api/generate-pdf?villaId=${villa.id}`);
+
+            if (!response.ok) {
+                throw new Error('Failed to generate PDF');
+            }
+
+            // Get PDF blob from response
+            const blob = await response.blob();
 
             // Trigger download
             const fileName = generatePDFFileName(villa);
