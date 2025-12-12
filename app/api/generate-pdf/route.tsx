@@ -5,6 +5,9 @@ import { CmsService } from '../../../services/cms';
 import { generatePDFFileName } from '../../../utils/pdfHelpers';
 import React from 'react';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
@@ -28,7 +31,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Generate PDF
-        const pdfDocument = <VillaBrochurePDF villa={ villa } />;
+        const pdfDocument = <VillaBrochurePDF villa={villa} />;
         const pdfBuffer = await renderToBuffer(pdfDocument);
 
         // Generate filename
