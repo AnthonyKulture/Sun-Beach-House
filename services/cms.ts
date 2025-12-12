@@ -23,10 +23,10 @@ const EQUIPMENT_LABELS: Record<string, string> = {
   'Star': 'Équipement',
 };
 
-// Configuration Sanity
-const PROJECT_ID = 'i6dkdu7j';
-const DATASET = 'production';
-const API_VERSION = '2024-03-01';
+// Configuration Sanity - Using environment variables
+const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'i6dkdu7j';
+const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
+const API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-03-01';
 
 const SANITY_API_URL = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/query/${DATASET}`;
 
