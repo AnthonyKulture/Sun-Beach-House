@@ -153,10 +153,19 @@ function App() {
     if (page === 'services') {
       if (currentView !== 'home') {
         navigate('home');
+        // Increased timeout and added retry logic for anchor scrolling
         setTimeout(() => {
           const element = document.getElementById('services');
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            // Retry after additional delay if element not found
+            setTimeout(() => {
+              const retryElement = document.getElementById('services');
+              if (retryElement) retryElement.scrollIntoView({ behavior: 'smooth' });
+            }, 200);
+          }
+        }, 500);
       } else {
         const element = document.getElementById('services');
         if (element) element.scrollIntoView({ behavior: 'smooth' });
