@@ -178,9 +178,7 @@ const VillaCard: React.FC<{ villa: Villa; number: string; onClick: () => void; d
                     ))}
                 </div>
             </div>
-            <span className="font-sans text-sm tracking-wider text-sbh-charcoal font-semibold">
-                {villa.pricePerNight}€ <span className="text-gray-400 text-[10px] font-normal lowercase">{t.villas.perNight}</span>
-            </span>
+
         </div>
     </div>
 );
