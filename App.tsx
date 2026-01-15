@@ -1,23 +1,24 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Villas } from './components/Villas';
-import { Experience } from './components/Experience';
-import { Services } from './components/Services';
-import { Footer } from './components/Footer';
-import { VillaDetails } from './components/VillaDetails';
-import { Collections } from './components/Collections';
-import { AboutPage } from './components/AboutPage';
-import { ContactPage } from './components/ContactPage';
-import { BookingPage } from './components/BookingPage';
-import { SalesContactPage } from './components/SalesContactPage';
-import { Destinations } from './components/Destinations';
-import { useVilla } from './hooks/useCMS';
-import { BookingParams, FilterState, SalesInquiryParams } from './types';
-import { SunStamp } from './components/Decorations';
+import { Navbar } from '@/components/Navbar';
+import { Hero } from '@/components/Hero';
+import { About } from '@/components/About';
+import { Villas } from '@/components/Villas';
+import { Experience } from '@/components/Experience';
+import { Services } from '@/components/Services';
+import { Footer } from '@/components/Footer';
+import { VillaDetails } from '@/components/VillaDetails';
+import { Collections } from '@/components/Collections';
+import { AboutPage } from '@/components/AboutPage';
+import { ContactPage } from '@/components/ContactPage';
+import { BookingPage } from '@/components/BookingPage';
+import { SalesContactPage } from '@/components/SalesContactPage';
+import { Destinations } from '@/components/Destinations';
+import { useVilla } from '@/hooks/useCMS';
+import { BookingParams, FilterState, SalesInquiryParams } from '@/types';
+import { SunStamp } from '@/components/Decorations';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 type ViewState = 'home' | 'villa-details' | 'collections' | 'rentals' | 'sales' | 'about' | 'contact' | 'booking' | 'sales-contact' | 'destinations';
 
@@ -184,9 +185,8 @@ function App() {
     navigate('villa-details', { id });
   };
 
-  const handleSearch = (arrival: string, departure: string, guests: number) => {
-    setSearchParams({ arrival, departure, guests });
-    setFilters(prev => ({ ...prev, guests }));
+  const handleSearch = (location: string, guests: number) => {
+    setFilters(prev => ({ ...prev, location, guests }));
     navigate('rentals');
   };
 
@@ -203,103 +203,105 @@ function App() {
   const isWhitePage = ['contact', 'booking', 'sales-contact'].includes(currentView);
 
   return (
-    <div className="min-h-screen font-sans selection:bg-sbh-blue selection:text-white relative flex flex-col bg-sbh-cream text-sbh-charcoal">
+    <LanguageProvider>
+      <div className="min-h-screen font-sans selection:bg-sbh-blue selection:text-white relative flex flex-col bg-sbh-cream text-sbh-charcoal">
 
-      {/* Global Cinematic Noise Overlay */}
-      <div className="fixed inset-0 z-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
-        style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
-          pointerEvents: 'none'
-        }}>
-      </div>
+        {/* Global Cinematic Noise Overlay */}
+        <div className="fixed inset-0 z-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+            pointerEvents: 'none'
+          }}>
+        </div>
 
-      <Navbar onNavigate={handleNavigate} currentView={currentView} forceDark={isWhitePage} />
+        <Navbar onNavigate={handleNavigate} currentView={currentView} forceDark={isWhitePage} />
 
-      {/* Main Content */}
-      <main className="flex-grow relative z-10">
-        {currentView === 'home' && (
-          <>
-            <Hero onSearch={handleSearch} />
-            <About onNavigate={handleNavigate} />
-            <Villas onViewDetails={handleViewDetails} onNavigateToCollections={() => navigate('rentals')} />
-            <Services onNavigate={handleNavigate} />
-            <Experience />
-          </>
-        )}
+        {/* Main Content */}
+        <main className="flex-grow relative z-10">
+          {currentView === 'home' && (
+            <>
+              <Hero onSearch={handleSearch} />
+              <About onNavigate={handleNavigate} />
+              <Villas onViewDetails={handleViewDetails} onNavigateToCollections={() => navigate('rentals')} />
+              <Services onNavigate={handleNavigate} />
+              <Experience />
+            </>
+          )}
 
-        {(currentView === 'collections' || currentView === 'rentals') && (
-          <Collections
-            onViewDetails={handleViewDetails}
-            searchParams={searchParams}
-            filters={filters}
-            onUpdateFilters={setFilters}
-            mode="rent"
-          />
-        )}
-
-        {currentView === 'sales' && (
-          <Collections
-            onViewDetails={handleViewDetails}
-            searchParams={null}
-            filters={filters}
-            onUpdateFilters={setFilters}
-            mode="sale"
-          />
-        )}
-
-        {currentView === 'destinations' && (
-          <Destinations onNavigate={handleNavigate} />
-        )}
-
-        {currentView === 'about' && (
-          <AboutPage />
-        )}
-
-        {currentView === 'contact' && (
-          <ContactPage />
-        )}
-
-        {currentView === 'booking' && bookingParams && (
-          <BookingPage
-            bookingParams={bookingParams}
-            onBack={() => handleViewDetails(bookingParams.villaId)}
-          />
-        )}
-
-        {currentView === 'sales-contact' && salesInquiryParams && (
-          <SalesContactPage
-            inquiryParams={salesInquiryParams}
-            onBack={() => handleViewDetails(salesInquiryParams.villaId)}
-          />
-        )}
-
-        {currentView === 'villa-details' && (
-          villaLoading ? (
-            <div className="bg-white min-h-screen flex items-center justify-center">
-              <SunStamp className="w-16 h-16 text-sbh-green animate-spin-slower opacity-50" />
-            </div>
-          ) : selectedVilla ? (
-            <VillaDetails
-              villa={selectedVilla}
-              onNavigateToVilla={handleViewDetails}
-              onBook={handleBook}
-              onContact={handleSalesContact}
-              onBack={() => navigate(selectedVilla.listingType === 'sale' ? 'sales' : 'rentals')}
+          {(currentView === 'collections' || currentView === 'rentals') && (
+            <Collections
+              onViewDetails={handleViewDetails}
+              searchParams={searchParams}
+              filters={filters}
+              onUpdateFilters={setFilters}
+              mode="rent"
             />
-          ) : (
-            <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-              <h2 className="font-serif text-3xl italic">Propriété introuvable</h2>
-              <button onClick={() => navigate('home')} className="border-b border-black uppercase text-xs tracking-widest pb-1">Retour à l'accueil</button>
-            </div>
-          )
-        )}
-      </main>
+          )}
 
-      {/* Footer - Z-10 */}
-      <div className="relative z-10">
-        <Footer onNavigate={handleNavigate} />
+          {currentView === 'sales' && (
+            <Collections
+              onViewDetails={handleViewDetails}
+              searchParams={null}
+              filters={filters}
+              onUpdateFilters={setFilters}
+              mode="sale"
+            />
+          )}
+
+          {currentView === 'destinations' && (
+            <Destinations onNavigate={handleNavigate} />
+          )}
+
+          {currentView === 'about' && (
+            <AboutPage />
+          )}
+
+          {currentView === 'contact' && (
+            <ContactPage />
+          )}
+
+          {currentView === 'booking' && bookingParams && (
+            <BookingPage
+              bookingParams={bookingParams}
+              onBack={() => handleViewDetails(bookingParams.villaId)}
+            />
+          )}
+
+          {currentView === 'sales-contact' && salesInquiryParams && (
+            <SalesContactPage
+              inquiryParams={salesInquiryParams}
+              onBack={() => handleViewDetails(salesInquiryParams.villaId)}
+            />
+          )}
+
+          {currentView === 'villa-details' && (
+            villaLoading ? (
+              <div className="bg-white min-h-screen flex items-center justify-center">
+                <SunStamp className="w-16 h-16 text-sbh-green animate-spin-slower opacity-50" />
+              </div>
+            ) : selectedVilla ? (
+              <VillaDetails
+                villa={selectedVilla}
+                onNavigateToVilla={handleViewDetails}
+                onBook={handleBook}
+                onContact={handleSalesContact}
+                onBack={() => navigate(selectedVilla.listingType === 'sale' ? 'sales' : 'rentals')}
+              />
+            ) : (
+              <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+                <h2 className="font-serif text-3xl italic">Propriété introuvable</h2>
+                <button onClick={() => navigate('home')} className="border-b border-black uppercase text-xs tracking-widest pb-1">Retour à l'accueil</button>
+              </div>
+            )
+          )}
+        </main>
+
+        {/* Footer - Z-10 */}
+        <div className="relative z-10">
+          <Footer onNavigate={handleNavigate} />
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 }
 

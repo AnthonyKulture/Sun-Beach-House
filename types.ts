@@ -23,21 +23,28 @@ export interface PDFOptions {
   highlightedAmenities?: string[];
 }
 
+export interface HomeFeature {
+  title: string;
+  description: string;
+}
+
 export interface Villa {
   id: string;
   name: string;
   location: string; // e.g., "Flamands", "Toiny"
-  description: string; // Short description for card
-  fullDescription: string; // Long storytelling text
-  pricePerNight?: number; // Optional, for rentals (base price for display)
+  description: { fr: string; en: string }; // Bilingual short description
+  fullDescription: { fr: string; en: string }; // Bilingual full description
+  pricePerNight?: number; // Optional, for rentals (base price for display if no weekly)
+  pricePerWeek?: number; // Optional, preferred for rentals
   salePrice?: number; // Optional, for sales
   listingType: 'rent' | 'sale'; // New discriminator
   seasonalPrices?: SeasonalPrice[]; // Array of seasonal pricing (rentals only)
   bedrooms: number;
   bathrooms: number;
   guests: number; // For sale: occupancy potential
-  surface: number; // m2
-  viewType: string; // e.g. "Océan", "Jardin Tropical"
+  surface?: number; // m2 - Optional now
+  viewType?: string; // e.g. "Océan", "Jardin Tropical" - Optional now
+  homeFeatures?: HomeFeature[]; // Room and space details
   mainImage: string;
   galleryImages: string[]; // Array of image URLs
   amenities: Amenity[];
@@ -45,6 +52,11 @@ export interface Villa {
   featuredOnHomepage?: boolean; // Whether to show on homepage
   homepageOrder?: number; // Position on homepage (1-4)
   pdfOptions?: PDFOptions; // PDF export configuration
+  geopoint?: {
+    lat: number;
+    lng: number;
+  }; // GPS coordinates for map
+  privateInfo?: string; // Internal notes (not displayed on site)
 }
 
 

@@ -15,7 +15,11 @@
     "sanity"
   ],
   "dependencies": {
+    "@google-cloud/translate": "^9.3.0",
     "@sanity/vision": "^4.21.1",
+    "csv-parse": "^6.1.0",
+    "dotenv": "^17.2.3",
+    "html-to-text": "^9.0.5",
     "react": "^19.1",
     "react-dom": "^19.1",
     "sanity": "^4.21.1",

@@ -3,6 +3,7 @@ import { saveAs } from 'file-saver';
 import { Download, Loader2 } from 'lucide-react';
 import { Villa } from '../types';
 import { generatePDFFileName } from '../utils/pdfHelpers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface DownloadBrochureButtonProps {
     villa: Villa;
@@ -15,6 +16,7 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
     className = '',
     compact = false,
 }) => {
+    const { t } = useLanguage();
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -40,7 +42,7 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
             setIsGenerating(false);
         } catch (err) {
             console.error('PDF Generation Error:', err);
-            setError('Erreur lors de la génération du PDF. Veuillez réessayer.');
+            setError(t.downloadBrochure.error);
             setIsGenerating(false);
         }
     };
@@ -58,7 +60,7 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
           disabled:opacity-50 disabled:cursor-not-allowed
           ${className}
         `}
-                title="Télécharger la brochure PDF"
+                title={t.downloadBrochure.title}
             >
                 {isGenerating ? (
                     <Loader2 size={20} className="animate-spin text-sbh-charcoal" />
@@ -88,12 +90,12 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
                 {isGenerating ? (
                     <>
                         <Loader2 size={16} className="animate-spin" />
-                        <span>Génération...</span>
+                        <span>{t.downloadBrochure.generating}</span>
                     </>
                 ) : (
                     <>
                         <Download size={16} />
-                        <span>Télécharger la Brochure</span>
+                        <span>{t.downloadBrochure.download}</span>
                     </>
                 )}
             </button>

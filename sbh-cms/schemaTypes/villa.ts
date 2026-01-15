@@ -108,6 +108,38 @@ const EQUIPMENT_LABELS: Record<string, string> = {
   'Star': 'Équipement personnalisé',
 }
 
+const homeFeature = defineType({
+  name: 'homeFeature',
+  title: 'Caractéristique',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Titre',
+      type: 'string',
+      description: 'Ex: "Chambre 1", "Salon Principal", "Terrasse"',
+      validation: (rule) => rule.required().error('Le titre est obligatoire'),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 4,
+      description: 'Détails: lit king size, vue mer, équipements, etc.',
+      validation: (rule) => rule.required().error('La description est obligatoire'),
+    }),
+  ],
+  preview: {
+    select: { title: 'title', description: 'description' },
+    prepare({ title, description }) {
+      return {
+        title: title,
+        subtitle: description?.substring(0, 60) + '...',
+      }
+    },
+  },
+})
+
 const amenity = defineType({
   name: 'amenity',
   title: 'Équipement',
@@ -190,6 +222,7 @@ const villa = defineType({
     { name: 'description', title: 'Description' },
     { name: 'pricing', title: 'Tarification' },
     { name: 'features', title: 'Caractéristiques' },
+    { name: 'location', title: 'Localisation' },
     { name: 'media', title: 'Photos' },
     { name: 'extras', title: 'Équipements & Tags' },
     { name: 'pdfExport', title: 'Export PDF' },
@@ -273,6 +306,21 @@ const villa = defineType({
         layout: 'dropdown',
       },
       validation: (rule) => rule.required().error('Sélectionnez un quartier'),
+    }),
+    defineField({
+      name: 'privateInfo',
+      title: 'Informations privées',
+      type: 'text',
+      group: 'essential',
+      description: 'Notes internes, non affichées sur le site (accès propriétaire, codes, etc.)',
+      rows: 3,
+    }),
+    defineField({
+      name: 'geopoint',
+      title: 'Position sur la carte',
+      type: 'geopoint',
+      group: 'location',
+      description: 'Coordonnées GPS pour afficher la villa sur une carte',
     }),
     defineField({
       name: 'featuredOnHomepage',
@@ -364,29 +412,63 @@ const villa = defineType({
     defineField({
       name: 'description',
       title: 'Accroche courte',
-      type: 'string',
+      type: 'object',
       group: 'description',
-      description: 'Une phrase d\'accroche (affichée sur les cartes). Ex: "Vue mer panoramique"',
-      validation: (rule) => rule.required().max(100)
-        .error('L\'accroche est obligatoire (100 caractères max)'),
+      description: 'Une phrase d\'accroche (affichée sur les cartes) en français et anglais',
+      fields: [
+        {
+          name: 'fr',
+          title: 'Français',
+          type: 'string',
+          validation: (rule) => rule.required().max(100),
+        },
+        {
+          name: 'en',
+          title: 'English',
+          type: 'string',
+          validation: (rule) => rule.required().max(100),
+        },
+      ],
+      validation: (rule) => rule.required().error('Les descriptions FR et EN sont obligatoires'),
     }),
     defineField({
       name: 'fullDescription',
       title: 'Description complète',
-      type: 'text',
+      type: 'object',
       group: 'description',
-      description: 'Décrivez la villa en détail : ambiance, style, points forts...',
-      rows: 10,
-      validation: (rule) => rule.required()
-        .error('La description complète est obligatoire'),
+      description: 'Description détaillée de la villa en français et anglais',
+      fields: [
+        {
+          name: 'fr',
+          title: 'Français',
+          type: 'text',
+          rows: 10,
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: 'en',
+          title: 'English',
+          type: 'text',
+          rows: 10,
+          validation: (rule) => rule.required(),
+        },
+      ],
+      validation: (rule) => rule.required().error('Les descriptions FR et EN sont obligatoires'),
     }),
     defineField({
       name: 'viewType',
       title: 'Type de vue',
       type: 'string',
       group: 'description',
-      description: 'Quelle vue offre cette villa ? Ex: "Océan panoramique", "Jardin tropical"',
-      validation: (rule) => rule.required().error('Précisez le type de vue'),
+      description: 'Quelle vue offre cette villa ? Ex: "Océan panoramique", "Jardin tropical" (optionnel)',
+    }),
+    defineField({
+      name: 'homeFeatures',
+      title: 'Caractéristiques de la Maison',
+      type: 'array',
+      of: [{ type: 'homeFeature' }],
+      group: 'description',
+      description: 'Détails des chambres, espaces communs, équipements spéciaux',
     }),
 
     // ═══════════════════════════════════════════════════════════
@@ -394,17 +476,19 @@ const villa = defineType({
     // ═══════════════════════════════════════════════════════════
     defineField({
       name: 'pricePerNight',
-      title: 'Prix par nuit (€)',
+      title: 'Prix par nuit (à partir de) - €',
       type: 'number',
       group: 'pricing',
-      description: 'Prix de base affiché (pour les locations uniquement)',
+      description: 'Prix par nuit (Basse Saison) - si applicable',
       hidden: ({ document }) => document?.listingType === 'sale',
-      validation: (rule) => rule.custom((value, context) => {
-        if (context.document?.listingType === 'rent' && !value) {
-          return 'Le prix par nuit est obligatoire pour les locations'
-        }
-        return true
-      }),
+    }),
+    defineField({
+      name: 'pricePerWeek',
+      title: 'Prix par semaine (à partir de) - €',
+      type: 'number',
+      group: 'pricing',
+      description: 'Prix par semaine (Basse Saison) - si applicable',
+      hidden: ({ document }) => document?.listingType === 'sale',
     }),
     defineField({
       name: 'salePrice',
@@ -466,9 +550,7 @@ const villa = defineType({
       title: 'Surface (m²)',
       type: 'number',
       group: 'features',
-      description: 'Surface habitable en mètres carrés',
-      validation: (rule) => rule.required().min(1)
-        .error('Indiquez la surface'),
+      description: 'Surface habitable en mètres carrés (optionnel)',
     }),
 
     // ═══════════════════════════════════════════════════════════
@@ -624,14 +706,20 @@ const villa = defineType({
       listingType: 'listingType',
       media: 'mainImage',
       bedrooms: 'bedrooms',
-      price: 'pricePerNight',
+      pricePerNight: 'pricePerNight',
+      pricePerWeek: 'pricePerWeek',
       salePrice: 'salePrice',
     },
-    prepare({ title, location, listingType, media, bedrooms, price, salePrice }) {
+    prepare({ title, location, listingType, media, bedrooms, pricePerNight, pricePerWeek, salePrice }) {
       const typeLabel = listingType === 'sale' ? 'VENTE' : 'LOCATION'
-      const displayPrice = listingType === 'sale'
-        ? `${(salePrice || 0).toLocaleString('fr-FR')} €`
-        : `${price || 0} €/nuit`
+      let displayPrice = '';
+      if (listingType === 'sale') {
+        displayPrice = `${(salePrice || 0).toLocaleString('fr-FR')} €`;
+      } else {
+        if (pricePerNight) displayPrice = `${pricePerNight} €/nuit`;
+        if (pricePerWeek) displayPrice = displayPrice ? `${displayPrice} | ${pricePerWeek} €/semaine` : `${pricePerWeek} €/semaine`;
+        if (!displayPrice) displayPrice = 'Prix sur demande';
+      }
 
       return {
         title: title || 'Nouvelle villa',
@@ -668,4 +756,5 @@ const villa = defineType({
   ],
 })
 
-export { bedroomPrice, seasonalPrice, amenity, villa }
+export { bedroomPrice, seasonalPrice, homeFeature, amenity, villa }
+

@@ -38,3 +38,6 @@ out
 *.njsproj
 *.sln
 *.sw?
+
+# Attachments
+attachments/

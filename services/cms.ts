@@ -93,9 +93,15 @@ const mapSanityVilla = (doc: any): Villa => {
     name: doc.name,
     location: doc.location,
     listingType: doc.listingType,
-    description: doc.description,
-    fullDescription: doc.fullDescription,
+    // Handle both old (string) and new (object) formats during migration
+    description: typeof doc.description === 'string'
+      ? { en: doc.description, fr: doc.description }
+      : doc.description || { en: '', fr: '' },
+    fullDescription: typeof doc.fullDescription === 'string'
+      ? { en: doc.fullDescription, fr: doc.fullDescription }
+      : doc.fullDescription || { en: '', fr: '' },
     pricePerNight: doc.pricePerNight,
+    pricePerWeek: doc.pricePerWeek,
     salePrice: doc.salePrice,
     bedrooms: doc.bedrooms,
     bathrooms: doc.bathrooms,
@@ -109,7 +115,10 @@ const mapSanityVilla = (doc: any): Villa => {
     seasonalPrices,
     featuredOnHomepage: doc.featuredOnHomepage || false,
     homepageOrder: doc.homepageOrder,
+    homeFeatures: doc.homeFeatures || [],
     pdfOptions: doc.pdfOptions || {},
+    geopoint: doc.geopoint,
+    privateInfo: doc.privateInfo,
   };
 };
 
@@ -122,6 +131,7 @@ const villaFields = `
   description,
   fullDescription,
   pricePerNight,
+  pricePerWeek,
   salePrice,
   bedrooms,
   bathrooms,
@@ -136,6 +146,10 @@ const villaFields = `
   tags,
   featuredOnHomepage,
   homepageOrder,
+  homeFeatures[] {
+    title,
+    description
+  },
   seasonalPrices[] {
     _key,
     seasonName,
@@ -146,7 +160,9 @@ const villaFields = `
     includePrice,
     customFooterText,
     highlightedAmenities
-  }
+  },
+  geopoint,
+  privateInfo
 `;
 
 export const CmsService = {

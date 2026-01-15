@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Villa } from '../types';
 import { useVillas } from '../hooks/useCMS';
+import { useLanguage } from '../contexts/LanguageContext';
 import { OrganicLine, NorthStar, SunStamp } from './Decorations';
 
 interface VillasProps {
@@ -10,6 +10,7 @@ interface VillasProps {
 }
 
 export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToCollections }) => {
+    const { language, t } = useLanguage();
     const { villas, loading } = useVillas();
 
     // Filtrer les villas de location qui sont marquées pour la page d'accueil
@@ -66,7 +67,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                             <NorthStar className="w-8 h-8" />
                         </span>
                         Collection <br />
-                        <span className="italic text-5xl md:text-7xl text-sbh-green ml-0 md:ml-12 block mt-4">Exclusive</span>
+                        <span className="italic text-5xl md:text-7xl text-sbh-green ml-0 md:ml-12 block mt-4">{t.villas.exclusive}</span>
                     </h2>
                     <div className="hidden md:block w-px h-32 bg-sbh-charcoal/10 mr-12"></div>
                 </div>
@@ -80,7 +81,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                     {rentalVillas[0] && (
                         <div className="md:col-span-4 md:col-start-2 md:mt-0 flex justify-center md:block">
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[0]} number="01" onClick={() => onViewDetails(rentalVillas[0].id)} delay="0ms" />
+                                <VillaCard villa={rentalVillas[0]} number="01" onClick={() => onViewDetails(rentalVillas[0].id)} delay="0ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
@@ -92,7 +93,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                                 <NorthStar className="w-16 h-16" />
                             </div>
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[1]} number="02" onClick={() => onViewDetails(rentalVillas[1].id)} delay="200ms" />
+                                <VillaCard villa={rentalVillas[1]} number="02" onClick={() => onViewDetails(rentalVillas[1].id)} delay="200ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
@@ -101,7 +102,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                     {rentalVillas[2] && (
                         <div className="md:col-span-4 md:col-start-3 md:-mt-12 flex justify-center md:block">
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[2]} number="03" onClick={() => onViewDetails(rentalVillas[2].id)} delay="100ms" />
+                                <VillaCard villa={rentalVillas[2]} number="03" onClick={() => onViewDetails(rentalVillas[2].id)} delay="400ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
@@ -110,7 +111,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                     {rentalVillas[3] && (
                         <div className="md:col-span-4 md:col-start-8 md:mt-32 flex justify-center md:block">
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[3]} number="04" onClick={() => onViewDetails(rentalVillas[3].id)} delay="300ms" />
+                                <VillaCard villa={rentalVillas[3]} number="04" onClick={() => onViewDetails(rentalVillas[3].id)} delay="600ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
@@ -121,7 +122,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                 <div className="mt-24 md:mt-48 flex justify-center reveal-on-scroll relative" style={{ transitionDelay: '200ms' }}>
                     <div className="hidden md:block absolute top-[-50px] h-[50px] w-px bg-sbh-charcoal/10"></div>
                     <button onClick={onNavigateToCollections} className="font-sans text-sm uppercase tracking-[0.3em] text-sbh-charcoal border border-sbh-charcoal/30 px-12 py-6 hover:bg-sbh-green hover:text-sbh-charcoal hover:border-sbh-green transition-all duration-500 rounded-full bg-sbh-cream z-10 touch-target text-center w-full md:w-auto">
-                        Parcourir toutes les villas
+                        {t.villas.exploreAll}
                     </button>
                 </div>
             </div>
@@ -129,7 +130,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
     );
 };
 
-const VillaCard: React.FC<{ villa: Villa; number: string; onClick: () => void; delay?: string }> = ({ villa, number, onClick, delay = '0ms' }) => (
+const VillaCard: React.FC<{ villa: Villa; number: string; onClick: () => void; delay?: string; language: 'fr' | 'en'; t: any }> = ({ villa, number, onClick, delay = '0ms', language, t }) => (
     <div className="group cursor-pointer reveal-on-scroll" onClick={onClick} style={{ transitionDelay: delay }}>
         <div className="flex items-baseline justify-between mb-4 border-b border-gray-300 pb-2">
             <span className="font-sans text-[10px] text-sbh-green tracking-widest font-bold">NO. {number}</span>
@@ -146,14 +147,14 @@ const VillaCard: React.FC<{ villa: Villa; number: string; onClick: () => void; d
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-sbh-green/20 group-hover:bg-sbh-green/30 transition-colors duration-500 opacity-0 group-hover:opacity-100 mix-blend-multiply"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="font-serif text-white text-xl italic drop-shadow-md border-b border-white pb-1">Découvrir</span>
+                <span className="font-serif text-white text-xl italic drop-shadow-md border-b border-white pb-1">{t.villas.discover}</span>
             </div>
         </div>
 
         <div className="mt-6 flex justify-between items-start">
             <div className="flex flex-col gap-1">
                 <span className="font-sans text-xs tracking-[0.2em] uppercase text-sbh-stone font-medium">
-                    {villa.description}
+                    {villa.description[language]}
                 </span>
                 <div className="flex flex-wrap gap-2">
                     {villa.tags.slice(0, 2).map(tag => (
@@ -162,7 +163,7 @@ const VillaCard: React.FC<{ villa: Villa; number: string; onClick: () => void; d
                 </div>
             </div>
             <span className="font-sans text-sm tracking-wider text-sbh-charcoal font-semibold">
-                {villa.pricePerNight}€ <span className="text-gray-400 text-[10px] font-normal lowercase">/ nuit</span>
+                {villa.pricePerNight}€ <span className="text-gray-400 text-[10px] font-normal lowercase">{t.villas.perNight}</span>
             </span>
         </div>
     </div>
