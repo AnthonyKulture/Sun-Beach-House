@@ -212,9 +212,10 @@ const styles = StyleSheet.create({
 
 interface VillaBrochurePDFProps {
     villa: Villa;
+    language?: 'fr' | 'en';
 }
 
-export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa }) => {
+export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, language = 'fr' }) => {
     const pdfOptions = villa.pdfOptions || {};
     const includePrice = pdfOptions.includePrice !== false;
     const isSale = villa.listingType === 'sale';
@@ -224,8 +225,14 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa }) => 
         ? villa.amenities.filter(a => pdfOptions.highlightedAmenities?.includes(a.icon)).slice(0, 8)
         : villa.amenities.slice(0, 8);
 
+    // Get localized description
+    // @ts-ignore - Handle legacy string or new object structure
+    const fullDescription = typeof villa.fullDescription === 'object'
+        ? (villa.fullDescription[language] || villa.fullDescription['fr'] || '')
+        : (villa.fullDescription || '');
+
     // Truncate description to fit page 1 (approximately 800 characters)
-    const truncatedDescription = truncateText(villa.fullDescription, 800);
+    const truncatedDescription = truncateText(fullDescription, 800);
 
     // Gallery: max 4 images
     const galleryImages = villa.galleryImages.slice(0, 4);

@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
         const villaId = searchParams.get('villaId');
+        const lang = (searchParams.get('lang') as 'fr' | 'en') || 'fr';
 
         if (!villaId) {
             return NextResponse.json(
@@ -31,14 +32,14 @@ export async function GET(request: NextRequest) {
         }
 
         // Generate PDF
-        const pdfDocument = <VillaBrochurePDF villa={villa} />;
+        const pdfDocument = <VillaBrochurePDF villa={villa} language={lang} />;
         const pdfBuffer = await renderToBuffer(pdfDocument);
 
         // Generate filename
         const fileName = generatePDFFileName(villa);
 
         // Return PDF with proper headers
-        return new NextResponse(pdfBuffer, {
+        return new NextResponse(pdfBuffer as unknown as BodyInit, {
             status: 200,
             headers: {
                 'Content-Type': 'application/pdf',

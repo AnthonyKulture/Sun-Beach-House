@@ -16,7 +16,7 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
     className = '',
     compact = false,
 }) => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -26,7 +26,7 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
             setError(null);
 
             // Call server-side API to generate PDF
-            const response = await fetch(`/api/generate-pdf?villaId=${villa.id}`);
+            const response = await fetch(`/api/generate-pdf?villaId=${villa.id}&lang=${language}`);
 
             if (!response.ok) {
                 throw new Error('Failed to generate PDF');
