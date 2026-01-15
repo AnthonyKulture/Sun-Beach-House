@@ -599,7 +599,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                         onClick={isSale ? () => onContact(villa.id) : handleMobileBookClick}
                         className="bg-sbh-charcoal text-white px-8 py-3.5 font-sans text-xs uppercase tracking-[0.2em] hover:bg-sbh-green transition-colors rounded-sm shadow-lg"
                     >
-                        {isSale ? '{t.villa.contact}' : '{t.villa.reserve}'}
+                        {isSale ? t.villa.contact : t.villa.reserve}
                     </button>
                 </div>
             </div>
