@@ -54,12 +54,26 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     }, [villaId]);
 
     // Loading and Error States
-    if (loading) {
-        return <div className="min-h-screen flex items-center justify-center bg-sbh-cream"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sbh-green"></div></div>;
+    if (loading || (!villa && !error)) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-sbh-cream">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sbh-green"></div>
+            </div>
+        );
     }
 
     if (error || !villa) {
-        return <div className="min-h-screen flex items-center justify-center bg-sbh-cream text-sbh-charcoal">Configured Villa not found.</div>;
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-sbh-cream text-sbh-charcoal gap-4">
+                <p className="text-lg">Villa non trouvée</p>
+                <button
+                    onClick={() => router.back()}
+                    className="text-sbh-green hover:underline"
+                >
+                    ← Retour
+                </button>
+            </div>
+        );
     }
 
     // Only show similar villas of same type

@@ -25,6 +25,7 @@ export const BookingPage: React.FC = () => {
    const { t, language } = useLanguage();
    const { villa, loading } = useVilla(bookingParams.villaId);
    const [isSubmitted, setIsSubmitted] = useState(false);
+   const [isMounted, setIsMounted] = useState(false);
    const [formData, setFormData] = useState({
       firstName: '',
       lastName: '',
@@ -34,10 +35,11 @@ export const BookingPage: React.FC = () => {
    });
 
    useEffect(() => {
+      setIsMounted(true);
       window.scrollTo(0, 0);
    }, []);
 
-   if (loading || !villa) {
+   if (!isMounted || loading || !villa) {
       return (
          <div className="min-h-screen flex items-center justify-center bg-sbh-cream">
             <SunStamp className="w-16 h-16 text-sbh-green animate-spin-slower opacity-50" />
@@ -104,64 +106,61 @@ export const BookingPage: React.FC = () => {
    }
 
    return (
-      <div className="min-h-screen bg-white animate-fade-in pt-48 md:pt-64 pb-24 px-4 md:px-12 relative z-20">
+      <div className="min-h-screen bg-white animate-fade-in pt-32 md:pt-40 pb-24 px-4 md:px-12 relative z-20">
 
-         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
             {/* LEFT COLUMN - RECAP CARD */}
             <div className="lg:col-span-5 order-2 lg:order-1">
-               <div className="sticky top-40 bg-sbh-cream/30 border border-gray-100 rounded-xl overflow-hidden p-6 md:p-8 shadow-xl shadow-gray-100/50">
-                  <h3 className="font-serif text-2xl italic text-sbh-charcoal mb-8 border-b border-gray-200 pb-4">
+               <div className="lg:sticky lg:top-28 bg-sbh-cream/30 border border-gray-100 rounded-xl overflow-hidden p-5 md:p-6 shadow-xl shadow-gray-100/50">
+                  <h3 className="font-serif text-xl italic text-sbh-charcoal mb-4 border-b border-gray-200 pb-3">
                      {t.booking.yourStay}
                   </h3>
 
                   {/* Villa Mini Card */}
-                  <div className="flex gap-4 mb-8">
-                     <div className="w-24 h-24 rounded-lg overflow-hidden shrink-0 relative">
-                        <Image src={villa.mainImage} alt={villa.name} fill sizes="96px" className="object-cover" />
+                  <div className="flex gap-3 mb-4">
+                     <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 relative">
+                        <Image src={villa.mainImage} alt={villa.name} fill sizes="64px" className="object-cover" />
                      </div>
                      <div>
-                        <h4 className="font-serif text-xl text-sbh-charcoal">{villa.name}</h4>
-                        <span className="text-xs font-sans text-gray-500 uppercase tracking-widest flex items-center gap-1 mt-1">
+                        <h4 className="font-serif text-lg text-sbh-charcoal">{villa.name}</h4>
+                        <span className="text-[10px] font-sans text-gray-500 uppercase tracking-widest flex items-center gap-1">
                            <MapPin size={10} /> {villa.location}
                         </span>
-                        <div className="flex items-center gap-1 text-sbh-green text-xs mt-2">
-                           <Star size={12} fill="currentColor" /> 5.0 (Exceptionnel)
-                        </div>
                      </div>
                   </div>
 
                   {/* Details List */}
-                  <div className="space-y-4 mb-8 text-sm font-sans text-sbh-charcoal/80">
-                     <div className="flex justify-between items-center py-3 border-t border-gray-200/50">
+                  <div className="space-y-0 mb-4 text-sm font-sans text-sbh-charcoal/80">
+                     <div className="flex justify-between items-center py-2 border-t border-gray-200/50">
                         <span className="text-gray-500 uppercase text-[10px] tracking-widest">{t.booking.arrival}</span>
-                        <span className="font-medium">{formatDate(bookingParams.arrival)}</span>
+                        <span className="font-medium text-sm">{formatDate(bookingParams.arrival)}</span>
                      </div>
-                     <div className="flex justify-between items-center py-3 border-t border-gray-200/50">
+                     <div className="flex justify-between items-center py-2 border-t border-gray-200/50">
                         <span className="text-gray-500 uppercase text-[10px] tracking-widest">{t.booking.departure}</span>
-                        <span className="font-medium">{formatDate(bookingParams.departure)}</span>
+                        <span className="font-medium text-sm">{formatDate(bookingParams.departure)}</span>
                      </div>
-                     <div className="flex justify-between items-center py-3 border-t border-gray-200/50">
+                     <div className="flex justify-between items-center py-2 border-t border-gray-200/50">
                         <span className="text-gray-500 uppercase text-[10px] tracking-widest">{t.booking.travelers}</span>
-                        <span className="font-medium">{bookingParams.guests} {t.booking.guests}</span>
+                        <span className="font-medium text-sm">{bookingParams.guests} {t.booking.guests}</span>
                      </div>
                   </div>
 
                   {/* Pricing Information */}
-                  <div className="bg-sbh-cream/30 p-6 rounded-lg border border-sbh-green/20 space-y-4 mb-6">
-                     <div className="flex items-start gap-3">
-                        <ShieldCheck size={20} className="shrink-0 text-sbh-green mt-0.5" />
-                        <div className="space-y-2">
-                           <h4 className="font-serif text-base text-sbh-charcoal font-medium">{t.booking.customQuote}</h4>
-                           <p className="text-sm text-gray-600 leading-relaxed">
+                  <div className="bg-sbh-cream/30 p-4 rounded-lg border border-sbh-green/20 mb-4">
+                     <div className="flex items-start gap-2">
+                        <ShieldCheck size={16} className="shrink-0 text-sbh-green mt-0.5" />
+                        <div>
+                           <h4 className="font-serif text-sm text-sbh-charcoal font-medium">{t.booking.customQuote}</h4>
+                           <p className="text-xs text-gray-600 leading-relaxed mt-1">
                               {t.booking.quoteDescription}
                            </p>
                         </div>
                      </div>
                   </div>
 
-                  <div className="flex items-start gap-3 text-[10px] text-gray-400 font-sans leading-relaxed">
-                     <ShieldCheck size={14} className="shrink-0 text-sbh-green" />
+                  <div className="flex items-start gap-2 text-[10px] text-gray-400 font-sans leading-relaxed">
+                     <ShieldCheck size={12} className="shrink-0 text-sbh-green" />
                      <p>{t.booking.noImmediateCharge}</p>
                   </div>
                </div>
@@ -169,27 +168,27 @@ export const BookingPage: React.FC = () => {
 
             {/* RIGHT COLUMN - FORM */}
             <div className="lg:col-span-7 order-1 lg:order-2">
-               <div className="mb-12">
-                  <button type="button" onClick={onBack} className="relative z-50 text-xs uppercase tracking-widest text-gray-400 hover:text-sbh-charcoal transition-colors mb-6 flex items-center gap-2 cursor-pointer hover:underline">
+               <div className="mb-6">
+                  <button type="button" onClick={onBack} className="relative z-50 text-xs uppercase tracking-widest text-gray-400 hover:text-sbh-charcoal transition-colors mb-4 flex items-center gap-2 cursor-pointer hover:underline">
                      <ArrowRight size={14} className="rotate-180" /> {t.booking.backToVilla}
                   </button>
-                  <h1 className="font-serif text-4xl md:text-5xl italic text-sbh-charcoal mb-6">
+                  <h1 className="font-serif text-3xl md:text-4xl italic text-sbh-charcoal mb-3">
                      {t.booking.confirmRequest}
                   </h1>
-                  <p className="font-sans text-gray-600 font-light">
+                  <p className="font-sans text-gray-600 font-light text-sm">
                      {t.booking.fillForm}
                   </p>
                </div>
 
-               <form onSubmit={handleSubmit} className="space-y-12">
+               <form onSubmit={handleSubmit} className="space-y-6">
 
                   {/* Personal Info Section */}
-                  <div className="space-y-8">
-                     <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-sbh-green font-bold border-b border-gray-100 pb-4">
+                  <div className="space-y-4">
+                     <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-sbh-green font-bold border-b border-gray-100 pb-2">
                         {t.booking.yourDetails}
                      </h3>
 
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="group relative">
                            <input
                               type="text"
@@ -218,7 +217,7 @@ export const BookingPage: React.FC = () => {
                         </div>
                      </div>
 
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="group relative">
                            <input
                               type="email"
@@ -249,13 +248,13 @@ export const BookingPage: React.FC = () => {
                   </div>
 
                   {/* Message Section */}
-                  <div className="space-y-8">
-                     <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-sbh-green font-bold border-b border-gray-100 pb-4">
+                  <div className="space-y-4">
+                     <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-sbh-green font-bold border-b border-gray-100 pb-2">
                         {t.booking.specialRequest}
                      </h3>
                      <div className="group relative">
                         <textarea
-                           rows={4}
+                           rows={2}
                            className="peer w-full border-b border-gray-200 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg placeholder-transparent resize-none"
                            placeholder={t.booking.yourMessage}
                            value={formData.message}
@@ -267,8 +266,8 @@ export const BookingPage: React.FC = () => {
                      </div>
                   </div>
 
-                  <div className="pt-8">
-                     <button type="submit" className="w-full md:w-auto bg-sbh-charcoal text-white px-10 py-5 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform flex items-center justify-center gap-4 group">
+                  <div className="pt-4">
+                     <button type="submit" className="w-full md:w-auto bg-sbh-charcoal text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform flex items-center justify-center gap-3 group">
                         {t.booking.finalizeRequest}
                         <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                      </button>

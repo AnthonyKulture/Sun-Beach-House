@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
         <Link
           href="/"
           onClick={() => setMenuOpen(false)}
-          className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${!scrolled && forceDark ? 'text-sbh-charcoal' : !scrolled ? 'text-white' : 'text-[#89ADCE]'}`}
+          className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${isDarkText ? 'text-sbh-green' : 'text-white'}`}
         >
           {/* Adjusted heights: Smaller on Tablet to avoid overlap, Large on Desktop */}
           <Logo className={`transition-all duration-700 w-auto ${scrolled
