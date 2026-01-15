@@ -107,7 +107,7 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
             const matchAmenities = filters.amenities.length === 0 ||
                 filters.amenities.every(filter => villaAmenityLabels.includes(filter));
 
-            return matchLocation && matchGuests && matchPrice && matchAmenities;
+            return matchLocation && matchGuests && matchAmenities;
         });
     }, [filters, mode, villas]);
 
@@ -155,7 +155,10 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
 
     // Price formatting helper
     const formatPrice = (price: number) => {
-        return price.toLocaleString('fr-FR');
+        if (mode === 'rent') {
+            return `$${price.toLocaleString('en-US')}`;
+        }
+        return `${price.toLocaleString('fr-FR')}€`;
     };
 
     if (loading) {
@@ -231,36 +234,7 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
                             </div>
                         </div>
 
-                        {/* Price */}
-                        <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center">
-                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
-                                <Euro size={10} /> {t.collections.budgetMax}
-                            </label>
-                            <div className="flex items-center gap-2 md:gap-4">
-                                {mode === 'rent' ? (
-                                    <>
-                                        <input
-                                            type="range" min="500" max="150000" step="500"
-                                            value={filters.price}
-                                            onChange={(e) => onUpdateFilters({ ...filters, price: parseInt(e.target.value) })}
-                                            className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-charcoal"
-                                        />
-                                        <span className="font-serif text-lg md:text-xs lg:text-lg text-sbh-charcoal w-16 md:w-20 text-right whitespace-nowrap">{filters.price < 150000 ? `${filters.price.toLocaleString()}€` : t.collections.unlimited}</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <input
-                                            type="range" min="1000000" max="25000000" step="1000000"
-                                            value={filters.price}
-                                            onChange={(e) => onUpdateFilters({ ...filters, price: parseInt(e.target.value) })}
-                                            className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-charcoal"
-                                        />
-                                        <span className="font-serif text-lg md:text-xs lg:text-lg text-sbh-charcoal w-24 md:w-28 text-right whitespace-nowrap">{(filters.price < 25000000) ? `${(filters.price / 1000000).toFixed(0)}M€` : t.collections.unlimited}</span>
-                                    </>
-                                )}
 
-                            </div>
-                        </div>
 
                         {/* Amenities Filter */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center relative" ref={amenitiesRef}>
@@ -361,8 +335,8 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
                                     </div>
                                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 font-serif italic text-lg text-sbh-charcoal rounded-sm">
                                         {mode === 'rent'
-                                            ? (villa.pricePerWeek && villa.pricePerWeek > 0 ? `${formatPrice(villa.pricePerWeek)}€ ${t.collections.weekAbbrev}` : (villa.pricePerNight && villa.pricePerNight > 0 ? `${formatPrice(villa.pricePerNight)}€ ${t.collections.perNight}` : t.villa.priceOnRequest))
-                                            : (villa.salePrice && villa.salePrice > 0 ? `${formatPrice(villa.salePrice)}€` : t.villa.priceOnRequest)
+                                            ? (villa.pricePerWeek && villa.pricePerWeek > 0 ? `${formatPrice(villa.pricePerWeek)} ${t.collections.weekAbbrev}` : (villa.pricePerNight && villa.pricePerNight > 0 ? `${formatPrice(villa.pricePerNight)} ${t.collections.perNight}` : t.villa.priceOnRequest))
+                                            : (villa.salePrice && villa.salePrice > 0 ? formatPrice(villa.salePrice) : t.villa.priceOnRequest)
                                         }
                                     </div>
                                 </div>

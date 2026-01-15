@@ -18,7 +18,7 @@ const bedroomPrice = defineType({
     }),
     defineField({
       name: 'price',
-      title: 'Prix (EUR / semaine)',
+      title: 'Prix ($ / semaine)',
       type: 'number',
       validation: (rule) => rule.required().min(0)
         .error('Le prix doit être positif'),
@@ -476,7 +476,7 @@ const villa = defineType({
     // ═══════════════════════════════════════════════════════════
     defineField({
       name: 'pricePerNight',
-      title: 'Prix par nuit (à partir de) - €',
+      title: 'Prix par nuit (à partir de) - $',
       type: 'number',
       group: 'pricing',
       description: 'Prix par nuit (Basse Saison) - si applicable',
@@ -484,7 +484,7 @@ const villa = defineType({
     }),
     defineField({
       name: 'pricePerWeek',
-      title: 'Prix par semaine (à partir de) - €',
+      title: 'Prix par semaine (à partir de) - $',
       type: 'number',
       group: 'pricing',
       description: 'Prix par semaine (Basse Saison) - si applicable',

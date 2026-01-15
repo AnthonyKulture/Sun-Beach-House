@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Villa } from '../types';
 import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -14,28 +14,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
     const { villas, loading } = useVillas();
 
     // Fix: Re-initialize scroll reveal observer when data is loaded
-    useEffect(() => {
-        if (!loading) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('reveal-visible');
-                        }, 100);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
 
-            // Small delay to ensure DOM is rendered
-            setTimeout(() => {
-                const elements = document.querySelectorAll('#villas .reveal-on-scroll');
-                elements.forEach(el => observer.observe(el));
-            }, 200);
-
-            return () => observer.disconnect();
-        }
-    }, [loading]);
 
     // Filtrer les villas de location qui sont marquées pour la page d'accueil
     // et les trier par homepageOrder (1, 2, 3, 4)

@@ -84,7 +84,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
         "name": villa.name,
         "description": villa.description[language],
         "image": [villa.mainImage, ...villa.galleryImages],
-        "priceRange": villa.listingType === 'rent' ? `${villa.pricePerNight} EUR` : `${villa.salePrice} EUR`,
+        "priceRange": villa.listingType === 'rent' ? `${villa.pricePerNight} USD` : `${villa.salePrice} EUR`,
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Saint-Barthélemy",
@@ -108,14 +108,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
     // Determine display price with fallback to "Prix sur demande"
     const getDisplayPrice = () => {
         if (isSale) {
-            return villa.salePrice && villa.salePrice > 0 ? villa.salePrice.toLocaleString('fr-FR') : null;
+            return villa.salePrice && villa.salePrice > 0 ? `${villa.salePrice.toLocaleString('fr-FR')}€` : null;
         }
         // For rentals: prioritize pricePerWeek, fallback to pricePerNight
         if (villa.pricePerWeek && villa.pricePerWeek > 0) {
-            return villa.pricePerWeek.toLocaleString('fr-FR');
+            return `$${villa.pricePerWeek.toLocaleString('en-US')}`;
         }
         if (villa.pricePerNight && villa.pricePerNight > 0) {
-            return villa.pricePerNight.toLocaleString('fr-FR');
+            return `$${villa.pricePerNight.toLocaleString('en-US')}`;
         }
         return null;
     };
@@ -178,7 +178,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                     <div className="text-right hidden md:block animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.2s' }}>
                         {hasValidPrice ? (
                             <>
-                                <span className="block text-3xl font-serif italic">{displayPrice}€</span>
+                                <span className="block text-3xl font-serif italic">{displayPrice}</span>
                                 <span className="text-sm font-sans opacity-90 uppercase tracking-widest">
                                     {isSale ? t.villa.salePrice : (villa.pricePerWeek ? t.villa.perWeek : t.villa.perNight)}
                                 </span>
@@ -387,7 +387,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                                             </div>
                                                             <div className="flex items-center gap-2">
                                                                 <span className="font-medium text-lg text-sbh-charcoal">
-                                                                    {tier.price.toLocaleString('fr-FR')} €
+                                                                    ${tier.price.toLocaleString('en-US')}
                                                                 </span>
                                                                 <span className="text-[10px] text-gray-400 uppercase tracking-widest">{t.villa.week}</span>
                                                             </div>
@@ -417,9 +417,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                 <div>
                                     <span className="block text-2xl lg:text-2xl xl:text-3xl font-serif text-sbh-charcoal">
                                         {!hasValidPrice ? t.villa.priceOnRequest :
-                                            (isSale ? `${displayPrice}€` :
-                                                `${t.villa.fromPrice} ${villa.seasonalPrices?.[0]?.prices?.[0]?.price?.toLocaleString()
-                                                || displayPrice}€`)
+                                            (isSale ? displayPrice :
+                                                `${t.villa.fromPrice} $${villa.seasonalPrices?.[0]?.prices?.[0]?.price?.toLocaleString()
+                                                || displayPrice?.replace('$', '')}`)
                                         }
                                     </span>
                                     {!isSale && hasValidPrice && <span className="text-[10px] xl:text-xs text-gray-400 uppercase tracking-widest">{villa.pricePerWeek ? t.villa.week : t.villa.perNight}</span>}
@@ -567,7 +567,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                 <div className="aspect-[4/3] overflow-hidden rounded-sm mb-4 relative">
                                     <img src={v.mainImage} alt={v.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                     <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 text-xs font-sans tracking-widest uppercase rounded-sm">
-                                        {v.listingType === 'rent' ? `${v.pricePerNight}€ /" + t.villa.perNight + "` : `${v.salePrice?.toLocaleString()}€`}
+                                        {v.listingType === 'rent' ? `$${v.pricePerNight?.toLocaleString()} / ${t.villa.perNight}` : `${v.salePrice?.toLocaleString()}€`}
                                     </div>
                                 </div>
                                 <h4 className="font-serif text-xl text-sbh-charcoal group-hover:text-sbh-blue transition-colors">
@@ -584,7 +584,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                 <div>
                     {hasValidPrice ? (
                         <>
-                            <span className="block font-serif text-xl text-sbh-charcoal">{displayPrice}€</span>
+                            <span className="block font-serif text-xl text-sbh-charcoal">{displayPrice}</span>
                             <span className="text-[10px] text-gray-400 uppercase tracking-widest">
                                 {isSale ? t.villa.salePrice : (villa.pricePerWeek ? t.villa.week : t.villa.perNight)}
                             </span>

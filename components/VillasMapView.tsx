@@ -132,17 +132,12 @@ export function VillasMapView({ villas, onViewDetails }: VillasMapViewProps) {
                                                 {((villa.pricePerWeek && villa.pricePerWeek > 0) || (villa.pricePerNight && villa.pricePerNight > 0)) ? (
                                                     <p className="text-sm font-medium text-sbh-green">
                                                         {(villa.pricePerWeek && villa.pricePerWeek > 0)
-                                                            ? `${villa.pricePerWeek}€/semaine`
-                                                            : `${villa.pricePerNight}€/nuit`}
+                                                            ? `$${villa.pricePerWeek.toLocaleString()} / semaine`
+                                                            : `$${villa.pricePerNight} / nuit`}
                                                     </p>
                                                 ) : (
                                                     <p className="text-sm font-medium text-sbh-green">
-                                                        Prix sur demande
-                                                    </p>
-                                                )}
-                                                {villa.salePrice && (
-                                                    <p className="text-sm font-medium text-sbh-green">
-                                                        {villa.salePrice.toLocaleString('fr-FR')}€
+                                                        {villa.salePrice ? `${villa.salePrice.toLocaleString('fr-FR')}€` : 'Prix sur demande'}
                                                     </p>
                                                 )}
                                                 <button

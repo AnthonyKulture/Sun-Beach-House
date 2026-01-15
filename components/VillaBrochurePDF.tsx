@@ -345,7 +345,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                                             {season.seasonName} ({season.dates})
                                         </Text>
                                         <Text style={styles.priceValue}>
-                                            À partir de {season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} €
+                                            À partir de ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
                                         </Text>
                                     </View>
                                 </View>

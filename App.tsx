@@ -123,28 +123,65 @@ function App() {
     } catch (e) { }
   }, [currentView, selectedVilla]);
 
-  // Scroll Reveal Observer
+  // Scroll Reveal Observer with Mutation Support for Async Content
   useEffect(() => {
     try {
-      const observer = new IntersectionObserver((entries) => {
+      const observerOptions = { threshold: 0.05, rootMargin: "0px 0px -50px 0px" };
+
+      const intersectObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            // Add a small staggered delay based on index if available, or random
             setTimeout(() => {
               entry.target.classList.add('reveal-visible');
             }, 100);
-            observer.unobserve(entry.target);
+            intersectObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.05, rootMargin: "0px 0px -50px 0px" });
+      }, observerOptions);
 
-      setTimeout(() => {
-        const elements = document.querySelectorAll('.reveal-on-scroll');
-        elements.forEach(el => observer.observe(el));
-      }, 200);
+      // 1. Observe existing elements
+      const observeExisting = () => {
+        document.querySelectorAll('.reveal-on-scroll:not(.reveal-visible)').forEach(el => {
+          intersectObserver.observe(el);
+        });
+      };
 
-      return () => observer.disconnect();
+      // 2. Observe future elements (MutationObserver)
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+              if (node instanceof HTMLElement) {
+                // Check if the node itself is a target
+                if (node.classList.contains('reveal-on-scroll')) {
+                  intersectObserver.observe(node);
+                }
+                // Check for targets inside the node
+                node.querySelectorAll('.reveal-on-scroll').forEach(child => {
+                  intersectObserver.observe(child);
+                });
+              }
+            });
+          }
+        });
+      });
+
+      // Start observing
+      observeExisting();
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+      // Re-run on view change to catch immediate re-renders
+      const timeout = setTimeout(observeExisting, 500);
+
+      return () => {
+        clearTimeout(timeout);
+        mutationObserver.disconnect();
+        intersectObserver.disconnect();
+      };
     } catch (e) {
-      // Fallback: make everything visible if observer fails
+      // Fallback: make everything visible if observers fail
+      console.warn("Scroll reveal failed, enabling fallback", e);
       document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('reveal-visible'));
     }
   }, [currentView, selectedVillaId]);
