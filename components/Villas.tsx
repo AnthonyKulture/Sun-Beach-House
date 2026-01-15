@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Villa } from '../types';
 import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -13,6 +13,30 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
     const { language, t } = useLanguage();
     const { villas, loading } = useVillas();
 
+    // Fix: Re-initialize scroll reveal observer when data is loaded
+    useEffect(() => {
+        if (!loading) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('reveal-visible');
+                        }, 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+            // Small delay to ensure DOM is rendered
+            setTimeout(() => {
+                const elements = document.querySelectorAll('#villas .reveal-on-scroll');
+                elements.forEach(el => observer.observe(el));
+            }, 200);
+
+            return () => observer.disconnect();
+        }
+    }, [loading]);
+
     // Filtrer les villas de location qui sont marquées pour la page d'accueil
     // et les trier par homepageOrder (1, 2, 3, 4)
     const featuredVillas = villas
@@ -20,15 +44,7 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
         .sort((a, b) => (a.homepageOrder || 999) - (b.homepageOrder || 999))
         .slice(0, 4); // Limiter à 4 villas maximum
 
-    // DEBUG: Log pour comprendre le problème
-    console.log('🏠 Total villas fetched:', villas.length);
-    console.log('🏠 Villas with featuredOnHomepage=true:', villas.filter(v => v.featuredOnHomepage).length);
-    console.log('🏠 Featured villas for homepage:', featuredVillas.length);
-    console.log('🏠 Featured villas details:', featuredVillas.map(v => ({
-        name: v.name,
-        featuredOnHomepage: v.featuredOnHomepage,
-        homepageOrder: v.homepageOrder
-    })));
+
 
     // Fallback : si aucune villa n'est marquée, utiliser les 4 premières locations
     const rentalVillas = featuredVillas.length > 0
