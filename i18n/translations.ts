@@ -765,7 +765,7 @@ const en: Translations = {
         priceOnRequest: 'Price on request',
         fromPrice: 'From',
         contactAgent: 'Contact agent',
-        reserve: 'Reserve',
+        reserve: 'Check availability',
         noImmediateCharge: 'No immediate charge',
         bestRateGuaranteed: 'Best rate guaranteed',
         conciergeIncluded: 'Concierge included',
