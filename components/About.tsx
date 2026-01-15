@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { NorthStar, SunStamp, OrganicLine } from './Decorations';
+'use client';
+
+import React from 'react';
+import { NorthStar, SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
+import Link from 'next/link';
+import Image from 'next/image';
 
-interface AboutProps {
-  onNavigate: (page: string) => void;
-}
-
-export const About: React.FC<AboutProps> = ({ onNavigate }) => {
+export const About: React.FC = () => {
   const { t } = useLanguage();
   return (
     <section id="about" className="py-24 md:py-40 px-6 md:px-12 bg-white text-sbh-charcoal overflow-hidden relative">
@@ -49,12 +49,12 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             </div>
 
             <div className="mt-12 reveal-on-scroll" style={{ transitionDelay: '500ms' }}>
-              <button
-                onClick={() => onNavigate('rentals')}
+              <Link
+                href="/rentals"
                 className="inline-block text-sm font-sans tracking-[0.25em] uppercase border-b border-black pb-2 hover:text-sbh-green hover:border-sbh-green transition-colors touch-target"
               >
                 {t.about.discoverProperties}
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -63,19 +63,23 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
 
             {/* Main Image - Portrait */}
             <div className="absolute top-0 right-0 md:right-12 w-full md:w-3/4 h-3/4 img-zoom-wrapper z-10 reveal-on-scroll shadow-2xl shadow-gray-200/50" style={{ transitionDelay: '200ms' }}>
-              <img
+              <Image
                 src="https://storage.googleapis.com/images-sbh/besoin-de-plusieurs-images-r-alistes-cin-matique-p.jpg"
                 alt="Luxury Villa Terrace"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
 
             {/* Secondary Image - Overlap bottom left */}
             <div className="hidden md:block absolute bottom-12 left-0 w-1/2 h-1/2 img-zoom-wrapper z-20 reveal-on-scroll shadow-xl" style={{ transitionDelay: '400ms' }}>
-              <img
+              <Image
                 src="https://storage.googleapis.com/images-sbh/image-r-aliste-spa--bien--tre---st-barth.jpg"
                 alt="Spa and Wellness St Barth"
-                className="w-full h-full object-cover"
+                fill
+                sizes="25vw"
+                className="object-cover"
               />
             </div>
 

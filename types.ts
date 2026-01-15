@@ -13,7 +13,7 @@ export interface BedroomPrice {
 export interface SeasonalPrice {
   id: string;
   seasonName: string; // e.g. "High Season"
-  dates: string; // e.g. "Jan 9 - Apr 15"
+  dates: string; // French format, auto-translated to English on frontend
   prices: BedroomPrice[]; // Array of prices based on bedroom count opened
 }
 
@@ -32,25 +32,28 @@ export interface Villa {
   id: string;
   name: string;
   location: string; // e.g., "Flamands", "Toiny"
-  description: { fr: string; en: string }; // Bilingual short description
-  fullDescription: { fr: string; en: string }; // Bilingual full description
+  description: string | { fr: string; en: string }; // Transition: accepts both formats
+  fullDescription: string | { fr: string; en: string }; // Transition: accepts both formats
   pricePerNight?: number; // Optional, for rentals (base price for display if no weekly)
   pricePerWeek?: number; // Optional, preferred for rentals
   salePrice?: number; // Optional, for sales
   listingType: 'rent' | 'sale'; // New discriminator
+  propertyType?: 'villa' | 'apartment'; // villa or apartment
   seasonalPrices?: SeasonalPrice[]; // Array of seasonal pricing (rentals only)
   bedrooms: number;
   bathrooms: number;
   guests: number; // For sale: occupancy potential
   surface?: number; // m2 - Optional now
-  viewType?: string; // e.g. "Océan", "Jardin Tropical" - Optional now
   homeFeatures?: HomeFeature[]; // Room and space details
   mainImage: string;
   galleryImages: string[]; // Array of image URLs
+  videoUrl?: string; // YouTube/Vimeo URL
+  videoFileUrl?: string; // Sanity uploaded video URL
   amenities: Amenity[];
   tags: string[];
   featuredOnHomepage?: boolean; // Whether to show on homepage
   homepageOrder?: number; // Position on homepage (1-4)
+  pricingDetails?: string; // Additional pricing info
   pdfOptions?: PDFOptions; // PDF export configuration
   geopoint?: {
     lat: number;
@@ -83,6 +86,7 @@ export interface FilterState {
   guests: number;
   price: number;
   amenities: string[];
+  name?: string;
 }
 
 export enum Section {

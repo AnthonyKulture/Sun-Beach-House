@@ -1,14 +1,24 @@
 import type { Metadata } from 'next'
-import { Playfair_Display } from 'next/font/google'
+import { Inter, Playfair_Display, Outfit, Mr_De_Haviland } from 'next/font/google'
 import './globals.css'
+import { Providers } from './providers'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 // Optimize font loading with next/font
-const playfairDisplay = Playfair_Display({
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const playfair = Playfair_Display({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700'],
     style: ['normal', 'italic'],
-    display: 'swap',
     variable: '--font-playfair',
+})
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
+const mrDeHaviland = Mr_De_Haviland({
+    weight: '400',
+    subsets: ['latin'],
+    variable: '--font-mr-de-haviland'
 })
 
 export const metadata: Metadata = {
@@ -70,7 +80,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="fr" className={`scroll-smooth ${playfairDisplay.variable}`} style={{ scrollPaddingTop: '100px' }}>
+        <html lang="fr" className={`scroll-smooth ${inter.variable} ${playfair.variable} ${outfit.variable} ${mrDeHaviland.variable}`} style={{ scrollPaddingTop: '100px' }}>
             <head>
                 {/* Structured Data for SEO */}
                 <script
@@ -93,8 +103,23 @@ export default function RootLayout({
                     }}
                 />
             </head>
-            <body className={playfairDisplay.className}>
-                {children}
+            <body className={`${playfair.className} font-sans text-sbh-charcoal bg-sbh-cream min-h-screen flex flex-col`}>
+                <Providers>
+                    <ScrollReveal />
+                    <div className="fixed inset-0 z-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+                        style={{
+                            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+                            pointerEvents: 'none'
+                        }}>
+                    </div>
+                    <Navbar />
+                    <main className="flex-grow flex flex-col pt-0">
+                        {children}
+                    </main>
+                    <div className="relative z-10">
+                        <Footer />
+                    </div>
+                </Providers>
             </body>
         </html>
     )

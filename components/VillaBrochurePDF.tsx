@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { Villa } from '../types';
+import { translations } from '../i18n/translations';
 import { optimizeImageForPDF } from '../utils/pdfHelpers';
+import { translateDate } from '../utils/dateTranslation';
 
 // Define color palette matching design system
 const colors = {
@@ -215,10 +218,23 @@ interface VillaBrochurePDFProps {
     language?: 'fr' | 'en';
 }
 
+// Helper to normalize season names to translation keys
+const getSeasonTranslationKey = (rawName: string): keyof import('../i18n/translations').Translations['villa']['seasons'] | null => {
+    const lower = rawName.toLowerCase();
+    if (lower.includes('low') || lower.includes('basse')) return 'lowSeason';
+    if (lower.includes('high') || lower.includes('haute')) return 'highSeason';
+    if (lower.includes('summer') || lower.includes('été')) return 'summer';
+    if (lower.includes('thanksgiving')) return 'thanksgiving';
+    if (lower.includes('christmas') || lower.includes('noël')) return 'christmas';
+    if (lower.includes('new year') || lower.includes('nouvel')) return 'newYear';
+    return null;
+};
+
 export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, language = 'fr' }) => {
     const pdfOptions = villa.pdfOptions || {};
     const includePrice = pdfOptions.includePrice !== false;
     const isSale = villa.listingType === 'sale';
+    const t = translations[language];
 
     // Limit amenities (max 8 for space)
     const displayedAmenities = pdfOptions.highlightedAmenities?.length
@@ -265,6 +281,10 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 {/* Details Grid */}
                 <View style={styles.detailsGrid}>
                     <View style={styles.detailItem}>
+                        <Text style={styles.detailLabel}>Type</Text>
+                        <Text style={styles.detailValue}>{villa.propertyType === 'apartment' ? (language === 'fr' ? 'Appartement' : 'Apartment') : 'Villa'}</Text>
+                    </View>
+                    <View style={styles.detailItem}>
                         <Text style={styles.detailLabel}>Invités</Text>
                         <Text style={styles.detailValue}>{villa.guests}</Text>
                     </View>
@@ -276,7 +296,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                         <Text style={styles.detailLabel}>Salles de Bain</Text>
                         <Text style={styles.detailValue}>{villa.bathrooms}</Text>
                     </View>
-                    {isSale && (
+                    {isSale && villa.surface && (
                         <View style={styles.detailItem}>
                             <Text style={styles.detailLabel}>Surface</Text>
                             <Text style={styles.detailValue}>{villa.surface} m²</Text>
@@ -290,13 +310,6 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                     <View style={styles.leftColumn}>
                         <Text style={styles.sectionTitle}>À Propos</Text>
                         <Text style={styles.description}>{truncatedDescription}</Text>
-
-                        {villa.viewType && (
-                            <View style={{ marginTop: 14 }}>
-                                <Text style={styles.sectionTitle}>Vue</Text>
-                                <Text style={styles.description}>{villa.viewType}</Text>
-                            </View>
-                        )}
                     </View>
 
                     {/* Right: Amenities */}
@@ -338,18 +351,26 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                     <View style={styles.pricingSection}>
                         <Text style={styles.sectionTitle}>Tarifs Saisonniers</Text>
                         <View style={styles.priceTable}>
-                            {villa.seasonalPrices.slice(0, 4).map((season, index) => (
-                                <View key={index}>
-                                    <View style={styles.priceRow}>
-                                        <Text style={styles.priceLabel}>
-                                            {season.seasonName} ({season.dates})
-                                        </Text>
-                                        <Text style={styles.priceValue}>
-                                            À partir de ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-                                        </Text>
+                            {villa.seasonalPrices.slice(0, 4).map((season, index) => {
+                                // Localize
+                                const normalizedKey = getSeasonTranslationKey(season.seasonName);
+                                const translatedName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName;
+                                // Translate dates: FR by default, auto-translate for other languages
+                                const dateString = translateDate(season.dates, language);
+
+                                return (
+                                    <View key={index}>
+                                        <View style={styles.priceRow}>
+                                            <Text style={styles.priceLabel}>
+                                                {translatedName} ({dateString})
+                                            </Text>
+                                            <Text style={styles.priceValue}>
+                                                À partir de ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+                                            </Text>
+                                        </View>
                                     </View>
-                                </View>
-                            ))}
+                                );
+                            })}
                         </View>
                         <Text style={{ ...styles.footerText, marginTop: 10, color: colors.gray }}>
                             Prix par semaine. Service et taxes non inclus.

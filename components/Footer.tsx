@@ -1,20 +1,14 @@
+'use client';
+
 import React from 'react';
 import { Logo } from './Logo';
 import { Instagram, Facebook, Mail, Phone, MapPin, ArrowRight, Heart } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
+import Link from 'next/link';
 
-interface FooterProps {
-    onNavigate: (page: string) => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC = () => {
     const { t } = useLanguage();
-
-    const handleNav = (page: string) => {
-        onNavigate(page);
-        window.scrollTo(0, 0);
-    };
 
     return (
         <footer className="bg-sbh-darkgreen text-sbh-cream relative overflow-hidden pt-24 pb-12">
@@ -31,17 +25,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
                     {/* Column 1: Brand Identity - Centered on Mobile */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-8 reveal-on-scroll">
-                        <button
-                            type="button"
-                            onClick={() => handleNav('home')}
+                        <Link
+                            href="/"
                             className="hover:opacity-80 transition-opacity w-full flex justify-center md:justify-start"
                             aria-label="Retour à l'accueil"
                         >
                             <Logo className="text-sbh-cream h-48 md:h-24 w-auto" />
-                        </button>
+                        </Link>
                         <p className="font-sans text-base md:text-lg font-light leading-relaxed text-sbh-green/80 max-w-sm text-balance mx-auto md:mx-0">
-                            L'art de vivre à Saint-Barthélemy. <br />
-                            Une collection de villas d'exception et un service de conciergerie sur-mesure par Valérie.
+                            L&apos;art de vivre à Saint-Barthélemy. <br />
+                            Une collection de villas d&apos;exception et un service de conciergerie sur-mesure par Valérie.
                         </p>
                         <div className="flex gap-4 pt-2 justify-center md:justify-start">
                             <a href="#" aria-label="Suivez-nous sur Instagram" className="p-3 rounded-full border border-sbh-green/20 text-sbh-green hover:border-sbh-cream hover:text-sbh-cream hover:bg-white/5 transition-all duration-300 group touch-target">
@@ -59,29 +52,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         <nav>
                             <ul className="space-y-4 font-serif text-lg md:text-xl text-sbh-cream/90 flex flex-col items-center md:items-start">
                                 <li>
-                                    <button type="button" onClick={() => handleNav('home')} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href="/" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.home}
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button type="button" onClick={() => handleNav('collections')} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href="/rentals" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.ourCollections}
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button type="button" onClick={() => handleNav('destinations')} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href="/destinations" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.destination}
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button type="button" onClick={() => handleNav('about')} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href="/about" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.about}
-                                    </button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <button type="button" onClick={() => handleNav('contact')} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href="/contact" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.contact}
-                                    </button>
+                                    </Link>
                                 </li>
                             </ul>
                         </nav>

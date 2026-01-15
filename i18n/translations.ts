@@ -1,4 +1,4 @@
-export type Language = 'fr' | 'en';
+export type Language = 'fr' | 'en' | 'pt' | 'es';
 
 export interface Translations {
     // Navbar
@@ -59,6 +59,7 @@ export interface Translations {
         guestsAbbrev: string;
         bedroomsAbbrev: string;
         weekAbbrev: string;
+        explore: string;
     };
 
     // Villa Details
@@ -71,6 +72,7 @@ export interface Translations {
         perNight: string;
         guests: string;
         bedrooms: string;
+        bathroom: string;
         bathrooms: string;
         sleeps: string;
         uniqueExperience: string;
@@ -112,6 +114,20 @@ export interface Translations {
         persons: string;
         interestedProperty: string;
         contact: string;
+        seasons: {
+            lowSeason: string;
+            summer: string;
+            highSeason: string;
+            thanksgiving: string;
+            christmas: string;
+            newYear: string;
+        };
+        video: string;
+        morePhotos: string;
+        types: {
+            villa: string;
+            apartment: string;
+        };
     };
 
     // Booking
@@ -361,7 +377,7 @@ const fr: Translations = {
         location: 'Localisation',
         allIsland: "Toute l'île",
         capacity: 'Capacité',
-        people: 'Personnes',
+        people: 'Invités',
         search: 'Rechercher',
         exclusiveCollection: 'Collection Exclusive 2025',
         mainTitle: "L'élégance",
@@ -397,9 +413,10 @@ const fr: Translations = {
         perWeek: '/ semaine',
         perNight: '/ nuit',
         filters: 'Filtres',
-        guestsAbbrev: 'Pers.',
+        guestsAbbrev: 'Invités',
         bedroomsAbbrev: 'Ch.',
         weekAbbrev: '/ sem',
+        explore: 'Rechercher une villa...',
     },
 
     villa: {
@@ -411,7 +428,8 @@ const fr: Translations = {
         perNight: 'Par Nuit',
         guests: 'Invités',
         bedrooms: 'Chambres',
-        bathrooms: 'Bains',
+        bathroom: 'Salle de bain',
+        bathrooms: 'Salles de bain',
         sleeps: 'Couchages',
         uniqueExperience: 'Une expérience',
         uniqueProperty: 'Une propriété',
@@ -452,6 +470,20 @@ const fr: Translations = {
         persons: 'Personnes',
         interestedProperty: 'Cette propriété vous intéresse ? Contactez notre équipe pour obtenir le dossier complet ou organiser une visite privée.',
         contact: 'Contacter',
+        seasons: {
+            lowSeason: 'Basse Saison',
+            summer: 'Été',
+            highSeason: 'Haute Saison',
+            thanksgiving: 'Thanksgiving & Bucket',
+            christmas: 'Noël',
+            newYear: 'Nouvel An',
+        },
+        video: 'Vidéo',
+        morePhotos: '+ {count} photos',
+        types: {
+            villa: 'Villa',
+            apartment: 'Appartement',
+        },
     },
 
     downloadBrochure: {
@@ -702,7 +734,7 @@ const en: Translations = {
         location: 'Location',
         allIsland: 'Entire Island',
         capacity: 'Capacity',
-        people: 'People',
+        people: 'Guests',
         search: 'Search',
         exclusiveCollection: 'Exclusive Collection 2025',
         mainTitle: 'French elegance',
@@ -738,9 +770,10 @@ const en: Translations = {
         perWeek: '/ week',
         perNight: '/ night',
         filters: 'Filters',
-        guestsAbbrev: 'Ppl',
+        guestsAbbrev: 'Guests',
         bedroomsAbbrev: 'Bdr',
         weekAbbrev: '/ wk',
+        explore: 'Search for a villa...',
     },
 
     villa: {
@@ -752,6 +785,7 @@ const en: Translations = {
         perNight: 'Per Night',
         guests: 'Guests',
         bedrooms: 'Bedrooms',
+        bathroom: 'Bathroom',
         bathrooms: 'Bathrooms',
         sleeps: 'Sleeps',
         uniqueExperience: 'A unique experience',
@@ -793,6 +827,20 @@ const en: Translations = {
         persons: 'Persons',
         interestedProperty: 'Interested in this property? Contact our team to obtain the complete file or organize a private visit.',
         contact: 'Contact',
+        seasons: {
+            lowSeason: 'Low Season',
+            summer: 'Summer',
+            highSeason: 'High Season',
+            thanksgiving: 'Thanksgiving & Bucket',
+            christmas: 'Christmas',
+            newYear: 'New Year',
+        },
+        video: 'Video',
+        morePhotos: '+ {count} photos',
+        types: {
+            villa: 'Villa',
+            apartment: 'Apartment',
+        },
     },
 
     map: {
@@ -1026,7 +1074,12 @@ const en: Translations = {
     },
 };
 
+import { pt } from './translations-pt';
+import { es } from './translations-es';
+
 export const translations: Record<Language, Translations> = {
     fr,
     en,
+    pt,
+    es,
 };

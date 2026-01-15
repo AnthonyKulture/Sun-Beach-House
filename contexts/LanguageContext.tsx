@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Language, translations, Translations } from '../i18n/translations';
 
@@ -21,7 +23,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         setMounted(true);
         if (typeof window !== 'undefined') {
             const stored = localStorage.getItem(STORAGE_KEY) as Language;
-            if (stored === 'fr' || stored === 'en') {
+            if (stored === 'fr' || stored === 'en' || stored === 'pt' || stored === 'es') {
                 setLanguageState(stored);
             }
         }

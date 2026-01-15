@@ -1,6 +1,8 @@
+'use client';
 import React, { useEffect } from 'react';
 import { SunStamp, PalmLeaf, NorthStar, OrganicLine } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
+import Image from 'next/image';
 
 export const AboutPage: React.FC = () => {
     const { t } = useLanguage();
@@ -34,10 +36,12 @@ export const AboutPage: React.FC = () => {
                 {/* Left: Portrait Image */}
                 <div className="md:col-span-5 relative md:sticky md:top-32">
                     <div className="aspect-[3/4] overflow-hidden rounded-sm relative z-10 shadow-xl shadow-sbh-green/10">
-                        <img
+                        <Image
                             src="https://images.unsplash.com/photo-1573599971936-8a79854743c6?q=80&w=1200&auto=format&fit=crop"
                             alt="Valérie - Founder"
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 40vw"
+                            className="object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
                         />
                         <div className="absolute inset-0 ring-1 ring-inset ring-white/10"></div>
                     </div>
@@ -99,8 +103,8 @@ export const AboutPage: React.FC = () => {
 
                 <div className="max-w-[900px] mx-auto px-6 text-center relative z-10">
                     <h3 className="font-serif text-3xl md:text-5xl italic text-sbh-charcoal mb-12 leading-tight">
-                        "{t.aboutPage.philosophy.quote.split('.')[0]}. <br />
-                        <span className="text-sbh-green">{t.aboutPage.philosophy.quote.split('.')[1]}.</span>"
+                        &ldquo;{t.aboutPage.philosophy.quote.split('.')[0]}. <br />
+                        <span className="text-sbh-green">{t.aboutPage.philosophy.quote.split('.')[1]}.</span>&rdquo;
                     </h3>
 
                     <div className="font-sans font-light text-lg leading-relaxed text-gray-600 space-y-8 mb-16">
@@ -155,7 +159,7 @@ export const AboutPage: React.FC = () => {
                                 {t.aboutPage.secret.p2}
                             </p>
                             <p className="italic font-serif text-xl pt-4">
-                                "{t.aboutPage.secret.quote}"
+                                &ldquo;{t.aboutPage.secret.quote}&rdquo;
                             </p>
                             <p className="text-sm uppercase tracking-widest pt-4 opacity-70">
                                 {t.aboutPage.secret.closing}
@@ -168,8 +172,8 @@ export const AboutPage: React.FC = () => {
             {/* CONCLUSION & SIGNATURE */}
             <div className="max-w-[800px] mx-auto px-6 text-center mb-24">
                 <h3 className="font-serif text-3xl md:text-5xl text-sbh-charcoal mb-8 leading-tight">
-                    "{t.aboutPage.conclusion.quote.split('.')[0]}. <br />
-                    <span className="italic text-gray-400 text-2xl md:text-4xl">{t.aboutPage.conclusion.quote.split('.')[1]}."</span>
+                    &ldquo;{t.aboutPage.conclusion.quote.split('.')[0]}. <br />
+                    <span className="italic text-gray-400 text-2xl md:text-4xl">{t.aboutPage.conclusion.quote.split('.')[1]}.&rdquo;</span>
                 </h3>
                 <p className="font-sans text-lg text-gray-600 mb-12">
                     {t.aboutPage.conclusion.text}

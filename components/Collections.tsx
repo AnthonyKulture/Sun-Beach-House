@@ -1,43 +1,69 @@
 
+'use client';
+
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useVillas } from '../hooks/useCMS';
 import { MapPin, Users, Euro, Search, SlidersHorizontal, Plus, Check, Map as MapIcon, Grid } from 'lucide-react';
 import { SunStamp } from './Decorations';
-import { SearchParams } from '../App';
 import { FilterState } from '../types';
 import { VillasMapView } from './VillasMapView';
 import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { useLanguage } from '../contexts/LanguageContext';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 interface CollectionsProps {
-    onViewDetails: (id: string) => void;
-    searchParams?: SearchParams | null;
-    filters: FilterState;
-    onUpdateFilters: (filters: FilterState) => void;
-    mode: 'rent' | 'sale'; // New prop
+    mode: 'rent' | 'sale';
 }
 
-export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchParams, filters, onUpdateFilters, mode }) => {
+export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     const { villas, loading } = useVillas();
     const { language, t } = useLanguage();
+    const searchParams = useSearchParams();
+
+    // Initial state from URL params
+    const initialFilters: FilterState = {
+        location: searchParams.get('location') || 'all',
+        guests: parseInt(searchParams.get('guests') || '1'),
+        price: mode === 'rent' ? 150000 : 25000000,
+        amenities: [],
+        name: ''
+    };
+
+    const [filters, setFilters] = useState<FilterState>(initialFilters);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isAmenitiesOpen, setIsAmenitiesOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
     const amenitiesRef = useRef<HTMLDivElement>(null);
     const prevModeRef = useRef<'rent' | 'sale'>(mode);
 
-    // Reset filters only when mode actually changes (not on initial mount)
+    // Update filters if searchParams change (e.g. navigation from home)
+    useEffect(() => {
+        const urlLocation = searchParams.get('location') || 'all';
+        const urlGuests = parseInt(searchParams.get('guests') || '1');
+
+        // Only update if URL params are different from current filters
+        setFilters(prev => {
+            if (prev.location !== urlLocation || prev.guests !== urlGuests) {
+                return { ...prev, location: urlLocation, guests: urlGuests };
+            }
+            return prev;
+        });
+    }, [searchParams]);
+
+    // Reset filters only when mode actually changes
     useEffect(() => {
         if (prevModeRef.current !== mode) {
-            onUpdateFilters({
+            setFilters({
                 location: 'all',
                 guests: 1,
                 price: mode === 'rent' ? 150000 : 25000000,
-                amenities: []
+                amenities: [],
+                name: ''
             });
             prevModeRef.current = mode;
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mode]);
 
     // Close amenities dropdown when clicking outside
@@ -50,6 +76,10 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    const onUpdateFilters = (newFilters: FilterState) => {
+        setFilters(newFilters);
+    };
 
     // Extract unique locations for dropdown (filtered by mode) - DYNAMIC
     const locations = useMemo(() => {
@@ -83,6 +113,10 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
             // First, filter by mode
             if (villa.listingType !== mode) return false;
 
+            // Name Search
+            const searchName = filters.name?.toLowerCase() || '';
+            const matchName = !searchName || villa.name.toLowerCase().includes(searchName);
+
             const matchLocation = filters.location === 'all' || villa.location === filters.location;
 
             // Filter by capacity (villa must accommodate at least 'guests' people)
@@ -107,7 +141,7 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
             const matchAmenities = filters.amenities.length === 0 ||
                 filters.amenities.every(filter => villaAmenityLabels.includes(filter));
 
-            return matchLocation && matchGuests && matchAmenities;
+            return matchName && matchLocation && matchGuests && matchAmenities;
         });
     }, [filters, mode, villas]);
 
@@ -138,7 +172,10 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
     };
 
     // Determine Hero Text based on Search & Mode
-    const isSearchActive = !!searchParams?.arrival && !!searchParams?.departure && mode === 'rent';
+    const arrival = searchParams.get('arrival');
+    const departure = searchParams.get('departure');
+    const guests = searchParams.get('guests');
+    const isSearchActive = !!arrival && !!departure && mode === 'rent';
 
     let heroTitle = "";
     let heroSubtitle = "";
@@ -146,7 +183,7 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
     if (mode === 'rent') {
         heroTitle = isSearchActive ? t.collections.availabilities : t.collections.vacationRentals;
         heroSubtitle = isSearchActive
-            ? `${t.collections.from} ${formatDate(searchParams?.arrival)} ${t.collections.to} ${formatDate(searchParams?.departure)} • ${searchParams?.guests} ${t.collections.guests}`
+            ? `${t.collections.from} ${formatDate(arrival || undefined)} ${t.collections.to} ${formatDate(departure || undefined)} • ${guests} ${t.collections.guests}`
             : t.collections.exclusiveSelection;
     } else {
         heroTitle = t.collections.propertiesForSale;
@@ -201,6 +238,20 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
                     {/* Filter Content (Hidden on mobile unless open) */}
                     <div className={`${isFilterOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row w-full gap-6 md:gap-0 items-center divide-y md:divide-y-0 md:divide-x divide-gray-100`}>
 
+                        {/* Name Search */}
+                        <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center">
+                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
+                                <Search size={10} /> {t.collections.properties}
+                            </label>
+                            <input
+                                type="text"
+                                value={filters.name || ''}
+                                onChange={(e) => onUpdateFilters({ ...filters, name: e.target.value })}
+                                placeholder={t.collections.explore}
+                                className="w-full bg-transparent font-serif text-lg md:text-xs lg:text-lg text-sbh-charcoal outline-none placeholder:text-gray-300 placeholder:italic"
+                            />
+                        </div>
+
                         {/* Location */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center">
                             <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
@@ -226,15 +277,13 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
                             <div className="flex items-center gap-2 md:gap-4">
                                 <input
                                     type="range" min="1" max="10" step="1"
-                                    value={filters.guests} // Reusing 'guests' state for rooms/capacity
+                                    value={filters.guests}
                                     onChange={(e) => onUpdateFilters({ ...filters, guests: parseInt(e.target.value) })}
                                     className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                 />
                                 <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-6 md:w-8 text-right">{filters.guests}</span>
                             </div>
                         </div>
-
-
 
                         {/* Amenities Filter */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center relative" ref={amenitiesRef}>
@@ -312,17 +361,19 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
             {/* GRID DISPLAY OR MAP VIEW */}
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 mt-8">
                 {viewMode === 'map' ? (
-                    <VillasMapView villas={filteredVillas} onViewDetails={onViewDetails} />
+                    <VillasMapView villas={filteredVillas} />
                 ) : filteredVillas.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
                         {filteredVillas.map((villa) => (
-                            <div key={villa.id} className="group cursor-pointer flex flex-col" onClick={() => onViewDetails(villa.id)}>
+                            <Link href={`/villas/${villa.id}`} key={villa.id} className="group cursor-pointer flex flex-col">
                                 <div className="relative aspect-[4/3] overflow-hidden rounded-sm mb-6">
                                     {villa.mainImage ? (
-                                        <img
+                                        <Image
                                             src={villa.mainImage}
                                             alt={villa.name}
-                                            className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                                         />
                                     ) : (
                                         <VillaImagePlaceholder className="w-full h-full" />
@@ -357,14 +408,14 @@ export const Collections: React.FC<CollectionsProps> = ({ onViewDetails, searchP
                                         <Search size={24} strokeWidth={1} />
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 ) : (
                     <div className="text-center py-32 opacity-50">
                         <p className="font-serif text-3xl italic mb-4">{t.collections.noProperties}</p>
                         <button
-                            onClick={() => onUpdateFilters({ location: 'all', guests: 1, price: mode === 'rent' ? 5000 : 25000000, amenities: [] })}
+                            onClick={() => onUpdateFilters({ location: 'all', guests: 1, price: mode === 'rent' ? 5000 : 25000000, amenities: [], name: '' })}
                             className="text-sbh-blue border-b border-sbh-blue pb-1 font-sans uppercase text-xs tracking-widest"
                         >
                             {t.collections.resetFilters}

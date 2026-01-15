@@ -1,6 +1,9 @@
+'use client';
+
 import React, { useRef, useEffect } from 'react';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
+import Image from 'next/image';
 
 export const Experience: React.FC = () => {
   const { t } = useLanguage();
@@ -175,10 +178,12 @@ export const Experience: React.FC = () => {
 
                 {/* Image Content */}
                 <div className={`${index === 1 ? 'order-2 md:order-2' : 'order-1 md:order-2'} relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-sm shadow-xl shadow-sbh-charcoal/5 group`}>
-                  <img
+                  <Image
                     src={exp.img}
                     alt={exp.title}
-                    className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none"></div>
                 </div>

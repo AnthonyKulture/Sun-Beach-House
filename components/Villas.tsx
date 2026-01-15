@@ -1,31 +1,23 @@
+'use client';
+
 import React from 'react';
 import { Villa } from '../types';
 import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
 import { OrganicLine, NorthStar, SunStamp } from './Decorations';
+import Link from 'next/link';
+import Image from 'next/image';
 
-interface VillasProps {
-    onViewDetails: (id: string) => void;
-    onNavigateToCollections: () => void;
-}
-
-export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToCollections }) => {
+export const Villas: React.FC = () => {
     const { language, t } = useLanguage();
     const { villas, loading } = useVillas();
 
-    // Fix: Re-initialize scroll reveal observer when data is loaded
-
-
-    // Filtrer les villas de location qui sont marquées pour la page d'accueil
-    // et les trier par homepageOrder (1, 2, 3, 4)
+    // Filterm and sort logic remain same
     const featuredVillas = villas
         .filter(v => v.listingType === 'rent' && v.featuredOnHomepage && v.homepageOrder !== undefined)
         .sort((a, b) => (a.homepageOrder || 999) - (b.homepageOrder || 999))
-        .slice(0, 4); // Limiter à 4 villas maximum
+        .slice(0, 4);
 
-
-
-    // Fallback : si aucune villa n'est marquée, utiliser les 4 premières locations
     const rentalVillas = featuredVillas.length > 0
         ? featuredVillas
         : villas.filter(v => v.listingType === 'rent').slice(0, 4);
@@ -42,7 +34,6 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
 
     return (
         <section id="villas" className="bg-sbh-cream py-24 md:py-40 px-6 md:px-12 relative overflow-hidden">
-
             {/* Decorative Organic Lines Background */}
             <div className="absolute top-1/4 left-0 w-full opacity-30 pointer-events-none text-sbh-green/40">
                 <OrganicLine className="w-full h-auto" />
@@ -67,97 +58,96 @@ export const Villas: React.FC<VillasProps> = ({ onViewDetails, onNavigateToColle
                     <div className="hidden md:block w-px h-32 bg-sbh-charcoal/10 mr-12"></div>
                 </div>
 
-                {/* Extreme Asymmetrical Grid on Desktop, Single Col on Mobile 
-            UPDATED: Constrained max-width on containers to reduce visual size
-        */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-y-32 md:gap-x-12">
-
-                    {/* Item 1 - Col 2-5 (Left, Offset 1) */}
                     {rentalVillas[0] && (
                         <div className="md:col-span-4 md:col-start-2 md:mt-0 flex justify-center md:block">
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[0]} number="01" onClick={() => onViewDetails(rentalVillas[0].id)} delay="0ms" language={language} t={t} />
+                                <VillaCard villa={rentalVillas[0]} number="01" delay="0ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
-
-                    {/* Item 2 - Col 8-11 (Right, Offset from right) - Pushed Down */}
                     {rentalVillas[1] && (
                         <div className="md:col-span-4 md:col-start-8 md:mt-48 relative flex justify-center md:block">
                             <div className="absolute -right-12 top-[-50px] text-sbh-blue/20 animate-spin-slower hidden md:block">
                                 <NorthStar className="w-16 h-16" />
                             </div>
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[1]} number="02" onClick={() => onViewDetails(rentalVillas[1].id)} delay="200ms" language={language} t={t} />
+                                <VillaCard villa={rentalVillas[1]} number="02" delay="200ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
-
-                    {/* Item 3 - Col 2-5 (Left-Center) */}
                     {rentalVillas[2] && (
                         <div className="md:col-span-4 md:col-start-3 md:-mt-12 flex justify-center md:block">
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[2]} number="03" onClick={() => onViewDetails(rentalVillas[2].id)} delay="400ms" language={language} t={t} />
+                                <VillaCard villa={rentalVillas[2]} number="03" delay="400ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
-
-                    {/* Item 4 - Col 7-10 (Right-Center) */}
                     {rentalVillas[3] && (
                         <div className="md:col-span-4 md:col-start-8 md:mt-32 flex justify-center md:block">
                             <div className="max-w-[360px] md:max-w-none w-full">
-                                <VillaCard villa={rentalVillas[3]} number="04" onClick={() => onViewDetails(rentalVillas[3].id)} delay="600ms" language={language} t={t} />
+                                <VillaCard villa={rentalVillas[3]} number="04" delay="600ms" language={language} t={t} />
                             </div>
                         </div>
                     )}
-
                 </div>
 
                 {/* Footer Link */}
                 <div className="mt-24 md:mt-48 flex justify-center reveal-on-scroll relative" style={{ transitionDelay: '200ms' }}>
                     <div className="hidden md:block absolute top-[-50px] h-[50px] w-px bg-sbh-charcoal/10"></div>
-                    <button onClick={onNavigateToCollections} className="font-sans text-sm uppercase tracking-[0.3em] text-sbh-charcoal border border-sbh-charcoal/30 px-12 py-6 hover:bg-sbh-green hover:text-sbh-charcoal hover:border-sbh-green transition-all duration-500 rounded-full bg-sbh-cream z-10 touch-target text-center w-full md:w-auto">
+                    <Link href="/rentals" className="font-sans text-sm uppercase tracking-[0.3em] text-sbh-charcoal border border-sbh-charcoal/30 px-12 py-6 hover:bg-sbh-green hover:text-sbh-charcoal hover:border-sbh-green transition-all duration-500 rounded-full bg-sbh-cream z-10 touch-target text-center w-full md:w-auto inline-block">
                         {t.villas.exploreAll}
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
     );
 };
 
-const VillaCard: React.FC<{ villa: Villa; number: string; onClick: () => void; delay?: string; language: 'fr' | 'en'; t: any }> = ({ villa, number, onClick, delay = '0ms', language, t }) => (
-    <div className="group cursor-pointer reveal-on-scroll" onClick={onClick} style={{ transitionDelay: delay }}>
-        <div className="flex items-baseline justify-between mb-4 border-b border-gray-300 pb-2">
-            <span className="font-sans text-[10px] text-sbh-green tracking-widest font-bold">NO. {number}</span>
-            <span className="font-serif italic text-lg text-sbh-charcoal group-hover:text-sbh-blue transition-colors">{villa.name}</span>
-        </div>
+const getDescriptionText = (description: string | { fr: string; en: string }, language: string): string => {
+    if (typeof description === 'string') {
+        return description;
+    }
+    return description.fr || description[language as 'fr' | 'en'] || '';
+};
 
-        {/* Image Container */}
-        <div className="img-zoom-wrapper relative aspect-[3/4] bg-gray-100 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-shadow duration-500">
-            <img
-                src={villa.mainImage}
-                alt={villa.name}
-                className="w-full h-full object-cover"
-            />
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-sbh-green/20 group-hover:bg-sbh-green/30 transition-colors duration-500 opacity-0 group-hover:opacity-100 mix-blend-multiply"></div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="font-serif text-white text-xl italic drop-shadow-md border-b border-white pb-1">{t.villas.discover}</span>
+const VillaCard: React.FC<{ villa: Villa; number: string; delay?: string; language: import('../i18n/translations').Language; t: any }> = ({ villa, number, delay = '0ms', language, t }) => {
+    const descriptionText = getDescriptionText(villa.description, language);
+
+    return (
+        <Link href={`/villas/${villa.id}`} className="group cursor-pointer reveal-on-scroll block" style={{ transitionDelay: delay }}>
+            <div className="flex items-baseline justify-between mb-4 border-b border-gray-300 pb-2">
+                <span className="font-sans text-[10px] text-sbh-green tracking-widest font-bold">NO. {number}</span>
+                <span className="font-serif italic text-lg text-sbh-charcoal group-hover:text-sbh-blue transition-colors">{villa.name}</span>
             </div>
-        </div>
 
-        <div className="mt-6 flex justify-between items-start">
-            <div className="flex flex-col gap-1">
-                <span className="font-sans text-xs tracking-[0.2em] uppercase text-sbh-stone font-medium">
-                    {villa.description[language]}
-                </span>
-                <div className="flex flex-wrap gap-2">
-                    {villa.tags.slice(0, 2).map(tag => (
-                        <span key={tag} className="text-[10px] text-gray-400">#{tag}</span>
-                    ))}
+            <div className="img-zoom-wrapper relative aspect-[3/4] bg-gray-100 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-shadow duration-500">
+                <Image
+                    src={villa.mainImage}
+                    alt={villa.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                />
+                <div className="absolute inset-0 bg-sbh-green/20 group-hover:bg-sbh-green/30 transition-colors duration-500 opacity-0 group-hover:opacity-100 mix-blend-multiply"></div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="font-serif text-white text-xl italic drop-shadow-md border-b border-white pb-1">{t.villas.discover}</span>
                 </div>
             </div>
 
-        </div>
-    </div>
-);
+            <div className="mt-6 flex justify-between items-start">
+                <div className="flex flex-col gap-1">
+                    <span className="font-sans text-xs tracking-[0.2em] uppercase text-sbh-stone font-medium">
+                        {descriptionText}
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                        {villa.tags.slice(0, 2).map(tag => (
+                            <span key={tag} className="text-[10px] text-gray-400">#{tag}</span>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+        </Link>
+    );
+};

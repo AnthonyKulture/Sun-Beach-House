@@ -1,19 +1,68 @@
 'use client'
 
-import React from 'react';
-import { APIProvider, Map, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
+import React, { useState, useRef, useEffect } from 'react';
+import { APIProvider, Map, Marker, InfoWindow } from '@vis.gl/react-google-maps';
 import { Villa } from '../types';
-import { MapPin, Eye } from 'lucide-react';
+import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
+import { MapPin, Users, BedDouble, Bath, X } from 'lucide-react';
+import Link from 'next/link';
 
 interface VillasMapViewProps {
-    villas: Villa[];
-    onViewDetails: (id: string) => void;
+    villas?: Villa[];
 }
 
-export function VillasMapView({ villas, onViewDetails }: VillasMapViewProps) {
-    const { language } = useLanguage();
+const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+
+const SBH_CENTER = { lat: 17.9, lng: -62.83 };
+
+// Helper to extract description text (handles both old {fr, en} and new string formats)
+const getDescriptionText = (description: string | { fr: string; en: string }, language: string): string => {
+    if (typeof description === 'string') {
+        return description;
+    }
+    return description[language as 'fr' | 'en'] || description.fr || '';
+};
+
+export function VillasMapView({ villas: propVillas }: VillasMapViewProps) {
+    const { language, t } = useLanguage();
+    const { villas: fetchedVillas, loading: hookLoading, error: hookError } = useVillas();
+
+    // Use passed villas if provided, otherwise fallback to fetched villas
+    const villas = propVillas || fetchedVillas;
+    const loading = propVillas ? false : hookLoading;
+    const error = propVillas ? null : hookError;
     const [selectedVilla, setSelectedVilla] = React.useState<Villa | null>(null);
+    const [mapReady, setMapReady] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    // Delay marker rendering to ensure map is fully mounted
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setMapReady(true);
+        }, 500); // Small delay to let map initialize
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="bg-sbh-cream/30 rounded-lg p-12 text-center border border-sbh-green/20 h-[600px] flex flex-col items-center justify-center">
+                <p className="text-lg text-sbh-charcoal/60">Chargement des villas...</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="bg-sbh-cream/30 rounded-lg p-12 text-center border border-sbh-green/20 h-[600px] flex flex-col items-center justify-center">
+                <p className="text-lg text-red-600">Erreur lors du chargement des villas.</p>
+            </div>
+        );
+    }
 
     // Filter villas that have geolocation
     const villasWithLocation = villas.filter(v => v.geopoint);
@@ -50,9 +99,20 @@ export function VillasMapView({ villas, onViewDetails }: VillasMapViewProps) {
     };
 
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+
+
     if (!apiKey) {
         console.error('Google Maps API key not found');
         return null;
+    }
+
+    if (!isMounted) {
+        return (
+            <div className="w-full h-[600px] md:h-[700px] rounded-lg overflow-hidden shadow-xl bg-gray-100 flex items-center justify-center">
+                <p className="text-gray-400">Chargement de la carte...</p>
+            </div>
+        );
     }
 
     return (
@@ -86,7 +146,7 @@ export function VillasMapView({ villas, onViewDetails }: VillasMapViewProps) {
                         }
                     ]}
                 >
-                    {villasWithLocation.map((villa) => {
+                    {mapReady && villasWithLocation.map((villa) => {
                         if (!villa.geopoint) return null;
 
                         const { lat, lng } = villa.geopoint;
@@ -94,24 +154,18 @@ export function VillasMapView({ villas, onViewDetails }: VillasMapViewProps) {
 
                         return (
                             <React.Fragment key={villa.id}>
-                                <AdvancedMarker
+                                <Marker
                                     position={{ lat, lng }}
                                     onClick={() => setSelectedVilla(villa)}
-                                >
-                                    <div className="relative">
-                                        <div
-                                            className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md border-2 border-white cursor-pointer transition-all ${isSelected
-                                                ? 'bg-sbh-blue scale-125'
-                                                : 'bg-sbh-green hover:bg-sbh-blue hover:scale-110'
-                                                }`}
-                                        >
-                                            <MapPin className="w-5 h-5 text-white" />
-                                        </div>
-                                        {isSelected && (
-                                            <div className="absolute inset-0 w-8 h-8 bg-sbh-blue/30 rounded-full animate-ping" />
-                                        )}
-                                    </div>
-                                </AdvancedMarker>
+                                    icon={{
+                                        path: 0, // CIRCLE
+                                        scale: isSelected ? 12 : 10,
+                                        fillColor: isSelected ? '#4A90E2' : '#7FB069',
+                                        fillOpacity: 1,
+                                        strokeColor: '#ffffff',
+                                        strokeWeight: 2,
+                                    }}
+                                />
 
                                 {isSelected && (
                                     <InfoWindow
@@ -123,30 +177,29 @@ export function VillasMapView({ villas, onViewDetails }: VillasMapViewProps) {
                                                 {villa.name}
                                             </h3>
                                             <p className="text-sm text-gray-600 mb-2">
-                                                {villa.location} • {villa.bedrooms} ch • {villa.guests} pers
+                                                {villa.location} • {villa.bedrooms} {t.collections.bedroomsAbbrev} • {villa.guests} {t.collections.guestsAbbrev}
                                             </p>
                                             <p className="text-xs text-gray-500 mb-3 line-clamp-2">
-                                                {villa.description[language]}
+                                                {getDescriptionText(villa.description, language)}
                                             </p>
                                             <div className="flex items-center justify-between gap-3">
                                                 {((villa.pricePerWeek && villa.pricePerWeek > 0) || (villa.pricePerNight && villa.pricePerNight > 0)) ? (
                                                     <p className="text-sm font-medium text-sbh-green">
                                                         {(villa.pricePerWeek && villa.pricePerWeek > 0)
                                                             ? `$${villa.pricePerWeek.toLocaleString()} / semaine`
-                                                            : `$${villa.pricePerNight} / nuit`}
+                                                            : `$${villa.pricePerNight!.toLocaleString()} / nuit`}
                                                     </p>
-                                                ) : (
-                                                    <p className="text-sm font-medium text-sbh-green">
-                                                        {villa.salePrice ? `${villa.salePrice.toLocaleString('fr-FR')}€` : 'Prix sur demande'}
+                                                ) : villa.salePrice ? (
+                                                    <p className="text-sm font-medium text-sbh-blue">
+                                                        ${villa.salePrice.toLocaleString()}
                                                     </p>
-                                                )}
-                                                <button
-                                                    onClick={() => onViewDetails(villa.id)}
-                                                    className="flex items-center gap-1 px-3 py-1 bg-sbh-green text-white text-xs rounded hover:bg-sbh-blue transition-colors"
+                                                ) : null}
+                                                <Link
+                                                    href={`/villas/${villa.id}`}
+                                                    className="text-xs bg-sbh-green text-white px-3 py-1 rounded hover:bg-sbh-blue transition-colors"
                                                 >
-                                                    <Eye className="w-3 h-3" />
                                                     Voir
-                                                </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </InfoWindow>

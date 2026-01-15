@@ -1,4 +1,4 @@
-
+'use client';
 import React, { useState, useEffect } from 'react';
 import { BookingParams } from '../types';
 import { useVilla } from '../hooks/useCMS';
@@ -6,13 +6,22 @@ import { Calendar, Users, MapPin, Check, ArrowRight, ShieldCheck, Star } from 'l
 import { Logo } from './Logo';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
+import Image from 'next/image';
 
-interface BookingPageProps {
-   bookingParams: BookingParams;
-   onBack: () => void;
-}
+import { useSearchParams, useRouter } from 'next/navigation';
 
-export const BookingPage: React.FC<BookingPageProps> = ({ bookingParams, onBack }) => {
+export const BookingPage: React.FC = () => {
+   const searchParams = useSearchParams();
+   const router = useRouter();
+
+   const bookingParams: BookingParams = {
+      villaId: searchParams.get('villaId') || '',
+      arrival: searchParams.get('arrival') || '',
+      departure: searchParams.get('departure') || '',
+      guests: parseInt(searchParams.get('guests') || '2', 10)
+   };
+
+   const onBack = () => router.back();
    const { t, language } = useLanguage();
    const { villa, loading } = useVilla(bookingParams.villaId);
    const [isSubmitted, setIsSubmitted] = useState(false);
@@ -62,7 +71,13 @@ export const BookingPage: React.FC<BookingPageProps> = ({ bookingParams, onBack 
 
    const formatDate = (dateStr: string) => {
       if (!dateStr) return t.booking.selectDate;
-      return new Date(dateStr).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      let locale = 'en-US';
+      if (language === 'fr') locale = 'fr-FR';
+      else if (language === 'pt') locale = 'pt-BR'; // or pt-PT
+      else if (language === 'es') locale = 'es-ES';
+
+      return new Date(dateStr).toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
    };
 
    if (isSubmitted) {
@@ -102,8 +117,8 @@ export const BookingPage: React.FC<BookingPageProps> = ({ bookingParams, onBack 
 
                   {/* Villa Mini Card */}
                   <div className="flex gap-4 mb-8">
-                     <div className="w-24 h-24 rounded-lg overflow-hidden shrink-0">
-                        <img src={villa.mainImage} alt={villa.name} className="w-full h-full object-cover" />
+                     <div className="w-24 h-24 rounded-lg overflow-hidden shrink-0 relative">
+                        <Image src={villa.mainImage} alt={villa.name} fill sizes="96px" className="object-cover" />
                      </div>
                      <div>
                         <h4 className="font-serif text-xl text-sbh-charcoal">{villa.name}</h4>

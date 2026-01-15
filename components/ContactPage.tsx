@@ -1,6 +1,8 @@
+'use client';
 import React, { useEffect } from 'react';
 import { Mail, Phone, ArrowRight, Instagram, Facebook } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import Image from 'next/image';
 
 export const ContactPage: React.FC = () => {
     const { t } = useLanguage();
@@ -68,10 +70,12 @@ export const ContactPage: React.FC = () => {
 
                     {/* Upper Visual */}
                     <div className="h-64 lg:h-1/2 relative overflow-hidden">
-                        <img
+                        <Image
                             src="https://storage.googleapis.com/images-sbh/f7f7fd16-3e6c-43e6-93fd-b13f74bf9418.jpg"
                             alt="Atmosphere St Barth"
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 40vw"
+                            className="object-cover grayscale hover:grayscale-0 transition-all duration-[2s]"
                         />
                         <div className="absolute inset-0 bg-sbh-green/20 mix-blend-multiply"></div>
 

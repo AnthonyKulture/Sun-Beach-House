@@ -1,10 +1,9 @@
+'use client';
+
 import React, { useState } from 'react';
 import { SunStamp, NorthStar } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
-
-interface ServicesProps {
-    onNavigate: (page: string) => void;
-}
+import Link from 'next/link';
 
 const services = [
     {
@@ -34,7 +33,7 @@ const services = [
     }
 ];
 
-export const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
+export const Services: React.FC = () => {
     const { t } = useLanguage();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -105,12 +104,12 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                     <p className="font-serif italic text-2xl text-sbh-charcoal/80 mb-10">
                         {t.services.quote}
                     </p>
-                    <button
-                        onClick={() => onNavigate('contact')}
-                        className="px-10 py-4 border border-sbh-charcoal/30 rounded-full font-sans text-sm uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white hover:border-sbh-charcoal transition-all duration-500 bg-transparent relative overflow-hidden group touch-target"
+                    <Link
+                        href="/contact"
+                        className="px-10 py-4 border border-sbh-charcoal/30 rounded-full font-sans text-sm uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white hover:border-sbh-charcoal transition-all duration-500 bg-transparent relative overflow-hidden group touch-target inline-block"
                     >
                         <span className="relative z-10">{t.services.contactButton}</span>
-                    </button>
+                    </Link>
                 </div>
 
             </div>

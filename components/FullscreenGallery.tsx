@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable @next/next/no-img-element */
+import React, { useEffect, useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface FullscreenGalleryProps {
@@ -10,13 +11,13 @@ interface FullscreenGalleryProps {
 export const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({ images, initialIndex, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-    const goToPrevious = () => {
+    const goToPrevious = useCallback(() => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    };
+    }, [images.length]);
 
-    const goToNext = () => {
+    const goToNext = useCallback(() => {
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    };
+    }, [images.length]);
 
     // Keyboard navigation
     useEffect(() => {
@@ -28,7 +29,7 @@ export const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({ images, in
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [currentIndex]);
+    }, [onClose, goToPrevious, goToNext]);
 
     // Prevent body scroll
     useEffect(() => {

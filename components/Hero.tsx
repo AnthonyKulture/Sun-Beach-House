@@ -1,16 +1,16 @@
+'use client';
+
 import React, { useState, useMemo } from 'react';
 import { Search, MapPin, Users, ChevronDown, Plus, Minus } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useRouter } from 'next/navigation';
 
-interface HeroProps {
-    onSearch?: (location: string, guests: number) => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onSearch }) => {
+export const Hero: React.FC = () => {
     const { villas } = useVillas();
     const { language, t } = useLanguage();
+    const router = useRouter(); // Use Next.js router
     const [selectedLocation, setSelectedLocation] = useState('all');
     const [guests, setGuests] = useState(2);
     const [isGuestOpen, setIsGuestOpen] = useState(false);
@@ -24,12 +24,17 @@ export const Hero: React.FC<HeroProps> = ({ onSearch }) => {
             { value: 'all', label: t.hero.allIsland },
             ...sortedLocations.map(loc => ({ value: loc, label: loc }))
         ];
-    }, [villas]);
+    }, [villas, t.hero.allIsland]);
 
     const handleSearchClick = () => {
-        if (onSearch) {
-            onSearch(selectedLocation, guests);
+        const params = new URLSearchParams();
+        if (selectedLocation !== 'all') {
+            params.set('location', selectedLocation);
         }
+        if (guests > 0) {
+            params.set('guests', guests.toString());
+        }
+        router.push(`/rentals?${params.toString()}`);
     };
 
     return (

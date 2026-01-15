@@ -28,7 +28,7 @@ const bedroomPrice = defineType({
     select: { bedrooms: 'bedrooms', price: 'price' },
     prepare({ bedrooms, price }) {
       return {
-        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → ${price?.toLocaleString('fr-FR')} €`,
+        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → $${price?.toLocaleString('en-US')}`,
       }
     },
   },
@@ -43,24 +43,15 @@ const seasonalPrice = defineType({
       name: 'seasonName',
       title: 'Nom de la saison',
       type: 'string',
-      description: 'Exemple : "Haute Saison", "Noël", "Été"',
-      options: {
-        list: [
-          { title: 'Basse Saison (Low Season)', value: 'Low Season' },
-          { title: 'Été (Summer)', value: 'Summer' },
-          { title: 'Haute Saison (High Season)', value: 'High Season' },
-          { title: 'Thanksgiving', value: 'Thanksgiving & Bucket' },
-          { title: 'Noël (Christmas)', value: 'Christmas' },
-          { title: 'Nouvel An (New Year)', value: 'New Year' },
-        ],
-      },
+
+      description: 'Exemple : "High Season", "Holiday Season", "Summer"',
       validation: (rule) => rule.required().error('Choisissez une saison'),
     }),
     defineField({
       name: 'dates',
-      title: 'Période',
+      title: 'Période (en français)',
       type: 'string',
-      description: 'Exemple : "15 Avr - 30 Avr" ou "17 Déc - 26 Déc"',
+      description: 'Ex: 15 Avr - 30 Avr (sera traduit automatiquement en anglais sur le site)',
       validation: (rule) => rule.required().error('Indiquez les dates de la saison'),
     }),
     defineField({
@@ -79,7 +70,7 @@ const seasonalPrice = defineType({
       const priceCount = prices?.length || 0
       return {
         title: seasonName,
-        subtitle: `${dates} • ${priceCount} tarif${priceCount > 1 ? 's' : ''}`,
+        subtitle: `${dates || 'Dates manquantes'} • ${priceCount} tarif${priceCount > 1 ? 's' : ''}`,
       }
     },
   },
@@ -223,7 +214,7 @@ const villa = defineType({
     { name: 'pricing', title: 'Tarification' },
     { name: 'features', title: 'Caractéristiques' },
     { name: 'location', title: 'Localisation' },
-    { name: 'media', title: 'Photos' },
+    { name: 'media', title: 'Photos/Video' },
     { name: 'extras', title: 'Équipements & Tags' },
     { name: 'pdfExport', title: 'Export PDF' },
   ],
@@ -278,6 +269,22 @@ const villa = defineType({
       },
       initialValue: 'rent',
       validation: (rule) => rule.required().error('Choisissez le type d\'annonce'),
+    }),
+    defineField({
+      name: 'propertyType',
+      title: 'Type de bien',
+      type: 'string',
+      group: 'essential',
+      description: 'Est-ce une villa ou un appartement ?',
+      options: {
+        list: [
+          { title: 'Villa', value: 'villa' },
+          { title: 'Appartement', value: 'apartment' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'villa',
+      validation: (rule) => rule.required().error('Choisissez le type de bien'),
     }),
     defineField({
       name: 'location',
@@ -411,56 +418,20 @@ const villa = defineType({
     // ═══════════════════════════════════════════════════════════
     defineField({
       name: 'description',
-      title: 'Accroche courte',
-      type: 'object',
+      title: 'Accroche courte (français)',
+      type: 'string',
       group: 'description',
-      description: 'Une phrase d\'accroche (affichée sur les cartes) en français et anglais',
-      fields: [
-        {
-          name: 'fr',
-          title: 'Français',
-          type: 'string',
-          validation: (rule) => rule.required().max(100),
-        },
-        {
-          name: 'en',
-          title: 'English',
-          type: 'string',
-          validation: (rule) => rule.required().max(100),
-        },
-      ],
-      validation: (rule) => rule.required().error('Les descriptions FR et EN sont obligatoires'),
+      description: 'Une phrase d\'accroche (sera traduite automatiquement en EN/PT/ES sur le site)',
+      validation: (rule) => rule.required().max(150).error('L\'accroche est obligatoire (max 150 caractères)'),
     }),
     defineField({
       name: 'fullDescription',
-      title: 'Description complète',
-      type: 'object',
+      title: 'Description complète (français)',
+      type: 'text',
+      rows: 10,
       group: 'description',
-      description: 'Description détaillée de la villa en français et anglais',
-      fields: [
-        {
-          name: 'fr',
-          title: 'Français',
-          type: 'text',
-          rows: 10,
-          validation: (rule) => rule.required(),
-        },
-        {
-          name: 'en',
-          title: 'English',
-          type: 'text',
-          rows: 10,
-          validation: (rule) => rule.required(),
-        },
-      ],
-      validation: (rule) => rule.required().error('Les descriptions FR et EN sont obligatoires'),
-    }),
-    defineField({
-      name: 'viewType',
-      title: 'Type de vue',
-      type: 'string',
-      group: 'description',
-      description: 'Quelle vue offre cette villa ? Ex: "Océan panoramique", "Jardin tropical" (optionnel)',
+      description: 'Description détaillée de la villa (sera traduite automatiquement en EN/PT/ES sur le site)',
+      validation: (rule) => rule.required().error('La description complète est obligatoire'),
     }),
     defineField({
       name: 'homeFeatures',
@@ -513,6 +484,15 @@ const villa = defineType({
       description: 'Ajoutez les tarifs pour chaque saison (locations uniquement)',
       hidden: ({ document }) => document?.listingType === 'sale',
     }),
+    defineField({
+      name: 'pricingDetails',
+      title: 'Informations supplémentaires (Tarification)',
+      type: 'text',
+      rows: 4,
+      group: 'pricing',
+      description: 'Conditions spécifiques, taxes, durée de séjour... (Traduction automatique)',
+      hidden: ({ document }) => document?.listingType === 'sale',
+    }),
 
     // ═══════════════════════════════════════════════════════════
     // GROUPE : CARACTÉRISTIQUES
@@ -554,7 +534,7 @@ const villa = defineType({
     }),
 
     // ═══════════════════════════════════════════════════════════
-    // GROUPE : PHOTOS
+    // GROUPE : PHOTOS/VIDEO
     // ═══════════════════════════════════════════════════════════
     defineField({
       name: 'mainImage',
@@ -614,6 +594,23 @@ const villa = defineType({
       group: 'media',
       of: [{ type: 'url' }],
       description: 'Alternative : collez des liens vers les images',
+    }),
+    defineField({
+      name: 'videoUrl',
+      title: 'Lien vidéo (YouTube / Vimeo)',
+      type: 'url',
+      group: 'media',
+      description: 'Collez le lien de la vidéo (ex: YouTube, Vimeo)',
+    }),
+    defineField({
+      name: 'videoFile',
+      title: 'Ou télécharger une vidéo',
+      type: 'file',
+      group: 'media',
+      description: 'Téléchargez directement un fichier vidéo (MP4 recommandé)',
+      options: {
+        accept: 'video/*',
+      },
     }),
 
     // ═══════════════════════════════════════════════════════════
@@ -716,8 +713,8 @@ const villa = defineType({
       if (listingType === 'sale') {
         displayPrice = `${(salePrice || 0).toLocaleString('fr-FR')} €`;
       } else {
-        if (pricePerNight) displayPrice = `${pricePerNight} €/nuit`;
-        if (pricePerWeek) displayPrice = displayPrice ? `${displayPrice} | ${pricePerWeek} €/semaine` : `${pricePerWeek} €/semaine`;
+        if (pricePerNight) displayPrice = `$${pricePerNight.toLocaleString('en-US')} / nuit`;
+        if (pricePerWeek) displayPrice = displayPrice ? `${displayPrice} | $${pricePerWeek.toLocaleString('en-US')} / semaine` : `$${pricePerWeek.toLocaleString('en-US')} / semaine`;
         if (!displayPrice) displayPrice = 'Prix sur demande';
       }
 

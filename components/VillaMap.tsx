@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react';
-import { APIProvider, Map, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
+import React, { useState, useEffect } from 'react';
+import { APIProvider, Map, Marker, InfoWindow } from '@vis.gl/react-google-maps';
 import { Villa } from '../types';
 import { MapPin } from 'lucide-react';
 
@@ -11,6 +11,13 @@ interface VillaMapProps {
 
 export function VillaMap({ villa }: VillaMapProps) {
     const [infoOpen, setInfoOpen] = React.useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+
+    // Delay rendering until client-side to avoid getRootNode errors
+    useEffect(() => {
+        const timer = setTimeout(() => setIsMounted(true), 100);
+        return () => clearTimeout(timer);
+    }, []);
 
     if (!villa.geopoint) {
         return (
@@ -30,6 +37,15 @@ export function VillaMap({ villa }: VillaMapProps) {
     if (!apiKey) {
         console.error('Google Maps API key not found');
         return null;
+    }
+
+    // Don't render map until client is mounted
+    if (!isMounted) {
+        return (
+            <div className="w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                <div className="text-gray-400 text-sm">Chargement de la carte...</div>
+            </div>
+        );
     }
 
     return (
@@ -58,19 +74,19 @@ export function VillaMap({ villa }: VillaMapProps) {
                         }
                     ]}
                 >
-                    <AdvancedMarker
+                    <Marker
                         position={center}
                         onClick={() => setInfoOpen(true)}
-                    >
-                        <div className="relative">
-                            {/* Custom marker with villa icon */}
-                            <div className="w-10 h-10 bg-sbh-green rounded-full flex items-center justify-center shadow-lg border-2 border-white cursor-pointer hover:scale-110 transition-transform">
-                                <MapPin className="w-6 h-6 text-white" />
-                            </div>
-                            {/* Pulsing ring */}
-                            <div className="absolute inset-0 w-10 h-10 bg-sbh-green/30 rounded-full animate-ping" />
-                        </div>
-                    </AdvancedMarker>
+                        icon={{
+                            path: "M12 0C7.58 0 4 3.58 4 8c0 5.25 8 13 8 13s8-7.75 8-13c0-4.42-3.58-8-8-8z", // Simple pin path
+                            fillColor: "#7FB069",
+                            fillOpacity: 1,
+                            strokeWeight: 2,
+                            strokeColor: "#FFFFFF",
+                            scale: 2,
+                            anchor: { x: 12, y: 21 } as any // Center bottom of the pin
+                        }}
+                    />
 
                     {infoOpen && (
                         <InfoWindow

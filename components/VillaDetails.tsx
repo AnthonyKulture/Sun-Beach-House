@@ -1,7 +1,8 @@
+'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import { Villa, HomeFeature } from '../types';
-import { useVillas } from '../hooks/useCMS';
-import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X } from 'lucide-react';
+import { useVillas, useVilla } from '../hooks/useCMS';
+import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { DownloadBrochureButton } from './DownloadBrochureButton';
 import { VillaMap } from './VillaMap';
@@ -10,17 +11,22 @@ import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { FeatureAccordion } from './FeatureAccordion';
 import { IconMap } from './IconMap';
 import { useLanguage } from '../contexts/LanguageContext';
+import { translateDate } from '../utils/dateTranslation';
+import { useTranslatedVilla } from '../hooks/useTranslatedVilla';
+
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface VillaDetailsProps {
-    villa: Villa;
-    onNavigateToVilla: (id: string) => void;
-    onBook: (villaId: string, arrival: string, departure: string, guests: number) => void;
-    onContact: (villaId: string) => void;
-    onBack: () => void;
+    villaId: string;
 }
 
-export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToVilla, onBook, onContact, onBack }) => {
+export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
+    const router = useRouter();
     const { language, t } = useLanguage();
+    const { villa: originalVilla, loading, error } = useVilla(villaId);
+    const villa = useTranslatedVilla(originalVilla);
     const { villas } = useVillas(); // Fetch all villas to determine similarities
     const [arrivalDate, setArrivalDate] = useState("");
     const [departureDate, setDepartureDate] = useState("");
@@ -45,7 +51,16 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
         setGuests(2);
         setIsMobileBookingOpen(false);
         setOpenSeasonId(null);
-    }, [villa.id]);
+    }, [villaId]);
+
+    // Loading and Error States
+    if (loading) {
+        return <div className="min-h-screen flex items-center justify-center bg-sbh-cream"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sbh-green"></div></div>;
+    }
+
+    if (error || !villa) {
+        return <div className="min-h-screen flex items-center justify-center bg-sbh-cream text-sbh-charcoal">Configured Villa not found.</div>;
+    }
 
     // Only show similar villas of same type
     const similarVillas = villas.filter(v => v.id !== villa.id && v.listingType === villa.listingType).slice(0, 3);
@@ -53,7 +68,13 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
 
     const handleBookingClick = () => {
         if (arrivalDate && departureDate) {
-            onBook(villa.id, arrivalDate, departureDate, guests);
+            const params = new URLSearchParams({
+                villaId: villa.id,
+                arrival: arrivalDate,
+                departure: departureDate,
+                guests: guests.toString()
+            });
+            router.push(`/booking?${params.toString()}`);
         } else {
             // Focus the inputs if empty
             if (!arrivalDate && arrivalRef.current) {
@@ -72,17 +93,27 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
 
     const handleMobileBookClick = () => {
         if (arrivalDate && departureDate) {
-            onBook(villa.id, arrivalDate, departureDate, guests);
+            const params = new URLSearchParams({
+                villaId: villa.id,
+                arrival: arrivalDate,
+                departure: departureDate,
+                guests: guests.toString()
+            });
+            router.push(`/booking?${params.toString()}`);
         } else {
             setIsMobileBookingOpen(true);
         }
+    };
+
+    const handleContactClick = () => {
+        router.push(`/sales-contact?villaId=${villa.id}`);
     };
 
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "VacationRental",
         "name": villa.name,
-        "description": villa.description[language],
+        "description": villa.description,
         "image": [villa.mainImage, ...villa.galleryImages],
         "priceRange": villa.listingType === 'rent' ? `${villa.pricePerNight} USD` : `${villa.salePrice} EUR`,
         "address": {
@@ -137,7 +168,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
           FIXED BACK BUTTON 
       */}
             <button
-                onClick={onBack}
+                onClick={() => router.back()}
                 className="fixed z-[10002] transition-all duration-300
                    xl:bottom-8 xl:left-8 xl:top-auto xl:right-auto
                    top-32 left-6
@@ -195,20 +226,27 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                 <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:flex md:justify-start gap-y-4 gap-x-8 md:gap-24">
 
                     <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll">
+                        <Home size={16} className="text-sbh-stone" strokeWidth={1.5} />
+                        <span className="text-xs md:text-sm font-sans uppercase tracking-widest">
+                            {villa.propertyType === 'apartment' ? t.villa.types.apartment : t.villa.types.villa}
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '50ms' }}>
                         <Users size={16} className="text-sbh-stone" strokeWidth={1.5} />
                         <span className="text-xs md:text-sm font-sans uppercase tracking-widest">
                             <strong className="text-sbh-charcoal">{villa.guests}</strong> {isSale ? t.villa.sleeps : t.villa.guests}
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '100ms' }}>
+                    <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '150ms' }}>
                         <BedDouble size={16} className="text-sbh-stone" strokeWidth={1.5} />
                         <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.bedrooms}</strong> {t.villa.bedrooms}</span>
                     </div>
 
-                    <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
+                    <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '250ms' }}>
                         <Bath size={16} className="text-sbh-stone" strokeWidth={1.5} />
-                        <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.bathrooms}</strong> {t.villa.bathrooms}</span>
+                        <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.bathrooms}</strong> {villa.bathrooms > 1 ? t.villa.bathrooms : t.villa.bathroom}</span>
                     </div>
 
                     {/* Hide Surface Area for Rentals */}
@@ -230,9 +268,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                     {/* STORYTELLING */}
                     <div className="mb-16 md:mb-24 reveal-on-scroll">
                         <h2 className="font-serif text-2xl md:text-3xl text-sbh-charcoal mb-8 leading-tight">
-                            {villa.description[language]}                        </h2>
+                            {villa.description as string}                        </h2>
                         <div className="prose prose-lg text-gray-600 font-sans font-light leading-relaxed whitespace-pre-line text-justify">
-                            {villa.fullDescription[language]}
+                            {villa.fullDescription as string}
                         </div>
                     </div>
 
@@ -261,11 +299,18 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                         {/* Desktop Gallery - Height increased by 70% (800px -> 1360px) */}
                         <div className="hidden md:grid grid-cols-2 gap-4 h-[1360px]">
                             <div
-                                className="col-span-2 row-span-2 relative group overflow-hidden rounded-sm cursor-pointer reveal-on-scroll"
+                                className="col-span-2 row-span-2 relative group overflow-hidden rounded-sm cursor-pointer"
                                 onClick={() => { setGalleryStartIndex(0); setIsGalleryOpen(true); }}
                             >
                                 {villa.mainImage ? (
-                                    <img src={villa.mainImage} alt="Main view" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                    <Image
+                                        src={villa.mainImage}
+                                        alt="Main view"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 66vw"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                        priority
+                                    />
                                 ) : (
                                     <VillaImagePlaceholder className="w-full h-full" />
                                 )}
@@ -275,46 +320,116 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                     </div>
                                 </div>
                             </div>
-                            {villa.galleryImages.map((img, idx) => (
-                                <div
-                                    key={idx}
-                                    className="relative group overflow-hidden rounded-sm cursor-pointer reveal-on-scroll"
-                                    style={{ transitionDelay: `${100 * (idx + 1)}ms` }}
-                                    onClick={() => { setGalleryStartIndex(idx + 1); setIsGalleryOpen(true); }}
-                                >
-                                    <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-sans uppercase tracking-wider">
-                                            {t.villa.viewFullscreen}
-                                        </div>
+                            {villa.galleryImages.slice(0, 6).map((img, idx) => {
+                                const isLast = idx === 5;
+                                const remainingCount = villa.galleryImages.length - 6;
+
+                                return (
+                                    <div
+                                        key={idx}
+                                        className="relative group overflow-hidden rounded-sm cursor-pointer"
+                                        style={{ transitionDelay: `${100 * (idx + 1)}ms` }}
+                                        onClick={() => { setGalleryStartIndex(idx + 1); setIsGalleryOpen(true); }}
+                                    >
+                                        <Image
+                                            src={img}
+                                            alt={`Gallery ${idx + 1}`}
+                                            fill
+                                            sizes="(max-width: 768px) 50vw, 25vw"
+                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
+
+                                        {isLast && remainingCount > 0 ? (
+                                            <div className="absolute inset-0 bg-black/50 hover:bg-black/60 transition-colors flex items-center justify-center">
+                                                <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white text-base font-sans uppercase tracking-wider font-medium border border-white/30">
+                                                    {t.villa.morePhotos.replace('{count}', remainingCount.toString())}
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-sans uppercase tracking-wider">
+                                                    {t.villa.viewFullscreen}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            })}
                         </div>
 
                         {/* Mobile Gallery - Height increased by 70% (400px -> 680px) */}
-                        <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory -mx-6 px-6 pb-6 reveal-on-scroll" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory -mx-6 px-6 pb-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             <div
                                 className="min-w-[85vw] h-[680px] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                 onClick={() => { setGalleryStartIndex(0); setIsGalleryOpen(true); }}
                             >
                                 {villa.mainImage ? (
-                                    <img src={villa.mainImage} alt="Main" className="w-full h-full object-cover" />
+                                    <Image src={villa.mainImage} alt="Main" fill sizes="85vw" className="object-cover" priority />
                                 ) : (
                                     <VillaImagePlaceholder className="w-full h-full" />
                                 )}
                             </div>
-                            {villa.galleryImages.map((img, idx) => (
+                            {villa.galleryImages.slice(0, 6).map((img, idx) => (
                                 <div
                                     key={idx}
                                     className="min-w-[85vw] h-[680px] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                     onClick={() => { setGalleryStartIndex(idx + 1); setIsGalleryOpen(true); }}
                                 >
-                                    <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                                    <Image src={img} alt={`Gallery ${idx + 1}`} fill sizes="85vw" className="object-cover" />
                                 </div>
                             ))}
+                            {villa.galleryImages.length > 6 && (
+                                <div
+                                    className="min-w-[85vw] h-[680px] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer bg-sbh-charcoal flex items-center justify-center text-white"
+                                    onClick={() => { setGalleryStartIndex(7); setIsGalleryOpen(true); }}
+                                >
+                                    <div className="text-center">
+                                        <span className="block text-2xl font-serif italic mb-2">
+                                            {t.villa.morePhotos.replace('{count}', (villa.galleryImages.length - 6).toString())}
+                                        </span>
+                                        <span className="text-sm uppercase tracking-widest border-b border-white pb-1">
+                                            {t.villa.viewFullscreen}
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
+
+                    {/* VIDEO SECTION */}
+                    {(villa.videoFileUrl || villa.videoUrl) && (
+                        <div className="mb-16 md:mb-24 w-full">
+                            <h3 className="font-serif text-2xl italic text-sbh-charcoal mb-8 flex items-center gap-4 reveal-on-scroll">
+                                {t.villa.video} <span className="h-px flex-1 bg-sbh-charcoal/10"></span>
+                            </h3>
+
+                            <div className="reveal-on-scroll rounded-sm overflow-hidden bg-sbh-cream aspect-video shadow-2xl">
+                                {villa.videoFileUrl ? (
+                                    <video
+                                        src={villa.videoFileUrl}
+                                        controls
+                                        className="w-full h-full object-cover"
+                                        poster={villa.mainImage}
+                                    >
+                                        Your browser does not support the video tag.
+                                    </video>
+                                ) : villa.videoUrl ? (
+                                    <iframe
+                                        src={villa.videoUrl.includes('youtube.com') || villa.videoUrl.includes('youtu.be')
+                                            ? `https://www.youtube.com/embed/${villa.videoUrl.split('v=')[1]?.split('&')[0] || villa.videoUrl.split('/').pop()}`
+                                            : villa.videoUrl.includes('vimeo.com')
+                                                ? `https://player.vimeo.com/video/${villa.videoUrl.split('/').pop()}`
+                                                : villa.videoUrl
+                                        }
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        title="Villa Video"
+                                    ></iframe>
+                                ) : null}
+                            </div>
+                        </div>
+                    )}
 
                     {/* LOCATION & MAP */}
                     <div className="mb-16 md:mb-24">
@@ -400,10 +515,16 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                 })}
                             </div>
 
-                            <p className="mt-8 text-[10px] text-gray-400 font-sans tracking-wide leading-relaxed italic">
-                                {t.villa.serviceAndTax}<br />
-                                {t.villa.minStay}
-                            </p>
+                            <div className="mt-8 text-sm md:text-base text-gray-500 font-sans tracking-wide leading-relaxed whitespace-pre-wrap">
+                                {typeof villa.pricingDetails === 'string' && villa.pricingDetails ? (
+                                    villa.pricingDetails
+                                ) : (
+                                    <>
+                                        {t.villa.serviceAndTax}<br />
+                                        {t.villa.minStay}
+                                    </>
+                                )}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -438,7 +559,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                         {t.villa.interestedProperty}
                                     </p>
                                     <button
-                                        onClick={() => onContact(villa.id)}
+                                        onClick={handleContactClick}
                                         className="w-full bg-sbh-charcoal text-white py-4 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm flex items-center justify-center gap-2"
                                     >
                                         <Mail size={16} /> {t.villa.contactAgent}
@@ -448,8 +569,8 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                                     </div>
                                     <div className="border-t border-gray-100 pt-4 mt-4">
                                         <div className="flex items-center gap-4 mb-2">
-                                            <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
-                                                <img src="https://images.unsplash.com/photo-1573599971936-8a79854743c6?q=80&w=200&auto=format&fit=crop" alt="Agent" className="w-full h-full object-cover" />
+                                            <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden relative">
+                                                <Image src="https://images.unsplash.com/photo-1573599971936-8a79854743c6?q=80&w=200&auto=format&fit=crop" alt="Agent" fill sizes="48px" className="object-cover" />
                                             </div>
                                             <div>
                                                 <p className="font-serif text-sbh-charcoal">{t.villa.valerie}</p>
@@ -563,18 +684,33 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {similarVillas.map((v, idx) => (
-                            <div key={v.id} className="group cursor-pointer reveal-on-scroll" onClick={() => onNavigateToVilla(v.id)} style={{ transitionDelay: `${idx * 100}ms` }}>
+                            <Link href={`/villas/${v.id}`} key={v.id} className="group cursor-pointer reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
                                 <div className="aspect-[4/3] overflow-hidden rounded-sm mb-4 relative">
-                                    <img src={v.mainImage} alt={v.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                    {v.mainImage ? (
+                                        <Image src={v.mainImage} alt={v.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                                    ) : (
+                                        <VillaImagePlaceholder text={v.name} className="w-full h-full transition-transform duration-700 group-hover:scale-110" />
+                                    )}
                                     <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 text-xs font-sans tracking-widest uppercase rounded-sm">
-                                        {v.listingType === 'rent' ? `$${v.pricePerNight?.toLocaleString()} / ${t.villa.perNight}` : `${v.salePrice?.toLocaleString()}€`}
+                                        {(() => {
+                                            if (v.listingType === 'sale') {
+                                                return v.salePrice ? `${v.salePrice.toLocaleString('fr-FR')}€` : t.villa.priceOnRequest;
+                                            }
+                                            if (v.pricePerWeek && v.pricePerWeek > 0) {
+                                                return `$${v.pricePerWeek.toLocaleString('en-US')} ${t.villa.perWeek}`;
+                                            }
+                                            if (v.pricePerNight && v.pricePerNight > 0) {
+                                                return `$${v.pricePerNight.toLocaleString('en-US')} ${t.villa.perNight}`;
+                                            }
+                                            return t.villa.priceOnRequest;
+                                        })()}
                                     </div>
                                 </div>
                                 <h4 className="font-serif text-xl text-sbh-charcoal group-hover:text-sbh-blue transition-colors">
                                     {v.name}
                                 </h4>
                                 <span className="text-xs font-sans text-gray-500 uppercase tracking-widest">{v.location}</span>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
@@ -596,7 +732,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villa, onNavigateToV
                 <div className="flex items-center gap-3">
                     <DownloadBrochureButton villa={villa} compact />
                     <button
-                        onClick={isSale ? () => onContact(villa.id) : handleMobileBookClick}
+                        onClick={isSale ? handleContactClick : handleMobileBookClick}
                         className="bg-sbh-charcoal text-white px-8 py-3.5 font-sans text-xs uppercase tracking-[0.2em] hover:bg-sbh-green transition-colors rounded-sm shadow-lg"
                     >
                         {isSale ? t.villa.contact : t.villa.reserve}

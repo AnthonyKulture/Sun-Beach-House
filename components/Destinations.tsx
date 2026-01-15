@@ -1,17 +1,25 @@
+/* eslint-disable @next/next/no-img-element */
+'use client';
 import React, { useEffect } from 'react';
 import { NorthStar, SunStamp, OrganicLine, PalmLeaf } from './Decorations';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useRouter } from 'next/navigation';
 
-interface DestinationsProps {
-    onNavigate: (page: string) => void;
-}
+interface DestinationsProps { }
 
-export const Destinations: React.FC<DestinationsProps> = ({ onNavigate }) => {
+export const Destinations: React.FC<DestinationsProps> = () => {
     const { t } = useLanguage();
+    const router = useRouter();
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    // Helper for navigation
+    const handleNavigate = (path: string) => {
+        router.push(path);
+    };
 
     return (
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24 text-sbh-charcoal overflow-hidden">
@@ -147,7 +155,7 @@ export const Destinations: React.FC<DestinationsProps> = ({ onNavigate }) => {
                                 {t.destinations.cultureP2}
                             </p>
                             <div className="pt-4 reveal-on-scroll" style={{ transitionDelay: '400ms' }}>
-                                <button onClick={() => onNavigate('services')} className="text-xs uppercase tracking-[0.2em] border-b border-sbh-charcoal pb-1 hover:text-sbh-terracotta hover:border-sbh-terracotta transition-colors">
+                                <button onClick={() => handleNavigate('/#services')} className="text-xs uppercase tracking-[0.2em] border-b border-sbh-charcoal pb-1 hover:text-sbh-terracotta hover:border-sbh-terracotta transition-colors">
                                     {t.destinations.cultureButton}
                                 </button>
                             </div>
@@ -185,7 +193,7 @@ export const Destinations: React.FC<DestinationsProps> = ({ onNavigate }) => {
                             <p className="text-sm font-serif italic text-sbh-charcoal/80">
                                 {t.destinations.gustaviaQuote}
                             </p>
-                            <button onClick={() => { onNavigate('collections'); }} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-green transition-colors">
+                            <button onClick={() => handleNavigate('/rentals')} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-green transition-colors">
                                 {t.destinations.gustaviaButton} <ArrowRight size={14} />
                             </button>
                         </div>
@@ -213,7 +221,7 @@ export const Destinations: React.FC<DestinationsProps> = ({ onNavigate }) => {
                             <p className="font-sans text-gray-600 leading-relaxed mb-8">
                                 {t.destinations.saintJeanDescription}
                             </p>
-                            <button onClick={() => { onNavigate('collections'); }} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-blue transition-colors">
+                            <button onClick={() => handleNavigate('/rentals')} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-blue transition-colors">
                                 {t.destinations.saintJeanButton} <ArrowRight size={14} />
                             </button>
                         </div>
@@ -230,7 +238,7 @@ export const Destinations: React.FC<DestinationsProps> = ({ onNavigate }) => {
                             <p className="text-sm font-serif italic text-sbh-charcoal/80">
                                 {t.destinations.corossolQuote}
                             </p>
-                            <button onClick={() => { onNavigate('collections'); }} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-terracotta transition-colors">
+                            <button onClick={() => handleNavigate('/rentals')} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-terracotta transition-colors">
                                 {t.destinations.corossolButton} <ArrowRight size={14} />
                             </button>
                         </div>
@@ -276,10 +284,10 @@ export const Destinations: React.FC<DestinationsProps> = ({ onNavigate }) => {
                         {t.destinations.ctaDescription}
                     </p>
                     <div className="flex flex-col md:flex-row justify-center gap-6 reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
-                        <button onClick={() => onNavigate('collections')} className="bg-sbh-charcoal text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] rounded-full hover:bg-sbh-green transition-colors">
+                        <button onClick={() => handleNavigate('/rentals')} className="bg-sbh-charcoal text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] rounded-full hover:bg-sbh-green transition-colors">
                             {t.destinations.ctaExplore}
                         </button>
-                        <button onClick={() => onNavigate('contact')} className="border border-sbh-charcoal text-sbh-charcoal px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] rounded-full hover:bg-sbh-charcoal hover:text-white transition-colors">
+                        <button onClick={() => handleNavigate('/contact')} className="border border-sbh-charcoal text-sbh-charcoal px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] rounded-full hover:bg-sbh-charcoal hover:text-white transition-colors">
                             {t.destinations.ctaContact}
                         </button>
                     </div>

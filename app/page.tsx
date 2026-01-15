@@ -1,7 +1,17 @@
-'use client'
+import { Hero } from '@/components/Hero';
+import { About } from '@/components/About';
+import { Villas } from '@/components/Villas';
+import { Services } from '@/components/Services';
+import { Experience } from '@/components/Experience';
 
-import App from '../App'
-
-export default function Home() {
-    return <App />
+export default function HomePage() {
+    return (
+        <>
+            <Hero />
+            <About />
+            <Villas />
+            <Services />
+            <Experience />
+        </>
+    );
 }

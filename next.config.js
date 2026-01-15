@@ -14,6 +14,15 @@ const nextConfig = {
                 hostname: 'cdn.sanity.io',
                 pathname: '/images/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'storage.googleapis.com',
+                pathname: '/images-sbh/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+            },
         ],
         // Enable modern image formats
         formats: ['image/avif', 'image/webp'],
