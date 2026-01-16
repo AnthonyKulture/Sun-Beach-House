@@ -584,7 +584,7 @@ const villa = defineType({
       title: 'Galerie photos',
       type: 'array',
       group: 'media',
-      description: 'Ajoutez plusieurs photos de la villa',
+      description: '📸 Ajoutez plusieurs photos de la villa. Vous pouvez glisser-déposer plusieurs images en même temps ou cliquer sur "Upload" pour sélectionner plusieurs fichiers.',
       of: [
         defineArrayMember({
           type: 'image',
@@ -603,7 +603,9 @@ const villa = defineType({
           ],
         }),
       ],
-      options: { layout: 'grid' },
+      options: {
+        layout: 'grid',
+      },
     }),
     defineField({
       name: 'galleryImageUrls',

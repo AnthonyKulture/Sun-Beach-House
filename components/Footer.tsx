@@ -87,9 +87,9 @@ export const Footer: React.FC = () => {
                         <h4 className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-sbh-sand mb-8 text-center md:text-left">{t.footer.findUs}</h4>
                         <ul className="space-y-6 font-sans text-base font-light text-sbh-green/80 flex flex-col items-center md:items-start">
                             <li className="flex items-start gap-4 group">
-                                <div className="mt-1 text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0">
+                                <span className="mt-1 text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0 inline-block">
                                     <MapPin size={20} strokeWidth={1.5} />
-                                </div>
+                                </span>
                                 <span className="leading-relaxed group-hover:text-sbh-cream transition-colors duration-300 text-left">
                                     Gustavia Harbor<br />
                                     Rue de la République<br />
@@ -97,9 +97,9 @@ export const Footer: React.FC = () => {
                                 </span>
                             </li>
                             <li className="flex items-center gap-4 group">
-                                <div className="text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0">
+                                <span className="text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0 inline-block">
                                     <Phone size={20} strokeWidth={1.5} />
-                                </div>
+                                </span>
                                 <EncryptedLink
                                     type="phone"
                                     value="+590690000000"
@@ -108,9 +108,9 @@ export const Footer: React.FC = () => {
                                 />
                             </li>
                             <li className="flex items-center gap-4 group">
-                                <div className="text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0">
+                                <span className="text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0 inline-block">
                                     <Mail size={20} strokeWidth={1.5} />
-                                </div>
+                                </span>
                                 <EncryptedLink
                                     type="email"
                                     value="hello@sunbeachhouse.com"

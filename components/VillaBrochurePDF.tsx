@@ -5,6 +5,17 @@ import { Villa } from '../types';
 import { translations } from '../i18n/translations';
 import { optimizeImageForPDF } from '../utils/pdfHelpers';
 import { translateDate } from '../utils/dateTranslation';
+import path from 'path';
+
+// Get absolute path to logo for PDF generation (server-side)
+const getLogoPath = () => {
+    if (typeof window === 'undefined') {
+        // Server-side: use absolute file path
+        return path.join(process.cwd(), 'public', 'logo-sbh.png');
+    }
+    // Client-side (shouldn't happen for PDF): use relative path
+    return '/logo-sbh.png';
+};
 
 // Define color palette matching design system
 const colors = {
@@ -267,7 +278,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 {/* Header */}
                 <View style={styles.header}>
                     <Text style={styles.villaName}>{villa.name}</Text>
-                    <Image src="/logo-sbh.png" style={styles.logoImage} />
+                    <Image src={getLogoPath()} style={styles.logoImage} />
                 </View>
 
                 {/* Hero Image */}
@@ -352,7 +363,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                     <Text style={{ ...styles.villaName, fontSize: 20 }}>
                         {showPricing ? 'Tarifs & Photos' : (language === 'fr' ? 'Galerie Photos' : 'Photo Gallery')}
                     </Text>
-                    <Image src="/logo-sbh.png" style={styles.logoImage} />
+                    <Image src={getLogoPath()} style={styles.logoImage} />
                 </View>
 
                 {/* Pricing Section */}
