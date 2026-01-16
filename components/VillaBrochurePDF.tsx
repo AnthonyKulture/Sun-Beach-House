@@ -219,7 +219,8 @@ interface VillaBrochurePDFProps {
 }
 
 // Helper to normalize season names to translation keys
-const getSeasonTranslationKey = (rawName: string): keyof import('../i18n/translations').Translations['villa']['seasons'] | null => {
+const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../i18n/translations').Translations['villa']['seasons'] | null => {
+    if (!rawName) return null;
     const lower = rawName.toLowerCase();
     if (lower.includes('low') || lower.includes('basse')) return 'lowSeason';
     if (lower.includes('high') || lower.includes('haute')) return 'highSeason';
@@ -235,6 +236,12 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
     const includePrice = pdfOptions.includePrice !== false;
     const isSale = villa.listingType === 'sale';
     const t = translations[language];
+
+    // Visibility Logic
+    const hasSeasonalPrices = villa.seasonalPrices && villa.seasonalPrices.length > 0;
+    const showRentalPrices = includePrice && !isSale && hasSeasonalPrices;
+    const showSalePrice = includePrice && isSale && villa.salePrice;
+    const showPricing = showRentalPrices || showSalePrice;
 
     // Limit amenities (max 8 for space)
     const displayedAmenities = pdfOptions.highlightedAmenities?.length
@@ -342,16 +349,18 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
             {/* PAGE 2: Pricing + Gallery */}
             <Page size="A4" style={styles.page}>
                 <View style={styles.header}>
-                    <Text style={{ ...styles.villaName, fontSize: 20 }}>Tarifs & Photos</Text>
+                    <Text style={{ ...styles.villaName, fontSize: 20 }}>
+                        {showPricing ? 'Tarifs & Photos' : (language === 'fr' ? 'Galerie Photos' : 'Photo Gallery')}
+                    </Text>
                     <Image src="/logo-sbh.png" style={styles.logoImage} />
                 </View>
 
                 {/* Pricing Section */}
-                {includePrice && !isSale && villa.seasonalPrices && villa.seasonalPrices.length > 0 && (
+                {showRentalPrices && (
                     <View style={styles.pricingSection}>
                         <Text style={styles.sectionTitle}>Tarifs Saisonniers</Text>
                         <View style={styles.priceTable}>
-                            {villa.seasonalPrices.slice(0, 4).map((season, index) => {
+                            {villa.seasonalPrices!.slice(0, 4).map((season, index) => {
                                 // Localize
                                 const normalizedKey = getSeasonTranslationKey(season.seasonName);
                                 const translatedName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName;
@@ -378,11 +387,11 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                     </View>
                 )}
 
-                {includePrice && isSale && villa.salePrice && (
+                {showSalePrice && (
                     <View style={styles.pricingSection}>
                         <Text style={styles.sectionTitle}>Prix</Text>
                         <Text style={{ ...styles.priceValue, fontSize: 22, marginTop: 6 }}>
-                            {villa.salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} €
+                            {villa.salePrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} €
                         </Text>
                     </View>
                 )}

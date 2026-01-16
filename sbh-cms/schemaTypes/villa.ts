@@ -43,8 +43,26 @@ const seasonalPrice = defineType({
       name: 'seasonName',
       title: 'Nom de la saison',
       type: 'string',
-
-      description: 'Exemple : "High Season", "Holiday Season", "Summer"',
+      options: {
+        list: [
+          // English (Support existing data)
+          { title: 'Low Season', value: 'Low Season' },
+          { title: 'High Season', value: 'High Season' },
+          { title: 'Summer', value: 'Summer' },
+          { title: 'Thanksgiving', value: 'Thanksgiving' },
+          { title: 'Thanksgiving & Bucket', value: 'Thanksgiving & Bucket' },
+          { title: 'Christmas', value: 'Christmas' },
+          { title: 'New Year', value: 'New Year' },
+          // French (New options)
+          { title: 'Basse Saison', value: 'Basse Saison' },
+          { title: 'Haute Saison', value: 'Haute Saison' },
+          { title: 'Été', value: 'Été' },
+          { title: 'Noël', value: 'Noël' },
+          { title: 'Nouvel An', value: 'Nouvel An' },
+        ],
+        layout: 'dropdown',
+      },
+      description: 'Sélectionnez une saison ou une période',
       validation: (rule) => rule.required().error('Choisissez une saison'),
     }),
     defineField({
