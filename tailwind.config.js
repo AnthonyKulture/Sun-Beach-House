@@ -29,9 +29,9 @@ module.exports = {
                 signature: ['"Advera Script"', 'cursive'],
             },
             animation: {
-                'fade-in': 'fadeIn 2s ease-out forwards',
-                'slide-up': 'slideUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
-                'reveal': 'reveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+                'fade-in': 'fadeIn 1.2s ease-out forwards',
+                'slide-up': 'slideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+                'reveal': 'reveal 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
                 'spin-slow': 'spin 20s linear infinite',
                 'spin-slower': 'spin 60s linear infinite',
                 'spin-reverse-slower': 'spin-reverse 60s linear infinite',
