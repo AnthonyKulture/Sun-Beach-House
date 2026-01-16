@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
         <Link
           href="/"
           onClick={() => setMenuOpen(false)}
-          className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${isDarkText ? 'text-sbh-green' : 'text-white'}`}
+          className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${(isDarkText || menuOpen) ? 'text-sbh-green' : 'text-white'}`}
         >
           {/* Adjusted heights: Smaller on Tablet to avoid overlap, Large on Desktop */}
           <Logo className={`transition-all duration-700 w-auto ${scrolled
@@ -155,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
 
       {/* Mobile Menu Overlay - Full Screen Cream */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-sbh-cream z-[999] flex flex-col items-center justify-center gap-8 animate-fade-in overscroll-contain">
+        <div className="fixed inset-0 bg-sbh-cream z-[999] flex flex-col items-center justify-start pt-32 pb-12 gap-8 animate-fade-in overflow-y-auto overscroll-contain">
 
           <Link href="/" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.home}</Link>
 

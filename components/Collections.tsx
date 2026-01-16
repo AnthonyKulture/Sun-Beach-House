@@ -11,7 +11,7 @@ import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 interface CollectionsProps {
     mode: 'rent' | 'sale';
@@ -21,14 +21,15 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     const { villas, loading } = useVillas();
     const { language, t } = useLanguage();
     const searchParams = useSearchParams();
+    const router = useRouter();
 
     // Initial state from URL params
     const initialFilters: FilterState = {
         location: searchParams.get('location') || 'all',
         guests: parseInt(searchParams.get('guests') || '1'),
         price: mode === 'rent' ? 150000 : 25000000,
-        amenities: [],
-        name: ''
+        amenities: searchParams.get('amenities') ? searchParams.get('amenities')!.split(',') : [],
+        name: searchParams.get('name') || ''
     };
 
     const [filters, setFilters] = useState<FilterState>(initialFilters);
@@ -42,11 +43,21 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     useEffect(() => {
         const urlLocation = searchParams.get('location') || 'all';
         const urlGuests = parseInt(searchParams.get('guests') || '1');
+        const urlName = searchParams.get('name') || '';
+        const urlAmenities = searchParams.get('amenities') ? searchParams.get('amenities')!.split(',') : [];
 
         // Only update if URL params are different from current filters
         setFilters(prev => {
-            if (prev.location !== urlLocation || prev.guests !== urlGuests) {
-                return { ...prev, location: urlLocation, guests: urlGuests };
+            const amenitiesChanged = prev.amenities.length !== urlAmenities.length || !prev.amenities.every(a => urlAmenities.includes(a));
+
+            if (prev.location !== urlLocation || prev.guests !== urlGuests || prev.name !== urlName || amenitiesChanged) {
+                return {
+                    ...prev,
+                    location: urlLocation,
+                    guests: urlGuests,
+                    name: urlName,
+                    amenities: urlAmenities
+                };
             }
             return prev;
         });
@@ -79,6 +90,24 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
 
     const onUpdateFilters = (newFilters: FilterState) => {
         setFilters(newFilters);
+
+        // Update URL Params to persist state on navigation
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (newFilters.location && newFilters.location !== 'all') params.set('location', newFilters.location);
+        else params.delete('location');
+
+        if (newFilters.guests > 1) params.set('guests', newFilters.guests.toString());
+        else params.delete('guests');
+
+        if (newFilters.name) params.set('name', newFilters.name);
+        else params.delete('name');
+
+        if (newFilters.amenities.length > 0) params.set('amenities', newFilters.amenities.join(','));
+        else params.delete('amenities');
+
+        // Use scroll: false to avoid jumping to top on filter change
+        router.replace(`?${params.toString()}`, { scroll: false });
     };
 
     // Extract unique locations for dropdown (filtered by mode) - DYNAMIC

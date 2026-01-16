@@ -76,8 +76,23 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         );
     }
 
-    // Only show similar villas of same type
-    const similarVillas = villas.filter(v => v.id !== villa.id && v.listingType === villa.listingType).slice(0, 3);
+    // Smart recommendation system: Same Type > Same Location > Similar Capacity (+/- 2 guests)
+    const similarVillas = (() => {
+        const candidates = villas.filter(v => v.id !== villa.id && v.listingType === villa.listingType);
+
+        // Priority 1: Same location AND similar capacity
+        const tier1 = candidates.filter(v => v.location === villa.location && Math.abs(v.guests - villa.guests) <= 2);
+        if (tier1.length >= 3) return tier1.slice(0, 3);
+
+        // Priority 2: Same location
+        const tier2 = candidates.filter(v => v.location === villa.location && !tier1.includes(v));
+        const combinedTier12 = [...tier1, ...tier2];
+        if (combinedTier12.length >= 3) return combinedTier12.slice(0, 3);
+
+        // Priority 3: Similar capacity
+        const tier3 = candidates.filter(v => Math.abs(v.guests - villa.guests) <= 2 && !combinedTier12.includes(v));
+        return [...combinedTier12, ...tier3, ...candidates.filter(v => !combinedTier12.includes(v) && !tier3.includes(v))].slice(0, 3);
+    })();
     const today = new Date().toISOString().split('T')[0];
 
     const handleBookingClick = () => {
@@ -371,14 +386,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                             })}
                         </div>
 
-                        {/* Mobile Gallery - Height increased by 70% (400px -> 680px) */}
+                        {/* Mobile Gallery - Optimized for horizontal scrolling with better aspect ratio */}
                         <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory -mx-6 px-6 pb-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             <div
-                                className="min-w-[85vw] h-[680px] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
+                                className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                 onClick={() => { setGalleryStartIndex(0); setIsGalleryOpen(true); }}
                             >
                                 {villa.mainImage ? (
-                                    <Image src={villa.mainImage} alt="Main" fill sizes="85vw" className="object-cover" priority />
+                                    <Image src={villa.mainImage} alt="Main" fill sizes="90vw" className="object-cover" priority />
                                 ) : (
                                     <VillaImagePlaceholder className="w-full h-full" />
                                 )}
@@ -386,15 +401,15 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                             {villa.galleryImages.slice(0, 6).map((img, idx) => (
                                 <div
                                     key={idx}
-                                    className="min-w-[85vw] h-[680px] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
+                                    className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                     onClick={() => { setGalleryStartIndex(idx + 1); setIsGalleryOpen(true); }}
                                 >
-                                    <Image src={img} alt={`Gallery ${idx + 1}`} fill sizes="85vw" className="object-cover" />
+                                    <Image src={img} alt={`Gallery ${idx + 1}`} fill sizes="90vw" className="object-cover" />
                                 </div>
                             ))}
                             {villa.galleryImages.length > 6 && (
                                 <div
-                                    className="min-w-[85vw] h-[680px] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer bg-sbh-charcoal flex items-center justify-center text-white"
+                                    className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer bg-sbh-charcoal flex items-center justify-center text-white"
                                     onClick={() => { setGalleryStartIndex(7); setIsGalleryOpen(true); }}
                                 >
                                     <div className="text-center">
@@ -744,7 +759,6 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                     )}
                 </div>
                 <div className="flex items-center gap-3">
-                    <DownloadBrochureButton villa={villa} compact />
                     <button
                         onClick={isSale ? handleContactClick : handleMobileBookClick}
                         className="bg-sbh-charcoal text-white px-8 py-3.5 font-sans text-xs uppercase tracking-[0.2em] hover:bg-sbh-green transition-colors rounded-sm shadow-lg"
