@@ -26,7 +26,7 @@ export const DownloadBrochureButton: React.FC<DownloadBrochureButtonProps> = ({
             setError(null);
 
             // Call server-side API to generate PDF
-            const response = await fetch(`/api/generate-pdf?villaId=${villa.id}&lang=${language}`);
+            const response = await fetch(`/api/generate-pdf?villaId=${villa.id}&lang=${language}&t=${Date.now()}`);
 
             if (!response.ok) {
                 throw new Error('Failed to generate PDF');

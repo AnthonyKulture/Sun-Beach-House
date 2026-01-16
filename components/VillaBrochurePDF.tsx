@@ -238,8 +238,8 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
     const t = translations[language];
 
     // Visibility Logic
-    const hasSeasonalPrices = villa.seasonalPrices && villa.seasonalPrices.length > 0;
-    const showRentalPrices = includePrice && !isSale && hasSeasonalPrices;
+    // User requested to completely remove seasonal prices from PDF (2026-01-16)
+    const showRentalPrices = false;
     const showSalePrice = includePrice && isSale && villa.salePrice;
     const showPricing = showRentalPrices || showSalePrice;
 

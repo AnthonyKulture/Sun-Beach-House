@@ -299,7 +299,10 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                         <h2 className="font-serif text-2xl md:text-3xl text-sbh-charcoal mb-8 leading-tight">
                             {villa.description as string}                        </h2>
                         <div className="prose prose-lg text-gray-600 font-sans font-light leading-relaxed whitespace-pre-line text-justify">
-                            {villa.fullDescription as string}
+                            {typeof villa.fullDescription === 'object'
+                                // @ts-ignore
+                                ? (villa.fullDescription[language] || villa.fullDescription['fr'] || villa.fullDescription['en'] || '')
+                                : villa.fullDescription}
                         </div>
                     </div>
 
@@ -506,17 +509,17 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                                 onClick={() => toggleSeason(season.id)}
                                                 className="w-full flex items-center justify-between py-6 group-hover:pl-2 transition-all duration-500 ease-out"
                                             >
-                                                <div className="flex flex-col md:flex-row md:items-baseline md:gap-4 text-left">
+                                                <span className="flex flex-col md:flex-row md:items-baseline md:gap-4 text-left">
                                                     <span className={`font-sans text-lg tracking-wide transition-colors duration-300 ${isOpen ? 'text-sbh-blue font-medium' : 'text-sbh-charcoal font-light'}`}>
                                                         {season.seasonName}
                                                     </span>
                                                     <span className="font-sans text-xs uppercase tracking-widest text-gray-400">
                                                         {season.dates}
                                                     </span>
-                                                </div>
-                                                <div className={`transform transition-transform duration-500 ${isOpen ? 'rotate-180 text-sbh-blue' : 'text-gray-300'}`}>
+                                                </span>
+                                                <span className={`transform transition-transform duration-500 ${isOpen ? 'rotate-180 text-sbh-blue' : 'text-gray-300'}`}>
                                                     {isOpen ? <Minus size={14} strokeWidth={1} /> : <Plus size={14} strokeWidth={1} />}
-                                                </div>
+                                                </span>
                                             </button>
 
                                             <div
