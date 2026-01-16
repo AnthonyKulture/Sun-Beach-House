@@ -81,8 +81,8 @@ export const ConciergerieContent: React.FC = () => {
                                 className="group bg-white rounded-sm shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden reveal-on-scroll"
                                 style={{ transitionDelay: `${index * 50}ms` }}
                             >
-                                {/* Image Header */}
-                                <div className="relative h-64 overflow-hidden">
+                                {/* Image Header - Reduced height on mobile */}
+                                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                                     <Image
                                         src={serviceImages[serviceKey]}
                                         alt={service.title}
@@ -91,31 +91,32 @@ export const ConciergerieContent: React.FC = () => {
                                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                                    <div className="absolute top-6 left-6">
+                                    <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
                                         <span className="font-sans text-xs tracking-widest px-3 py-1 rounded-full bg-sbh-green text-white">
                                             {String(index + 1).padStart(2, '0')}
                                         </span>
                                     </div>
                                 </div>
 
-                                {/* Content */}
-                                <div className="p-6 md:p-8">
-                                    <h3 className="font-serif text-2xl md:text-3xl font-light text-sbh-charcoal group-hover:text-sbh-green transition-colors duration-300 mb-3">
+                                {/* Content - Improved mobile readability */}
+                                <div className="p-5 sm:p-6 md:p-8">
+                                    <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-light text-sbh-charcoal group-hover:text-sbh-green transition-colors duration-300 mb-2 sm:mb-3">
                                         {service.title}
                                     </h3>
 
-                                    <p className="font-sans text-sm md:text-base tracking-wide uppercase text-sbh-charcoal/70 mb-4">
+                                    <p className="font-sans text-xs sm:text-sm md:text-base tracking-wide uppercase text-sbh-green font-medium mb-3 sm:mb-4">
                                         {service.shortDesc}
                                     </p>
 
-                                    <p className="font-sans text-sm text-gray-700 leading-relaxed mb-4">
+                                    <p className="font-sans text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-5">
                                         {service.longDesc}
                                     </p>
 
-                                    <ul className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                                    {/* Features - Better mobile display */}
+                                    <ul className="border-t border-gray-100 pt-4 sm:pt-5 space-y-2 sm:space-y-2.5 grid grid-cols-1 sm:grid-cols-2 gap-x-6">
                                         {service.features && service.features.map((feature: string, i: number) => (
-                                            <li key={i} className="flex items-start gap-2 text-xs text-gray-600">
-                                                <NorthStar className="w-3 h-3 text-sbh-green shrink-0 mt-0.5" />
+                                            <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                                                <NorthStar className="w-3.5 h-3.5 sm:w-3 sm:h-3 text-sbh-green shrink-0 mt-0.5" />
                                                 <span>{feature}</span>
                                             </li>
                                         ))}

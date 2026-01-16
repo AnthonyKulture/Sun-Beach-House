@@ -267,20 +267,113 @@ export const es: Translations = {
         },
     },
 
-    // TODO: Complete Spanish translations for conciergerie page
+    // Complete Spanish translations for conciergerie page
     conciergeriePage: {
         title: 'Conserjería Sun Beach House',
         subtitle: 'El arte del servicio a medida en Saint-Barthélemy',
-        intro: 'Su estancia en Saint-Barth merece una atención especial',
+        intro: 'Su estancia en Saint-Barth merece una atención especial. Nuestro servicio de conserjería transforma cada detalle en una experiencia memorable, desde chefs privados hasta traslados VIP, reservas exclusivas y actividades a medida.',
         cta: 'Solicitar presupuesto personalizado',
         servicesTitle: 'Nuestros Servicios',
-        chef: { title: 'Chefs a Domicilio', shortDesc: 'Gastronomía a medida', longDesc: '', features: [] },
-        spa: { title: 'Bienestar & Spa', shortDesc: 'Tratamientos privados', longDesc: '', features: [] },
-        transfer: { title: 'Traslados & Conductor', shortDesc: 'Organización', longDesc: '', features: [] },
-        reservations: { title: 'Reservas', shortDesc: 'Mejores restaurantes', longDesc: '', features: [] },
-        nautical: { title: 'Actividades Náuticas', shortDesc: 'Yachting', longDesc: '', features: [] },
-        travel: { title: 'Viaje & Transporte', shortDesc: 'Experiencia fluida', intro: '', solutionsTitle: 'Soluciones', solutions: [], partnersNote: '' },
-        vip: { title: 'Servicios VIP Aeropuerto', shortDesc: 'Opción premium', intro: '', whyTitle: '¿Por qué VIP?', whyItems: [], whatIsIt: '', whatIsItDesc: '', includedTitle: '', arrivalTitle: 'Llegada', arrivalItems: [], departureTitle: 'Salida', departureItems: [], optionalNote: '' }
+        chef: {
+            title: 'Chefs a Domicilio',
+            shortDesc: 'Gastronomía a medida en su villa',
+            longDesc: 'Saboree una experiencia culinaria excepcional sin salir de su villa. Nuestros chefs privados asociados crean menús personalizados inspirados en la cocina francesa y caribeña.',
+            features: [
+                'Cocina gourmet francesa y caribeña',
+                'Menús personalizados según sus preferencias',
+                'Servicio en villa con presentación elegante',
+                'Abastecimiento de productos locales e importados'
+            ]
+        },
+        spa: {
+            title: 'Bienestar & Spa',
+            shortDesc: 'Tratamientos y masajes privados',
+            longDesc: 'Transforme su villa en un santuario de bienestar. Nuestros terapeutas cualificados llevan la experiencia spa directamente a usted para un momento de relajación absoluta.',
+            features: [
+                'Masajes personalizados (sueco, deep tissue, piedras calientes)',
+                'Tratamientos faciales y corporales premium',
+                'Sesiones privadas de yoga frente al mar',
+                'Instalaciones de spa temporales disponibles'
+            ]
+        },
+        transfer: {
+            title: 'Traslados & Conductor',
+            shortDesc: 'Organización de sus desplazamientos',
+            longDesc: 'Viaje con elegancia y serenidad. Desde traslados al aeropuerto hasta excursiones por la isla, organizamos todos sus viajes con vehículos premium y conductores profesionales.',
+            features: [
+                'Traslados privados aeropuerto/helipuerto',
+                'Servicio de conductor por día completo o medio día',
+                'Vehículos premium con aire acondicionado',
+                'Coordinación con sus horarios de vuelo'
+            ]
+        },
+        reservations: {
+            title: 'Reservas',
+            shortDesc: 'Acceso a los mejores restaurantes',
+            longDesc: 'Acceda a las mesas más codiciadas de Saint-Barth. Gracias a nuestra red local, le garantizamos un lugar en los restaurantes más exclusivos, incluso en temporada alta.',
+            features: [
+                'Reservas en restaurantes con estrellas y beach clubs',
+                'Mesas privilegiadas con vistas al mar',
+                'Recomendaciones personalizadas según sus gustos',
+                'Organización de eventos privados y cumpleaños'
+            ]
+        },
+        nautical: {
+            title: 'Actividades Náuticas',
+            shortDesc: 'Yachting y descubrimiento de la isla',
+            longDesc: 'Descubra Saint-Barth desde el mar. Alquile un yate por el día, haga una excursión a las islas vecinas o pruebe el buceo en las aguas cristalinas del Caribe.',
+            features: [
+                'Alquiler de yates y catamaranes con tripulación',
+                'Excursiones de un día a Anguilla, St Martin',
+                'Buceo y snorkel guiados',
+                'Deportes acuáticos: paddle, jet-ski, kitesurf'
+            ]
+        },
+        travel: {
+            title: 'Viaje, Transporte & Llegada a Saint-Barth',
+            shortDesc: 'Una experiencia fluida, elegante y a medida',
+            intro: 'Desde su partida hasta su llegada a Saint-Barth, cada etapa de su viaje puede organizarse cuidadosamente para ofrecerle una experiencia fluida, cómoda y sin estrés. Además de su estancia, se pueden ofrecer servicios premium de transporte y asistencia bajo demanda.',
+            solutionsTitle: 'Soluciones de transporte a medida',
+            solutions: [
+                'Vuelos privados (aviones y helicópteros)',
+                'Vuelos regulares vía Saint-Martin (SXM), San Juan (SJU), Antigua (ANU), Pointe-à-Pitre (PTP)',
+                'Traslados marítimos privados y charters de barcos desde islas vecinas'
+            ],
+            partnersNote: 'Estos servicios se organizan con socios especializados en viajes de lujo y se facturan por separado. Cada solución está diseñada para optimizar su tiempo y ofrecerle una llegada serena a Saint-Barth.'
+        },
+        vip: {
+            title: 'Servicios VIP Aeropuerto',
+            shortDesc: 'Una opción premium para un paso fluido',
+            intro: 'Los aeropuertos de Saint-Martin y Saint-Barth pueden estar particularmente concurridos, especialmente en temporada alta, fines de semana y períodos de vacaciones. Los servicios VIP de aeropuerto opcionales transforman su llegada o salida en una experiencia fluida y cómoda.',
+            whyTitle: '¿Por qué elegir el servicio VIP?',
+            whyItems: [
+                'Evitar las largas colas de inmigración',
+                'Ahorrar tiempo valioso',
+                'Viajar en un ambiente tranquilo y discreto',
+                'Beneficiarse de asistencia personalizada'
+            ],
+            whatIsIt: '¿Qué es el servicio VIP de aeropuerto?',
+            whatIsItDesc: 'A su llegada, un agente dedicado le da la bienvenida y se encarga de todas las formalidades para acompañarle sin problemas a su vehículo, barco o vuelo de conexión.',
+            includedTitle: 'Servicios incluidos',
+            arrivalTitle: 'A la llegada',
+            arrivalItems: [
+                'Bienvenida personalizada en el avión o terminal',
+                'Paso prioritario por inmigración y aduanas (fast track)',
+                'Asistencia y manejo de equipaje',
+                'Acompañamiento a través de la terminal',
+                'Coordinación con su conductor, traslado marítimo o vuelo de conexión'
+            ],
+            departureTitle: 'A la salida',
+            departureItems: [
+                'Manejo de equipaje desde su alojamiento al aeropuerto',
+                'Check-in dedicado',
+                'Acceso prioritario a controles de seguridad y pasaporte',
+                'Asistencia de equipaje',
+                'Acompañamiento al avión o puerta de embarque',
+                'Acceso a sala VIP (según disponibilidad)'
+            ],
+            optionalNote: 'Este servicio es totalmente opcional y se cobra por separado, para viajeros que buscan máximo confort y ahorro de tiempo. Disponible en Saint-Martin (SXM), Saint-Barth (SBH), San Juan (SJU) y Antigua (ANU).'
+        }
     },
 
     contact: {

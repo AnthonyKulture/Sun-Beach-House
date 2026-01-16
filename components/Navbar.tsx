@@ -74,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
         </Link>
 
         {/* Desktop Links - Hidden on Tablet (md), Visible on Desktop (lg) */}
-        <div className={`hidden lg:flex items-center gap-8 xl:gap-12 font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-500 ${isDarkText ? 'text-sbh-charcoal/80' : 'text-white/90 drop-shadow-md'
+        <div className={`hidden lg:flex items-center gap-6 xl:gap-10 font-sans text-sm tracking-[0.08em] uppercase transition-colors duration-500 font-semibold ${isDarkText ? 'text-sbh-charcoal' : 'text-white [text-shadow:_0_2px_8px_rgb(0_0_0_/_40%)]'
           }`}>
 
           {/* Collections Dropdown */}
@@ -84,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             onMouseLeave={() => setDesktopCollectionsHover(false)}
           >
             <button
-              className={`hover:text-sbh-blue transition-colors duration-300 relative uppercase tracking-[0.2em] flex items-center gap-1 ${isCollectionsActive ? 'text-sbh-blue font-medium' : ''}`}
+              className={`hover:text-sbh-blue transition-colors duration-300 relative uppercase tracking-[0.15em] flex items-center gap-1.5 ${isCollectionsActive ? 'text-sbh-blue font-semibold' : ''}`}
             >
               {t.nav.collections}
               <ChevronDown size={10} className={`transition-transform duration-300 ${desktopCollectionsHover ? 'rotate-180' : ''}`} />
@@ -104,19 +104,19 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             </div>
           </div>
 
-          <Link href="/destinations" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.2em] ${isActive('/destinations') ? 'text-sbh-blue font-medium' : ''}`}>
+          <Link href="/destinations" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/destinations') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.destination}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/destinations') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/conciergerie" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.2em] ${isActive('/conciergerie') ? 'text-sbh-blue font-medium' : ''}`}>
+          <Link href="/conciergerie" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/conciergerie') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.concierge}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/conciergerie') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/about" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.2em] ${isActive('/about') ? 'text-sbh-blue font-medium' : ''}`}>
+          <Link href="/about" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/about') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.spirit}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/contact" className={`hover:text-sbh-blue transition-colors duration-300 opacity-80 hover:opacity-100 uppercase tracking-[0.2em] ${isActive('/contact') ? 'text-sbh-blue font-medium opacity-100' : ''}`}>
+          <Link href="/contact" className={`hover:text-sbh-blue transition-colors duration-300 hover:opacity-100 uppercase tracking-[0.15em] ${isActive('/contact') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.contact}
           </Link>
 
