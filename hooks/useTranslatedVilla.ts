@@ -126,6 +126,7 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
                     ...villa,
                     description: descriptionText,
                     fullDescription: fullDescriptionText,
+                    pricingDetails: pricingDetailsText,
                 });
             } finally {
                 setIsTranslating(false);
