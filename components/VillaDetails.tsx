@@ -22,6 +22,19 @@ interface VillaDetailsProps {
     villaId: string;
 }
 
+// Helper to normalize season names to translation keys
+const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../i18n/translations').Translations['villa']['seasons'] | null => {
+    if (!rawName) return null;
+    const lower = rawName.toLowerCase();
+    if (lower.includes('low') || lower.includes('basse')) return 'lowSeason';
+    if (lower.includes('high') || lower.includes('haute')) return 'highSeason';
+    if (lower.includes('summer') || lower.includes('été')) return 'summer';
+    if (lower.includes('thanksgiving')) return 'thanksgiving';
+    if (lower.includes('christmas') || lower.includes('noël')) return 'christmas';
+    if (lower.includes('new year') || lower.includes('nouvel')) return 'newYear';
+    return null;
+};
+
 export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     const router = useRouter();
     const { language, t } = useLanguage();
@@ -503,6 +516,12 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                             <div className="space-y-0">
                                 {villa.seasonalPrices.map((season) => {
                                     const isOpen = openSeasonId === season.id;
+                                    // Translate season name
+                                    const normalizedKey = getSeasonTranslationKey(season.seasonName);
+                                    const translatedSeasonName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName;
+                                    // Translate dates
+                                    const translatedDates = translateDate(season.dates, language);
+
                                     return (
                                         <div key={season.id} className="border-b border-gray-100 last:border-b-0 group">
                                             <button
@@ -511,10 +530,10 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                             >
                                                 <span className="flex flex-col md:flex-row md:items-baseline md:gap-4 text-left">
                                                     <span className={`font-sans text-lg tracking-wide transition-colors duration-300 ${isOpen ? 'text-sbh-blue font-medium' : 'text-sbh-charcoal font-light'}`}>
-                                                        {season.seasonName}
+                                                        {translatedSeasonName}
                                                     </span>
                                                     <span className="font-sans text-xs uppercase tracking-widest text-gray-400">
-                                                        {season.dates}
+                                                        {translatedDates}
                                                     </span>
                                                 </span>
                                                 <span className={`transform transition-transform duration-500 ${isOpen ? 'rotate-180 text-sbh-blue' : 'text-gray-300'}`}>
