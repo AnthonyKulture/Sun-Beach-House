@@ -5,6 +5,7 @@ import { useVilla } from '../hooks/useCMS';
 import { Calendar, Users, MapPin, Check, ArrowRight, ShieldCheck, Star } from 'lucide-react';
 import { Logo } from './Logo';
 import { SunStamp } from './Decorations';
+import { HoneypotField } from './HoneypotField';
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
 
@@ -64,6 +65,10 @@ export const BookingPage: React.FC = () => {
 
    const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
+      // Spam check
+      const formData = new FormData(e.target as HTMLFormElement);
+      if (formData.get('confirm_booking_request')) return;
+
       // Simulate API call
       setTimeout(() => {
          setIsSubmitted(true);
@@ -181,6 +186,8 @@ export const BookingPage: React.FC = () => {
                </div>
 
                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Security Field - Bot Trap */}
+                  <HoneypotField fieldName="confirm_booking_request" />
 
                   {/* Personal Info Section */}
                   <div className="space-y-4">

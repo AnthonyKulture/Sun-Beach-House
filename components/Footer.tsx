@@ -6,6 +6,8 @@ import { Instagram, Facebook, Mail, Phone, MapPin, ArrowRight, Heart } from 'luc
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
+import { HoneypotField } from './HoneypotField';
+import { EncryptedLink } from './EncryptedLink';
 
 export const Footer: React.FC = () => {
     const { t } = useLanguage();
@@ -98,17 +100,23 @@ export const Footer: React.FC = () => {
                                 <div className="text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0">
                                     <Phone size={20} strokeWidth={1.5} />
                                 </div>
-                                <a href="tel:+590690000000" className="hover:text-sbh-cream transition-colors duration-300 tracking-wide">
-                                    +590 690 00 00 00
-                                </a>
+                                <EncryptedLink
+                                    type="phone"
+                                    value="+590690000000"
+                                    text="+590 690 00 00 00"
+                                    className="hover:text-sbh-cream transition-colors duration-300 tracking-wide"
+                                />
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <div className="text-sbh-green group-hover:text-sbh-cream transition-colors duration-300 shrink-0">
                                     <Mail size={20} strokeWidth={1.5} />
                                 </div>
-                                <a href="mailto:hello@sunbeachhouse.com" className="hover:text-sbh-cream transition-colors duration-300 tracking-wide">
-                                    hello@sunbeachhouse.com
-                                </a>
+                                <EncryptedLink
+                                    type="email"
+                                    value="hello@sunbeachhouse.com"
+                                    text="hello@sunbeachhouse.com"
+                                    className="hover:text-sbh-cream transition-colors duration-300 tracking-wide"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -119,8 +127,17 @@ export const Footer: React.FC = () => {
                         <p className="font-sans text-base text-sbh-green/80 mb-8 leading-relaxed text-center md:text-left">
                             {t.footer.newsletterSubtitle}
                         </p>
-                        <form className="relative group max-w-sm w-full" onSubmit={(e) => e.preventDefault()}>
+                        <form className="relative group max-w-sm w-full" onSubmit={(e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.currentTarget);
+                            const honeypot = formData.get('confirm_email_sub');
+                            if (honeypot) return; // Silent fail
+                            // Newsletter logic placeholeder
+                            console.log('Newsletter signup');
+                        }}>
+                            <HoneypotField fieldName="confirm_email_sub" />
                             <input
+                                name="email"
                                 type="email"
                                 placeholder={t.footer.emailPlaceholder}
                                 className="w-full bg-white/5 border border-sbh-green/20 rounded-sm py-4 px-4 text-sbh-cream placeholder:text-sbh-green/30 outline-none focus:border-sbh-sand focus:bg-white/10 transition-all duration-300 font-sans text-sm tracking-wide"

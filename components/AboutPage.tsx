@@ -14,14 +14,14 @@ export const AboutPage: React.FC = () => {
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24 text-sbh-charcoal relative overflow-hidden">
 
             {/* HERO SECTION */}
-            <div className="relative h-[60vh] w-full overflow-hidden mb-16">
+            <div className="relative h-[75vh] xl:h-[60vh] w-full overflow-hidden mb-16">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: "url('https://storage.googleapis.com/images-sbh/besoin-d-une-image-r-alistes-cin-matique-pour-la-s.jpg')" }}
                 ></div>
                 <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
-                    <h1 className="font-serif text-5xl md:text-8xl italic drop-shadow-xl">{t.aboutPage.title}</h1>
+                <div className="absolute inset-x-0 bottom-0 top-32 xl:top-0 flex flex-col items-center justify-center text-white z-10 px-6">
+                    <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl xl:text-8xl italic drop-shadow-xl">{t.aboutPage.title}</h1>
                 </div>
             </div>
 

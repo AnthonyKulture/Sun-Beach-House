@@ -108,9 +108,9 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             {t.nav.destination}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/destinations') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/#services" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.2em]`}>
+          <Link href="/conciergerie" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.2em] ${isActive('/conciergerie') ? 'text-sbh-blue font-medium' : ''}`}>
             {t.nav.concierge}
-            <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 w-0 group-hover:w-full`}></span>
+            <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/conciergerie') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
           <Link href="/about" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.2em] ${isActive('/about') ? 'text-sbh-blue font-medium' : ''}`}>
             {t.nav.spirit}
@@ -181,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
           </div>
 
           <Link href="/destinations" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/destinations') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.destination}</Link>
-          <Link href="/#services" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/#services') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.concierge}</Link>
+          <Link href="/conciergerie" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/conciergerie') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.concierge}</Link>
           <Link href="/about" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/about') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.spirit}</Link>
           <Link href="/contact" onClick={() => setMenuOpen(false)} className={`text-xs font-sans tracking-[0.3em] uppercase mt-8 border-b pb-1 ${isActive('/contact') ? 'text-sbh-blue border-sbh-blue' : 'text-sbh-charcoal border-sbh-charcoal'}`}>{t.nav.contact}</Link>
 

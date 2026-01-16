@@ -4,6 +4,7 @@ import { SalesInquiryParams } from '../types';
 import { useVilla } from '../hooks/useCMS';
 import { MapPin, ArrowRight, Check, BedDouble, Bath, Square, Mail } from 'lucide-react';
 import { SunStamp } from './Decorations';
+import { HoneypotField } from './HoneypotField';
 import Image from 'next/image';
 
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -38,6 +39,10 @@ export const SalesContactPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Spam check
+    const formData = new FormData(e.target as HTMLFormElement);
+    if (formData.get('confirm_sales_inquiry')) return;
+
     // Simulate API call
     setTimeout(() => {
       setIsSubmitted(true);
@@ -137,6 +142,8 @@ export const SalesContactPage: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-12">
+            {/* Security Field - Bot Trap */}
+            <HoneypotField fieldName="confirm_sales_inquiry" />
 
             {/* Personal Info Section */}
             <div className="space-y-8">

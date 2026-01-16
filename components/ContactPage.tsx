@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
 import { Mail, Phone, ArrowRight, Instagram, Facebook } from 'lucide-react';
+import { HoneypotField } from './HoneypotField';
+import { EncryptedLink } from './EncryptedLink';
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
 
@@ -22,17 +24,30 @@ export const ContactPage: React.FC = () => {
                         Un projet de vacances ou Conciergerie Luxe ?
                     </p>
 
-                    <form className="space-y-12 max-w-xl" onSubmit={(e) => e.preventDefault()}>
+                    <form className="space-y-12 max-w-xl" onSubmit={(e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.currentTarget);
+                        const honeypot = formData.get('confirm_website_url');
+                        // Simple spam check: if honeypot is filled, do nothing (or pretend to succeed)
+                        if (honeypot) {
+                            console.log('Spam detected');
+                            return;
+                        }
+                        // Continue with submission...
+                        console.log('Form submitted');
+                    }}>
+                        {/* Security Field - Bot Trap */}
+                        <HoneypotField />
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             <div className="group relative">
-                                <input type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
+                                <input name="name" type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
                                 <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
                                     {t.contact.name}
                                 </label>
                             </div>
                             <div className="group relative">
-                                <input type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" />
+                                <input name="firstname" type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" />
                                 <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
                                     Prénom
                                 </label>
@@ -40,14 +55,14 @@ export const ContactPage: React.FC = () => {
                         </div>
 
                         <div className="group relative">
-                            <input type="email" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
+                            <input name="email" type="email" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
                             <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
                                 {t.contact.email}
                             </label>
                         </div>
 
                         <div className="group relative">
-                            <textarea rows={4} placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg resize-none" required></textarea>
+                            <textarea name="message" rows={4} placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg resize-none" required></textarea>
                             <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
                                 {t.contact.message}
                             </label>
@@ -102,10 +117,12 @@ export const ContactPage: React.FC = () => {
                                 <h3 className="font-serif text-2xl italic mb-4 text-sbh-charcoal">{t.contact.privateContact}</h3>
                                 <ul className="space-y-3 font-sans text-sm opacity-80 text-sbh-charcoal">
                                     <li className="flex items-center gap-4">
-                                        <Phone size={16} /> +590 690 00 00 00
+                                        <Phone size={16} />
+                                        <EncryptedLink type="phone" value="+590690000000" text="+590 690 00 00 00" className="hover:text-white transition-colors" />
                                     </li>
                                     <li className="flex items-center gap-4">
-                                        <Mail size={16} /> hello@sunbeachhouse.com
+                                        <Mail size={16} />
+                                        <EncryptedLink type="email" value="hello@sunbeachhouse.com" text="hello@sunbeachhouse.com" className="hover:text-white transition-colors" />
                                     </li>
                                 </ul>
                             </div>

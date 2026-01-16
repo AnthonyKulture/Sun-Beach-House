@@ -210,17 +210,17 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24">
 
             {/* HERO BANNER - With Overlay fix for navbar */}
-            <div className="relative h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
+            <div className="relative h-[60vh] xl:h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=2000&auto=format&fit=crop')" }}
                 ></div>
                 <div className="absolute inset-0 bg-black/30"></div>
-                <div className="relative z-10 text-center text-white p-6 animate-slide-up mt-16">
+                <div className="relative z-10 text-center text-white px-6 animate-slide-up pt-20 xl:pt-0">
                     <div className="mb-6 flex justify-center opacity-80 animate-spin-slower">
                         <SunStamp className="w-20 h-20 text-white" />
                     </div>
-                    <h1 className="font-serif text-5xl md:text-7xl italic mb-4">{heroTitle}</h1>
+                    <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl italic mb-4">{heroTitle}</h1>
                     <p className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] opacity-90">{heroSubtitle}</p>
                 </div>
             </div>

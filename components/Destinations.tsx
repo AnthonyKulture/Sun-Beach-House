@@ -27,7 +27,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
             {/* =======================
           HERO SECTION 
       ======================= */}
-            <div className="relative h-[80vh] w-full overflow-hidden mb-24">
+            <div className="relative h-[85vh] xl:h-[80vh] w-full overflow-hidden mb-24">
                 <div
                     className="absolute inset-0 bg-cover bg-center animate-scale-slow"
                     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=2000&auto=format&fit=crop')" }}
@@ -35,13 +35,13 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-sbh-cream/90"></div>
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-6">
+                <div className="absolute inset-x-0 bottom-0 top-32 xl:top-0 flex flex-col items-center justify-center text-center z-10 px-6">
                     <span className="text-white text-xs md:text-sm uppercase tracking-[0.4em] mb-6 animate-slide-up">Saint-Barthélemy</span>
-                    <h1 className="font-serif text-5xl md:text-8xl italic text-white drop-shadow-xl mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                    <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl xl:text-8xl italic text-white drop-shadow-xl mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
                         {t.destinations.title}
                     </h1>
                     <div className="w-16 h-px bg-white/60 animate-slide-up" style={{ animationDelay: '0.2s' }}></div>
-                    <p className="font-sans text-white/90 mt-6 text-lg tracking-wide max-w-xl animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                    <p className="font-sans text-white/90 mt-6 text-base md:text-lg tracking-wide max-w-xl animate-slide-up" style={{ animationDelay: '0.3s' }}>
                         {t.destinations.subtitle}
                     </p>
                 </div>

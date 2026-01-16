@@ -73,10 +73,7 @@ export const Services: React.FC = () => {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className={`group flex flex-col md:flex-row items-start md:items-center justify-between border-b border-sbh-charcoal/10 pb-8 md:pb-6 reveal-on-scroll transition-all duration-500 relative cursor-pointer
-                    ${hoveredIndex !== null && hoveredIndex !== index ? 'md:opacity-40 md:blur-[1px]' : 'opacity-100'}
-                    `}
-                            style={{ transitionDelay: `${index * 100}ms` }}
+                            className="group flex flex-col md:flex-row items-start md:items-center justify-between border-b border-sbh-charcoal/10 pb-8 md:pb-6 transition-all duration-300 relative cursor-pointer"
                             onMouseEnter={() => setHoveredIndex(index)}
                         >
                             <div className="flex items-baseline gap-6 md:gap-8 mb-4 md:mb-0">
@@ -92,7 +89,7 @@ export const Services: React.FC = () => {
                                 <p className={`font-sans text-xs md:text-sm tracking-[0.2em] uppercase transition-colors duration-300 ${hoveredIndex === index ? 'md:text-white' : 'text-sbh-charcoal/70'}`}>
                                     {index === 0 ? t.services.chef.desc : index === 1 ? t.services.spa.desc : index === 2 ? t.services.transfer.desc : index === 3 ? t.services.reservations.desc : t.services.nautical.desc}
                                 </p>
-                                <span className={`transition-transform duration-300 hidden md:block ${hoveredIndex === index ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
+                                <span className={`transition-all duration-300 hidden md:block ${hoveredIndex === index ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
                                     <NorthStar className="w-3 h-3 text-white" />
                                 </span>
                             </div>
@@ -100,7 +97,7 @@ export const Services: React.FC = () => {
                     ))}
                 </div>
 
-                <div className="mt-24 text-center reveal-on-scroll" style={{ transitionDelay: '500ms' }}>
+                <div className="mt-24 text-center">
                     <p className="font-serif italic text-2xl text-sbh-charcoal/80 mb-10">
                         {t.services.quote}
                     </p>

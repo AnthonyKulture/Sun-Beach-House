@@ -267,6 +267,22 @@ export const es: Translations = {
         },
     },
 
+    // TODO: Complete Spanish translations for conciergerie page
+    conciergeriePage: {
+        title: 'Conserjería Sun Beach House',
+        subtitle: 'El arte del servicio a medida en Saint-Barthélemy',
+        intro: 'Su estancia en Saint-Barth merece una atención especial',
+        cta: 'Solicitar presupuesto personalizado',
+        servicesTitle: 'Nuestros Servicios',
+        chef: { title: 'Chefs a Domicilio', shortDesc: 'Gastronomía a medida', longDesc: '', features: [] },
+        spa: { title: 'Bienestar & Spa', shortDesc: 'Tratamientos privados', longDesc: '', features: [] },
+        transfer: { title: 'Traslados & Conductor', shortDesc: 'Organización', longDesc: '', features: [] },
+        reservations: { title: 'Reservas', shortDesc: 'Mejores restaurantes', longDesc: '', features: [] },
+        nautical: { title: 'Actividades Náuticas', shortDesc: 'Yachting', longDesc: '', features: [] },
+        travel: { title: 'Viaje & Transporte', shortDesc: 'Experiencia fluida', intro: '', solutionsTitle: 'Soluciones', solutions: [], partnersNote: '' },
+        vip: { title: 'Servicios VIP Aeropuerto', shortDesc: 'Opción premium', intro: '', whyTitle: '¿Por qué VIP?', whyItems: [], whatIsIt: '', whatIsItDesc: '', includedTitle: '', arrivalTitle: 'Llegada', arrivalItems: [], departureTitle: 'Salida', departureItems: [], optionalNote: '' }
+    },
+
     contact: {
         title: 'Hablemos de usted.',
         companyTitle: 'Sun Beach House',

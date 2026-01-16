@@ -263,6 +263,69 @@ export interface Translations {
         nautical: { title: string; desc: string };
     };
 
+    // Conciergerie Page
+    conciergeriePage: {
+        title: string;
+        subtitle: string;
+        intro: string;
+        cta: string;
+        servicesTitle: string;
+
+        chef: {
+            title: string;
+            shortDesc: string;
+            longDesc: string;
+            features: string[];
+        };
+        spa: {
+            title: string;
+            shortDesc: string;
+            longDesc: string;
+            features: string[];
+        };
+        transfer: {
+            title: string;
+            shortDesc: string;
+            longDesc: string;
+            features: string[];
+        };
+        reservations: {
+            title: string;
+            shortDesc: string;
+            longDesc: string;
+            features: string[];
+        };
+        nautical: {
+            title: string;
+            shortDesc: string;
+            longDesc: string;
+            features: string[];
+        };
+        travel: {
+            title: string;
+            shortDesc: string;
+            intro: string;
+            solutionsTitle: string;
+            solutions: string[];
+            partnersNote: string;
+        };
+        vip: {
+            title: string;
+            shortDesc: string;
+            intro: string;
+            whyTitle: string;
+            whyItems: string[];
+            whatIsIt: string;
+            whatIsItDesc: string;
+            includedTitle: string;
+            arrivalTitle: string;
+            arrivalItems: string[];
+            departureTitle: string;
+            departureItems: string[];
+            optionalNote: string;
+        };
+    };
+
     // Contact
     contact: {
         title: string;
@@ -596,6 +659,122 @@ const fr: Translations = {
             title: 'Activités Nautiques',
             desc: 'Yachting et découverte de l\'île',
         },
+    },
+    // French translations for conciergerie page - To be added to translations.ts after services section
+
+    conciergeriePage: {
+        title: 'Conciergerie Sun Beach House',
+        subtitle: 'L\'art du service sur mesure à Saint-Barthélemy',
+        intro: 'Votre séjour à Saint-Barth mérite une attention particulière. Notre service de conciergerie transforme chaque détail en expérience mémorable, du chef privé aux transferts VIP, en passant par les réservations exclusives et les activités sur mesure.',
+        cta: 'Demander un devis personnalisé',
+        servicesTitle: 'Nos Services',
+
+        chef: {
+            title: 'Chefs à Domicile',
+            shortDesc: 'Gastronomie sur mesure en villa',
+            longDesc: 'Savourez une expérience culinaire d\'exception sans quitter votre villa. Nos chefs privés partenaires créent des menus personnalisés inspirés de la cuisine française et caribéenne.',
+            features: [
+                'Cuisine gastronomique française et caribéenne',
+                'Menus personnalisés selon vos préférences',
+                'Service en villa avec dressage élégant',
+                'Approvisionnement produits locaux et importés'
+            ]
+        },
+
+        spa: {
+            title: 'Bien-être & Spa',
+            shortDesc: 'Soins et massages privés',
+            longDesc: 'Transformez votre villa en sanctuaire de bien-être. Nos thérapeutes qualifiés apportent l\'expérience spa directement chez vous, pour un moment de détente absolu.',
+            features: [
+                'Massages personnalisés (suédois, deep tissue, pierres chaudes)',
+                'Soins du visage et du corps haut de gamme',
+                'Séances de yoga privées face à la mer',
+                'Installations spa temporaires disponibles'
+            ]
+        },
+
+        transfer: {
+            title: 'Transferts & Chauffeur',
+            shortDesc: 'Organisation de vos déplacements',
+            longDesc: 'Déplacez-vous en toute élégance et sérénité. Du transfert aéroport aux excursions sur l\'île, nous organisons tous vos déplacements avec des véhicules premium et chauffeurs professionnels.',
+            features: [
+                'Transferts aéroport / héliport privés',
+                'Service de chauffeur à la journée ou demi-journée',
+                'Véhicules premium climatisés',
+                'Coordination avec vos horaires de vol'
+            ]
+        },
+
+        reservations: {
+            title: 'Réservations',
+            shortDesc: 'Accès aux meilleurs restaurants',
+            longDesc: 'Accédez aux tables les plus prisées de Saint-Barth. Grâce à notre réseau local, nous vous garantissons une place dans les restaurants les plus exclusifs, même en haute saison.',
+            features: [
+                'Réservations restaurants étoilés et beach clubs',
+                'Tables privilégiées avec vue mer',
+                'Recommandations personnalisées selon vos goûts',
+                'Organisation d\'événements privés et anniversaires'
+            ]
+        },
+
+        nautical: {
+            title: 'Activités Nautiques',
+            shortDesc: 'Yachting et découverte de l\'île',
+            longDesc: 'Découvrez Saint-Barth depuis la mer. Louez un yacht pour la journée, partez en excursion vers les îles voisines, ou initiez-vous à la plongée dans les eaux cristallines des Caraïbes.',
+            features: [
+                'Location de yachts et catamarans avec équipage',
+                'Excursions journée vers Anguilla, St Martin',
+                'Plongée sous-marine et snorkeling guidés',
+                'Sports nautiques : paddle, jet-ski, kitesurf'
+            ]
+        },
+
+        travel: {
+            title: 'Voyage, Transport & Arrivée à Saint-Barth',
+            shortDesc: 'Une expérience fluide, élégante et sur mesure',
+            intro: 'De votre départ jusqu\'à votre arrivée à Saint-Barth, chaque étape de votre voyage peut être organisée avec soin afin de vous offrir une expérience fluide, confortable et sans stress. En complément de votre séjour, des services de transport et d\'assistance haut de gamme peuvent être proposés sur demande, pour vous permettre d\'arriver et de repartir dans les meilleures conditions possibles.',
+            solutionsTitle: 'Solutions de transport sur mesure',
+            solutions: [
+                'Vols privés (avions et hélicoptères)',
+                'Vols réguliers via Saint-Martin (SXM), San Juan (SJU), Antigua (ANU), Pointe-à-Pitre (PTP)',
+                'Transferts maritimes privés et charters bateau depuis les îles voisines'
+            ],
+            partnersNote: 'Ces prestations sont organisées avec des partenaires spécialisés dans le voyage de luxe et sont facturées séparément. Chaque solution est pensée pour optimiser votre temps et vous offrir une arrivée à Saint-Barth en toute sérénité.'
+        },
+
+        vip: {
+            title: 'Services VIP Aéroport',
+            shortDesc: 'Une option premium pour un passage fluide',
+            intro: 'Les aéroports de Saint-Martin et de Saint-Barth peuvent être particulièrement fréquentés, notamment en haute saison, les week-ends et pendant les périodes de vacances. Les services VIP aéroport, proposés en option, permettent de transformer votre arrivée ou votre départ en une expérience fluide et confortable.',
+            whyTitle: 'Pourquoi choisir un service VIP ?',
+            whyItems: [
+                'Éviter les longues files d\'attente à l\'immigration',
+                'Gagner un temps précieux',
+                'Voyager dans un cadre calme et discret',
+                'Bénéficier d\'un accompagnement personnalisé'
+            ],
+            whatIsIt: 'En quoi consiste le service VIP aéroport ?',
+            whatIsItDesc: 'Dès votre arrivée, un agent dédié vous accueille et prend en charge l\'ensemble des formalités, afin de vous accompagner en toute simplicité jusqu\'à votre véhicule, votre bateau ou votre avion de correspondance.',
+            includedTitle: 'Prestations incluses',
+            arrivalTitle: 'À l\'arrivée',
+            arrivalItems: [
+                'Accueil personnalisé à l\'avion ou au terminal',
+                'Passage prioritaire à l\'immigration et aux douanes (fast track)',
+                'Assistance et prise en charge des bagages',
+                'Accompagnement à travers le terminal',
+                'Coordination avec votre chauffeur, transfert maritime ou vol de correspondance'
+            ],
+            departureTitle: 'Au départ',
+            departureItems: [
+                'Prise en charge des bagages depuis votre lieu de séjour jusqu\'à l\'aéroport',
+                'Enregistrement dédié',
+                'Accès prioritaire aux contrôles de sécurité et de passeport',
+                'Assistance bagages',
+                'Accompagnement jusqu\'à l\'avion ou à la porte d\'embarquement',
+                'Accès salon VIP (selon disponibilité)'
+            ],
+            optionalNote: 'Ce service est entièrement optionnel et facturé en supplément, pour les voyageurs souhaitant un confort optimal et un gain de temps maximal. Disponible notamment à Saint-Martin (SXM), Saint-Barth (SBH), San Juan (SJU) et Antigua (ANU).'
+        }
     },
 
     contact: {
@@ -953,6 +1132,22 @@ const en: Translations = {
             title: 'Water Activities',
             desc: 'Yachting and island discovery',
         },
+    },
+
+    // TODO: Complete English translations for conciergerie page
+    conciergeriePage: {
+        title: 'Concierge Sun Beach House',
+        subtitle: 'The art of tailored service in Saint-Barth élémy',
+        intro: 'Your stay in Saint-Barth deserves special attention',
+        cta: 'Request a personalized quote',
+        servicesTitle: 'Our Services',
+        chef: { title: 'Private Chefs', shortDesc: 'Tailored gastronomy', longDesc: '', features: [] },
+        spa: { title: 'Wellness & Spa', shortDesc: 'Private treatments', longDesc: '', features: [] },
+        transfer: { title: 'Transfers & Driver', shortDesc: 'Travel organization', longDesc: '', features: [] },
+        reservations: { title: 'Reservations', shortDesc: 'Best restaurants', longDesc: '', features: [] },
+        nautical: { title: 'Water Activities', shortDesc: 'Yachting', longDesc: '', features: [] },
+        travel: { title: 'Travel & Transport', shortDesc: 'Seamless experience', intro: '', solutionsTitle: 'Solutions', solutions: [], partnersNote: '' },
+        vip: { title: 'VIP Airport Services', shortDesc: 'Premium option', intro: '', whyTitle: 'Why VIP?', whyItems: [], whatIsIt: '', whatIsItDesc: '', includedTitle: '', arrivalTitle: 'Arrival', arrivalItems: [], departureTitle: 'Departure', departureItems: [], optionalNote: '' }
     },
 
     contact: {
