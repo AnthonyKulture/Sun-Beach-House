@@ -54,7 +54,7 @@ export const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({ images, in
                     e.stopPropagation();
                     onClose();
                 }}
-                className="fixed top-4 right-4 md:top-6 md:right-6 z-[100002] bg-white/90 hover:bg-white text-sbh-charcoal p-4 rounded-full transition-all hover:scale-110 active:scale-95 shadow-2xl cursor-pointer"
+                className="fixed top-24 right-4 md:top-6 md:right-6 z-[100002] bg-white/90 hover:bg-white text-sbh-charcoal p-4 rounded-full transition-all hover:scale-110 active:scale-95 shadow-2xl cursor-pointer"
                 style={{ pointerEvents: 'auto' }}
                 aria-label="Fermer la galerie"
             >
@@ -62,7 +62,7 @@ export const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({ images, in
             </button>
 
             {/* Image Counter */}
-            <div className="fixed top-4 left-4 md:top-6 md:left-6 z-[100002] bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full font-sans text-sm pointer-events-none">
+            <div className="fixed top-24 left-4 md:top-6 md:left-6 z-[100002] bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full font-sans text-sm pointer-events-none">
                 {currentIndex + 1} / {images.length}
             </div>
 

@@ -745,27 +745,13 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                 </div>
             </div>
 
-            <div className="xl:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-[10002] flex justify-between items-center shadow-[0_-5px_20px_rgba(0,0,0,0.05)] pb-6 animate-slide-up">
-                <div>
-                    {hasValidPrice ? (
-                        <>
-                            <span className="block font-serif text-xl text-sbh-charcoal">{displayPrice}</span>
-                            <span className="text-[10px] text-gray-400 uppercase tracking-widest">
-                                {isSale ? t.villa.salePrice : (villa.pricePerWeek ? t.villa.week : t.villa.perNight)}
-                            </span>
-                        </>
-                    ) : (
-                        <span className="block font-serif text-lg text-sbh-charcoal">{t.villa.priceOnRequest}</span>
-                    )}
-                </div>
-                <div className="flex items-center gap-3">
-                    <button
-                        onClick={isSale ? handleContactClick : handleMobileBookClick}
-                        className="bg-sbh-charcoal text-white px-8 py-3.5 font-sans text-xs uppercase tracking-[0.2em] hover:bg-sbh-green transition-colors rounded-sm shadow-lg"
-                    >
-                        {isSale ? t.villa.contact : t.villa.reserve}
-                    </button>
-                </div>
+            <div className="xl:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-[10002] shadow-[0_-5px_20px_rgba(0,0,0,0.05)] pb-6 animate-slide-up">
+                <button
+                    onClick={isSale ? handleContactClick : handleMobileBookClick}
+                    className="w-full bg-sbh-green text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.2em] hover:bg-opacity-90 transition-colors rounded-sm shadow-lg"
+                >
+                    {isSale ? t.villa.contact : t.villa.reserve}
+                </button>
             </div>
 
             {/* MOBILE BOOKING SHEET (DRAWER) - Only for rentals */}
