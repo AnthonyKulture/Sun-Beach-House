@@ -269,7 +269,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
 
                         {/* Name Search */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center">
-                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
+                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
                                 <Search size={10} /> {t.collections.properties}
                             </label>
                             <input
@@ -277,13 +277,13 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                 value={filters.name || ''}
                                 onChange={(e) => onUpdateFilters({ ...filters, name: e.target.value })}
                                 placeholder={t.collections.explore}
-                                className="w-full bg-transparent font-serif text-lg md:text-xs lg:text-lg text-sbh-charcoal outline-none placeholder:text-gray-300 placeholder:italic"
+                                className="w-full bg-transparent font-serif text-lg md:text-xs lg:text-lg text-sbh-charcoal outline-none placeholder:text-gray-400 placeholder:italic"
                             />
                         </div>
 
                         {/* Location */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center">
-                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
+                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
                                 <MapPin size={10} /> {t.collections.location}
                             </label>
                             <select
@@ -300,7 +300,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
 
                         {/* Guests / Rooms */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center">
-                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
+                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
                                 <Users size={10} /> {mode === 'rent' ? t.collections.capacityMin : t.collections.bedroomsMin}
                             </label>
                             <div className="flex items-center gap-2 md:gap-4">
@@ -316,7 +316,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
 
                         {/* Amenities Filter */}
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center relative" ref={amenitiesRef}>
-                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400 mb-1 flex items-center gap-2 whitespace-nowrap">
+                            <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
                                 <Plus size={10} /> {t.collections.amenities}
                             </label>
                             <button
@@ -354,7 +354,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                         <div className="md:pl-3 lg:pl-6 flex items-center justify-center min-w-[80px] md:min-w-[100px] lg:min-w-[120px]">
                             <div className="text-center">
                                 <span className="block font-serif text-2xl md:text-lg lg:text-2xl text-sbh-green">{filteredVillas.length}</span>
-                                <span className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-400">{t.collections.properties}</span>
+                                <span className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 font-medium">{t.collections.properties}</span>
                             </div>
                         </div>
                     </div>

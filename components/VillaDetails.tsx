@@ -251,7 +251,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                     <div className="text-right hidden md:block animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.2s' }}>
                         {hasValidPrice ? (
                             <>
-                                <span className="block text-3xl font-serif italic">{displayPrice}</span>
+                                <span className="block text-3xl font-serif italic">
+                                    {!isSale && `${t.villa.fromPrice} `}{displayPrice}
+                                </span>
                                 <span className="text-sm font-sans opacity-90 uppercase tracking-widest">
                                     {isSale ? t.villa.salePrice : (villa.pricePerWeek ? t.villa.perWeek : t.villa.perNight)}
                                 </span>
@@ -590,8 +592,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     <span className="block text-2xl lg:text-2xl xl:text-3xl font-serif text-sbh-charcoal">
                                         {!hasValidPrice ? t.villa.priceOnRequest :
                                             (isSale ? displayPrice :
-                                                `${t.villa.fromPrice} $${villa.seasonalPrices?.[0]?.prices?.[0]?.price?.toLocaleString()
-                                                || displayPrice?.replace('$', '')}`)
+                                                `${t.villa.fromPrice} ${displayPrice}`)
                                         }
                                     </span>
                                     {!isSale && hasValidPrice && <span className="text-[10px] xl:text-xs text-gray-400 uppercase tracking-widest">{villa.pricePerWeek ? t.villa.week : t.villa.perNight}</span>}

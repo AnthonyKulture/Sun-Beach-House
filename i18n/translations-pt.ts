@@ -23,6 +23,9 @@ export const pt: Translations = {
         mainTitle: 'Elegância',
         mainTitleAccent: 'francesa',
         goButton: 'Ir',
+        type: 'Tipo',
+        seasonalRental: 'Aluguel de Temporada',
+        sale: 'Venda',
     },
 
     collections: {

@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
   }, [menuOpen]);
 
   // Determine text color based on state and pathname
-  const isWhitePage = ['/contact', '/booking', '/sales-contact'].some(p => pathname?.startsWith(p));
+  const isWhitePage = ['/contact', '/booking', '/sales-contact', '/mentions-legales', '/politique-de-confidentialite'].some(p => pathname?.startsWith(p));
   const isDarkText = forceDark || isWhitePage || scrolled;
 
   // Helper for active state

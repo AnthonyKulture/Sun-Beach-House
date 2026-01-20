@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, MapPin, Users, ChevronDown, Plus, Minus } from 'lucide-react';
+import { Search, MapPin, Users, ChevronDown, Plus, Minus, Home } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -11,30 +11,21 @@ export const Hero: React.FC = () => {
     const { villas } = useVillas();
     const { language, t } = useLanguage();
     const router = useRouter(); // Use Next.js router
-    const [selectedLocation, setSelectedLocation] = useState('all');
+    const [searchType, setSearchType] = useState('rentals');
     const [guests, setGuests] = useState(2);
     const [isGuestOpen, setIsGuestOpen] = useState(false);
 
-    // Extract unique locations dynamically from villas
-    const locations = useMemo(() => {
-        const uniqueLocations = new Set(villas.map(v => v.location).filter(Boolean));
-        const sortedLocations = Array.from(uniqueLocations).sort();
-
-        return [
-            { value: 'all', label: t.hero.allIsland },
-            ...sortedLocations.map(loc => ({ value: loc, label: loc }))
-        ];
-    }, [villas, t.hero.allIsland]);
-
     const handleSearchClick = () => {
         const params = new URLSearchParams();
-        if (selectedLocation !== 'all') {
-            params.set('location', selectedLocation);
-        }
         if (guests > 0) {
             params.set('guests', guests.toString());
         }
-        router.push(`/rentals?${params.toString()}`);
+
+        if (searchType === 'sales') {
+            router.push(`/sales?${params.toString()}`);
+        } else {
+            router.push(`/rentals?${params.toString()}`);
+        }
     };
 
     return (
@@ -87,31 +78,38 @@ export const Hero: React.FC = () => {
                     {/* Desktop / Tablet Bar */}
                     <div className="hidden md:flex w-full bg-sbh-dark/60 backdrop-blur-xl border border-sbh-cream/20 rounded-full p-1.5 shadow-2xl items-center relative">
 
-                        {/* Location */}
+                        {/* Type */}
                         <div className="flex-1 px-4 lg:px-6 border-r border-sbh-cream/10 hover:bg-white/5 transition-colors rounded-l-full cursor-pointer group py-2 relative h-14 flex flex-col justify-center">
-                            <label className="block text-[8px] lg:text-[9px] uppercase tracking-widest text-sbh-green mb-0.5 font-medium drop-shadow-sm opacity-90 cursor-pointer">{t.hero.location}</label>
+                            <label className="block text-[8px] lg:text-[9px] uppercase tracking-widest text-sbh-green mb-0.5 font-medium drop-shadow-sm opacity-90 cursor-pointer">{t.hero.type}</label>
                             <div className="flex items-center gap-2 text-sbh-cream">
-                                <MapPin className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-sbh-blue opacity-80" />
+                                <Home className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-sbh-blue opacity-80" />
                                 <select
-                                    value={selectedLocation}
-                                    onChange={(e) => setSelectedLocation(e.target.value)}
+                                    value={searchType}
+                                    onChange={(e) => setSearchType(e.target.value)}
                                     className="bg-transparent font-serif text-sm lg:text-base font-normal tracking-wide drop-shadow-md truncate outline-none cursor-pointer text-sbh-cream appearance-none flex-1"
                                 >
-                                    {locations.map(loc => (
-                                        <option key={loc.value} value={loc.value} className="text-sbh-charcoal">{loc.label}</option>
-                                    ))}
+                                    <option value="rentals" className="text-sbh-charcoal">{t.hero.seasonalRental}</option>
+                                    <option value="sales" className="text-sbh-charcoal">{t.hero.sale}</option>
                                 </select>
                             </div>
                         </div>
 
-                        {/* Capacity */}
-                        <div className="flex-1 px-4 lg:px-6 hover:bg-white/5 transition-colors cursor-pointer group py-2 relative h-14 flex flex-col justify-center">
+                        {/* Capacity / Rooms */}
+                        <div className="flex-1 px-4 lg:px-6 hover:bg-white/5 transition-colors cursor-pointer group py-2 relative h-14 flex flex-col justify-center border-r border-sbh-cream/10">
                             <div onClick={() => setIsGuestOpen(!isGuestOpen)} className="h-full w-full flex flex-col justify-center relative z-20">
-                                <label className="block text-[8px] lg:text-[9px] uppercase tracking-widest text-sbh-green mb-0.5 font-medium drop-shadow-sm opacity-90 cursor-pointer">{t.hero.capacity}</label>
+                                <label className="block text-[8px] lg:text-[9px] uppercase tracking-widest text-sbh-green mb-0.5 font-medium drop-shadow-sm opacity-90 cursor-pointer">
+                                    {searchType === 'sales' ? t.hero.rooms : t.hero.capacity}
+                                </label>
                                 <div className="flex items-center justify-between text-sbh-cream">
                                     <div className="flex items-center gap-2">
-                                        <Users className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-sbh-blue opacity-80" />
-                                        <span className="font-serif text-sm lg:text-base font-normal tracking-wide drop-shadow-md truncate">{guests} {t.hero.people}</span>
+                                        {searchType === 'sales' ? (
+                                            <Home className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-sbh-blue opacity-80" />
+                                        ) : (
+                                            <Users className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-sbh-blue opacity-80" />
+                                        )}
+                                        <span className="font-serif text-sm lg:text-base font-normal tracking-wide drop-shadow-md truncate">
+                                            {guests} {searchType === 'sales' ? '' : t.hero.people}
+                                        </span>
                                     </div>
                                     <ChevronDown size={12} className={`opacity-60 transition-transform ${isGuestOpen ? 'rotate-180' : ''}`} />
                                 </div>
@@ -123,7 +121,9 @@ export const Hero: React.FC = () => {
                                     <div className="fixed inset-0 z-10" onClick={() => setIsGuestOpen(false)}></div>
                                     <div className="absolute top-[120%] left-0 w-full bg-white rounded-xl shadow-2xl border border-gray-100 p-4 animate-fade-in text-sbh-charcoal z-40">
                                         <div className="flex justify-between items-center">
-                                            <span className="text-xs font-sans font-medium uppercase tracking-wider">{t.hero.capacity}</span>
+                                            <span className="text-xs font-sans font-medium uppercase tracking-wider">
+                                                {searchType === 'sales' ? t.hero.rooms : t.hero.capacity}
+                                            </span>
                                             <div className="flex items-center gap-3">
                                                 <button
                                                     onClick={(e) => { e.stopPropagation(); setGuests(Math.max(1, guests - 1)); }}
@@ -159,19 +159,18 @@ export const Hero: React.FC = () => {
                     <div className="md:hidden w-full max-w-[320px]">
                         <div className="bg-sbh-dark/80 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden">
 
-                            {/* Location */}
+                            {/* Type */}
                             <div className="p-3 border-b border-white/5">
-                                <label className="block text-[9px] uppercase tracking-widest text-sbh-green/70 mb-1">{t.hero.location}</label>
+                                <label className="block text-[9px] uppercase tracking-widest text-sbh-green/70 mb-1">{t.hero.type}</label>
                                 <div className="flex items-center gap-2 text-sbh-cream">
-                                    <MapPin size={14} className="text-sbh-blue opacity-80" />
+                                    <Home size={14} className="text-sbh-blue opacity-80" />
                                     <select
-                                        value={selectedLocation}
-                                        onChange={(e) => setSelectedLocation(e.target.value)}
+                                        value={searchType}
+                                        onChange={(e) => setSearchType(e.target.value)}
                                         className="bg-transparent text-sbh-cream text-sm font-serif font-normal outline-none flex-1 appearance-none"
                                     >
-                                        {locations.map(loc => (
-                                            <option key={loc.value} value={loc.value} className="text-sbh-charcoal">{loc.label}</option>
-                                        ))}
+                                        <option value="rentals" className="text-sbh-charcoal">{t.hero.seasonalRental}</option>
+                                        <option value="sales" className="text-sbh-charcoal">{t.hero.sale}</option>
                                     </select>
                                 </div>
                             </div>
@@ -182,9 +181,11 @@ export const Hero: React.FC = () => {
                                     className="flex-[1.5] p-3 relative flex flex-col justify-center active:bg-white/5 transition-colors border-r border-white/5"
                                     onClick={() => setIsGuestOpen(!isGuestOpen)}
                                 >
-                                    <label className="block text-[9px] uppercase tracking-widest text-sbh-green/70 mb-1">{t.hero.capacity}</label>
+                                    <label className="block text-[9px] uppercase tracking-widest text-sbh-green/70 mb-1">
+                                        {searchType === 'sales' ? t.hero.rooms : t.hero.capacity}
+                                    </label>
                                     <div className="text-sbh-cream text-sm font-serif font-normal flex items-center justify-between">
-                                        <span>{guests} {t.hero.people}</span>
+                                        <span>{guests} {searchType === 'sales' ? '' : t.hero.people}</span>
                                     </div>
                                 </div>
 
@@ -200,7 +201,9 @@ export const Hero: React.FC = () => {
                             {/* Guest Dropdown (Mobile) */}
                             {isGuestOpen && (
                                 <div className="bg-white p-4 border-t border-gray-100 flex justify-between items-center text-sbh-charcoal animate-fade-in relative z-30">
-                                    <span className="text-xs uppercase font-bold tracking-widest">{t.hero.capacity}</span>
+                                    <span className="text-xs uppercase font-bold tracking-widest">
+                                        {searchType === 'sales' ? t.hero.rooms : t.hero.capacity}
+                                    </span>
                                     <div className="flex gap-4 items-center">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); setGuests(Math.max(1, guests - 1)) }}

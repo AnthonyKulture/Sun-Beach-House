@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-import { Mail, Phone, ArrowRight, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, ArrowRight, Instagram, Linkedin } from 'lucide-react';
 import { HoneypotField } from './HoneypotField';
 import { EncryptedLink } from './EncryptedLink';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -107,9 +107,8 @@ export const ContactPage: React.FC = () => {
                             <div>
                                 <h3 className="font-serif text-2xl italic mb-4 text-sbh-charcoal">{t.contact.companyTitle}</h3>
                                 <p className="font-sans text-sm leading-relaxed opacity-80 text-sbh-charcoal">
-                                    Gustavia Harbor<br />
-                                    Rue de la République<br />
-                                    97133 Saint-Barthélemy
+                                    65 RUE DE LA PAIX GUSTAVIA<br />
+                                    97133 SAINT BARTHELEMY
                                 </p>
                             </div>
 
@@ -118,21 +117,21 @@ export const ContactPage: React.FC = () => {
                                 <ul className="space-y-3 font-sans text-sm opacity-80 text-sbh-charcoal">
                                     <li className="flex items-center gap-4">
                                         <Phone size={16} />
-                                        <EncryptedLink type="phone" value="+590690000000" text="+590 690 00 00 00" className="hover:text-white transition-colors" />
+                                        <EncryptedLink type="phone" value="+590690634725" text="+590 690 63 47 25" className="hover:text-white transition-colors" />
                                     </li>
                                     <li className="flex items-center gap-4">
                                         <Mail size={16} />
-                                        <EncryptedLink type="email" value="hello@sunbeachhouse.com" text="hello@sunbeachhouse.com" className="hover:text-white transition-colors" />
+                                        <EncryptedLink type="email" value="valerie@sun-beach-house.com" text="valerie@sun-beach-house.com" className="hover:text-white transition-colors" />
                                     </li>
                                 </ul>
                             </div>
 
                             <div className="flex gap-6 pt-4">
-                                <a href="#" className="p-3 border border-sbh-charcoal/20 rounded-full hover:bg-sbh-charcoal hover:text-white transition-all text-sbh-charcoal">
+                                <a href="https://www.instagram.com/sun.beach.house" target="_blank" rel="noopener noreferrer" className="p-3 border border-sbh-charcoal/20 rounded-full hover:bg-sbh-charcoal hover:text-white transition-all text-sbh-charcoal">
                                     <Instagram size={20} />
                                 </a>
-                                <a href="#" className="p-3 border border-sbh-charcoal/20 rounded-full hover:bg-sbh-charcoal hover:text-white transition-all text-sbh-charcoal">
-                                    <Facebook size={20} />
+                                <a href="https://www.linkedin.com/company/sun-beach-house" target="_blank" rel="noopener noreferrer" className="p-3 border border-sbh-charcoal/20 rounded-full hover:bg-sbh-charcoal hover:text-white transition-all text-sbh-charcoal">
+                                    <Linkedin size={20} />
                                 </a>
                             </div>
                         </div>

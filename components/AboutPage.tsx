@@ -37,7 +37,7 @@ export const AboutPage: React.FC = () => {
                 <div className="md:col-span-5 relative md:sticky md:top-32">
                     <div className="aspect-[3/4] overflow-hidden rounded-sm relative z-10 shadow-xl shadow-sbh-green/10">
                         <Image
-                            src="https://images.unsplash.com/photo-1573599971936-8a79854743c6?q=80&w=1200&auto=format&fit=crop"
+                            src="/images/valerie-founder.jpg"
                             alt="Valérie - Founder"
                             fill
                             sizes="(max-width: 768px) 100vw, 40vw"

@@ -25,6 +25,10 @@ export interface Translations {
         mainTitle: string;
         mainTitleAccent: string;
         goButton: string;
+        type: string;
+        seasonalRental: string;
+        sale: string;
+        rooms: string;
     };
 
     // Collections
@@ -43,6 +47,7 @@ export interface Translations {
         capacityMin: string;
         bedroomsMin: string;
         budgetMax: string;
+        budget: string;
         amenities: string;
         all: string;
         selected: string;
@@ -446,6 +451,10 @@ const fr: Translations = {
         mainTitle: "L'élégance",
         mainTitleAccent: 'française',
         goButton: 'Valider',
+        type: 'Type',
+        seasonalRental: 'Location saisonnière',
+        sale: 'Vente',
+        rooms: 'Pièces',
     },
 
     collections: {
@@ -463,6 +472,7 @@ const fr: Translations = {
         capacityMin: 'Capacité Min.',
         bedroomsMin: 'Chambres Min.',
         budgetMax: 'Budget Max',
+        budget: 'Budget',
         amenities: 'Équipements',
         all: 'Tous',
         selected: 'sélectionné(s)',
@@ -919,6 +929,10 @@ const en: Translations = {
         mainTitle: 'French elegance',
         mainTitleAccent: 'in the Caribbean',
         goButton: 'Go',
+        type: 'Type',
+        seasonalRental: 'Seasonal Rental',
+        sale: 'Sale',
+        rooms: 'Rooms',
     },
 
     collections: {
@@ -936,6 +950,7 @@ const en: Translations = {
         capacityMin: 'Min. Capacity',
         bedroomsMin: 'Min. Bedrooms',
         budgetMax: 'Max Budget',
+        budget: 'Budget',
         amenities: 'Amenities',
         all: 'All',
         selected: 'selected',

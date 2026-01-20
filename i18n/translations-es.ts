@@ -23,6 +23,10 @@ export const es: Translations = {
         mainTitle: 'Elegancia',
         mainTitleAccent: 'francesa',
         goButton: 'Ir',
+        type: 'Tipo',
+        seasonalRental: 'Alquiler Vacacional',
+        sale: 'Venta',
+        rooms: 'Habitaciones',
     },
 
     collections: {
@@ -40,6 +44,7 @@ export const es: Translations = {
         capacityMin: 'Capacidad Mín.',
         bedroomsMin: 'Habitaciones Mín.',
         budgetMax: 'Presupuesto Máx',
+        budget: 'Presupuesto',
         amenities: 'Servicios',
         all: 'Todos',
         selected: 'seleccionado(s)',
