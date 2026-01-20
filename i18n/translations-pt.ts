@@ -26,6 +26,7 @@ export const pt: Translations = {
         type: 'Tipo',
         seasonalRental: 'Aluguel de Temporada',
         sale: 'Venda',
+        rooms: 'Quartos',
     },
 
     collections: {
@@ -43,6 +44,7 @@ export const pt: Translations = {
         capacityMin: 'Capacidade Mín.',
         bedroomsMin: 'Quartos Mín.',
         budgetMax: 'Orçamento Máx',
+        budget: 'Orçamento',
         amenities: 'Comodidades',
         all: 'Todos',
         selected: 'selecionado(s)',
