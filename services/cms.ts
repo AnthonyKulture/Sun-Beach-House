@@ -1,4 +1,4 @@
-import { Villa, SeasonalPrice, BedroomPrice, Amenity } from '../types';
+import { Villa, SeasonalPrice, BedroomPrice, Equipment, Season, Location } from '../types';
 
 // Labels par défaut pour les équipements
 const EQUIPMENT_LABELS: Record<string, string> = {
@@ -61,7 +61,7 @@ const buildImageUrl = (ref: string) => {
 const mapSanityVilla = (doc: any): Villa => {
   const seasonalPrices: SeasonalPrice[] | undefined = doc.seasonalPrices?.map((sp: any, index: number) => ({
     id: sp._key || `season-${index}`,
-    seasonName: sp.seasonName,
+    seasonName: sp.seasonName as Season, // Now a reference to Season document
     dates: sp.dates,
     prices: sp.prices?.map((p: any): BedroomPrice => ({
       bedrooms: p.bedrooms,
@@ -69,9 +69,10 @@ const mapSanityVilla = (doc: any): Villa => {
     })) || [],
   }));
 
-  const amenities: Amenity[] = doc.amenities?.map((a: any) => ({
+  const amenities: Equipment[] = doc.amenities?.map((a: any) => ({
+    _id: a._id,
+    name: a.name,
     icon: a.icon,
-    label: a.label || EQUIPMENT_LABELS[a.icon] || a.icon,
   })) || [];
 
   let mainImage = doc.mainImageUrl || '';
@@ -91,7 +92,7 @@ const mapSanityVilla = (doc: any): Villa => {
   return {
     id: doc._id,
     name: doc.name,
-    location: doc.location,
+    location: doc.location as Location, // Now a reference to Location document
     listingType: doc.listingType,
     // Handle both old (string) and new (object) formats during migration
     description: typeof doc.description === 'string'
@@ -129,7 +130,7 @@ const villaFields = `
   _id,
   name,
   "slug": slug.current,
-  location,
+  location->{ _id, name, order },
   listingType,
   description,
   fullDescription,
@@ -148,7 +149,7 @@ const villaFields = `
   galleryImageUrls,
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
-  amenities[] { _key, icon, label },
+  amenities[]->{ _id, name, icon },
   tags,
   featuredOnHomepage,
   homepageOrder,
@@ -158,7 +159,7 @@ const villaFields = `
   },
   seasonalPrices[] {
     _key,
-    seasonName,
+    seasonName->{ _id, name, order },
     dates,
     prices[] { _key, bedrooms, price }
   },

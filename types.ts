@@ -1,5 +1,24 @@
 import React from 'react';
 
+export interface Equipment {
+  _id: string;
+  name: string;  // En français, traduit par Google Translate API
+  icon: string;  // Code de l'icône Lucide React
+}
+
+export interface Season {
+  _id: string;
+  name: string;  // En français, traduit par Google Translate API
+  order: number;
+}
+
+export interface Location {
+  _id: string;
+  name: string;  // En français, traduit par Google Translate API
+  order: number;
+}
+
+// DEPRECATED: Kept for backward compatibility during migration
 export interface Amenity {
   icon: string; // Name of the Lucide icon
   label: string;
@@ -12,7 +31,7 @@ export interface BedroomPrice {
 
 export interface SeasonalPrice {
   id: string;
-  seasonName: string; // e.g. "High Season"
+  seasonName: Season; // Reference to Season document
   dates: string; // French format, auto-translated to English on frontend
   prices: BedroomPrice[]; // Array of prices based on bedroom count opened
 }
@@ -31,7 +50,7 @@ export interface HomeFeature {
 export interface Villa {
   id: string;
   name: string;
-  location: string; // e.g., "Flamands", "Toiny"
+  location: Location; // Reference to Location document
   description: string | { fr: string; en: string }; // Transition: accepts both formats
   fullDescription: string | { fr: string; en: string }; // Transition: accepts both formats
   pricePerNight?: number; // Optional, for rentals (base price for display if no weekly)
@@ -49,7 +68,7 @@ export interface Villa {
   galleryImages: string[]; // Array of image URLs
   videoUrl?: string; // YouTube/Vimeo URL
   videoFileUrl?: string; // Sanity uploaded video URL
-  amenities: Amenity[];
+  amenities: Equipment[]; // Array of Equipment references
   tags: string[];
   featuredOnHomepage?: boolean; // Whether to show on homepage
   homepageOrder?: number; // Position on homepage (1-4)

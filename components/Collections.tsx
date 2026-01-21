@@ -112,7 +112,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
 
     // Extract unique locations for dropdown (filtered by mode) - DYNAMIC
     const locations = useMemo(() => {
-        const locs = new Set(villas.filter(v => v.listingType === mode).map(v => v.location));
+        const locs = new Set(villas.filter(v => v.listingType === mode).map(v => v.location.name));
         return ['all', ...Array.from(locs).sort()];
     }, [mode, villas]);
 
@@ -124,8 +124,8 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             .filter(v => v.listingType === mode)
             .forEach(villa => {
                 villa.amenities.forEach(amenity => {
-                    const label = amenity.label;
-                    amenityCounts.set(label, (amenityCounts.get(label) || 0) + 1);
+                    const name = amenity.name;
+                    amenityCounts.set(name, (amenityCounts.get(name) || 0) + 1);
                 });
             });
 
@@ -133,7 +133,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         return Array.from(amenityCounts.entries())
             .sort((a, b) => b[1] - a[1])
             .slice(0, 8)
-            .map(([label]) => label);
+            .map(([name]) => name);
     }, [mode, villas]);
 
     // Filter Logic
@@ -146,7 +146,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             const searchName = filters.name?.toLowerCase() || '';
             const matchName = !searchName || villa.name.toLowerCase().includes(searchName);
 
-            const matchLocation = filters.location === 'all' || villa.location === filters.location;
+            const matchLocation = filters.location === 'all' || villa.location.name === filters.location;
 
             // Filter by capacity (villa must accommodate at least 'guests' people)
             const matchGuests = villa.guests >= filters.guests;
@@ -166,9 +166,9 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             }
 
             // Amenities Filter (AND logic)
-            const villaAmenityLabels = villa.amenities.map(a => a.label);
+            const villaAmenityNames = villa.amenities.map(a => a.name);
             const matchAmenities = filters.amenities.length === 0 ||
-                filters.amenities.every(filter => villaAmenityLabels.includes(filter));
+                filters.amenities.every(filter => villaAmenityNames.includes(filter));
 
             return matchName && matchLocation && matchGuests && matchAmenities;
         });
@@ -427,7 +427,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                             {villa.name}
                                         </h3>
                                         <div className="flex items-center gap-4 text-gray-500 text-xs font-sans tracking-widest uppercase">
-                                            <span className="flex items-center gap-1"><MapPin size={12} /> {villa.location}</span>
+                                            <span className="flex items-center gap-1"><MapPin size={12} /> {villa.location.name}</span>
                                             <span className="flex items-center gap-1">
                                                 <Users size={12} /> {mode === 'rent' ? `${villa.guests} ${t.collections.guestsAbbrev}` : `${villa.bedrooms} ${t.collections.bedroomsAbbrev}`}
                                             </span>
