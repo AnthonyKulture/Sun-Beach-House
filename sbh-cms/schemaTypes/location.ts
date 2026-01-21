@@ -41,14 +41,14 @@ export const location = defineType({
     },
     orderings: [
         {
-            title: 'Par ordre',
-            name: 'orderAsc',
-            by: [{ field: 'order', direction: 'asc' }],
-        },
-        {
             title: 'Nom (A → Z)',
             name: 'nameAsc',
             by: [{ field: 'name', direction: 'asc' }],
+        },
+        {
+            title: 'Par ordre personnalisé',
+            name: 'orderAsc',
+            by: [{ field: 'order', direction: 'asc' }],
         },
     ],
 })
