@@ -59,21 +59,25 @@ const buildImageUrl = (ref: string) => {
 
 // Mapping des données Sanity vers le format Villa
 const mapSanityVilla = (doc: any): Villa => {
-  const seasonalPrices: SeasonalPrice[] | undefined = doc.seasonalPrices?.map((sp: any, index: number) => ({
-    id: sp._key || `season-${index}`,
-    seasonName: sp.seasonName as Season, // Now a reference to Season document
-    dates: sp.dates,
-    prices: sp.prices?.map((p: any): BedroomPrice => ({
-      bedrooms: p.bedrooms,
-      price: p.price,
-    })) || [],
-  }));
+  const seasonalPrices: SeasonalPrice[] | undefined = doc.seasonalPrices
+    ?.filter((sp: any) => sp.seasonName) // Filter out missing seasons
+    .map((sp: any, index: number) => ({
+      id: sp._key || `season-${index}`,
+      seasonName: sp.seasonName as Season,
+      dates: sp.dates,
+      prices: sp.prices?.map((p: any): BedroomPrice => ({
+        bedrooms: p.bedrooms,
+        price: p.price,
+      })) || [],
+    }));
 
-  const amenities: Equipment[] = doc.amenities?.map((a: any) => ({
-    _id: a._id,
-    name: a.name,
-    icon: a.icon,
-  })) || [];
+  const amenities: Equipment[] = doc.amenities
+    ?.filter((a: any) => a) // Filter out null references
+    .map((a: any) => ({
+      _id: a._id,
+      name: a.name,
+      icon: a.icon,
+    })) || [];
 
   let mainImage = doc.mainImageUrl || '';
   if (doc.mainImage?.asset?._ref) {
@@ -92,7 +96,7 @@ const mapSanityVilla = (doc: any): Villa => {
   return {
     id: doc._id,
     name: doc.name,
-    location: doc.location as Location, // Now a reference to Location document
+    location: doc.location || { _id: 'unknown', name: 'Non défini', order: 999 }, // Fallback for missing location
     listingType: doc.listingType,
     // Handle both old (string) and new (object) formats during migration
     description: typeof doc.description === 'string'
