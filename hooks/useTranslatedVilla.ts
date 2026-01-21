@@ -56,7 +56,7 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
 
                 // 2. Content that might be mixed/English (Seasonal Prices)
                 // We ALWAYS translate these to ensure consistency
-                const seasonNames = villa.seasonalPrices?.map(s => s.seasonName) || [];
+                const seasonNames = villa.seasonalPrices?.map(s => typeof s.seasonName === 'string' ? s.seasonName : s.seasonName.name) || [];
                 const seasonDates = villa.seasonalPrices?.map(s => s.dates) || [];
                 const seasonalTextsToTranslate = [...seasonNames, ...seasonDates];
 
@@ -66,7 +66,7 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
                     pricingDetailsText,
                     ...(villa.homeFeatures?.map(f => f.title) || []),
                     ...(villa.homeFeatures?.map(f => f.description) || []),
-                    ...(villa.amenities?.map(a => a.label) || [])
+                    ...(villa.amenities?.map(a => a.name) || [])
                 ] : [];
 
                 // Combine all promises
@@ -79,7 +79,12 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
                 const seasonCount = villa.seasonalPrices?.length || 0;
                 const translatedSeasonalPrices = villa.seasonalPrices?.map((s, i) => ({
                     ...s,
-                    seasonName: translatedSeasonalTexts[i],
+                    seasonName: (typeof s.seasonName === 'string'
+                        ? { _id: '', name: translatedSeasonalTexts[i], order: 0 }
+                        : {
+                            ...s.seasonName,
+                            name: translatedSeasonalTexts[i]
+                        }) as any,
                     dates: translatedSeasonalTexts[seasonCount + i]
                 }));
 
@@ -105,7 +110,7 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
 
                     translatedAmenities = villa.amenities?.map((a, i) => ({
                         ...a,
-                        label: translatedNativeTexts[3 + (featureCount * 2) + i]
+                        name: translatedNativeTexts[3 + (featureCount * 2) + i]
                     }));
                 }
 
