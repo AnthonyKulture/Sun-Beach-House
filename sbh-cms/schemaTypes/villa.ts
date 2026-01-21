@@ -42,27 +42,9 @@ const seasonalPrice = defineType({
     defineField({
       name: 'seasonName',
       title: 'Nom de la saison',
-      type: 'string',
-      options: {
-        list: [
-          // English (Support existing data)
-          { title: 'Low Season', value: 'Low Season' },
-          { title: 'High Season', value: 'High Season' },
-          { title: 'Summer', value: 'Summer' },
-          { title: 'Thanksgiving', value: 'Thanksgiving' },
-          { title: 'Thanksgiving & Bucket', value: 'Thanksgiving & Bucket' },
-          { title: 'Christmas', value: 'Christmas' },
-          { title: 'New Year', value: 'New Year' },
-          // French (New options)
-          { title: 'Basse Saison', value: 'Basse Saison' },
-          { title: 'Haute Saison', value: 'Haute Saison' },
-          { title: 'Été', value: 'Été' },
-          { title: 'Noël', value: 'Noël' },
-          { title: 'Nouvel An', value: 'Nouvel An' },
-        ],
-        layout: 'dropdown',
-      },
-      description: 'Sélectionnez une saison ou une période',
+      type: 'reference',
+      to: [{ type: 'season' }],
+      description: 'Sélectionnez une saison ou créez-en une nouvelle',
       validation: (rule) => rule.required().error('Choisissez une saison'),
     }),
     defineField({
@@ -83,39 +65,20 @@ const seasonalPrice = defineType({
     }),
   ],
   preview: {
-    select: { seasonName: 'seasonName', dates: 'dates', prices: 'prices' },
+    select: {
+      seasonName: 'seasonName.name',
+      dates: 'dates',
+      prices: 'prices'
+    },
     prepare({ seasonName, dates, prices }) {
       const priceCount = prices?.length || 0
       return {
-        title: seasonName,
+        title: seasonName || 'Saison non définie',
         subtitle: `${dates || 'Dates manquantes'} • ${priceCount} tarif${priceCount > 1 ? 's' : ''}`,
       }
     },
   },
 })
-
-// Labels par défaut pour les équipements
-const EQUIPMENT_LABELS: Record<string, string> = {
-  'Wifi': 'Wifi Haut Débit',
-  'Wind': 'Climatisation',
-  'Waves': 'Accès Plage Direct',
-  'ChefHat': 'Cuisine Équipée',
-  'Car': 'Parking Privé',
-  'Droplets': 'Piscine',
-  'Sun': 'Terrasse / Solarium',
-  'Coffee': 'Machine à Café',
-  'Flower2': 'Jardin Tropical',
-  'Speaker': 'Système Audio Sonos',
-  'Dumbbell': 'Salle de Fitness',
-  'Tv': 'TV / Cinéma',
-  'Shield': 'Sécurité 24/7',
-  'Utensils': 'Barbecue',
-  'ShoppingBag': 'Proche Commerces',
-  'Martini': 'Bar Extérieur',
-  'Music': 'Sonorisation',
-  'Key': 'Service Conciergerie',
-  'Star': 'Équipement personnalisé',
-}
 
 const homeFeature = defineType({
   name: 'homeFeature',
@@ -144,75 +107,6 @@ const homeFeature = defineType({
       return {
         title: title,
         subtitle: description?.substring(0, 60) + '...',
-      }
-    },
-  },
-})
-
-const amenity = defineType({
-  name: 'amenity',
-  title: 'Équipement',
-  type: 'object',
-  fields: [
-    defineField({
-      name: 'icon',
-      title: 'Choisir un équipement',
-      type: 'string',
-      description: 'Sélectionnez un équipement dans la liste',
-      options: {
-        list: [
-          { title: '📶 Wifi Haut Débit', value: 'Wifi' },
-          { title: '❄️ Climatisation', value: 'Wind' },
-          { title: '🌊 Accès Plage Direct', value: 'Waves' },
-          { title: '👨‍🍳 Cuisine Équipée', value: 'ChefHat' },
-          { title: '🚗 Parking Privé', value: 'Car' },
-          { title: '🏊 Piscine', value: 'Droplets' },
-          { title: '☀️ Terrasse / Solarium', value: 'Sun' },
-          { title: '☕ Machine à Café', value: 'Coffee' },
-          { title: '🌺 Jardin Tropical', value: 'Flower2' },
-          { title: '🔊 Système Audio Sonos', value: 'Speaker' },
-          { title: '💪 Salle de Fitness', value: 'Dumbbell' },
-          { title: '📺 TV / Cinéma', value: 'Tv' },
-          { title: '🔒 Sécurité 24/7', value: 'Shield' },
-          { title: '🍖 Barbecue', value: 'Utensils' },
-          { title: '🛍️ Proche Commerces', value: 'ShoppingBag' },
-          { title: '🍸 Bar Extérieur', value: 'Martini' },
-          { title: '🎵 Sonorisation', value: 'Music' },
-          { title: '🔑 Service Conciergerie', value: 'Key' },
-          { title: '⭐ Autre (personnalisé)...', value: 'Star' },
-        ],
-        layout: 'dropdown',
-      },
-      validation: (rule) => rule.required().error('Choisissez un équipement'),
-    }),
-    defineField({
-      name: 'label',
-      title: 'Nom personnalisé',
-      type: 'string',
-      description: 'Donnez un nom à votre équipement personnalisé',
-      hidden: ({ parent }) => parent?.icon !== 'Star',
-      validation: (rule) => rule.custom((value, context) => {
-        const parent = context.parent as { icon?: string }
-        if (parent?.icon === 'Star' && !value) {
-          return 'Entrez le nom de votre équipement personnalisé'
-        }
-        return true
-      }),
-    }),
-  ],
-  preview: {
-    select: { icon: 'icon', label: 'label' },
-    prepare({ icon, label }) {
-      const iconEmojis: Record<string, string> = {
-        'Wifi': '📶', 'Wind': '❄️', 'Waves': '🌊', 'ChefHat': '👨‍🍳',
-        'Car': '🚗', 'Droplets': '🏊', 'Sun': '☀️', 'Coffee': '☕',
-        'Flower2': '🌺', 'Speaker': '🔊', 'Dumbbell': '💪', 'Tv': '📺',
-        'Shield': '🔒', 'Utensils': '🍖', 'ShoppingBag': '🛍️',
-        'Martini': '🍸', 'Music': '🎵', 'Key': '🔑', 'Star': '⭐'
-      }
-      const displayLabel = label || EQUIPMENT_LABELS[icon] || icon
-      return {
-        title: `${iconEmojis[icon] || '•'} ${displayLabel}`,
       }
     },
   },
@@ -307,29 +201,10 @@ const villa = defineType({
     defineField({
       name: 'location',
       title: 'Quartier',
-      type: 'string',
+      type: 'reference',
+      to: [{ type: 'location' }],
       group: 'essential',
-      description: 'Où se situe cette villa à Saint-Barthélemy ?',
-      options: {
-        list: [
-          { title: 'Flamands', value: 'Flamands' },
-          { title: 'Toiny', value: 'Toiny' },
-          { title: 'Saline', value: 'Saline' },
-          { title: 'Gustavia', value: 'Gustavia' },
-          { title: 'Lorient', value: 'Lorient' },
-          { title: 'Gouverneur', value: 'Gouverneur' },
-          { title: 'St Jean', value: 'St Jean' },
-          { title: 'Colombier', value: 'Colombier' },
-          { title: 'Corossol', value: 'Corossol' },
-          { title: 'Marigot', value: 'Marigot' },
-          { title: 'Grand Cul de Sac', value: 'Grand Cul de Sac' },
-          { title: 'Petit Cul de Sac', value: 'Petit Cul de Sac' },
-          { title: 'Pointe Milou', value: 'Pointe Milou' },
-          { title: 'Lurin', value: 'Lurin' },
-          { title: 'Vitet', value: 'Vitet' },
-        ],
-        layout: 'dropdown',
-      },
+      description: 'Où se situe cette villa à Saint-Barthélemy ? Créez de nouvelles localisations si nécessaire.',
       validation: (rule) => rule.required().error('Sélectionnez un quartier'),
     }),
     defineField({
@@ -641,8 +516,8 @@ const villa = defineType({
       title: 'Équipements & Services',
       type: 'array',
       group: 'extras',
-      of: [{ type: 'amenity' }],
-      description: 'Listez tous les équipements de la villa',
+      of: [{ type: 'reference', to: [{ type: 'equipment' }] }],
+      description: 'Sélectionnez les équipements de la villa. Créez de nouveaux équipements si nécessaire.',
       validation: (rule) => rule.min(1).error('Ajoutez au moins un équipement'),
     }),
     defineField({
@@ -719,7 +594,7 @@ const villa = defineType({
   preview: {
     select: {
       title: 'name',
-      location: 'location',
+      location: 'location.name',
       listingType: 'listingType',
       media: 'mainImage',
       bedrooms: 'bedrooms',
@@ -768,10 +643,10 @@ const villa = defineType({
     {
       title: 'Par quartier',
       name: 'locationAsc',
-      by: [{ field: 'location', direction: 'asc' }],
+      by: [{ field: 'location.name', direction: 'asc' }],
     },
   ],
 })
 
-export { bedroomPrice, seasonalPrice, homeFeature, amenity, villa }
+export { bedroomPrice, seasonalPrice, homeFeature, villa }
 
