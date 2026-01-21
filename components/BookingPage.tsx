@@ -130,7 +130,7 @@ export const BookingPage: React.FC = () => {
                      <div>
                         <h4 className="font-serif text-lg text-sbh-charcoal">{villa.name}</h4>
                         <span className="text-[10px] font-sans text-gray-500 uppercase tracking-widest flex items-center gap-1">
-                           <MapPin size={10} /> {villa.location}
+                           <MapPin size={10} /> {villa.location.name}
                         </span>
                      </div>
                   </div>

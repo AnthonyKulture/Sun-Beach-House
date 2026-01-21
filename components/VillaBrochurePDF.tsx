@@ -292,7 +292,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 {/* Location */}
                 <View style={styles.locationBar}>
                     <Text style={styles.locationText}>
-                        {villa.location}, Saint-Barthélemy
+                        {villa.location.name}, Saint-Barthélemy
                     </Text>
                 </View>
 
@@ -337,7 +337,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                             {displayedAmenities.map((amenity, index) => (
                                 <View key={index} style={styles.amenityItem}>
                                     <Text style={styles.amenityBullet}>•</Text>
-                                    <Text style={styles.amenityLabel}>{amenity.label}</Text>
+                                    <Text style={styles.amenityLabel}>{amenity.name}</Text>
                                 </View>
                             ))}
                         </View>
@@ -373,8 +373,8 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                         <View style={styles.priceTable}>
                             {villa.seasonalPrices!.slice(0, 4).map((season, index) => {
                                 // Localize
-                                const normalizedKey = getSeasonTranslationKey(season.seasonName);
-                                const translatedName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName;
+                                const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
+                                const translatedName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName.name;
                                 // Translate dates: FR by default, auto-translate for other languages
                                 const dateString = translateDate(season.dates, language);
 

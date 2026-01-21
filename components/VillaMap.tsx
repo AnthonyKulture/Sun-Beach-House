@@ -95,7 +95,7 @@ export function VillaMap({ villa }: VillaMapProps) {
                         >
                             <div className="p-2 max-w-xs">
                                 <h3 className="font-serif text-lg mb-1">{villa.name}</h3>
-                                <p className="text-sm text-gray-600 mb-2">{villa.location}</p>
+                                <p className="text-sm text-gray-600 mb-2">{villa.location.name}</p>
                                 {villa.pricePerNight && (
                                     <p className="text-sm font-medium text-sbh-green">
                                         À partir de {villa.pricePerNight}€ / nuit

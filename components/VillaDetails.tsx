@@ -94,11 +94,11 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         const candidates = villas.filter(v => v.id !== villa.id && v.listingType === villa.listingType);
 
         // Priority 1: Same location AND similar capacity
-        const tier1 = candidates.filter(v => v.location === villa.location && Math.abs(v.guests - villa.guests) <= 2);
+        const tier1 = candidates.filter(v => v.location.name === villa.location.name && Math.abs(v.guests - villa.guests) <= 2);
         if (tier1.length >= 3) return tier1.slice(0, 3);
 
         // Priority 2: Same location
-        const tier2 = candidates.filter(v => v.location === villa.location && !tier1.includes(v));
+        const tier2 = candidates.filter(v => v.location.name === villa.location.name && !tier1.includes(v));
         const combinedTier12 = [...tier1, ...tier2];
         if (combinedTier12.length >= 3) return combinedTier12.slice(0, 3);
 
@@ -161,7 +161,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Saint-Barthélemy",
-            "addressRegion": villa.location,
+            "addressRegion": villa.location.name,
             "addressCountry": "BL"
         },
         "numberOfRooms": villa.bedrooms,
@@ -171,7 +171,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         },
         "amenityFeature": villa.amenities.map(a => ({
             "@type": "LocationFeatureSpecification",
-            "name": a.label,
+            "name": a.name,
             "value": true
         }))
     };
@@ -235,7 +235,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                     <div className="mb-2 md:mb-0 animate-slide-up w-full md:w-auto">
                         <div className="flex items-center gap-2 mb-2 md:mb-4 text-sbh-cream/90 font-sans tracking-widest text-[10px] md:text-xs uppercase drop-shadow-lg font-medium">
                             <MapPin size={14} className="text-sbh-green" />
-                            {villa.location}, Saint-Barthélemy
+                            {villa.location.name}, Saint-Barthélemy
                         </div>
                         <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl italic mb-2 leading-none drop-shadow-lg">
                             {villa.name}
@@ -501,7 +501,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                         <div className="w-10 h-10 rounded-full bg-sbh-cream flex items-center justify-center text-sbh-charcoal group-hover:bg-sbh-green group-hover:text-white transition-colors flex-shrink-0">
                                             <Icon size={18} strokeWidth={1.5} />
                                         </div>
-                                        <span className="text-sm font-sans tracking-wide text-gray-600 leading-tight">{item.label}</span>
+                                        <span className="text-sm font-sans tracking-wide text-gray-600 leading-tight">{item.name}</span>
                                     </div>
                                 );
                             })}
@@ -519,8 +519,8 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                 {villa.seasonalPrices.map((season) => {
                                     const isOpen = openSeasonId === season.id;
                                     // Translate season name
-                                    const normalizedKey = getSeasonTranslationKey(season.seasonName);
-                                    const translatedSeasonName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName;
+                                    const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
+                                    const translatedSeasonName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName.name;
                                     // Translate dates
                                     const translatedDates = translateDate(season.dates, language);
 
@@ -761,7 +761,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                 <h4 className="font-serif text-xl text-sbh-charcoal group-hover:text-sbh-blue transition-colors">
                                     {v.name}
                                 </h4>
-                                <span className="text-xs font-sans text-gray-500 uppercase tracking-widest">{v.location}</span>
+                                <span className="text-xs font-sans text-gray-500 uppercase tracking-widest">{v.location.name}</span>
                             </Link>
                         ))}
                     </div>

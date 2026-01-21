@@ -177,7 +177,7 @@ export function VillasMapView({ villas: propVillas }: VillasMapViewProps) {
                                                 {villa.name}
                                             </h3>
                                             <p className="text-sm text-gray-600 mb-2">
-                                                {villa.location} • {villa.bedrooms} {t.collections.bedroomsAbbrev} • {villa.guests} {t.collections.guestsAbbrev}
+                                                {villa.location.name} • {villa.bedrooms} {t.collections.bedroomsAbbrev} • {villa.guests} {t.collections.guestsAbbrev}
                                             </p>
                                             <p className="text-xs text-gray-500 mb-3 line-clamp-2">
                                                 {getDescriptionText(villa.description, language)}

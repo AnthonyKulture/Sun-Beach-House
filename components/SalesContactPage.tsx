@@ -93,7 +93,7 @@ export const SalesContactPage: React.FC = () => {
               <div>
                 <h4 className="font-serif text-3xl text-sbh-charcoal mb-2">{villa.name}</h4>
                 <span className="text-xs font-sans text-gray-500 uppercase tracking-widest flex items-center gap-1 mt-1">
-                  <MapPin size={12} /> {villa.location}
+                  <MapPin size={12} /> {villa.location.name}
                 </span>
               </div>
             </div>
