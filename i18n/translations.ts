@@ -1025,7 +1025,7 @@ const en: Translations = {
             lowSeason: 'Low Season',
             summer: 'Summer',
             highSeason: 'High Season',
-            thanksgiving: 'Thanksgiving & Bucket',
+            thanksgiving: 'Thanksgiving',
             christmas: 'Christmas',
             newYear: 'New Year',
         },

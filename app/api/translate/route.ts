@@ -10,6 +10,26 @@ const sanityClient = createClient({
     useCdn: false,
 });
 
+// Manual overrides to fix specific translation errors
+// Format: { targetLang: { originalTextLowercase: translatedText } }
+const MANUAL_TRANSLATIONS: Record<string, Record<string, string>> = {
+    fr: {
+        'thanksgiving': 'Thanksgiving',
+        'thanksgiving ': 'Thanksgiving',
+        'kitchen': 'Cuisine',
+        'living room': 'Salon',
+        'bedroom': 'Chambre',
+        'bathroom': 'Salle de bain',
+        'pool': 'Piscine',
+        'view': 'Vue',
+        'sea view': 'Vue mer',
+    },
+    en: {
+        'cuisine': 'Kitchen',
+        'salon': 'Living Room',
+    },
+};
+
 // Hash function for cache keys
 async function hashText(text: string): Promise<string> {
     const encoder = new TextEncoder();
@@ -30,7 +50,15 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Check cache first
+        // 1. Check Manual Overrides first
+        const lowerText = text.toLowerCase().trim();
+        const overrides = MANUAL_TRANSLATIONS[targetLang];
+        if (overrides && overrides[lowerText]) {
+            console.log(`[Translation API] Manual override used for "${text}" -> "${overrides[lowerText]}"`);
+            return NextResponse.json({ translatedText: overrides[lowerText] });
+        }
+
+        // 2. Check cache
         const textHash = await hashText(text);
         // Cache now considers sourceLang too (if provided) or defaults to 'fr' for backward compat in query if needed,
         // but mostly we rely on textHash+targetLang.

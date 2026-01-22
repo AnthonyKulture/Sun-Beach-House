@@ -3,6 +3,8 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { frFRLocale } from '@sanity/locale-fr-fr'
 import { schemaTypes } from './schemaTypes'
+import { GeneratePDFAction } from './actions/generatePDFAction'
+import { GeneratePDFWithPricingAction } from './actions/generatePDFWithPricingAction'
 
 export default defineConfig({
   name: 'default',
@@ -106,6 +108,16 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+  },
+
+  document: {
+    actions: (prev, context) => {
+      // Add both PDF generation actions for villa documents
+      if (context.schemaType === 'villa') {
+        return [...prev, GeneratePDFAction, GeneratePDFWithPricingAction]
+      }
+      return prev
+    },
   },
 })
 

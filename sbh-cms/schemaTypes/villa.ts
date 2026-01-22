@@ -533,59 +533,7 @@ const villa = defineType({
     // ═══════════════════════════════════════════════════════════
     // GROUPE : EXPORT PDF
     // ═══════════════════════════════════════════════════════════
-    defineField({
-      name: 'pdfOptions',
-      title: 'Options d\'export PDF',
-      type: 'object',
-      group: 'pdfExport',
-      description: 'Configurez les éléments à inclure dans la brochure PDF téléchargeable',
-      fields: [
-        defineField({
-          name: 'includePrice',
-          title: 'Inclure les tarifs dans le PDF',
-          type: 'boolean',
-          initialValue: true,
-          description: 'Si décoché, la grille tarifaire saisonnière sera masquée dans la brochure PDF (page 2)',
-        }),
-        defineField({
-          name: 'customFooterText',
-          title: 'Texte de pied de page personnalisé',
-          type: 'text',
-          rows: 3,
-          description: 'Ajoutez une note légale ou un message personnalisé (laissez vide pour le texte par défaut)',
-        }),
-        defineField({
-          name: 'highlightedAmenities',
-          title: 'Équipements à mettre en avant (max 8)',
-          type: 'array',
-          of: [{ type: 'string' }],
-          options: {
-            list: [
-              { title: '📶 Wifi Haut Débit', value: 'Wifi' },
-              { title: '❄️ Climatisation', value: 'Wind' },
-              { title: '🌊 Accès Plage Direct', value: 'Waves' },
-              { title: '👨‍🍳 Cuisine Équipée', value: 'ChefHat' },
-              { title: '🚗 Parking Privé', value: 'Car' },
-              { title: '🏊 Piscine', value: 'Droplets' },
-              { title: '☀️ Terrasse / Solarium', value: 'Sun' },
-              { title: '☕ Machine à Café', value: 'Coffee' },
-              { title: '🌺 Jardin Tropical', value: 'Flower2' },
-              { title: '🔊 Système Audio Sonos', value: 'Speaker' },
-              { title: '💪 Salle de Fitness', value: 'Dumbbell' },
-              { title: '📺 TV / Cinéma', value: 'Tv' },
-              { title: '🔒 Sécurité 24/7', value: 'Shield' },
-              { title: '🍖 Barbecue', value: 'Utensils' },
-              { title: '🛍️ Proche Commerces', value: 'ShoppingBag' },
-              { title: '🍸 Bar Extérieur', value: 'Martini' },
-              { title: '🎵 Sonorisation', value: 'Music' },
-              { title: '🔑 Service Conciergerie', value: 'Key' },
-            ],
-          },
-          validation: (rule) => rule.max(8).warning('Maximum 8 équipements pour un affichage optimal'),
-          description: 'Sélectionnez les équipements clés qui apparaîtront dans la brochure PDF. Si vide, les premiers équipements seront utilisés.',
-        }),
-      ],
-    }),
+
   ],
 
   // ═══════════════════════════════════════════════════════════════

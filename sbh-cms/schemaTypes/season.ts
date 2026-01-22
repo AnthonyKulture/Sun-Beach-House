@@ -11,11 +11,17 @@ export const season = defineType({
     fields: [
         defineField({
             name: 'name',
-            title: 'Nom de la saison',
+            title: 'Nom de la saison (FR)',
             type: 'string',
-            description: 'Ex: "Basse Saison", "Haute Saison", "Noël", "Nouvel An" (en français)',
+            description: 'Nom français. Ex: "Basse Saison"',
             validation: (rule) => rule.required().max(100)
-                .error('Le nom est obligatoire (100 caractères max)'),
+                .error('Le nom est obligatoire'),
+        }),
+        defineField({
+            name: 'name_en',
+            title: 'Nom de la saison (EN)',
+            type: 'string',
+            description: 'Nom anglais. Si vide, le nom français sera utilisé ou traduit automatiquement via Google.',
         }),
         defineField({
             name: 'order',

@@ -153,7 +153,7 @@ const villaFields = `
   galleryImageUrls,
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
-  amenities[]->{ _id, name, icon },
+  amenities[]->{ _id, name, "name_en": name_en, icon },
   tags,
   featuredOnHomepage,
   homepageOrder,
@@ -163,7 +163,7 @@ const villaFields = `
   },
   seasonalPrices[] {
     _key,
-    seasonName->{ _id, name, order },
+    seasonName->{ _id, name, "name_en": name_en, order },
     dates,
     prices[] { _key, bedrooms, price }
   },

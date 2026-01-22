@@ -3,12 +3,14 @@ import React from 'react';
 export interface Equipment {
   _id: string;
   name: string;  // En français, traduit par Google Translate API
+  name_en?: string; // Nom anglais optionnel (override admin)
   icon: string;  // Code de l'icône Lucide React
 }
 
 export interface Season {
   _id: string;
   name: string;  // En français, traduit par Google Translate API
+  name_en?: string; // Nom anglais optionnel (override admin)
   order: number;
 }
 
@@ -37,9 +39,22 @@ export interface SeasonalPrice {
 }
 
 export interface PDFOptions {
-  includePrice?: boolean;
+  includeSeasonalPricing?: boolean; // Show seasonal pricing table in PDF (admin-only feature)
   customFooterText?: string;
-  highlightedAmenities?: string[];
+  highlightedAmenities?: string[]; // Icon names to highlight (max 8)
+}
+
+export interface Amenity {
+  _id: string;
+  name: string;
+  name_en?: string;
+  icon: string;
+}
+
+export interface SeasonName {
+  _id: string;
+  name: string;
+  name_en?: string;
 }
 
 export interface HomeFeature {

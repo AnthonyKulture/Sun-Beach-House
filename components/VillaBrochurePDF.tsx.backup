@@ -7,18 +7,14 @@ import { optimizeImageForPDF } from '../utils/pdfHelpers';
 import { translateDate } from '../utils/dateTranslation';
 import path from 'path';
 
-import fs from 'fs';
-
-// Get logo as Base64 to ensure it renders correctly in PDF (bypassing path issues)
+// Get absolute path to logo for PDF generation (server-side)
 const getLogoPath = () => {
-    try {
-        const logoPath = path.join(process.cwd(), 'public', 'logo-sbh.png');
-        const logoData = fs.readFileSync(logoPath).toString('base64');
-        return `data:image/png;base64,${logoData}`;
-    } catch (error) {
-        console.error('Error loading logo:', error);
-        return '';
+    if (typeof window === 'undefined') {
+        // Server-side: use absolute file path
+        return path.join(process.cwd(), 'public', 'logo-sbh.png');
     }
+    // Client-side (shouldn't happen for PDF): use relative path
+    return '/logo-sbh.png';
 };
 
 // Define color palette matching design system
@@ -142,36 +138,24 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         gap: 6,
     },
-    featureImageSection: {
-        marginTop: 40,
-        width: '100%',
-        height: 300,
-        borderRadius: 2,
-        overflow: 'hidden',
-    },
-    featureImage: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-    },
     amenityItem: {
         flexDirection: 'row',
-        alignItems: 'center', // Center vertically
-        gap: 8,
+        alignItems: 'flex-start',
+        gap: 5,
         width: '48%',
-        marginBottom: 12, // Increased spacing
+        marginBottom: 4,
     },
     amenityBullet: {
-        fontSize: 14, // Larger bullet
+        fontSize: 9,
         color: colors.green,
-        marginTop: 0,
+        marginTop: 1,
     },
     amenityLabel: {
-        fontSize: 11, // Larger text
+        fontSize: 8,
         fontFamily: 'Helvetica',
         color: colors.charcoal,
         flex: 1,
-        lineHeight: 1.4,
+        lineHeight: 1.2,
     },
     // Pricing Section - Page 2
     pricingSection: {
@@ -241,7 +225,10 @@ const styles = StyleSheet.create({
     },
 });
 
-
+interface VillaBrochurePDFProps {
+    villa: Villa;
+    language?: 'fr' | 'en';
+}
 
 // Helper to normalize season names to translation keys
 const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../i18n/translations').Translations['villa']['seasons'] | null => {
@@ -256,26 +243,20 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
-interface VillaBrochurePDFProps {
-    villa: Villa;
-    language: 'fr' | 'en';
-    includePricing?: boolean; // Direct control over pricing display
-}
-
-export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, language, includePricing = false }) => {
-    // Determine if we show seasonal pricing based on includePricing prop and villa type
-    const showSeasonalPricing =
-        includePricing &&
-        villa.listingType === 'rent' &&
-        villa.seasonalPrices &&
-        villa.seasonalPrices.length > 0;
-
+export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, language = 'fr' }) => {
+    const pdfOptions = villa.pdfOptions || {};
+    const includeSeasonalPricing = pdfOptions.includeSeasonalPricing === true;
     const isSale = villa.listingType === 'sale';
-
     const t = translations[language];
 
-    // Debug logs
-    console.log('VillaBrochurePDF rendering with includePricing:', includePricing);
+    // Visibility Logic - Show seasonal pricing if enabled
+    console.log('PDF Options:', pdfOptions);
+    console.log('Include Seasonal Pricing:', includeSeasonalPricing);
+    console.log('Is Sale:', isSale);
+    console.log('Has Seasonal Prices:', villa.seasonalPrices?.length);
+
+    const showSeasonalPricing = includeSeasonalPricing && !isSale && villa.seasonalPrices && villa.seasonalPrices.length > 0;
+
     console.log('Show Seasonal Pricing:', showSeasonalPricing);
 
     // Show all amenities (ensure array exists)
@@ -346,9 +327,26 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 </View>
 
                 {/* Description - Full width */}
-                <View style={styles.contentSection}>
+                <View style={styles.contentSection} wrap={false}>
                     <Text style={styles.sectionTitle}>À Propos</Text>
                     <Text style={styles.description}>{fullDescription}</Text>
+                </View>
+
+                {/* Amenities - 2 columns grid */}
+                <View style={styles.amenitiesSection}>
+                    <Text style={styles.sectionTitle}>Équipements</Text>
+                    {displayedAmenities && displayedAmenities.length > 0 ? (
+                        <View style={styles.amenitiesGrid}>
+                            {displayedAmenities.map((amenity, index) => (
+                                <View key={index} style={styles.amenityItem}>
+                                    <Text style={styles.amenityBullet}>•</Text>
+                                    <Text style={styles.amenityLabel}>{amenity.name}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    ) : (
+                        <Text style={styles.description}>Aucun équipement renseigné</Text>
+                    )}
                 </View>
 
                 {/* Footer */}
@@ -366,61 +364,37 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 </View>
             </Page>
 
-            {/* PAGE 2: Équipements + Tarifs */}
-            <Page size="A4" style={styles.page}>
-                <View style={styles.header}>
-                    <Text style={{ ...styles.villaName, fontSize: 20 }}>
-                        Équipements{showSeasonalPricing ? ' & Tarifs' : ''}
-                    </Text>
-                    <Image src={getLogoPath()} style={styles.logoImage} />
-                </View>
+            {/* ADDITIONAL PAGES: Seasonal Pricing (if enabled) + Gallery */}
+            {showSeasonalPricing && (
+                <Page size="A4" style={styles.page}>
+                    <View style={styles.header}>
+                        <Text style={{ ...styles.villaName, fontSize: 20 }}>
+                            {language === 'fr' ? 'Tarifs Saisonniers' : 'Seasonal Rates'}
+                        </Text>
+                        <Image src={getLogoPath()} style={styles.logoImage} />
+                    </View>
 
-                {/* Amenities - 2 columns grid */}
-                <View style={styles.amenitiesSection}>
-                    {displayedAmenities && displayedAmenities.length > 0 ? (
-                        <View style={styles.amenitiesGrid}>
-                            {displayedAmenities.map((amenity, index) => {
-                                const displayName = (language !== 'fr' && amenity.name_en)
-                                    ? amenity.name_en
-                                    : amenity.name; // Fallback to French name if EN missing or language is FR
-
-                                return (
-                                    <View key={index} style={styles.amenityItem}>
-                                        <Text style={styles.amenityBullet}>•</Text>
-                                        <Text style={styles.amenityLabel}>{displayName}</Text>
-                                    </View>
-                                )
-                            })}
-                        </View>
-                    ) : (
-                        <Text style={styles.description}>Aucun équipement renseigné</Text>
-                    )}
-                </View>
-
-                {/* Seasonal Pricing (if enabled) */}
-                {showSeasonalPricing && (
+                    {/* Pricing Section */}
                     <View style={styles.pricingSection}>
                         <Text style={styles.sectionTitle}>Tarifs Saisonniers</Text>
                         <View style={styles.priceTable}>
                             {villa.seasonalPrices!.slice(0, 6).map((season, index) => {
-                                // Localize: Only translate if language is NOT French (source language)
-                                // If language is FR, use the name from Sanity directly to respect user edits.
+                                // Localize
                                 const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
-                                const isFrenchConfig = language === 'fr';
-                                const translatedName = (!isFrenchConfig && normalizedKey)
-                                    ? t.villa.seasons[normalizedKey]
-                                    : season.seasonName.name;
-
+                                const translatedName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName.name;
+                                // Translate dates: FR by default, auto-translate for other languages
                                 const dateString = translateDate(season.dates, language);
 
                                 return (
-                                    <View key={index} style={styles.priceRow}>
-                                        <Text style={styles.priceLabel}>
-                                            {translatedName} ({dateString})
-                                        </Text>
-                                        <Text style={styles.priceValue}>
-                                            À partir de ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-                                        </Text>
+                                    <View key={index}>
+                                        <View style={styles.priceRow}>
+                                            <Text style={styles.priceLabel}>
+                                                {translatedName} ({dateString})
+                                            </Text>
+                                            <Text style={styles.priceValue}>
+                                                À partir de ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+                                            </Text>
+                                        </View>
                                     </View>
                                 );
                             })}
@@ -429,34 +403,22 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                             Prix par semaine. Service et taxes non inclus.
                         </Text>
                     </View>
-                )}
 
-                {/* Feature Image to fill empty space if no pricing */}
-                {!showSeasonalPricing && villa.galleryImages && villa.galleryImages.length > 0 && (
-                    <View style={styles.featureImageSection}>
-                        <Image
-                            src={optimizeImageForPDF(villa.galleryImages[0])}
-                            style={styles.featureImage}
-                        />
+                    {/* Footer */}
+                    <View style={styles.footer} fixed>
+                        <View>
+                            <Text style={styles.footerBold}>Valérie</Text>
+                            <Text style={styles.footerText}>+590 690 63 47 25</Text>
+                            <Text style={styles.footerText}>valerie@sun-beach-house.com</Text>
+                        </View>
+                        <View style={{ alignItems: 'flex-end' }}>
+                            <Text style={styles.footerBold}>Sun Beach House</Text>
+                            <Text style={styles.footerText}>65 RUE DE LA PAIX GUSTAVIA</Text>
+                            <Text style={styles.footerText}>97133 SAINT BARTHELEMY</Text>
+                        </View>
                     </View>
-                )}
-
-                {/* Footer */}
-                <View style={styles.footer} fixed>
-                    <View>
-                        <Text style={styles.footerBold}>Valérie</Text>
-                        <Text style={styles.footerText}>+590 690 63 47 25</Text>
-                        <Text style={styles.footerText}>valerie@sun-beach-house.com</Text>
-                    </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={styles.footerBold}>Sun Beach House</Text>
-                        <Text style={styles.footerText}>65 RUE DE LA PAIX GUSTAVIA</Text>
-                        <Text style={styles.footerText}>97133 SAINT BARTHELEMY</Text>
-                    </View>
-                </View>
-            </Page>
-
-
+                </Page>
+            )}
 
             {/* GALLERY PAGES - 2 photos per page in portrait */}
             {galleryPages.map((pageImages, pageIndex) => (

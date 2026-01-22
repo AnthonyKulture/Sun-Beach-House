@@ -11,11 +11,17 @@ export const equipment = defineType({
     fields: [
         defineField({
             name: 'name',
-            title: 'Nom de l\'équipement',
+            title: 'Nom de l\'équipement (FR)',
             type: 'string',
-            description: 'Ex: "Wifi Haut Débit", "Climatisation", "Piscine" (en français)',
+            description: 'Nom français. Ex: "Piscine"',
             validation: (rule) => rule.required().max(100)
-                .error('Le nom est obligatoire (100 caractères max)'),
+                .error('Le nom est obligatoire'),
+        }),
+        defineField({
+            name: 'name_en',
+            title: 'Nom de l\'équipement (EN)',
+            type: 'string',
+            description: 'Nom anglais. Si vide, le nom français sera utilisé ou traduit automatiquement via Google.',
         }),
         defineField({
             name: 'icon',

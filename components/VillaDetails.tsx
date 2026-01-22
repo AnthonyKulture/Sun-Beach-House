@@ -4,7 +4,6 @@ import { Villa, HomeFeature } from '../types';
 import { useVillas, useVilla } from '../hooks/useCMS';
 import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home } from 'lucide-react';
 import { SunStamp } from './Decorations';
-import { DownloadBrochureButton } from './DownloadBrochureButton';
 import { VillaMap } from './VillaMap';
 import { FullscreenGallery } from './FullscreenGallery';
 import { VillaImagePlaceholder } from './VillaImagePlaceholder';
@@ -520,7 +519,22 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     const isOpen = openSeasonId === season.id;
                                     // Translate season name
                                     const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
-                                    const translatedSeasonName = normalizedKey ? t.villa.seasons[normalizedKey] : season.seasonName.name;
+                                    let translatedSeasonName = season.seasonName.name;
+
+                                    // Logic for manual control (Admin overrides)
+                                    // 1. If we are NOT in French, check for name_en
+                                    if (language !== 'fr') {
+                                        if (season.seasonName.name_en) {
+                                            translatedSeasonName = season.seasonName.name_en;
+                                        } else if (normalizedKey) {
+                                            // Fallback to translation key if no English name provided
+                                            translatedSeasonName = t.villa.seasons[normalizedKey];
+                                        }
+                                    } else {
+                                        // 2. If we ARE in French, keep the Sanity name (don't translate)
+                                        // This fixes the "Thanksgiving" issue where it was being forced to translated key
+                                        translatedSeasonName = season.seasonName.name;
+                                    }
                                     // Translate dates
                                     const translatedDates = translateDate(season.dates, language);
 
@@ -616,9 +630,6 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     >
                                         <Mail size={16} /> {t.villa.contactAgent}
                                     </button>
-                                    <div className="mt-4">
-                                        <DownloadBrochureButton villa={villa} />
-                                    </div>
                                     <div className="border-t border-gray-100 pt-4 mt-4">
                                         <div className="flex items-center gap-4 mb-2">
                                             <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden relative">
@@ -704,10 +715,6 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     <p className="text-center text-[10px] text-gray-400 mt-3 lg:mt-2 xl:mt-4 italic font-serif">
                                         Aucun débit immédiat
                                     </p>
-
-                                    <div className="mt-6 lg:mt-4 xl:mt-6">
-                                        <DownloadBrochureButton villa={villa} />
-                                    </div>
 
                                     <div className="mt-6 lg:mt-4 xl:mt-8 pt-6 lg:pt-4 xl:pt-6 border-t border-gray-100 space-y-2 lg:space-y-1.5 xl:space-y-3">
                                         <div className="flex items-center justify-between text-xs xl:text-sm text-gray-500">
