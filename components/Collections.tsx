@@ -28,7 +28,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     const initialFilters: FilterState = {
         location: searchParams.get('location') || 'all',
         bedrooms: parseInt(searchParams.get('bedrooms') || '1'),
-        price: mode === 'rent' ? 150000 : 25000000,
+        price: mode === 'rent' ? 150000 : parseInt(searchParams.get('price') || '0'),
         amenities: searchParams.get('amenities') ? searchParams.get('amenities')!.split(',') : [],
         name: searchParams.get('name') || '',
         propertyType: searchParams.get('propertyType') || 'all'
@@ -73,8 +73,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             setFilters({
                 location: 'all',
                 bedrooms: 1,
-                price: mode === 'rent' ? 150000 : 25000000,
-                minPrice: mode === 'rent' ? undefined : 0,
+                price: mode === 'rent' ? 150000 : 0,
                 amenities: [],
                 name: '',
                 propertyType: 'all',
@@ -115,9 +114,6 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
 
         if (newFilters.propertyType && newFilters.propertyType !== 'all') params.set('propertyType', newFilters.propertyType);
         else params.delete('propertyType');
-
-        if (mode === 'sale' && newFilters.minPrice && newFilters.minPrice > 0) params.set('minPrice', newFilters.minPrice.toString());
-        else params.delete('minPrice');
 
         if (mode === 'sale' && newFilters.price < 25000000) params.set('maxPrice', newFilters.price.toString());
         else params.delete('maxPrice');
@@ -171,11 +167,8 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                 // Special case for max value (150000+) - logic kept from previous implementation
                 if (filters.price >= 150000) matchPrice = true;
             } else {
-                // Sale logic: minPrice <= price <= maxPrice
-                const salePrice = villa.salePrice || 0;
-                const matchMin = !filters.minPrice || salePrice >= filters.minPrice;
-                const matchMax = filters.price >= 25000000 || salePrice <= filters.price;
-                matchPrice = matchMin && matchMax;
+                // Sale logic: >= min price (price 0 = all villas, including those without price 'Prix sur demande')
+                matchPrice = !villa.salePrice || villa.salePrice >= filters.price;
             }
 
             // Amenities Filter (AND logic) - Case Insensitive - Only for rent
@@ -354,43 +347,22 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                             </div>
                         </div>
 
-                        {/* Price Range Filter (Only for Sales) */}
+                        {/* Price Filter (Only for Sales) */}
                         {mode === 'sale' && (
-                            <div className="flex-[1.5] w-full md:px-3 lg:px-6 flex flex-col justify-center border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
+                            <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
                                 <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
-                                    <Euro size={10} /> Prix
+                                    <Euro size={10} /> {t.collections.minPrice}
                                 </label>
-                                <div className="flex flex-col gap-2">
-                                    <div className="flex items-center justify-between gap-2">
-                                        <span className="text-[10px] text-gray-500 min-w-[30px]">Min</span>
-                                        <input
-                                            type="range" min="0" max="25000000" step="10000"
-                                            value={filters.minPrice || 0}
-                                            onChange={(e) => {
-                                                const val = parseInt(e.target.value);
-                                                onUpdateFilters({ ...filters, minPrice: val > filters.price ? filters.price : val })
-                                            }}
-                                            className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
-                                        />
-                                        <span className="font-serif text-xs text-sbh-charcoal w-16 text-right">
-                                            {formatPrice(filters.minPrice || 0)}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center justify-between gap-2">
-                                        <span className="text-[10px] text-gray-500 min-w-[30px]">Max</span>
-                                        <input
-                                            type="range" min="0" max="25000000" step="10000"
-                                            value={filters.price}
-                                            onChange={(e) => {
-                                                const val = parseInt(e.target.value);
-                                                onUpdateFilters({ ...filters, price: val < (filters.minPrice || 0) ? (filters.minPrice || 0) : val })
-                                            }}
-                                            className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
-                                        />
-                                        <span className="font-serif text-xs text-sbh-charcoal w-16 text-right">
-                                            {filters.price >= 25000000 ? `${formatPrice(25000000)}+` : formatPrice(filters.price)}
-                                        </span>
-                                    </div>
+                                <div className="flex items-center gap-2 md:gap-4">
+                                    <input
+                                        type="range" min="0" max="25000000" step="100000"
+                                        value={filters.price}
+                                        onChange={(e) => onUpdateFilters({ ...filters, price: parseInt(e.target.value) })}
+                                        className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
+                                    />
+                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-24 text-right">
+                                        {filters.price === 0 ? t.collections.all : (filters.price >= 25000000 ? `${formatPrice(25000000)}+` : formatPrice(filters.price))}
+                                    </span>
                                 </div>
                             </div>
                         )}
@@ -545,7 +517,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                     <div className="text-center py-32 opacity-50">
                         <p className="font-serif text-3xl italic mb-4">{t.collections.noProperties}</p>
                         <button
-                            onClick={() => onUpdateFilters({ location: 'all', bedrooms: 1, price: mode === 'rent' ? 5000 : 25000000, minPrice: mode === 'rent' ? undefined : 0, amenities: [], name: '', propertyType: 'all', landSurface: 0 })}
+                            onClick={() => onUpdateFilters({ location: 'all', bedrooms: 1, price: mode === 'rent' ? 5000 : 0, amenities: [], name: '', propertyType: 'all', landSurface: 0 })}
                             className="text-sbh-blue border-b border-sbh-blue pb-1 font-sans uppercase text-xs tracking-widest"
                         >
                             {t.collections.resetFilters}

@@ -360,14 +360,8 @@ const villa = defineType({
       title: 'Prix de vente (€)',
       type: 'number',
       group: 'pricing',
-      description: 'Prix de vente (pour les biens à vendre uniquement)',
+      description: 'Prix de vente (pour les biens à vendre uniquement). Laissez vide pour afficher "Prix sur demande".',
       hidden: ({ document }) => document?.listingType === 'rent',
-      validation: (rule) => rule.custom((value, context) => {
-        if (context.document?.listingType === 'sale' && !value) {
-          return 'Le prix de vente est obligatoire'
-        }
-        return true
-      }),
     }),
     defineField({
       name: 'seasonalPrices',

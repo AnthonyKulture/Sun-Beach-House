@@ -183,17 +183,19 @@ export function VillasMapView({ villas: propVillas }: VillasMapViewProps) {
                                                 {getDescriptionText(villa.description, language)}
                                             </p>
                                             <div className="flex items-center justify-between gap-3">
-                                                {((villa.pricePerWeek && villa.pricePerWeek > 0) || (villa.pricePerNight && villa.pricePerNight > 0)) ? (
-                                                    <p className="text-sm font-medium text-sbh-green">
-                                                        {(villa.pricePerWeek && villa.pricePerWeek > 0)
-                                                            ? `$${villa.pricePerWeek.toLocaleString()} / semaine`
-                                                            : `$${villa.pricePerNight!.toLocaleString()} / nuit`}
-                                                    </p>
-                                                ) : villa.salePrice ? (
+                                                {villa.listingType === 'sale' ? (
                                                     <p className="text-sm font-medium text-sbh-blue">
-                                                        ${villa.salePrice.toLocaleString()}
+                                                        {villa.salePrice && villa.salePrice > 0 ? `${villa.salePrice.toLocaleString('fr-FR')}€` : t.villa.priceOnRequest}
                                                     </p>
-                                                ) : null}
+                                                ) : (
+                                                    <p className="text-sm font-medium text-sbh-green">
+                                                        {villa.pricePerWeek && villa.pricePerWeek > 0
+                                                            ? `$${villa.pricePerWeek.toLocaleString('en-US')} ${t.collections.perWeek}`
+                                                            : villa.pricePerNight && villa.pricePerNight > 0
+                                                                ? `$${villa.pricePerNight.toLocaleString('en-US')} ${t.collections.perNight}`
+                                                                : t.villa.priceOnRequest}
+                                                    </p>
+                                                )}
                                                 <Link
                                                     href={`/villas/${villa.id}`}
                                                     className="text-xs bg-sbh-green text-white px-3 py-1 rounded hover:bg-sbh-blue transition-colors"
