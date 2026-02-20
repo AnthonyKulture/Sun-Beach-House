@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Logo } from './Logo';
-import { Instagram, Facebook, Mail, Phone, MapPin, ArrowRight, Heart, Linkedin } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone, MapPin, ArrowRight, Heart } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
@@ -41,9 +41,6 @@ export const Footer: React.FC = () => {
                         <div className="flex gap-4 pt-2 justify-center md:justify-start">
                             <a href="https://www.instagram.com/sun.beach.house" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="p-3 rounded-full border border-sbh-green/20 text-sbh-green hover:border-sbh-cream hover:text-sbh-cream hover:bg-white/5 transition-all duration-300 group touch-target">
                                 <Instagram size={20} strokeWidth={1.5} />
-                            </a>
-                            <a href="https://www.linkedin.com/company/sun-beach-house" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="p-3 rounded-full border border-sbh-green/20 text-sbh-green hover:border-sbh-cream hover:text-sbh-cream hover:bg-white/5 transition-all duration-300 group touch-target">
-                                <Linkedin size={20} strokeWidth={1.5} />
                             </a>
                         </div>
                     </div>
