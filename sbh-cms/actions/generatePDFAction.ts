@@ -4,10 +4,8 @@ import { DownloadIcon } from '@sanity/icons'
 export const GeneratePDFAction: DocumentActionComponent = (props) => {
     const { id, type } = props
 
-    // Only show this action for villa documents
-    if (type !== 'villa') {
-        return null
-    }
+    // Link to id directly
+    // const { id } = props
 
     return {
         label: 'Générer PDF (sans tarifs)',

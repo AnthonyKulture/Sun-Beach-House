@@ -74,7 +74,7 @@ export const Services: React.FC = () => {
                         return (
                             <Link
                                 key={key}
-                                href="/conciergerie"
+                                href={`/conciergerie#${key}`}
                                 className="group flex flex-col md:flex-row items-start md:items-center justify-between border-b border-sbh-charcoal/10 pb-8 md:pb-6 transition-all duration-300 relative cursor-pointer block"
                                 onMouseEnter={() => setHoveredIndex(index)}
                             >

@@ -29,6 +29,10 @@ export interface Translations {
         seasonalRental: string;
         sale: string;
         rooms: string;
+        ourCollections: string;
+        seasonalRentals: string;
+        propertiesForSale: string;
+        disclaimerText: string;
     };
 
     // Collections
@@ -65,6 +69,15 @@ export interface Translations {
         bedroomsAbbrev: string;
         weekAbbrev: string;
         explore: string;
+        propertyType: string;
+        allTypes: string;
+        villa: string;
+        apartment: string;
+        land: string;
+        price: string;
+        minPrice: string;
+        maxPrice: string;
+        landSurfaceMin: string;
     };
 
     // Villa Details
@@ -93,7 +106,6 @@ export interface Translations {
         contactAgent: string;
         reserve: string;
         noImmediateCharge: string;
-        bestRateGuaranteed: string;
         conciergeIncluded: string;
         arrival: string;
         departure: string;
@@ -129,6 +141,7 @@ export interface Translations {
         };
         video: string;
         morePhotos: string;
+        downloadPdf: string;
         types: {
             villa: string;
             apartment: string;
@@ -198,6 +211,7 @@ export interface Translations {
         about: string;
         contact: string;
         gustavia: string;
+        bookingConditions: string;
     };
 
     // Destinations
@@ -334,6 +348,7 @@ export interface Translations {
     // Contact
     contact: {
         title: string;
+        subtitle: string;
         companyTitle: string;
         privateContact: string;
         name: string;
@@ -455,6 +470,10 @@ const fr: Translations = {
         seasonalRental: 'Location saisonnière',
         sale: 'Vente',
         rooms: 'Pièces',
+        ourCollections: 'Nos Collections',
+        seasonalRentals: 'Locations saisonnières',
+        propertiesForSale: 'Biens à vendre',
+        disclaimerText: 'Certaines villas d’exception sont volontairement conservées hors ligne afin de préserver la discrétion de leurs propriétaires.\nNotre équipe pourra vous les présenter de manière personnalisée selon vos critères.',
     },
 
     collections: {
@@ -490,6 +509,15 @@ const fr: Translations = {
         bedroomsAbbrev: 'Ch.',
         weekAbbrev: '/ sem',
         explore: 'Rechercher une villa...',
+        propertyType: 'Type de bien',
+        allTypes: 'Tous',
+        villa: 'Villa',
+        apartment: 'Appartement',
+        land: 'Terrain',
+        price: 'Prix',
+        minPrice: 'Min',
+        maxPrice: 'Max',
+        landSurfaceMin: 'Surface terrain min (m²)',
     },
 
     villa: {
@@ -516,8 +544,7 @@ const fr: Translations = {
         fromPrice: 'À partir de',
         contactAgent: "Contacter l'agent",
         reserve: 'Vérifier la disponibilité',
-        noImmediateCharge: 'Aucun débit immédiat',
-        bestRateGuaranteed: 'Meilleur tarif garanti',
+        noImmediateCharge: 'Nous vérifions personnellement chaque disponibilité afin de vous garantir une information fiable et des propositions entièrement personnalisées.\nLes villas pouvant être louées en quelques heures, les plannings ne sont pas toujours mis à jour instantanément.',
         conciergeIncluded: 'Conciergerie incluse',
         arrival: 'Arrivée',
         departure: 'Départ',
@@ -553,6 +580,7 @@ const fr: Translations = {
         },
         video: 'Vidéo',
         morePhotos: '+ {count} photos',
+        downloadPdf: 'Télécharger le dossier (pdf)',
         types: {
             villa: 'Villa',
             apartment: 'Appartement',
@@ -589,6 +617,7 @@ const fr: Translations = {
         about: 'À Propos',
         contact: 'Contact',
         gustavia: 'Gustavia, Saint-Barthélemy',
+        bookingConditions: 'Conditions de réservation',
     },
 
     destinations: {
@@ -698,8 +727,7 @@ const fr: Translations = {
             features: [
                 'Massages personnalisés (suédois, deep tissue, pierres chaudes)',
                 'Soins du visage et du corps haut de gamme',
-                'Séances de yoga privées face à la mer',
-                'Installations spa temporaires disponibles'
+                'Séances de yoga privées face à la mer'
             ]
         },
 
@@ -789,6 +817,7 @@ const fr: Translations = {
 
     contact: {
         title: 'Parlons de vous.',
+        subtitle: 'Projet de vacances, mariage, anniversaire ou tout autre événement avec conciergerie de luxe.',
         companyTitle: 'Sun Beach House',
         privateContact: 'Contact Privé',
         name: 'Nom',
@@ -933,6 +962,10 @@ const en: Translations = {
         seasonalRental: 'Seasonal Rental',
         sale: 'Sale',
         rooms: 'Rooms',
+        ourCollections: 'Our Collections',
+        seasonalRentals: 'Seasonal Rentals',
+        propertiesForSale: 'Properties for Sale',
+        disclaimerText: 'Some exceptional villas are intentionally kept offline to preserve their owners\' discretion.\nOur team can present them to you personally according to your criteria.',
     },
 
     collections: {
@@ -968,6 +1001,15 @@ const en: Translations = {
         bedroomsAbbrev: 'Bdr',
         weekAbbrev: '/ wk',
         explore: 'Search for a villa...',
+        propertyType: 'Property type',
+        allTypes: 'All',
+        villa: 'Villa',
+        apartment: 'Apartment',
+        land: 'Land',
+        price: 'Price',
+        minPrice: 'Min',
+        maxPrice: 'Max',
+        landSurfaceMin: 'Min land surface (m²)',
     },
 
     villa: {
@@ -994,8 +1036,7 @@ const en: Translations = {
         fromPrice: 'From',
         contactAgent: 'Contact agent',
         reserve: 'Check availability',
-        noImmediateCharge: 'No immediate charge',
-        bestRateGuaranteed: 'Best rate guaranteed',
+        noImmediateCharge: 'We personally verify every availability to guarantee reliable information and fully personalized proposals.\nSince villas can be rented in a matter of hours, schedules are not always updated instantly.',
         conciergeIncluded: 'Concierge included',
         arrival: 'Arrival',
         departure: 'Departure',
@@ -1031,6 +1072,7 @@ const en: Translations = {
         },
         video: 'Video',
         morePhotos: '+ {count} photos',
+        downloadPdf: 'Download brochure (pdf)',
         types: {
             villa: 'Villa',
             apartment: 'Apartment',
@@ -1060,6 +1102,7 @@ const en: Translations = {
         about: 'About',
         contact: 'Contact',
         gustavia: 'Gustavia, Saint-Barthélemy',
+        bookingConditions: 'Booking Conditions',
     },
 
     downloadBrochure: {
@@ -1260,6 +1303,7 @@ const en: Translations = {
 
     contact: {
         title: 'Let\'s talk about you.',
+        subtitle: 'Vacation project, wedding, birthday or any other event with luxury concierge.',
         companyTitle: 'Sun Beach House',
         privateContact: 'Private Contact',
         name: 'Name',

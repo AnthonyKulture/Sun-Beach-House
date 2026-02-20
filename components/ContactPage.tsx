@@ -21,7 +21,7 @@ export const ContactPage: React.FC = () => {
                 <div className="lg:w-7/12 w-full px-6 md:px-12 lg:px-24 xl:px-32 pt-32 pb-12 lg:pt-48 lg:pb-32 flex flex-col justify-center order-2 lg:order-1 bg-white relative z-10">
                     <h1 className="font-serif text-4xl md:text-6xl italic text-sbh-charcoal mb-4">{t.contact.title}</h1>
                     <p className="font-sans text-sm text-gray-500 uppercase tracking-widest mb-12">
-                        Un projet de vacances ou Conciergerie Luxe ?
+                        {t.contact.subtitle}
                     </p>
 
                     <form className="space-y-12 max-w-xl" onSubmit={(e) => {

@@ -5,6 +5,7 @@ import { Providers } from './providers'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ScrollReveal } from '@/components/ScrollReveal'
+import { WhatsAppButton } from '@/components/WhatsAppButton'
 
 // Optimize font loading with next/font
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -116,6 +117,7 @@ export default function RootLayout({
                     <main className="flex-grow flex flex-col pt-0">
                         {children}
                     </main>
+                    <WhatsAppButton />
                     <div className="relative z-10">
                         <Footer />
                     </div>

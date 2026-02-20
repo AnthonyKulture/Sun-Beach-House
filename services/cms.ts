@@ -112,6 +112,7 @@ const mapSanityVilla = (doc: any): Villa => {
     bathrooms: doc.bathrooms,
     guests: doc.guests,
     surface: doc.surface,
+    landSurface: doc.landSurface,
     propertyType: doc.propertyType || 'villa',
     pricingDetails: doc.pricingDetails || '',
     mainImage,
@@ -124,9 +125,9 @@ const mapSanityVilla = (doc: any): Villa => {
     featuredOnHomepage: doc.featuredOnHomepage || false,
     homepageOrder: doc.homepageOrder,
     homeFeatures: doc.homeFeatures || [],
-    pdfOptions: doc.pdfOptions || {},
     geopoint: doc.geopoint,
     privateInfo: doc.privateInfo,
+    brochurePdfUrl: doc.brochurePdfUrl,
   };
 };
 
@@ -145,6 +146,7 @@ const villaFields = `
   bathrooms,
   guests,
   surface,
+  landSurface,
   propertyType,
   pricingDetails,
   mainImage,
@@ -153,6 +155,7 @@ const villaFields = `
   galleryImageUrls,
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
+  "brochurePdfUrl": brochurePdf.asset->url,
   amenities[]->{ _id, name, "name_en": name_en, icon },
   tags,
   featuredOnHomepage,
@@ -166,11 +169,6 @@ const villaFields = `
     seasonName->{ _id, name, "name_en": name_en, order },
     dates,
     prices[] { _key, bedrooms, price }
-  },
-  pdfOptions {
-    includePrice,
-    customFooterText,
-    highlightedAmenities
   },
   geopoint,
   privateInfo

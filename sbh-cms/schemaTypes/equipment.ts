@@ -62,6 +62,8 @@ export const equipment = defineType({
                     { title: '⚓ Anchor (Mouillage)', value: 'Anchor' },
                     { title: '🔑 Key (Conciergerie)', value: 'Key' },
                     { title: '⭐ Star (Personnalisé)', value: 'Star' },
+                    { title: '🎾 Trophy (Tennis)', value: 'Trophy' },
+                    { title: '🥎 Activity (Padel)', value: 'Activity' },
                 ],
                 layout: 'dropdown',
             },

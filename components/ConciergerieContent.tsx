@@ -21,9 +21,7 @@ export const ConciergerieContent: React.FC = () => {
 
     const services = ['chef', 'spa', 'transfer', 'reservations', 'nautical'] as const;
 
-    React.useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+
 
     return (
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24 text-sbh-charcoal relative overflow-hidden">
@@ -78,6 +76,7 @@ export const ConciergerieContent: React.FC = () => {
                         return (
                             <div
                                 key={serviceKey}
+                                id={serviceKey}
                                 className="group bg-white rounded-sm shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden reveal-on-scroll"
                                 style={{ transitionDelay: `${index * 50}ms` }}
                             >
@@ -140,7 +139,7 @@ export const ConciergerieContent: React.FC = () => {
 
                     <div className="space-y-12 md:space-y-16">
                         {/* Travel Service */}
-                        <div className="bg-white rounded-sm overflow-hidden shadow-xl">
+                        <div id="travel" className="bg-white rounded-sm overflow-hidden shadow-xl">
                             <div className="grid md:grid-cols-2 gap-0">
                                 {/* Image */}
                                 <div className="relative h-64 md:h-auto min-h-[300px]">
@@ -188,7 +187,7 @@ export const ConciergerieContent: React.FC = () => {
                         </div>
 
                         {/* VIP Airport Service */}
-                        <div className="bg-white rounded-sm overflow-hidden shadow-xl">
+                        <div id="vip" className="bg-white rounded-sm overflow-hidden shadow-xl">
                             <div className="grid md:grid-cols-2 gap-0">
                                 {/* Content First on Desktop */}
                                 <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center order-2 md:order-1">

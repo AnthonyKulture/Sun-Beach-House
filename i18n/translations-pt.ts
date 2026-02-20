@@ -27,6 +27,10 @@ export const pt: Translations = {
         seasonalRental: 'Aluguel de Temporada',
         sale: 'Venda',
         rooms: 'Quartos',
+        ourCollections: 'Nossas Coleções',
+        seasonalRentals: 'Aluguéis de Temporada',
+        propertiesForSale: 'Propriedades à Venda',
+        disclaimerText: 'Algumas vilas excecionais são intencionalmente mantidas offline para preservar a discrição dos seus proprietários.\nA nossa equipa pode apresentá-las de forma personalizada de acordo com os seus critérios.',
     },
 
     collections: {
@@ -62,6 +66,15 @@ export const pt: Translations = {
         bedroomsAbbrev: 'Qtos.',
         weekAbbrev: '/ sem',
         explore: 'Buscar uma villa...',
+        propertyType: 'Tipo de propriedade',
+        allTypes: 'Todos',
+        villa: 'Villa',
+        apartment: 'Apartamento',
+        land: 'Terreno',
+        price: 'Preço',
+        minPrice: 'Min',
+        maxPrice: 'Max',
+        landSurfaceMin: 'Área do terreno min (m²)',
     },
 
     villa: {
@@ -88,8 +101,7 @@ export const pt: Translations = {
         fromPrice: 'A partir de',
         contactAgent: 'Contatar o agente',
         reserve: 'Verificar disponibilidade',
-        noImmediateCharge: 'Sem cobrança imediata',
-        bestRateGuaranteed: 'Melhor tarifa garantida',
+        noImmediateCharge: 'Verificamos pessoalmente cada disponibilidade para lhe garantir informação fiável e propostas totalmente personalizadas.\nComo as vilas podem ser alugadas em poucas horas, os horários nem sempre são atualizados instantaneamente.',
         conciergeIncluded: 'Concierge incluído',
         arrival: 'Chegada',
         departure: 'Partida',
@@ -125,6 +137,7 @@ export const pt: Translations = {
         },
         video: 'Vídeo',
         morePhotos: '+ {count} fotos',
+        downloadPdf: 'Baixar brochura (pdf)',
         types: {
             villa: 'Villa',
             apartment: 'Apartamento',
@@ -190,6 +203,7 @@ export const pt: Translations = {
         about: 'Sobre',
         contact: 'Contato',
         gustavia: 'Gustavia, Saint-Barthélemy',
+        bookingConditions: 'Condições de Reserva',
     },
 
     destinations: {
@@ -383,6 +397,7 @@ export const pt: Translations = {
 
     contact: {
         title: 'Vamos falar sobre você.',
+        subtitle: 'Projeto de férias, casamento, aniversário ou qualquer outro evento com concierge de luxo.',
         companyTitle: 'Sun Beach House',
         privateContact: 'Contato Privado',
         name: 'Nome',

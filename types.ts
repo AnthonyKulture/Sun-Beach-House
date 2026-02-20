@@ -38,11 +38,6 @@ export interface SeasonalPrice {
   prices: BedroomPrice[]; // Array of prices based on bedroom count opened
 }
 
-export interface PDFOptions {
-  includeSeasonalPricing?: boolean; // Show seasonal pricing table in PDF (admin-only feature)
-  customFooterText?: string;
-  highlightedAmenities?: string[]; // Icon names to highlight (max 8)
-}
 
 export interface Amenity {
   _id: string;
@@ -72,12 +67,13 @@ export interface Villa {
   pricePerWeek?: number; // Optional, preferred for rentals
   salePrice?: number; // Optional, for sales
   listingType: 'rent' | 'sale'; // New discriminator
-  propertyType?: 'villa' | 'apartment'; // villa or apartment
+  propertyType?: 'villa' | 'apartment' | 'land'; // villa, apartment or land
   seasonalPrices?: SeasonalPrice[]; // Array of seasonal pricing (rentals only)
   bedrooms: number;
   bathrooms: number;
   guests: number; // For sale: occupancy potential
   surface?: number; // m2 - Optional now
+  landSurface?: number; // m2 - Optional, land surface area
   homeFeatures?: HomeFeature[]; // Room and space details
   mainImage: string;
   galleryImages: string[]; // Array of image URLs
@@ -88,12 +84,12 @@ export interface Villa {
   featuredOnHomepage?: boolean; // Whether to show on homepage
   homepageOrder?: number; // Position on homepage (1-4)
   pricingDetails?: string; // Additional pricing info
-  pdfOptions?: PDFOptions; // PDF export configuration
   geopoint?: {
     lat: number;
     lng: number;
   }; // GPS coordinates for map
   privateInfo?: string; // Internal notes (not displayed on site)
+  brochurePdfUrl?: string; // URL of the uploaded PDF brochure
 }
 
 
@@ -117,10 +113,13 @@ export interface SalesInquiryParams {
 
 export interface FilterState {
   location: string;
-  guests: number;
-  price: number;
+  bedrooms: number;
+  minPrice?: number;
+  price: number; // maxPrice
   amenities: string[];
   name?: string;
+  propertyType?: string;
+  landSurface?: number; // min land surface
 }
 
 export enum Section {

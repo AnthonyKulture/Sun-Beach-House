@@ -71,7 +71,14 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
 
                 // Combine all promises
                 const [translatedSeasonalTexts, translatedNativeTexts] = await Promise.all([
-                    Promise.all(seasonalTextsToTranslate.map(t => t ? translateWithCache(t, language) : '')),
+                    Promise.all(seasonalTextsToTranslate.map(t => {
+                        if (!t) return '';
+                        // Do not translate "Bucket Regatta" or "Bucket" related terms
+                        if (t.toLowerCase().includes('bucket') || t.toLowerCase().includes('regatta')) {
+                            return t;
+                        }
+                        return translateWithCache(t, language);
+                    })),
                     needsNativeTranslation ? Promise.all(nativeTextsToTranslate.map(t => t ? translateWithCache(t, language) : '')) : Promise.resolve([])
                 ]);
 

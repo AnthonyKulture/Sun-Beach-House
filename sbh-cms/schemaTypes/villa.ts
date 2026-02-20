@@ -128,7 +128,7 @@ const villa = defineType({
     { name: 'location', title: 'Localisation' },
     { name: 'media', title: 'Photos/Video' },
     { name: 'extras', title: 'Équipements & Tags' },
-    { name: 'pdfExport', title: 'Export PDF' },
+    { name: 'pdfExport', title: 'Brochure PDF' },
   ],
   fields: [
     // ═══════════════════════════════════════════════════════════
@@ -187,11 +187,12 @@ const villa = defineType({
       title: 'Type de bien',
       type: 'string',
       group: 'essential',
-      description: 'Est-ce une villa ou un appartement ?',
+      description: 'Est-ce une villa, un appartement ou un terrain ?',
       options: {
         list: [
           { title: 'Villa', value: 'villa' },
           { title: 'Appartement', value: 'apartment' },
+          { title: 'Terrain', value: 'land' },
         ],
         layout: 'radio',
       },
@@ -425,6 +426,13 @@ const villa = defineType({
       group: 'features',
       description: 'Surface habitable en mètres carrés (optionnel)',
     }),
+    defineField({
+      name: 'landSurface',
+      title: 'Surface du terrain (m²)',
+      type: 'number',
+      group: 'features',
+      description: 'Surface du terrain en mètres carrés (optionnel, particulièrement utile pour les ventes)',
+    }),
 
     // ═══════════════════════════════════════════════════════════
     // GROUPE : PHOTOS/VIDEO
@@ -533,6 +541,17 @@ const villa = defineType({
     // ═══════════════════════════════════════════════════════════
     // GROUPE : EXPORT PDF
     // ═══════════════════════════════════════════════════════════
+    defineField({
+      name: 'brochurePdf',
+      title: 'Brochure PDF (Dossier)',
+      type: 'file',
+      group: 'pdfExport',
+      description: 'Téléchargez un dossier PDF pour cette villa. S\'il est présent, un bouton "Télécharger le dossier (pdf)" apparaîtra sur la page de la villa.',
+      options: {
+        accept: '.pdf',
+      },
+    }),
+
 
   ],
 

@@ -303,10 +303,10 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                 </div>
             </div>
 
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-24 grid grid-cols-1 xl:grid-cols-12 gap-16 relative">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-24 grid grid-cols-1 xl:grid-cols-12 lg:grid-cols-12 lg:gap-8 xl:gap-16 relative">
 
                 {/* LEFT CONTENT COLUMN */}
-                <div className="xl:col-span-8 order-1">
+                <div className="lg:col-span-7 xl:col-span-8 order-1">
 
                     {/* STORYTELLING */}
                     <div className="mb-16 md:mb-24 reveal-on-scroll">
@@ -596,20 +596,20 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                     )}
                 </div>
 
-                {/* RIGHT SIDEBAR (BOOKING DESKTOP - Visible from XL upwards) */}
-                <div className="hidden xl:block xl:col-span-4 order-2 relative h-full">
+                {/* RIGHT SIDEBAR (BOOKING DESKTOP - Visible from LG upwards) */}
+                <div className="hidden lg:block lg:col-span-5 xl:col-span-4 order-2 relative h-full">
                     <div className="sticky top-32 z-[30] reveal-on-scroll">
-                        <div className="bg-white border border-sbh-charcoal/10 p-5 lg:p-6 xl:p-8 shadow-2xl shadow-gray-200/50 rounded-xl relative z-20">
+                        <div className="bg-white border border-sbh-charcoal/10 p-4 lg:p-4 xl:p-5 shadow-2xl shadow-gray-200/50 rounded-xl relative z-20">
 
                             <div className="flex justify-between items-baseline mb-4 lg:mb-4 border-b border-gray-100 pb-4">
                                 <div>
-                                    <span className="block text-2xl lg:text-2xl xl:text-3xl font-serif text-sbh-charcoal">
+                                    <span className="block text-2xl lg:text-xl xl:text-2xl font-serif text-sbh-charcoal">
                                         {!hasValidPrice ? t.villa.priceOnRequest :
                                             (isSale ? displayPrice :
                                                 `${t.villa.fromPrice} ${displayPrice}`)
                                         }
                                     </span>
-                                    {!isSale && hasValidPrice && <span className="text-[10px] xl:text-xs text-gray-400 uppercase tracking-widest">{villa.pricePerWeek ? t.villa.week : t.villa.perNight}</span>}
+                                    {!isSale && hasValidPrice && <span className="text-[10px] xl:text-[11px] text-gray-400 uppercase tracking-widest">{villa.pricePerWeek ? t.villa.week : t.villa.perNight}</span>}
                                 </div>
                                 {!isSale && (
                                     <div className="flex items-center gap-1 text-sbh-green text-sm">
@@ -630,6 +630,16 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     >
                                         <Mail size={16} /> {t.villa.contactAgent}
                                     </button>
+                                    {villa.brochurePdfUrl && (
+                                        <a
+                                            href={villa.brochurePdfUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full mt-3 border border-sbh-charcoal text-sbh-charcoal py-4 font-sans text-[10px] uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white transition-colors duration-500 rounded-sm flex items-center justify-center gap-2"
+                                        >
+                                            {t.villa.downloadPdf}
+                                        </a>
+                                    )}
                                     <div className="border-t border-gray-100 pt-4 mt-4">
                                         <div className="flex items-center gap-4 mb-2">
                                             <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden relative">
@@ -645,11 +655,11 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                             ) : (
                                 // RENTAL SIDEBAR CONTENT
                                 <>
-                                    <div className="space-y-4 lg:space-y-3 xl:space-y-4 mb-6 lg:mb-4 xl:mb-8">
+                                    <div className="space-y-4 lg:space-y-3 xl:space-y-4 mb-6 lg:mb-4 xl:mb-6">
                                         <div className="grid grid-cols-2 gap-2">
-                                            <div className="border border-gray-200 p-2 xl:p-3 rounded-lg cursor-pointer hover:border-sbh-green transition-colors relative group">
+                                            <div className="border border-gray-200 p-2 lg:p-1.5 xl:p-2.5 rounded-lg cursor-pointer hover:border-sbh-green transition-colors relative group">
                                                 <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1 cursor-pointer">{t.villa.arrival}</label>
-                                                <div className="text-xs xl:text-sm text-sbh-charcoal flex justify-between items-center">
+                                                <div className="text-xs lg:text-[10px] xl:text-xs text-sbh-charcoal flex justify-between items-center">
                                                     <span>{arrivalDate ? new Date(arrivalDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'short' }) : t.villa.date}</span>
                                                     <Calendar size={14} className="opacity-50" />
                                                 </div>
@@ -662,9 +672,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                                     className="absolute inset-0 w-full h-full opacity-0 z-30 cursor-pointer appearance-none"
                                                 />
                                             </div>
-                                            <div className="border border-gray-200 p-2 xl:p-3 rounded-lg cursor-pointer hover:border-sbh-green transition-colors relative group">
+                                            <div className="border border-gray-200 p-2 lg:p-1.5 xl:p-2.5 rounded-lg cursor-pointer hover:border-sbh-green transition-colors relative group">
                                                 <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1 cursor-pointer">{t.villa.departure}</label>
-                                                <div className="text-xs xl:text-sm text-sbh-charcoal flex justify-between items-center">
+                                                <div className="text-xs lg:text-[10px] xl:text-xs text-sbh-charcoal flex justify-between items-center">
                                                     <span>{departureDate ? new Date(departureDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'short' }) : t.villa.date}</span>
                                                     <Calendar size={14} className="opacity-50" />
                                                 </div>
@@ -680,12 +690,12 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                         </div>
                                         <div className="relative">
                                             <div
-                                                className="border border-gray-200 p-2 xl:p-3 rounded-lg cursor-pointer hover:border-sbh-green transition-colors flex justify-between items-center"
+                                                className="border border-gray-200 p-2 lg:p-1.5 xl:p-2.5 rounded-lg cursor-pointer hover:border-sbh-green transition-colors flex justify-between items-center"
                                                 onClick={() => setIsGuestsOpen(!isGuestsOpen)}
                                             >
                                                 <div>
                                                     <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.travelers}</label>
-                                                    <span className="text-xs xl:text-sm text-sbh-charcoal">{guests} {t.villa.travelers}</span>
+                                                    <span className="text-xs lg:text-[10px] xl:text-xs text-sbh-charcoal">{guests} {t.villa.travelers}</span>
                                                 </div>
                                                 <Users size={16} className="text-gray-400" />
                                             </div>
@@ -707,20 +717,27 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
 
                                     <button
                                         onClick={handleBookingClick}
-                                        className="w-full bg-sbh-charcoal text-white py-3 lg:py-3 xl:py-4 font-sans text-[10px] xl:text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm"
+                                        className="w-full bg-sbh-charcoal text-white py-3 lg:py-2 xl:py-3 font-sans text-[10px] lg:text-[9px] xl:text-[10px] uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm"
                                     >
                                         {t.villa.reserve}
                                     </button>
+                                    {villa.brochurePdfUrl && (
+                                        <a
+                                            href={villa.brochurePdfUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full mt-3 border border-sbh-charcoal text-sbh-charcoal py-3 lg:py-2 xl:py-3 font-sans text-[10px] lg:text-[9px] xl:text-[10px] uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white transition-colors duration-500 rounded-sm flex items-center justify-center text-center block"
+                                        >
+                                            {t.villa.downloadPdf}
+                                        </a>
+                                    )}
 
-                                    <p className="text-center text-[10px] text-gray-400 mt-3 lg:mt-2 xl:mt-4 italic font-serif">
-                                        Aucun débit immédiat
+                                    <p className="text-center text-[11px] lg:text-[9px] xl:text-[11px] text-gray-500 mt-3 lg:mt-2 xl:mt-3 font-sans font-medium leading-relaxed whitespace-pre-line px-2">
+                                        {t.villa.noImmediateCharge}
                                     </p>
 
-                                    <div className="mt-6 lg:mt-4 xl:mt-8 pt-6 lg:pt-4 xl:pt-6 border-t border-gray-100 space-y-2 lg:space-y-1.5 xl:space-y-3">
-                                        <div className="flex items-center justify-between text-xs xl:text-sm text-gray-500">
-                                            <span className="flex items-center gap-2"><Check size={14} className="text-sbh-green" /> {t.villa.bestRateGuaranteed}</span>
-                                        </div>
-                                        <div className="flex items-center justify-between text-xs xl:text-sm text-gray-500">
+                                    <div className="mt-6 lg:mt-4 xl:mt-6 pt-6 lg:pt-4 xl:pt-5 border-t border-gray-100 space-y-2 lg:space-y-1.5 xl:space-y-3">
+                                        <div className="flex items-center justify-between text-xs lg:text-[10px] xl:text-xs text-gray-500">
                                             <span className="flex items-center gap-2"><Check size={14} className="text-sbh-green" /> {t.villa.conciergeIncluded}</span>
                                         </div>
                                     </div>
@@ -728,7 +745,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                             )}
                         </div>
 
-                        <div className="absolute -top-12 -right-12 text-sbh-cream pointer-events-none z-0 animate-spin-slower hidden xl:block">
+                        <div className="absolute -top-12 -right-12 text-sbh-cream pointer-events-none z-0 animate-spin-slower hidden lg:block">
                             <SunStamp className="w-40 h-40" />
                         </div>
                     </div>
@@ -775,97 +792,111 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                 </div>
             </div>
 
-            <div className="xl:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-[10002] shadow-[0_-5px_20px_rgba(0,0,0,0.05)] pb-6 animate-slide-up">
+            <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-[10002] shadow-[0_-5px_20px_rgba(0,0,0,0.05)] pb-6 animate-slide-up">
                 <button
                     onClick={isSale ? handleContactClick : handleMobileBookClick}
-                    className="w-full bg-sbh-darkgreen text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.2em] hover:bg-opacity-90 transition-colors rounded-sm shadow-lg"
+                    className="w-full bg-sbh-darkgreen text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.2em] hover:bg-opacity-90 transition-colors rounded-sm shadow-lg border border-transparent"
                 >
                     {isSale ? t.villa.contact : t.villa.reserve}
                 </button>
+                {villa.brochurePdfUrl && (
+                    <a
+                        href={villa.brochurePdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full mt-2 border border-sbh-darkgreen text-sbh-darkgreen px-8 py-3 text-center font-sans text-[10px] uppercase tracking-[0.2em] hover:bg-sbh-darkgreen hover:text-white transition-colors rounded-sm shadow-sm block"
+                    >
+                        {t.villa.downloadPdf}
+                    </a>
+                )}
             </div>
 
             {/* MOBILE BOOKING SHEET (DRAWER) - Only for rentals */}
-            {!isSale && isMobileBookingOpen && (
-                <div className="fixed inset-0 z-[10003] flex items-end justify-center xl:hidden">
-                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileBookingOpen(false)}></div>
-                    <div className="bg-white w-full rounded-t-2xl p-6 relative animate-slide-up shadow-2xl">
-                        <div className="flex justify-between items-center mb-6">
-                            <h3 className="font-serif text-2xl italic text-sbh-charcoal">{t.villa.yourStay}</h3>
-                            <button onClick={() => setIsMobileBookingOpen(false)} className="p-2 bg-gray-100 rounded-full">
-                                <X size={20} className="text-sbh-charcoal" />
+            {
+                !isSale && isMobileBookingOpen && (
+                    <div className="fixed inset-0 z-[10003] flex items-end justify-center lg:hidden">
+                        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileBookingOpen(false)}></div>
+                        <div className="bg-white w-full rounded-t-2xl p-6 relative animate-slide-up shadow-2xl">
+                            <div className="flex justify-between items-center mb-6">
+                                <h3 className="font-serif text-2xl italic text-sbh-charcoal">{t.villa.yourStay}</h3>
+                                <button onClick={() => setIsMobileBookingOpen(false)} className="p-2 bg-gray-100 rounded-full">
+                                    <X size={20} className="text-sbh-charcoal" />
+                                </button>
+                            </div>
+
+                            <div className="space-y-4 mb-6">
+                                {/* Arrival */}
+                                <div className="border border-gray-200 rounded-lg p-3 relative">
+                                    <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.arrival}</label>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-sm font-medium text-sbh-charcoal">
+                                            {arrivalDate ? new Date(arrivalDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long' }) : t.villa.selectDate}
+                                        </span>
+                                        <Calendar size={16} className="text-sbh-green" />
+                                    </div>
+                                    <input
+                                        type="date"
+                                        min={today}
+                                        value={arrivalDate}
+                                        onChange={(e) => setArrivalDate(e.target.value)}
+                                        className="absolute inset-0 w-full h-full opacity-0 z-10"
+                                    />
+                                </div>
+
+                                {/* Departure */}
+                                <div className="border border-gray-200 rounded-lg p-3 relative">
+                                    <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.departure}</label>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-sm font-medium text-sbh-charcoal">
+                                            {departureDate ? new Date(departureDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long' }) : t.villa.selectDate}
+                                        </span>
+                                        <Calendar size={16} className="text-sbh-green" />
+                                    </div>
+                                    <input
+                                        type="date"
+                                        min={arrivalDate || today}
+                                        value={departureDate}
+                                        onChange={(e) => setDepartureDate(e.target.value)}
+                                        className="absolute inset-0 w-full h-full opacity-0 z-10"
+                                    />
+                                </div>
+
+                                {/* Guests */}
+                                <div className="border border-gray-200 rounded-lg p-3 flex justify-between items-center">
+                                    <div>
+                                        <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.travelers}</label>
+                                        <span className="text-sm font-medium text-sbh-charcoal">{guests} {t.villa.persons}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <button onClick={() => setGuests(Math.max(1, guests - 1))} className="w-8 h-8 rounded-full border flex items-center justify-center hover:bg-gray-50"><Minus size={14} /></button>
+                                        <button onClick={() => setGuests(Math.min(villa.guests, guests + 1))} className="w-8 h-8 rounded-full border flex items-center justify-center hover:bg-gray-50"><Plus size={14} /></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={handleBookingClick}
+                                className="w-full bg-sbh-charcoal text-white py-4 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors rounded-sm shadow-lg mb-4"
+                            >
+                                {t.villa.confirmDates}
                             </button>
                         </div>
-
-                        <div className="space-y-4 mb-6">
-                            {/* Arrival */}
-                            <div className="border border-gray-200 rounded-lg p-3 relative">
-                                <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.arrival}</label>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-sm font-medium text-sbh-charcoal">
-                                        {arrivalDate ? new Date(arrivalDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long' }) : t.villa.selectDate}
-                                    </span>
-                                    <Calendar size={16} className="text-sbh-green" />
-                                </div>
-                                <input
-                                    type="date"
-                                    min={today}
-                                    value={arrivalDate}
-                                    onChange={(e) => setArrivalDate(e.target.value)}
-                                    className="absolute inset-0 w-full h-full opacity-0 z-10"
-                                />
-                            </div>
-
-                            {/* Departure */}
-                            <div className="border border-gray-200 rounded-lg p-3 relative">
-                                <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.departure}</label>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-sm font-medium text-sbh-charcoal">
-                                        {departureDate ? new Date(departureDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long' }) : t.villa.selectDate}
-                                    </span>
-                                    <Calendar size={16} className="text-sbh-green" />
-                                </div>
-                                <input
-                                    type="date"
-                                    min={arrivalDate || today}
-                                    value={departureDate}
-                                    onChange={(e) => setDepartureDate(e.target.value)}
-                                    className="absolute inset-0 w-full h-full opacity-0 z-10"
-                                />
-                            </div>
-
-                            {/* Guests */}
-                            <div className="border border-gray-200 rounded-lg p-3 flex justify-between items-center">
-                                <div>
-                                    <label className="block text-[9px] uppercase tracking-widest text-gray-400 mb-1">{t.villa.travelers}</label>
-                                    <span className="text-sm font-medium text-sbh-charcoal">{guests} {t.villa.persons}</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <button onClick={() => setGuests(Math.max(1, guests - 1))} className="w-8 h-8 rounded-full border flex items-center justify-center hover:bg-gray-50"><Minus size={14} /></button>
-                                    <button onClick={() => setGuests(Math.min(villa.guests, guests + 1))} className="w-8 h-8 rounded-full border flex items-center justify-center hover:bg-gray-50"><Plus size={14} /></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button
-                            onClick={handleBookingClick}
-                            className="w-full bg-sbh-charcoal text-white py-4 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors rounded-sm shadow-lg mb-4"
-                        >
-                            {t.villa.confirmDates}
-                        </button>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             {/* Fullscreen Gallery */}
-            {isGalleryOpen && (
-                <FullscreenGallery
-                    images={[villa.mainImage, ...villa.galleryImages].filter(Boolean)}
-                    initialIndex={galleryStartIndex}
-                    onClose={() => setIsGalleryOpen(false)}
-                />
-            )}
+            {
+                isGalleryOpen && (
+                    <FullscreenGallery
+                        images={[villa.mainImage, ...villa.galleryImages].filter(Boolean)}
+                        initialIndex={galleryStartIndex}
+                        onClose={() => setIsGalleryOpen(false)}
+                    />
+                )
+            }
 
-        </div>
+        </div >
     );
 };
 
