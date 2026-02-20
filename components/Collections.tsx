@@ -372,8 +372,12 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                         onChange={(e) => onUpdateFilters({ ...filters, price: parseInt(e.target.value) })}
                                         className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                     />
-                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-24 md:w-32 lg:w-32 text-right whitespace-nowrap overflow-visible">
-                                        {filters.price === 0 ? t.collections.all : (filters.price >= 25000000 ? `${formatPrice(25000000)}+` : formatPrice(filters.price))}
+                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-20 md:w-24 lg:w-24 text-right whitespace-nowrap overflow-visible">
+                                        {filters.price === 0 ? t.collections.all : (
+                                            filters.price >= 25000000 ? '25M€ +' :
+                                                filters.price >= 1000000 ? `${filters.price / 1000000}M€` :
+                                                    `${filters.price / 1000}k€`
+                                        )}
                                     </span>
                                 </div>
                             </div>
@@ -392,7 +396,11 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                         onChange={(e) => onUpdateFilters({ ...filters, landSurface: parseInt(e.target.value) })}
                                         className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                     />
-                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-12 text-right">{filters.landSurface || 0}</span>
+                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-16 text-right whitespace-nowrap overflow-visible">
+                                        {(!filters.landSurface || filters.landSurface === 0) ? t.collections.all : (
+                                            filters.landSurface >= 5000 ? '5000+ m²' : `${filters.landSurface} m²`
+                                        )}
+                                    </span>
                                 </div>
                             </div>
                         )}
