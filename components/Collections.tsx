@@ -11,7 +11,7 @@ import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 interface CollectionsProps {
     mode: 'rent' | 'sale';
@@ -22,6 +22,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     const { language, t } = useLanguage();
     const searchParams = useSearchParams();
     const router = useRouter();
+    const pathname = usePathname();
 
     // Initial state from URL params
     const initialFilters: FilterState = {
@@ -125,7 +126,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         else params.delete('landSurface');
 
         // Use scroll: false to avoid jumping to top on filter change
-        router.replace(`?${params.toString()}`, { scroll: false });
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     // Extract unique locations for dropdown (filtered by mode) - DYNAMIC
