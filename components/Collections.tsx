@@ -48,19 +48,31 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         const urlName = searchParams.get('name') || '';
         const urlAmenities = searchParams.get('amenities') ? searchParams.get('amenities')!.split(',') : [];
         const urlPropertyType = searchParams.get('propertyType') || 'all';
+        const urlPrice = searchParams.get('price') ? parseInt(searchParams.get('price')!) : (mode === 'rent' ? 150000 : 0);
+        const urlLandSurface = searchParams.get('landSurface') ? parseInt(searchParams.get('landSurface')!) : 0;
 
         // Only update if URL params are different from current filters
         setFilters(prev => {
             const amenitiesChanged = prev.amenities.length !== urlAmenities.length || !prev.amenities.every(a => urlAmenities.includes(a));
 
-            if (prev.location !== urlLocation || prev.bedrooms !== urlBedrooms || prev.name !== urlName || prev.propertyType !== urlPropertyType || amenitiesChanged) {
+            if (
+                prev.location !== urlLocation ||
+                prev.bedrooms !== urlBedrooms ||
+                prev.name !== urlName ||
+                prev.propertyType !== urlPropertyType ||
+                amenitiesChanged ||
+                prev.price !== urlPrice ||
+                prev.landSurface !== urlLandSurface
+            ) {
                 return {
                     ...prev,
                     location: urlLocation,
                     bedrooms: urlBedrooms,
                     name: urlName,
                     amenities: urlAmenities,
-                    propertyType: urlPropertyType
+                    propertyType: urlPropertyType,
+                    price: urlPrice,
+                    landSurface: urlLandSurface
                 };
             }
             return prev;
@@ -115,8 +127,8 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         if (newFilters.propertyType && newFilters.propertyType !== 'all') params.set('propertyType', newFilters.propertyType);
         else params.delete('propertyType');
 
-        if (mode === 'sale' && newFilters.price < 25000000) params.set('maxPrice', newFilters.price.toString());
-        else params.delete('maxPrice');
+        if (mode === 'sale' && newFilters.price > 0) params.set('price', newFilters.price.toString());
+        else params.delete('price');
 
         if (mode === 'sale' && newFilters.landSurface && newFilters.landSurface > 0) params.set('landSurface', newFilters.landSurface.toString());
         else params.delete('landSurface');
@@ -360,7 +372,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                         onChange={(e) => onUpdateFilters({ ...filters, price: parseInt(e.target.value) })}
                                         className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                     />
-                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-24 text-right">
+                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-24 md:w-32 lg:w-32 text-right whitespace-nowrap overflow-visible">
                                         {filters.price === 0 ? t.collections.all : (filters.price >= 25000000 ? `${formatPrice(25000000)}+` : formatPrice(filters.price))}
                                     </span>
                                 </div>
