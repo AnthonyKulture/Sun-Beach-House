@@ -23,6 +23,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
+    const routerTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Initial state from URL params
     const initialFilters: FilterState = {
@@ -134,7 +135,11 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         else params.delete('landSurface');
 
         // Use scroll: false to avoid jumping to top on filter change
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+        // Debounce router.replace to prevent UI stutter/refreshes while sliding
+        if (routerTimeoutRef.current) clearTimeout(routerTimeoutRef.current);
+        routerTimeoutRef.current = setTimeout(() => {
+            router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+        }, 300);
     };
 
     // Extract unique locations for dropdown (filtered by mode) - DYNAMIC
@@ -397,7 +402,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                         className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                     />
                                     <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-16 text-right whitespace-nowrap overflow-visible">
-                                        {(!filters.landSurface || filters.landSurface === 0) ? t.collections.all : (
+                                        {(!filters.landSurface || filters.landSurface === 0) ? '0 m²' : (
                                             filters.landSurface >= 5000 ? '5000+ m²' : `${filters.landSurface} m²`
                                         )}
                                     </span>
