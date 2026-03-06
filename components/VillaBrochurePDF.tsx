@@ -220,6 +220,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#C3CBC4',
         height: 30, // Just a visual bar, no text
     },
+    footerText: {
+        fontSize: 7,
+        fontFamily: 'Helvetica',
+        color: colors.charcoal,
+        lineHeight: 1.5,
+    },
 });
 
 
