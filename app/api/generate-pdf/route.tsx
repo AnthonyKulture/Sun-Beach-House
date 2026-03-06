@@ -5,6 +5,7 @@ import { CmsService } from '../../../services/cms';
 import { generatePDFFileName } from '../../../utils/pdfHelpers';
 import React from 'react';
 import { translateServerSide } from '../../../utils/translateServerSide';
+import { Villa } from '../../../types';
 
 // Force dynamic rendering for this route
 export const dynamic = 'force-dynamic';
@@ -21,6 +22,46 @@ export async function OPTIONS() {
     });
 }
 
+/**
+ * Translates villa content (description + amenities) into English for PDF generation.
+ * Mutates the villa object in place for simplicity; villa data is fetched fresh each request.
+ */
+async function translateVillaForPDF(villa: Villa): Promise<void> {
+    // 1. Translate description
+    let descriptionToTranslate = '';
+    if (typeof villa.fullDescription === 'string') {
+        descriptionToTranslate = villa.fullDescription;
+    } else if (villa.fullDescription && typeof villa.fullDescription === 'object') {
+        descriptionToTranslate = villa.fullDescription.fr || '';
+    }
+
+    if (descriptionToTranslate) {
+        const translatedDesc = await translateServerSide({ text: descriptionToTranslate, targetLang: 'en' });
+        if (typeof villa.fullDescription === 'object') {
+            villa.fullDescription.en = translatedDesc;
+        } else {
+            villa.fullDescription = { fr: descriptionToTranslate, en: translatedDesc };
+        }
+    }
+
+    // 2. Translate amenities that don't have an English name yet
+    if (villa.amenities && Array.isArray(villa.amenities)) {
+        villa.amenities = await Promise.all(
+            villa.amenities.map(async (amenity) => {
+                if (!amenity.name_en && amenity.name) {
+                    try {
+                        const translatedName = await translateServerSide({ text: amenity.name, targetLang: 'en' });
+                        return { ...amenity, name_en: translatedName };
+                    } catch {
+                        return amenity; // Gracefully fall back to French name
+                    }
+                }
+                return amenity;
+            })
+        );
+    }
+}
+
 export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
@@ -29,95 +70,40 @@ export async function GET(request: NextRequest) {
         const includePricing = searchParams.get('includePricing') === 'true';
 
         if (!villaId) {
-            return NextResponse.json(
-                { error: 'Villa ID is required' },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: 'Villa ID is required' }, { status: 400 });
         }
 
-        // Fetch villa data from CMS
         const villa = await CmsService.getVillaById(villaId);
-
         if (!villa) {
-            return NextResponse.json(
-                { error: 'Villa not found' },
-                { status: 404 }
-            );
+            return NextResponse.json({ error: 'Villa not found' }, { status: 404 });
         }
 
-        // --- TRANSLATE CONTENT FOR PDF ---
-        // If the language is English, we translate the dynamic content
         if (lang === 'en') {
             try {
-                // 1. Translate Description
-                // Handle both legacy string format and new object format {fr, en}
-                let descriptionToTranslate = '';
-                if (typeof villa.fullDescription === 'string') {
-                    descriptionToTranslate = villa.fullDescription;
-                } else if (villa.fullDescription && typeof villa.fullDescription === 'object') {
-                    descriptionToTranslate = villa.fullDescription.fr || '';
-                }
-
-                if (descriptionToTranslate) {
-                    console.log(`[PDF Gen] Translating description...`);
-                    const translatedDesc = await translateServerSide({ text: descriptionToTranslate, targetLang: 'en' });
-                    console.log(`[PDF Gen] Description translated!`);
-                    // Ensure the translated string is set on the 'en' property, 
-                    // which is what VillaBrochurePDF expects
-                    if (typeof villa.fullDescription === 'object') {
-                        villa.fullDescription.en = translatedDesc;
-                    } else {
-                        villa.fullDescription = { fr: descriptionToTranslate, en: translatedDesc };
-                    }
-                }
-
-                // 2. Translate Amenities
-                if (villa.amenities && Array.isArray(villa.amenities)) {
-                    console.log(`[PDF Gen] Translating ${villa.amenities.length} amenities...`);
-                    // Translate each amenity that doesn't natively have an English name
-                    const translatedAmenities = await Promise.all(
-                        villa.amenities.map(async (amenity: any) => {
-                            if (!amenity.name_en && amenity.name) {
-                                try {
-                                    console.log(`[PDF Gen] Translating amenity: ${amenity.name}`);
-                                    const translatedName = await translateServerSide({ text: amenity.name, targetLang: 'en' });
-                                    console.log(`[PDF Gen] Translated amenity: ${amenity.name} -> ${translatedName}`);
-                                    return { ...amenity, name_en: translatedName };
-                                } catch (err) {
-                                    console.error(`Failed to translate amenity ${amenity.name}`, err);
-                                    return amenity;
-                                }
-                            }
-                            return amenity;
-                        })
-                    );
-                    villa.amenities = translatedAmenities;
-                    console.log(`[PDF Gen] All amenities translated!`);
-                }
+                await translateVillaForPDF(villa);
             } catch (translationError) {
                 console.error('Error translating PDF content:', translationError);
-                // Continue generating the PDF even if translation fails partially
+                // Continue generating the PDF even if translation fails
             }
         }
-        // --- END TRANSLATE CONTENT ---
 
-        // Generate PDF
         const pdfDocument = <VillaBrochurePDF villa={villa} language={lang} includePricing={includePricing} />;
         const pdfBuffer = await renderToBuffer(pdfDocument);
-
-        // Generate filename
         const fileName = generatePDFFileName(villa);
 
-        // Return PDF with proper headers (including CORS for Sanity Studio)
+        const CORS_HEADERS = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        };
+
         return new NextResponse(pdfBuffer as unknown as BodyInit, {
             status: 200,
             headers: {
                 'Content-Type': 'application/pdf',
                 'Content-Disposition': `attachment; filename="${fileName}"`,
                 'Cache-Control': 'no-store, max-age=0',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type',
+                ...CORS_HEADERS,
             },
         });
     } catch (error) {

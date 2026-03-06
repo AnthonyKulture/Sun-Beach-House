@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 export interface Equipment {
   _id: string;
@@ -20,11 +20,6 @@ export interface Location {
   order: number;
 }
 
-// DEPRECATED: Kept for backward compatibility during migration
-export interface Amenity {
-  icon: string; // Name of the Lucide icon
-  label: string;
-}
 
 export interface BedroomPrice {
   bedrooms: number;
@@ -97,7 +92,7 @@ export interface ServiceItem {
   id: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 export interface BookingParams {

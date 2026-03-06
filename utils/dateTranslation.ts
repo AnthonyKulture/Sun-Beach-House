@@ -54,7 +54,3 @@ export const translateDate = (frenchDate: string, targetLang: Language): string 
     return result;
 };
 
-// Backward compatibility: keep old function name
-export const translateDateToEnglish = (frenchDate: string): string => {
-    return translateDate(frenchDate, 'en');
-};

@@ -1,13 +1,13 @@
-// Translation Service - Now uses server-side API route
-// Client-side wrapper that calls /api/translate
+// Translation Service — canonical public entrypoint for client-side translation.
+// Components should import from here, not directly from googleTranslation.ts.
 
 import { translateWithGoogle } from './googleTranslation';
 
 /**
- * Translate text with caching (handled server-side via API route)
- * @param text - French text to translate
- * @param targetLang - Target language (en, pt, es)
- * @returns Translated text
+ * Translate text using the secure server-side API route (handles caching).
+ * @param text - Source text to translate
+ * @param targetLang - Target language code
+ * @returns Translated text, or original text if translation fails
  */
 export async function translateWithCache(
     text: string,
@@ -18,21 +18,18 @@ export async function translateWithCache(
     }
 
     try {
-        // Call our API route which handles both translation and caching
-        const translated = await translateWithGoogle(text, { targetLang });
-        return translated;
+        return await translateWithGoogle(text, { targetLang });
     } catch (error) {
         console.error('[Translation] Error:', error);
-        // Return original text if translation fails
-        return text;
+        return text; // Graceful fallback: return original text
     }
 }
 
 /**
- * Batch translate multiple texts (optimized)
- * @param texts - Array of French texts
- * @param targetLang - Target language
- * @returns Array of translated texts
+ * Batch translate multiple texts in parallel.
+ * @param texts - Array of source texts
+ * @param targetLang - Target language code
+ * @returns Array of translated texts (same order as input)
  */
 export async function batchTranslate(
     texts: string[],

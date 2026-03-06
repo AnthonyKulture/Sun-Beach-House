@@ -5,21 +5,7 @@ import { Villa } from '../types';
 import { translations } from '../i18n/translations';
 import { optimizeImageForPDF } from '../utils/pdfHelpers';
 import { translateDate } from '../utils/dateTranslation';
-import path from 'path';
 
-import fs from 'fs';
-
-// Get logo as Base64 to ensure it renders correctly in PDF (bypassing path issues)
-// const getLogoPath = () => {
-//     try {
-//         const logoPath = path.join(process.cwd(), 'public', 'logo-sbh.png');
-//         const logoData = fs.readFileSync(logoPath).toString('base64');
-//         return `data:image/png;base64,${logoData}`;
-//     } catch (error) {
-//         console.error('Error loading logo:', error);
-//         return '';
-//     }
-// };
 
 // Define color palette matching design system
 const colors = {
@@ -243,13 +229,23 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
+/** Splits an array into chunks of a given size (used for gallery pagination) */
+function chunkArray<T>(arr: T[], size: number): T[][] {
+    const chunks: T[][] = [];
+    for (let i = 0; i < arr.length; i += size) {
+        chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+}
+
 interface VillaBrochurePDFProps {
     villa: Villa;
-    language: 'fr' | 'en';
+    /** @deprecated Language is always English — kept for API compatibility with the CMS actions */
+    language?: 'fr' | 'en';
     includePricing?: boolean; // Direct control over pricing display
 }
 
-export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, language, includePricing = false }) => {
+export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, includePricing = false }) => {
     // Determine if we show seasonal pricing based on includePricing prop and villa type
     const showSeasonalPricing =
         includePricing &&
@@ -259,13 +255,8 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
 
     const isSale = villa.listingType === 'sale';
 
-    // Use English for everything
-    const pdfLanguage = 'en';
-    const t = translations[pdfLanguage];
-
-    // Debug logs
-    console.log('VillaBrochurePDF rendering with includePricing:', includePricing);
-    console.log('Show Seasonal Pricing:', showSeasonalPricing);
+    // PDF is always generated in English
+    const t = translations['en'];
 
     // Show all amenities (ensure array exists)
     const displayedAmenities = villa.amenities || [];
@@ -277,11 +268,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
         : (villa.fullDescription || '');
 
     // Gallery: Split into chunks of 2 for portrait layout
-    const galleryImages = villa.galleryImages;
-    const galleryPages: string[][] = [];
-    for (let i = 0; i < galleryImages.length; i += 2) {
-        galleryPages.push(galleryImages.slice(i, i + 2));
-    }
+    const galleryPages = chunkArray(villa.galleryImages, 2);
 
     return (
         <Document>
@@ -384,7 +371,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                                     ? t.villa.seasons[normalizedKey]
                                     : season.seasonName.name;
 
-                                const dateString = translateDate(season.dates, pdfLanguage);
+                                const dateString = translateDate(season.dates, 'en');
 
                                 return (
                                     <View key={index} style={styles.priceRow}>

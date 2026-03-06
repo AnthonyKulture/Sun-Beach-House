@@ -1,28 +1,5 @@
 import { Villa, SeasonalPrice, BedroomPrice, Equipment, Season, Location } from '../types';
 
-// Labels par défaut pour les équipements
-const EQUIPMENT_LABELS: Record<string, string> = {
-  'Wifi': 'Wifi Haut Débit',
-  'Wind': 'Climatisation',
-  'Waves': 'Accès Plage Direct',
-  'ChefHat': 'Cuisine Équipée',
-  'Car': 'Parking Privé',
-  'Droplets': 'Piscine',
-  'Sun': 'Terrasse / Solarium',
-  'Coffee': 'Machine à Café',
-  'Flower2': 'Jardin Tropical',
-  'Speaker': 'Système Audio Sonos',
-  'Dumbbell': 'Salle de Fitness',
-  'Tv': 'TV / Cinéma',
-  'Shield': 'Sécurité 24/7',
-  'Utensils': 'Barbecue',
-  'ShoppingBag': 'Proche Commerces',
-  'Martini': 'Bar Extérieur',
-  'Music': 'Sonorisation',
-  'Key': 'Service Conciergerie',
-  'Star': 'Équipement',
-};
-
 // Configuration Sanity - Using environment variables
 const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'i6dkdu7j';
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
@@ -57,8 +34,12 @@ const buildImageUrl = (ref: string) => {
   return `https://cdn.sanity.io/images/${PROJECT_ID}/${DATASET}/${id}-${dimensions}.${format}`;
 };
 
+/** Raw document shape returned by the Sanity GROQ query */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SanityVillaDoc = Record<string, any>;
+
 // Mapping des données Sanity vers le format Villa
-const mapSanityVilla = (doc: any): Villa => {
+const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
   const seasonalPrices: SeasonalPrice[] | undefined = doc.seasonalPrices
     ?.filter((sp: any) => sp.seasonName) // Filter out missing seasons
     .map((sp: any, index: number) => ({

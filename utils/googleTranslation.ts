@@ -22,8 +22,6 @@ export async function translateWithGoogle(
     text: string,
     options: TranslationOptions
 ): Promise<string> {
-    const { targetLang } = options;
-
     try {
         const response = await fetch('/api/translate', {
             method: 'POST',
@@ -32,7 +30,7 @@ export async function translateWithGoogle(
             },
             body: JSON.stringify({
                 text,
-                targetLang,
+                targetLang: options.targetLang,
                 sourceLang: options.sourceLang,
             }),
         });
@@ -48,17 +46,4 @@ export async function translateWithGoogle(
         console.error('[Translation] Error:', error);
         throw error;
     }
-}
-
-/**
- * Generate SHA-256 hash of text for cache indexing
- * @param text - Text to hash
- * @returns Hex string hash
- */
-export async function hashText(text: string): Promise<string> {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(text);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
