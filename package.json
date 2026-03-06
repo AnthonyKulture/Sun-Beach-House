@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "next dev",
+    "dev:cms": "npm run dev --prefix sbh-cms",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:cms\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -26,6 +28,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.22",
+    "concurrently": "^9.2.1",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.0",
     "postcss": "^8.5.6",

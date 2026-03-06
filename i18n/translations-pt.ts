@@ -71,6 +71,7 @@ export const pt: Translations = {
         villa: 'Villa',
         apartment: 'Apartamento',
         land: 'Terreno',
+        commercial: 'Ponto comercial',
         price: 'Preço',
         minPrice: 'Min',
         maxPrice: 'Max',
@@ -141,7 +142,11 @@ export const pt: Translations = {
         types: {
             villa: 'Villa',
             apartment: 'Apartamento',
+            land: 'Terreno',
+            commercial: 'Ponto comercial',
         },
+        surface: 'Área útil',
+        landSurface: 'Terreno',
     },
 
     booking: {

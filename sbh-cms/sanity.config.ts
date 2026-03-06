@@ -31,7 +31,7 @@ export default defineConfig({
 
             S.divider(),
 
-            // === SECTION: LOCATIONS ===
+              // === SECTION: LOCATIONS ===
             S.listItem()
               .title('🏖️ Locations de vacances')
               .child(
@@ -51,7 +51,19 @@ export default defineConfig({
                     S.divider(),
 
                     // Par localisation
-                    ...createLocationItems(S, 'rent'),
+                    S.listItem()
+                      .title('📍 Par quartier (Locations)')
+                      .child(
+                        S.documentTypeList('location')
+                          .title('Quartiers')
+                          .child((locationId) =>
+                            S.documentTypeList('villa')
+                              .title('Villas dans ce quartier (Location)')
+                              .filter('_type == "villa" && listingType == "rent" && location._ref == $locationId')
+                              .params({ locationId })
+                              .defaultOrdering([{ field: 'name', direction: 'asc' }])
+                          )
+                      ),
                   ])
               ),
 
@@ -75,19 +87,48 @@ export default defineConfig({
                     S.divider(),
 
                     // Par localisation
-                    ...createLocationItems(S, 'sale'),
+                    S.listItem()
+                      .title('📍 Par quartier (Ventes)')
+                      .child(
+                        S.documentTypeList('location')
+                          .title('Quartiers')
+                          .child((locationId) =>
+                            S.documentTypeList('villa')
+                              .title('Propriétés dans ce quartier (Vente)')
+                              .filter('_type == "villa" && listingType == "sale" && location._ref == $locationId')
+                              .params({ locationId })
+                              .defaultOrdering([{ field: 'name', direction: 'asc' }])
+                          )
+                      ),
                   ])
               ),
 
             S.divider(),
 
-            // === VUE: PAR LOCALISATION ===
+            // === VUE: GESTION DES LOCALISATIONS ===
             S.listItem()
-              .title('📍 Par localisation')
+              .title('🗺️ Gérer les Localisations (Quartiers)')
               .child(
-                S.list()
-                  .title('Villas par localisation')
-                  .items(createLocationItems(S, null))
+                S.documentTypeList('location')
+                  .title('Localisations')
+                  .defaultOrdering([{ field: 'name', direction: 'asc' }])
+              ),
+
+            S.divider(),
+
+            // === VUE: PAR LOCALISATION (TOUTES) ===
+            S.listItem()
+              .title('📍 Toutes les Villas par localisation')
+              .child(
+                S.documentTypeList('location')
+                  .title('Quartiers')
+                  .child((locationId) =>
+                    S.documentTypeList('villa')
+                      .title('Toutes les villas dans ce quartier')
+                      .filter('_type == "villa" && location._ref == $locationId')
+                      .params({ locationId })
+                      .defaultOrdering([{ field: 'name', direction: 'asc' }])
+                  )
               ),
 
             S.divider(),
@@ -120,40 +161,3 @@ export default defineConfig({
     },
   },
 })
-
-// Fonction helper pour créer les items de localisation
-function createLocationItems(S: any, listingType: 'rent' | 'sale' | null) {
-  const locations = [
-    { title: 'Flamands', emoji: '🏖️' },
-    { title: 'Grand Cul de Sac', emoji: '🌊' },
-    { title: 'Gustavia', emoji: '⚓' },
-    { title: 'Lorient', emoji: '🏝️' },
-    { title: 'Lurin', emoji: '🌴' },
-    { title: 'St Jean', emoji: '✈️' },
-    { title: 'Saline', emoji: '🌺' },
-    { title: 'Gouverneur', emoji: '🏔️' },
-    { title: 'Colombier', emoji: '⛰️' },
-    { title: 'Toiny', emoji: '🌅' },
-    { title: 'Corossol', emoji: '🐚' },
-    { title: 'Marigot', emoji: '🌴' },
-    { title: 'Petit Cul de Sac', emoji: '🏄' },
-    { title: 'Pointe Milou', emoji: '🌊' },
-    { title: 'Vitet', emoji: '🌿' },
-  ]
-
-  return locations.map((loc) => {
-    let filterQuery = `location == "${loc.title}"`
-    if (listingType) {
-      filterQuery += ` && listingType == "${listingType}"`
-    }
-
-    return S.listItem()
-      .title(`${loc.emoji} ${loc.title}`)
-      .child(
-        S.documentTypeList('villa')
-          .title(`${loc.title}${listingType ? ` (${listingType === 'rent' ? 'Locations' : 'Ventes'})` : ''}`)
-          .filter(filterQuery)
-          .defaultOrdering([{ field: 'name', direction: 'asc' }])
-      )
-  })
-}

@@ -14,8 +14,8 @@ export const GeneratePDFWithPricingAction: DocumentActionComponent = (props) => 
             // Get the published document ID (remove 'drafts.' prefix if present)
             const villaId = id.replace(/^drafts\./, '')
 
-            // Get current language (default to French)
-            const language = 'fr'
+            // Get current language (force English)
+            const language = 'en'
 
             // Open loading toast
             props.onComplete()

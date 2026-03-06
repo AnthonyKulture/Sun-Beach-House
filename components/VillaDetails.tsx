@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Villa, HomeFeature } from '../types';
 import { useVillas, useVilla } from '../hooks/useCMS';
-import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home } from 'lucide-react';
+import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home, Trees } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { VillaMap } from './VillaMap';
 import { FullscreenGallery } from './FullscreenGallery';
@@ -271,7 +271,10 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                     <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll">
                         <Home size={16} className="text-sbh-stone" strokeWidth={1.5} />
                         <span className="text-xs md:text-sm font-sans uppercase tracking-widest">
-                            {villa.propertyType === 'apartment' ? t.villa.types.apartment : t.villa.types.villa}
+                            {villa.propertyType === 'apartment' ? t.villa.types.apartment :
+                                villa.propertyType === 'land' ? t.villa.types.land :
+                                    villa.propertyType === 'commercial' ? t.villa.types.commercial :
+                                        t.villa.types.villa}
                         </span>
                     </div>
 
@@ -292,11 +295,18 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                         <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.bathrooms}</strong> {villa.bathrooms > 1 ? t.villa.bathrooms : t.villa.bathroom}</span>
                     </div>
 
-                    {/* Hide Surface Area for Rentals */}
-                    {isSale && (
+                    {/* Surface Area for Sales */}
+                    {isSale && villa.surface && (
                         <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '300ms' }}>
                             <Square size={16} className="text-sbh-stone" strokeWidth={1.5} />
-                            <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.surface}</strong> m²</span>
+                            <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.surface}</strong> m² <span className="text-[9px] md:text-[10px] text-gray-400">{t.villa.surface}</span></span>
+                        </div>
+                    )}
+
+                    {isSale && villa.landSurface && (
+                        <div className="flex items-center gap-3 text-sbh-charcoal/80 reveal-on-scroll" style={{ transitionDelay: '350ms' }}>
+                            <Trees size={16} className="text-sbh-stone" strokeWidth={1.5} />
+                            <span className="text-xs md:text-sm font-sans uppercase tracking-widest"><strong className="text-sbh-charcoal">{villa.landSurface}</strong> m² <span className="text-[9px] md:text-[10px] text-gray-400">{t.villa.landSurface}</span></span>
                         </div>
                     )}
 
@@ -594,6 +604,20 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                             </div>
                         </div>
                     )}
+
+                    {/* PDF DOWNLOAD BUTTON (MOVED HERE) */}
+                    {villa.brochurePdfUrl && (
+                        <div className="mb-16 md:mb-24 flex justify-center lg:justify-start reveal-on-scroll">
+                            <a
+                                href={villa.brochurePdfUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex w-full md:w-auto border border-sbh-charcoal text-sbh-charcoal px-8 py-4 font-sans text-xs uppercase tracking-[0.2em] hover:bg-sbh-charcoal hover:text-white transition-colors duration-500 rounded-sm items-center justify-center gap-2"
+                            >
+                                {t.villa.downloadPdf}
+                            </a>
+                        </div>
+                    )}
                 </div>
 
                 {/* RIGHT SIDEBAR (BOOKING DESKTOP - Visible from LG upwards) */}
@@ -630,20 +654,10 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     >
                                         <Mail size={16} /> {t.villa.contactAgent}
                                     </button>
-                                    {villa.brochurePdfUrl && (
-                                        <a
-                                            href={villa.brochurePdfUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full mt-3 border border-sbh-charcoal text-sbh-charcoal py-4 font-sans text-[10px] uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white transition-colors duration-500 rounded-sm flex items-center justify-center gap-2"
-                                        >
-                                            {t.villa.downloadPdf}
-                                        </a>
-                                    )}
                                     <div className="border-t border-gray-100 pt-4 mt-4">
                                         <div className="flex items-center gap-4 mb-2">
                                             <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden relative">
-                                                <Image src="https://images.unsplash.com/photo-1573599971936-8a79854743c6?q=80&w=200&auto=format&fit=crop" alt="Agent" fill sizes="48px" className="object-cover" />
+                                                <Image src="/images/valerie-founder.jpg" alt="Agent" fill sizes="48px" className="object-cover" />
                                             </div>
                                             <div>
                                                 <p className="font-serif text-sbh-charcoal">{t.villa.valerie}</p>
@@ -721,17 +735,6 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     >
                                         {t.villa.reserve}
                                     </button>
-                                    {villa.brochurePdfUrl && (
-                                        <a
-                                            href={villa.brochurePdfUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full mt-3 border border-sbh-charcoal text-sbh-charcoal py-3 lg:py-2 xl:py-3 font-sans text-[10px] lg:text-[9px] xl:text-[10px] uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white transition-colors duration-500 rounded-sm flex items-center justify-center text-center block"
-                                        >
-                                            {t.villa.downloadPdf}
-                                        </a>
-                                    )}
-
                                     <p className="text-center text-[11px] lg:text-[9px] xl:text-[11px] text-gray-500 mt-3 lg:mt-2 xl:mt-3 font-sans font-medium leading-relaxed whitespace-pre-line px-2">
                                         {t.villa.noImmediateCharge}
                                     </p>

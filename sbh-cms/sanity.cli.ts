@@ -12,5 +12,8 @@ export default defineCliConfig({
      * Learn more at https://www.sanity.io/docs/cli#auto-updates
      */
     autoUpdates: true,
-  }
+  },
+  server: {
+    host: '0.0.0.0',
+  },
 })

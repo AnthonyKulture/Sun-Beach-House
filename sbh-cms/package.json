@@ -5,7 +5,7 @@
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "sanity dev",
+    "dev": "sanity dev --host 0.0.0.0",
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
@@ -17,13 +17,14 @@
   "dependencies": {
     "@google-cloud/translate": "^9.3.0",
     "@sanity/locale-fr-fr": "^1.2.27",
-    "@sanity/vision": "^4.21.1",
+    "@sanity/vision": "^4.22.0",
     "csv-parse": "^6.1.0",
     "dotenv": "^17.2.3",
     "html-to-text": "^9.0.5",
+    "jsesc": "^3.1.0",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^4.21.1",
+    "sanity": "^4.22.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
@@ -38,5 +39,8 @@
     "printWidth": 100,
     "bracketSpacing": false,
     "singleQuote": true
+  },
+  "overrides": {
+    "vite": "^6.3.5"
   }
 }

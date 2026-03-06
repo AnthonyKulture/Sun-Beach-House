@@ -193,6 +193,7 @@ const villa = defineType({
           { title: 'Villa', value: 'villa' },
           { title: 'Appartement', value: 'apartment' },
           { title: 'Terrain', value: 'land' },
+          { title: 'Fond de commerce', value: 'commercial' },
         ],
         layout: 'radio',
       },

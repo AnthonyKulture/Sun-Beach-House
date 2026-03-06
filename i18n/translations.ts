@@ -74,6 +74,7 @@ export interface Translations {
         villa: string;
         apartment: string;
         land: string;
+        commercial: string;
         price: string;
         minPrice: string;
         maxPrice: string;
@@ -145,7 +146,11 @@ export interface Translations {
         types: {
             villa: string;
             apartment: string;
+            land: string;
+            commercial: string;
         };
+        surface: string;
+        landSurface: string;
     };
 
     // Booking
@@ -473,7 +478,7 @@ const fr: Translations = {
         ourCollections: 'Nos Collections',
         seasonalRentals: 'Locations saisonnières',
         propertiesForSale: 'Biens à vendre',
-        disclaimerText: 'Certaines villas d’exception sont volontairement conservées hors ligne afin de préserver la discrétion de leurs propriétaires.\nNotre équipe pourra vous les présenter de manière personnalisée selon vos critères.',
+        disclaimerText: 'Certaines villas d’exception sont volontairement conservées hors ligne<br/>afin de préserver la discrétion de leurs propriétaires.<br/>Notre équipe pourra vous les présenter de manière personnalisée selon vos critères.',
     },
 
     collections: {
@@ -514,6 +519,7 @@ const fr: Translations = {
         villa: 'Villa',
         apartment: 'Appartement',
         land: 'Terrain',
+        commercial: 'Fond de commerce',
         price: 'Prix',
         minPrice: 'Min',
         maxPrice: 'Max',
@@ -584,7 +590,11 @@ const fr: Translations = {
         types: {
             villa: 'Villa',
             apartment: 'Appartement',
+            land: 'Terrain',
+            commercial: 'Fond de commerce',
         },
+        surface: 'Habitable',
+        landSurface: 'Terrain',
     },
 
     downloadBrochure: {
@@ -1006,6 +1016,7 @@ const en: Translations = {
         villa: 'Villa',
         apartment: 'Apartment',
         land: 'Land',
+        commercial: 'Commercial property',
         price: 'Price',
         minPrice: 'Min',
         maxPrice: 'Max',
@@ -1076,7 +1087,11 @@ const en: Translations = {
         types: {
             villa: 'Villa',
             apartment: 'Apartment',
+            land: 'Land',
+            commercial: 'Commercial property',
         },
+        surface: 'Living area',
+        landSurface: 'Land',
     },
 
     map: {

@@ -64,6 +64,7 @@ export const equipment = defineType({
                     { title: '⭐ Star (Personnalisé)', value: 'Star' },
                     { title: '🎾 Trophy (Tennis)', value: 'Trophy' },
                     { title: '🥎 Activity (Padel)', value: 'Activity' },
+                    { title: '💆‍♀️ Heart (Massage / Spa)', value: 'Heart' },
                 ],
                 layout: 'dropdown',
             },
@@ -83,7 +84,7 @@ export const equipment = defineType({
                 'Shield': '🔒', 'Lock': '🔐', 'Utensils': '🍖', 'Briefcase': '💼', 'Baby': '👶',
                 'Accessibility': '♿', 'ShoppingBag': '🛍️', 'Martini': '🍸', 'Music': '🎵',
                 'Video': '📹', 'Bike': '🚲', 'Ship': '⛵', 'Anchor': '⚓',
-                'Key': '🔑', 'Star': '⭐'
+                'Key': '🔑', 'Star': '⭐', 'Heart': '💆‍♀️'
             }
             return {
                 title: name || 'Nouvel équipement',

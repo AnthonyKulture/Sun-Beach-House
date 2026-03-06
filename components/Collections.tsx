@@ -198,10 +198,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             // Property Type Filter
             const matchPropertyType = !filters.propertyType || filters.propertyType === 'all' || villa.propertyType === filters.propertyType;
 
-            // Land Surface Filter (Sale only)
-            const matchLandSurface = mode === 'rent' || !filters.landSurface || (villa.landSurface || 0) >= filters.landSurface;
-
-            return matchName && matchLocation && matchBedrooms && matchPrice && matchAmenities && matchPropertyType && matchLandSurface;
+            return matchName && matchLocation && matchBedrooms && matchPrice && matchAmenities && matchPropertyType;
         });
     }, [filters, mode, villas]);
 
@@ -344,6 +341,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                     <option value="villa">Villa</option>
                                     <option value="apartment">Appartement</option>
                                     <option value="land">Terrain</option>
+                                    <option value="commercial">Fond de commerce</option>
                                 </select>
                             </div>
                         )}
@@ -388,27 +386,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                             </div>
                         )}
 
-                        {/* Land Surface Filter (Only for Sales) */}
-                        {mode === 'sale' && (
-                            <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
-                                <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
-                                    <Grid size={10} /> Surface terrain min (m²)
-                                </label>
-                                <div className="flex items-center gap-2 md:gap-4">
-                                    <input
-                                        type="range" min="0" max="5000" step="10"
-                                        value={filters.landSurface || 0}
-                                        onChange={(e) => onUpdateFilters({ ...filters, landSurface: parseInt(e.target.value) })}
-                                        className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
-                                    />
-                                    <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-16 text-right whitespace-nowrap overflow-visible">
-                                        {(!filters.landSurface || filters.landSurface === 0) ? '0 m²' : (
-                                            filters.landSurface >= 5000 ? '5000+ m²' : `${filters.landSurface} m²`
-                                        )}
-                                    </span>
-                                </div>
-                            </div>
-                        )}
+
 
                         {/* Amenities Filter (Only for Rent) */}
                         {mode === 'rent' && (

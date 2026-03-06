@@ -67,7 +67,7 @@ export interface Villa {
   pricePerWeek?: number; // Optional, preferred for rentals
   salePrice?: number; // Optional, for sales
   listingType: 'rent' | 'sale'; // New discriminator
-  propertyType?: 'villa' | 'apartment' | 'land'; // villa, apartment or land
+  propertyType?: 'villa' | 'apartment' | 'land' | 'commercial'; // villa, apartment, land or commercial
   seasonalPrices?: SeasonalPrice[]; // Array of seasonal pricing (rentals only)
   bedrooms: number;
   bathrooms: number;

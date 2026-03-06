@@ -10,16 +10,16 @@ import path from 'path';
 import fs from 'fs';
 
 // Get logo as Base64 to ensure it renders correctly in PDF (bypassing path issues)
-const getLogoPath = () => {
-    try {
-        const logoPath = path.join(process.cwd(), 'public', 'logo-sbh.png');
-        const logoData = fs.readFileSync(logoPath).toString('base64');
-        return `data:image/png;base64,${logoData}`;
-    } catch (error) {
-        console.error('Error loading logo:', error);
-        return '';
-    }
-};
+// const getLogoPath = () => {
+//     try {
+//         const logoPath = path.join(process.cwd(), 'public', 'logo-sbh.png');
+//         const logoData = fs.readFileSync(logoPath).toString('base64');
+//         return `data:image/png;base64,${logoData}`;
+//     } catch (error) {
+//         console.error('Error loading logo:', error);
+//         return '';
+//     }
+// };
 
 // Define color palette matching design system
 const colors = {
@@ -45,19 +45,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.cream,
         padding: 0,
     },
-    // Compact Header - Logo on right
+    // Compact Header - Title only
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 30,
         paddingBottom: 20,
         borderBottom: `1px solid #E0E0E0`,
-    },
-    logoImage: {
-        width: 100,
-        height: 60,
-        objectFit: 'contain',
     },
     villaName: {
         fontSize: 24,
@@ -215,7 +210,6 @@ const styles = StyleSheet.create({
         height: 280,
         objectFit: 'cover',
     },
-    // Compact Footer
     footer: {
         position: 'absolute',
         bottom: 0,
@@ -224,20 +218,7 @@ const styles = StyleSheet.create({
         padding: 18,
         paddingHorizontal: 30,
         backgroundColor: '#C3CBC4',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    footerText: {
-        fontSize: 7,
-        fontFamily: 'Helvetica',
-        color: colors.charcoal,
-        lineHeight: 1.5,
-    },
-    footerBold: {
-        fontSize: 8,
-        fontFamily: 'Helvetica-Bold',
-        color: colors.charcoal,
+        height: 30, // Just a visual bar, no text
     },
 });
 
@@ -272,7 +253,9 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
 
     const isSale = villa.listingType === 'sale';
 
-    const t = translations[language];
+    // Use English for everything
+    const pdfLanguage = 'en';
+    const t = translations[pdfLanguage];
 
     // Debug logs
     console.log('VillaBrochurePDF rendering with includePricing:', includePricing);
@@ -281,10 +264,10 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
     // Show all amenities (ensure array exists)
     const displayedAmenities = villa.amenities || [];
 
-    // Get localized description - FULL VERSION (no truncation)
+    // Get localized description - FULL VERSION (no truncation) (en forced)
     // @ts-ignore - Handle legacy string or new object structure
     const fullDescription = typeof villa.fullDescription === 'object'
-        ? (villa.fullDescription[language] || villa.fullDescription['fr'] || '')
+        ? (villa.fullDescription['en'] || villa.fullDescription['fr'] || '')
         : (villa.fullDescription || '');
 
     // Gallery: Split into chunks of 2 for portrait layout
@@ -298,10 +281,9 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
         <Document>
             {/* PAGE 1: Hero + Description + Amenities */}
             <Page size="A4" style={styles.page}>
-                {/* Header - Villa name left, logo right */}
+                {/* Header - Villa name left */}
                 <View style={styles.header}>
                     <Text style={styles.villaName}>{villa.name}</Text>
-                    <Image src={getLogoPath()} style={styles.logoImage} />
                 </View>
 
                 {/* Hero Image */}
@@ -323,18 +305,18 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 <View style={styles.detailsGrid}>
                     <View style={styles.detailItem}>
                         <Text style={styles.detailLabel}>Type</Text>
-                        <Text style={styles.detailValue}>{villa.propertyType === 'apartment' ? (language === 'fr' ? 'Appartement' : 'Apartment') : 'Villa'}</Text>
+                        <Text style={styles.detailValue}>{villa.propertyType === 'apartment' ? 'Apartment' : 'Villa'}</Text>
                     </View>
                     <View style={styles.detailItem}>
-                        <Text style={styles.detailLabel}>Invités</Text>
+                        <Text style={styles.detailLabel}>Guests</Text>
                         <Text style={styles.detailValue}>{villa.guests}</Text>
                     </View>
                     <View style={styles.detailItem}>
-                        <Text style={styles.detailLabel}>Chambres</Text>
+                        <Text style={styles.detailLabel}>Bedrooms</Text>
                         <Text style={styles.detailValue}>{villa.bedrooms}</Text>
                     </View>
                     <View style={styles.detailItem}>
-                        <Text style={styles.detailLabel}>Salles de Bain</Text>
+                        <Text style={styles.detailLabel}>Bathrooms</Text>
                         <Text style={styles.detailValue}>{villa.bathrooms}</Text>
                     </View>
                     {isSale && villa.surface && (
@@ -347,32 +329,20 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
 
                 {/* Description - Full width */}
                 <View style={styles.contentSection}>
-                    <Text style={styles.sectionTitle}>À Propos</Text>
+                    <Text style={styles.sectionTitle}>About</Text>
                     <Text style={styles.description}>{fullDescription}</Text>
                 </View>
 
                 {/* Footer */}
-                <View style={styles.footer} fixed>
-                    <View>
-                        <Text style={styles.footerBold}>Valérie</Text>
-                        <Text style={styles.footerText}>+590 690 63 47 25</Text>
-                        <Text style={styles.footerText}>valerie@sun-beach-house.com</Text>
-                    </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={styles.footerBold}>Sun Beach House</Text>
-                        <Text style={styles.footerText}>65 RUE DE LA PAIX GUSTAVIA</Text>
-                        <Text style={styles.footerText}>97133 SAINT BARTHELEMY</Text>
-                    </View>
-                </View>
+                <View style={styles.footer} fixed />
             </Page>
 
             {/* PAGE 2: Équipements + Tarifs */}
             <Page size="A4" style={styles.page}>
                 <View style={styles.header}>
                     <Text style={{ ...styles.villaName, fontSize: 20 }}>
-                        Équipements{showSeasonalPricing ? ' & Tarifs' : ''}
+                        Amenities{showSeasonalPricing ? ' & Pricing' : ''}
                     </Text>
-                    <Image src={getLogoPath()} style={styles.logoImage} />
                 </View>
 
                 {/* Amenities - 2 columns grid */}
@@ -380,9 +350,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                     {displayedAmenities && displayedAmenities.length > 0 ? (
                         <View style={styles.amenitiesGrid}>
                             {displayedAmenities.map((amenity, index) => {
-                                const displayName = (language !== 'fr' && amenity.name_en)
-                                    ? amenity.name_en
-                                    : amenity.name; // Fallback to French name if EN missing or language is FR
+                                const displayName = amenity.name_en || amenity.name; // Fallback to French name if EN missing
 
                                 return (
                                     <View key={index} style={styles.amenityItem}>
@@ -393,25 +361,24 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                             })}
                         </View>
                     ) : (
-                        <Text style={styles.description}>Aucun équipement renseigné</Text>
+                        <Text style={styles.description}>No amenities listed</Text>
                     )}
                 </View>
 
                 {/* Seasonal Pricing (if enabled) */}
                 {showSeasonalPricing && (
                     <View style={styles.pricingSection}>
-                        <Text style={styles.sectionTitle}>Tarifs Saisonniers</Text>
+                        <Text style={styles.sectionTitle}>Seasonal Pricing</Text>
                         <View style={styles.priceTable}>
                             {villa.seasonalPrices!.slice(0, 6).map((season, index) => {
                                 // Localize: Only translate if language is NOT French (source language)
-                                // If language is FR, use the name from Sanity directly to respect user edits.
+                                // We are forcing English
                                 const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
-                                const isFrenchConfig = language === 'fr';
-                                const translatedName = (!isFrenchConfig && normalizedKey)
+                                const translatedName = normalizedKey
                                     ? t.villa.seasons[normalizedKey]
                                     : season.seasonName.name;
 
-                                const dateString = translateDate(season.dates, language);
+                                const dateString = translateDate(season.dates, pdfLanguage);
 
                                 return (
                                     <View key={index} style={styles.priceRow}>
@@ -419,14 +386,14 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                                             {translatedName} ({dateString})
                                         </Text>
                                         <Text style={styles.priceValue}>
-                                            À partir de ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+                                            From ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
                                         </Text>
                                     </View>
                                 );
                             })}
                         </View>
                         <Text style={{ ...styles.footerText, marginTop: 10, color: colors.gray }}>
-                            Prix par semaine. Service et taxes non inclus.
+                            Prices per week. Service and taxes not included.
                         </Text>
                     </View>
                 )}
@@ -442,18 +409,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 )}
 
                 {/* Footer */}
-                <View style={styles.footer} fixed>
-                    <View>
-                        <Text style={styles.footerBold}>Valérie</Text>
-                        <Text style={styles.footerText}>+590 690 63 47 25</Text>
-                        <Text style={styles.footerText}>valerie@sun-beach-house.com</Text>
-                    </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={styles.footerBold}>Sun Beach House</Text>
-                        <Text style={styles.footerText}>65 RUE DE LA PAIX GUSTAVIA</Text>
-                        <Text style={styles.footerText}>97133 SAINT BARTHELEMY</Text>
-                    </View>
-                </View>
+                <View style={styles.footer} fixed />
             </Page>
 
 
@@ -463,9 +419,8 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                 <Page key={pageIndex} size="A4" style={styles.page}>
                     <View style={styles.header}>
                         <Text style={{ ...styles.villaName, fontSize: 20 }}>
-                            {language === 'fr' ? 'Galerie Photos' : 'Photo Gallery'}
+                            Photo Gallery
                         </Text>
-                        <Image src={getLogoPath()} style={styles.logoImage} />
                     </View>
 
                     <View style={styles.gallerySection}>
@@ -481,18 +436,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, langu
                     </View>
 
                     {/* Footer */}
-                    <View style={styles.footer} fixed>
-                        <View>
-                            <Text style={styles.footerBold}>Valérie</Text>
-                            <Text style={styles.footerText}>+590 690 63 47 25</Text>
-                            <Text style={styles.footerText}>valerie@sun-beach-house.com</Text>
-                        </View>
-                        <View style={{ alignItems: 'flex-end' }}>
-                            <Text style={styles.footerBold}>Sun Beach House</Text>
-                            <Text style={styles.footerText}>65 RUE DE LA PAIX GUSTAVIA</Text>
-                            <Text style={styles.footerText}>97133 SAINT BARTHELEMY</Text>
-                        </View>
-                    </View>
+                    <View style={styles.footer} fixed />
                 </Page>
             ))}
         </Document>
