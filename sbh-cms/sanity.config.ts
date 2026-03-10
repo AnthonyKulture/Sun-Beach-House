@@ -5,6 +5,8 @@ import { frFRLocale } from '@sanity/locale-fr-fr'
 import { schemaTypes } from './schemaTypes'
 import { GeneratePDFAction } from './actions/generatePDFAction'
 import { GeneratePDFWithPricingAction } from './actions/generatePDFWithPricingAction'
+import { ShareSelectionTool } from './tools/ShareSelectionTool'
+import { EnvelopeIcon } from '@sanity/icons'
 
 export default defineConfig({
   name: 'default',
@@ -12,6 +14,18 @@ export default defineConfig({
 
   projectId: 'i6dkdu7j',
   dataset: 'production',
+
+  tools: (prev) => {
+    return [
+      ...prev,
+      {
+        name: 'share-selection',
+        title: 'Partager Sélection',
+        icon: EnvelopeIcon,
+        component: ShareSelectionTool,
+      }
+    ]
+  },
 
   plugins: [
     frFRLocale(),
@@ -31,7 +45,7 @@ export default defineConfig({
 
             S.divider(),
 
-              // === SECTION: LOCATIONS ===
+            // === SECTION: LOCATIONS ===
             S.listItem()
               .title('🏖️ Locations de vacances')
               .child(

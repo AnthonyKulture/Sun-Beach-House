@@ -1,0 +1,399 @@
+import React, { useState, useEffect, useMemo } from 'react'
+import {
+    Box,
+    Card,
+    Container,
+    Flex,
+    Heading,
+    Text,
+    TextInput,
+    Select,
+    Grid,
+    Button,
+    Badge,
+    TextArea,
+    Spinner,
+    Stack
+} from '@sanity/ui'
+import { EnvelopeIcon, SearchIcon, CheckmarkCircleIcon, ArrowRightIcon, ArrowLeftIcon, ErrorOutlineIcon } from '@sanity/icons'
+import { useClient } from 'sanity'
+
+const VILLA_QUERY = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) {
+  _id,
+  name,
+  listingType,
+  pricePerNight,
+  pricePerWeek,
+  salePrice,
+  bedrooms,
+  "locationName": location->name,
+  "imageUrl": mainImage.asset->url
+}`
+
+export function ShareSelectionTool() {
+    const client = useClient({ apiVersion: '2024-03-01' })
+    const [villas, setVillas] = useState<any[]>([])
+    const [loading, setLoading] = useState(true)
+
+    const [step, setStep] = useState<1 | 2>(1)
+    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+
+    // Filters
+    const [searchTerm, setSearchTerm] = useState('')
+    const [listingType, setListingType] = useState('')
+    const [location, setLocation] = useState('')
+    const [bedrooms, setBedrooms] = useState('')
+
+    // Form
+    const [clientEmail, setClientEmail] = useState('')
+    const [subject, setSubject] = useState('Votre sélection de villas par Sun-Beach-House')
+    const [message, setMessage] = useState('Bonjour,\n\nSuite à nos échanges, voici une sélection personnalisée de villas qui correspondent à vos critères.\n\nN\'hésitez pas à me contacter si vous souhaitez plus d\'informations concernant l\'une de ces propriétés.\n\nBien cordialement,')
+
+    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+    const [errorMessage, setErrorMessage] = useState('')
+
+    useEffect(() => {
+        client.fetch(VILLA_QUERY).then((res) => {
+            setVillas(res)
+            setLoading(false)
+        }).catch(err => {
+            console.error(err)
+            setErrorMessage('Erreur lors du chargement des villas')
+            setLoading(false)
+        })
+    }, [client])
+
+    const locations = useMemo(() => {
+        const locs = new Set(villas.map(v => v.locationName).filter(Boolean))
+        return Array.from(locs).sort() as string[]
+    }, [villas])
+
+    const filteredVillas = useMemo(() => {
+        return villas.filter(villa => {
+            const matchSearch = villa.name.toLowerCase().includes(searchTerm.toLowerCase())
+            const matchType = listingType ? villa.listingType === listingType : true
+            const matchLocation = location ? villa.locationName === location : true
+            const matchBedrooms = bedrooms ? villa.bedrooms >= parseInt(bedrooms, 10) : true
+            return matchSearch && matchType && matchLocation && matchBedrooms
+        })
+    }, [villas, searchTerm, listingType, location, bedrooms])
+
+    const toggleSelection = (id: string) => {
+        const newSelected = new Set(selectedIds)
+        if (newSelected.has(id)) {
+            newSelected.delete(id)
+        } else {
+            newSelected.add(id)
+        }
+        setSelectedIds(newSelected)
+    }
+
+    const handleSend = async () => {
+        if (!clientEmail || !subject) {
+            setErrorMessage("L'email et le sujet sont obligatoires.")
+            setStatus('error')
+            return
+        }
+
+        setStatus('sending')
+        setErrorMessage('')
+
+        try {
+            const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+            const response = await fetch(`${apiUrl}/api/send-selection`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    clientEmail,
+                    subject,
+                    message,
+                    villaIds: Array.from(selectedIds)
+                })
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.error || "Une erreur est survenue lors de l\'envoi")
+            }
+
+            setStatus('success')
+        } catch (err: any) {
+            setStatus('error')
+            setErrorMessage(err.message || 'Erreur réseau de communication avec Next.js.')
+        }
+    }
+
+    if (loading) {
+        return (
+            <Flex align="center" justify="center" height="fill" style={{ minHeight: '50vh' }}>
+                <Spinner muted />
+            </Flex>
+        )
+    }
+
+    if (step === 2) {
+        if (status === 'success') {
+            return (
+                <Container width={1} padding={4}>
+                    <Card padding={5} radius={3} shadow={1} tone="positive">
+                        <Stack space={4} style={{ textAlign: 'center' }}>
+                            <Text size={4}><CheckmarkCircleIcon /></Text>
+                            <Heading>Email envoyé avec succès !</Heading>
+                            <Text>La sélection de {selectedIds.size} villa(s) a été envoyée à <strong>{clientEmail}</strong>.</Text>
+                            <Box marginTop={4}>
+                                <Button
+                                    text="Faire une nouvelle sélection"
+                                    tone="primary"
+                                    onClick={() => {
+                                        setSelectedIds(new Set())
+                                        setStep(1)
+                                        setStatus('idle')
+                                        setClientEmail('')
+                                    }}
+                                />
+                            </Box>
+                        </Stack>
+                    </Card>
+                </Container>
+            )
+        }
+
+        return (
+            <Container width={4} padding={4}>
+                <Box marginBottom={4}>
+                    <Button
+                        icon={ArrowLeftIcon}
+                        text="Retour à la sélection"
+                        mode="bleed"
+                        onClick={() => setStep(1)}
+                    />
+                </Box>
+
+                <Grid columns={[1, 1, 2]} gap={4}>
+                    <Card padding={4} radius={3} shadow={1}>
+                        <Stack space={4}>
+                            <Flex align="center" gap={2}>
+                                <Text size={3}><EnvelopeIcon /></Text>
+                                <Heading as="h2" size={2}>Paramètres de l'email</Heading>
+                            </Flex>
+
+                            <Card padding={4} radius={2} tone="transparent" border>
+                                <Stack space={4}>
+                                    <Stack space={3}>
+                                        <Text weight="semibold" size={1}>Email du client *</Text>
+                                        <TextInput
+                                            type="email"
+                                            placeholder="client@exemple.com"
+                                            value={clientEmail}
+                                            onChange={(e: any) => setClientEmail(e.currentTarget.value)}
+                                        />
+                                        <Card padding={3} radius={2} tone="caution">
+                                            <Text size={1}>En mode Test (Resend Onboarding), utilisez obligatoirement l'adresse email de votre compte Resend.</Text>
+                                        </Card>
+                                    </Stack>
+
+                                    <Stack space={3}>
+                                        <Text weight="semibold" size={1}>Sujet de l'email *</Text>
+                                        <TextInput
+                                            type="text"
+                                            value={subject}
+                                            onChange={(e: any) => setSubject(e.currentTarget.value)}
+                                        />
+                                    </Stack>
+
+                                    <Stack space={3}>
+                                        <Text weight="semibold" size={1}>Message personnalisé</Text>
+                                        <TextArea
+                                            rows={6}
+                                            value={message}
+                                            onChange={(e: any) => setMessage(e.currentTarget.value)}
+                                        />
+                                    </Stack>
+
+                                    {status === 'error' && (
+                                        <Card padding={3} radius={2} tone="critical">
+                                            <Flex align="center" gap={2}>
+                                                <Text><ErrorOutlineIcon /></Text>
+                                                <Text size={1}>{errorMessage}</Text>
+                                            </Flex>
+                                        </Card>
+                                    )}
+
+                                    <Box marginTop={3}>
+                                        <Button
+                                            text={status === 'sending' ? 'Envoi en cours...' : `Envoyer la sélection (${selectedIds.size} villas)`}
+                                            tone="primary"
+                                            iconRight={status === 'sending' ? undefined : ArrowRightIcon}
+                                            disabled={status === 'sending' || selectedIds.size === 0 || !clientEmail || !subject}
+                                            onClick={handleSend}
+                                            style={{ width: '100%', justifyContent: 'center' }}
+                                        />
+                                    </Box>
+                                </Stack>
+                            </Card>
+                        </Stack>
+                    </Card>
+
+                    {/* Email Preview Panel */}
+                    <Card padding={4} radius={3} shadow={1} style={{ backgroundColor: '#f3f4f6', height: '100%', overflowY: 'auto' }}>
+                        <Box style={{ backgroundColor: '#fff', borderRadius: '8px', overflow: 'hidden', border: '1px solid #e5e7eb' }}>
+                            <Box padding={4}>
+                                {/* Message */}
+                                {message && (
+                                    <Box marginBottom={4} style={{ whiteSpace: 'pre-wrap' }}>
+                                        <Text size={2} style={{ color: '#374151', lineHeight: 1.6 }}>{message}</Text>
+                                    </Box>
+                                )}
+
+                                <Box marginBottom={4} style={{ borderBottom: '1px solid #e5e7eb' }} />
+
+                                <Heading as="h3" size={2} style={{ marginBottom: '24px', color: '#2D2D2D' }}>Notre Sélection Exclusive</Heading>
+
+                                <Stack space={4}>
+                                    {Array.from(selectedIds).map(id => {
+                                        const villa = villas.find(v => v._id === id)
+                                        if (!villa) return null
+
+                                        return (
+                                            <Card key={id} border radius={2} style={{ overflow: 'hidden' }}>
+                                                {villa.imageUrl && (
+                                                    <Box style={{ aspectRatio: '16/9', backgroundColor: '#eee' }}>
+                                                        <img src={villa.imageUrl} alt={villa.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                    </Box>
+                                                )}
+                                                <Box padding={3} style={{ backgroundColor: '#fff' }}>
+                                                    <Box marginBottom={2}>
+                                                        <Badge tone="default">{villa.listingType === 'sale' ? 'Vente' : 'Location'}</Badge>
+                                                    </Box>
+                                                    <Heading as="h4" size={2} style={{ marginBottom: '8px', color: '#2D2D2D' }}>{villa.name}</Heading>
+                                                    <Text size={1} weight="semibold" style={{ color: '#A05C4D', textTransform: 'uppercase' }}>
+                                                        {villa.locationName} • {villa.bedrooms} chambres
+                                                    </Text>
+                                                    <Box marginTop={3}>
+                                                        <Button text="Découvrir cette propriété" tone="primary" style={{ backgroundColor: '#1A3C34', color: '#F6F5F1', borderColor: '#1A3C34' }} fontSize={1} padding={2} />
+                                                    </Box>
+                                                </Box>
+                                            </Card>
+                                        )
+                                    })}
+                                </Stack>
+
+                                <Box marginTop={5} style={{ textAlign: 'left' }}>
+                                    <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png`} alt="Signature Sun Beach House" style={{ maxWidth: '392px', height: 'auto', display: 'block', margin: '0' }} />
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Card>
+                </Grid>
+            </Container>
+        )
+    }
+
+    return (
+        <Container width={3} padding={4}>
+            <Stack space={5}>
+                <Flex align="center" justify="space-between">
+                    <Box>
+                        <Heading as="h1" size={3}>Sélection de Villas ({selectedIds.size} sélectionnées)</Heading>
+                        <Box marginTop={2}>
+                            <Text size={1} muted>Recherchez et ajoutez des villas pour générer un email personnalisé.</Text>
+                        </Box>
+                    </Box>
+
+                    <Button
+                        text="Rédiger l'email"
+                        iconRight={ArrowRightIcon}
+                        tone="primary"
+                        disabled={selectedIds.size === 0}
+                        onClick={() => setStep(2)}
+                    />
+                </Flex>
+
+                {/* Filters */}
+                <Grid columns={[1, 2, 4]} gap={3}>
+                    <TextInput
+                        icon={SearchIcon}
+                        placeholder="Rechercher par nom..."
+                        value={searchTerm}
+                        onChange={(e: any) => setSearchTerm(e.currentTarget.value)}
+                    />
+                    <Select value={listingType} onChange={(e: any) => setListingType(e.currentTarget.value)}>
+                        <option value="">Tous les types</option>
+                        <option value="rent">Location</option>
+                        <option value="sale">Vente</option>
+                    </Select>
+                    <Select value={location} onChange={(e: any) => setLocation(e.currentTarget.value)}>
+                        <option value="">Tous les quartiers</option>
+                        {locations.map((loc) => (
+                            <option key={loc} value={loc}>{loc}</option>
+                        ))}
+                    </Select>
+                    <Select value={bedrooms} onChange={(e: any) => setBedrooms(e.currentTarget.value)}>
+                        <option value="">Capacité (Chambres)</option>
+                        <option value="1">1+ chambre</option>
+                        <option value="2">2+ chambres</option>
+                        <option value="3">3+ chambres</option>
+                        <option value="4">4+ chambres</option>
+                        <option value="5">5+ chambres</option>
+                    </Select>
+                </Grid>
+
+                {/* Grid */}
+                <Grid columns={[1, 2, 3, 4]} gap={4}>
+                    {filteredVillas.map(villa => {
+                        const isSelected = selectedIds.has(villa._id)
+                        const price = villa.listingType === 'sale'
+                            ? `${(villa.salePrice || 0).toLocaleString('fr-FR')} €`
+                            : `$${(villa.pricePerWeek || villa.pricePerNight || 0).toLocaleString('en-US')} / sem`
+
+                        return (
+                            <Card
+                                key={villa._id}
+                                radius={3}
+                                shadow={isSelected ? 3 : 1}
+                                tone={isSelected ? 'primary' : 'default'}
+                                style={{ overflow: 'hidden', cursor: 'pointer', transition: 'all 0.2s', border: isSelected ? '2px solid var(--card-focus-ring-color)' : '2px solid transparent' }}
+                                onClick={() => toggleSelection(villa._id)}
+                            >
+                                <Box style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: '#e5e7eb' }}>
+                                    {villa.imageUrl && (
+                                        <img src={villa.imageUrl} alt={villa.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    )}
+                                    {isSelected && (
+                                        <Box style={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'var(--card-bg-color)', borderRadius: '50%', padding: 2 }}>
+                                            <div style={{ color: 'green', display: 'flex' }}><CheckmarkCircleIcon /></div>
+                                        </Box>
+                                    )}
+                                    <Box style={{ position: 'absolute', bottom: 8, left: 8 }}>
+                                        <Badge tone="default">{villa.listingType === 'sale' ? 'Vente' : 'Location'}</Badge>
+                                    </Box>
+                                </Box>
+                                <Box padding={3}>
+                                    <Stack space={3}>
+                                        <Box>
+                                            <Text weight="bold" size={2} style={{ display: 'block' }}>{villa.name}</Text>
+                                            <Box marginTop={2}>
+                                                <Text size={1} muted>{villa.locationName || 'N/A'} • {villa.bedrooms} ch.</Text>
+                                            </Box>
+                                        </Box>
+                                        <Badge tone="default" style={{ alignSelf: 'flex-start' }}>{price}</Badge>
+                                    </Stack>
+                                </Box>
+                            </Card>
+                        )
+                    })}
+                </Grid>
+
+                {filteredVillas.length === 0 && (
+                    <Card padding={5} radius={3} tone="transparent" style={{ textAlign: 'center' }}>
+                        <Text muted>Aucune villa ne correspond à votre recherche.</Text>
+                    </Card>
+                )}
+
+            </Stack>
+        </Container>
+    )
+}
