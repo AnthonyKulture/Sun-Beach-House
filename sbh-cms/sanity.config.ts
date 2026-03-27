@@ -3,6 +3,7 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { frFRLocale } from '@sanity/locale-fr-fr'
 import { schemaTypes } from './schemaTypes'
+import { Logo } from './components/Logo'
 import { GeneratePDFAction } from './actions/generatePDFAction'
 import { GeneratePDFWithPricingAction } from './actions/generatePDFWithPricingAction'
 import { ShareSelectionTool } from './tools/ShareSelectionTool'
@@ -14,6 +15,12 @@ export default defineConfig({
 
   projectId: 'i6dkdu7j',
   dataset: 'production',
+
+  studio: {
+    components: {
+      logo: Logo
+    }
+  },
 
   tools: (prev) => {
     return [

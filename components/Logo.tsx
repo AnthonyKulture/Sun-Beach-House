@@ -10,14 +10,13 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'blue' }) 
     const logoSrc = variant === 'blue' ? '/images/logo-sbh-blue.png' : '/images/logo-sbh-beige.png';
     
     return (
-        <div className={`relative flex items-center justify-center ${className}`}>
+        <div className={`relative aspect-[600/525] ${className}`}>
             <Image
                 src={logoSrc}
                 alt="Sun Beach House"
-                width={200}
-                height={180}
+                fill
                 priority
-                className="w-full h-auto object-contain"
+                className="object-contain"
             />
         </div>
     );

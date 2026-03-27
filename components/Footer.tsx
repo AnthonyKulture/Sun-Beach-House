@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
                             className="hover:opacity-80 transition-opacity w-full flex justify-center md:justify-start"
                             aria-label="Retour à l'accueil"
                         >
-                            <Logo variant="beige" className="text-sbh-cream h-48 md:h-24 w-auto" />
+                            <Logo variant="beige" className="h-32 md:h-16 w-auto" />
                         </Link>
                         <p className="font-sans text-base md:text-lg font-light leading-relaxed text-sbh-green/80 max-w-sm text-balance mx-auto md:mx-0">
                             L&apos;art de vivre à Saint-Barthélemy. <br />
