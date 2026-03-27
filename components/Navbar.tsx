@@ -66,11 +66,13 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
           onClick={() => setMenuOpen(false)}
           className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${(isDarkText || menuOpen) ? 'text-sbh-darkgreen' : 'text-white'}`}
         >
-          {/* Adjusted heights: Smaller on Tablet to avoid overlap, Large on Desktop */}
-          <Logo className={`transition-all duration-700 w-auto ${scrolled
-            ? 'h-10 md:h-12 lg:h-16'
-            : 'h-12 md:h-14 lg:h-24'
-            }`} />
+          <Logo 
+            variant={isDarkText || menuOpen ? 'blue' : 'beige'}
+            className={`transition-all duration-700 w-auto ${scrolled
+              ? 'h-10 md:h-12 lg:h-16'
+              : 'h-12 md:h-14 lg:h-24'
+              }`} 
+          />
         </Link>
 
         {/* Desktop Links - Hidden on Tablet (md), Visible on Desktop (lg) */}

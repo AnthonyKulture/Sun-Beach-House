@@ -64,7 +64,7 @@ export const About: React.FC = () => {
             {/* Main Image - Portrait */}
             <div className="absolute top-0 right-0 md:right-12 w-full md:w-3/4 h-3/4 img-zoom-wrapper z-10 reveal-on-scroll shadow-2xl shadow-gray-200/50" style={{ transitionDelay: '200ms' }}>
               <Image
-                src="https://storage.googleapis.com/images-sbh/besoin-de-plusieurs-images-r-alistes-cin-matique-p.jpg"
+                src="/images/optimized-about-main.jpg"
                 alt="Luxury Villa Terrace"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -75,7 +75,7 @@ export const About: React.FC = () => {
             {/* Secondary Image - Overlap bottom left */}
             <div className="hidden md:block absolute bottom-12 left-0 w-1/2 h-1/2 img-zoom-wrapper z-20 reveal-on-scroll shadow-xl" style={{ transitionDelay: '400ms' }}>
               <Image
-                src="https://storage.googleapis.com/images-sbh/image-r-aliste-spa--bien--tre---st-barth.jpg"
+                src="/images/optimized-about-secondary.jpg"
                 alt="Spa and Wellness St Barth"
                 fill
                 sizes="25vw"

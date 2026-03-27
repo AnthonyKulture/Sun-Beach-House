@@ -7,13 +7,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const serviceImages = {
-    chef: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2000&auto=format&fit=crop',
-    spa: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2000&auto=format&fit=crop',
-    transfer: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2000&auto=format&fit=crop',
+    chef: '/images/optimized-conciergerie-chef.jpg',
+    spa: '/images/optimized-conciergerie-spa.jpg',
+    transfer: '/images/optimized-conciergerie-vip.jpg',
     reservations: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop',
-    nautical: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=2000&auto=format&fit=crop',
-    travel: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?q=80&w=2000&auto=format&fit=crop',
-    vip: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2000&auto=format&fit=crop'
+    nautical: '/images/optimized-conciergerie-nautique.jpg',
+    travel: '/images/optimized-conciergerie-travel.jpg',
+    vip: '/images/optimized-conciergerie-vip.jpg'
 };
 
 export const ConciergerieContent: React.FC = () => {
@@ -29,7 +29,7 @@ export const ConciergerieContent: React.FC = () => {
             {/* HERO SECTION */}
             <div className="relative h-[80vh] xl:h-[70vh] w-full overflow-hidden mb-16">
                 <Image
-                    src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2000&auto=format&fit=crop"
+                    src="/images/optimized-conciergerie-hero.jpg"
                     alt="Conciergerie Service"
                     fill
                     sizes="100vw"

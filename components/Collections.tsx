@@ -270,7 +270,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             <div className="relative h-[60vh] xl:h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=2000&auto=format&fit=crop')" }}
+                    style={{ backgroundImage: `url(${mode === 'rent' ? '/images/optimized-rentals-hero.jpg' : '/images/optimized-sales-hero.jpg'})` }}
                 ></div>
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative z-10 text-center text-white px-6 animate-slide-up pt-20 xl:pt-0">

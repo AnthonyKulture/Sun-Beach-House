@@ -17,7 +17,7 @@ export const AboutPage: React.FC = () => {
             <div className="relative h-[75vh] xl:h-[60vh] w-full overflow-hidden mb-16">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://storage.googleapis.com/images-sbh/besoin-d-une-image-r-alistes-cin-matique-pour-la-s.jpg')" }}
+                    style={{ backgroundImage: "url('/images/optimized-esprit-hero.jpg')" }}
                 ></div>
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute inset-x-0 bottom-0 top-32 xl:top-0 flex flex-col items-center justify-center text-white z-10 px-6">

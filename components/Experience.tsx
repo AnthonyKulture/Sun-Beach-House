@@ -15,7 +15,7 @@ export const Experience: React.FC = () => {
       title: t.experience.morning.title,
       subtitle: t.experience.morning.subtitle,
       description: t.experience.morning.description,
-      img: "https://storage.googleapis.com/images-sbh/image-r-aliste-cin-matique-de-st-barth-au-petit-ma.jpg",
+      img: "/images/optimized-morning-st-barth.jpg",
       color: "bg-sbh-cream"
     },
     {
@@ -23,7 +23,7 @@ export const Experience: React.FC = () => {
       title: t.experience.blueInfinity.title,
       subtitle: t.experience.blueInfinity.subtitle,
       description: t.experience.blueInfinity.description,
-      img: "https://storage.googleapis.com/images-sbh/image-r-aliste-cin-matique-de-st-barth-.jpg",
+      img: "/images/optimized-lagoon-st-barth.jpg",
       color: "bg-sbh-cream"
     },
     {
@@ -31,7 +31,7 @@ export const Experience: React.FC = () => {
       title: t.experience.goldenHour.title,
       subtitle: t.experience.goldenHour.subtitle,
       description: t.experience.goldenHour.description,
-      img: "https://storage.googleapis.com/images-sbh/golden-hour.jpg",
+      img: "/images/optimized-golden-hour-st-barth.jpg",
       color: "bg-sbh-cream"
     }
   ];
