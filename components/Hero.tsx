@@ -1,13 +1,12 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { SunStamp } from './Decorations';
-// import { useVillas } from '../hooks/useCMS';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
 
 export const Hero: React.FC = () => {
-    // const { villas } = useVillas(); // Unused
     const { t } = useLanguage();
     const router = useRouter();
 
@@ -15,16 +14,15 @@ export const Hero: React.FC = () => {
         <section className="relative w-full h-screen min-h-[700px] overflow-hidden bg-sbh-cream">
 
             {/* =========================================
-          BACKGROUND IMAGE (FULL SCREEN)
+          BACKGROUND IMAGE (FULL SCREEN) — next/image for LCP
       ========================================= */}
-            <div className="absolute inset-0 w-full h-full z-0">
-                <div
-                    className="absolute inset-0 bg-cover bg-center animate-fade-in duration-[2s]"
-                    style={{
-                        backgroundImage: "url('https://storage.googleapis.com/images-sbh/hero-sbh.jpg')",
-                        backgroundPosition: "center center"
-                    }}
-                ></div>
+            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+                <iframe
+                    src="https://player.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw?background=true&muted=true&loop=true&autoplay=true&controls=false"
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-0 animate-fade-in"
+                    allow="autoplay; encrypted-media"
+                    title="Sun Beach House"
+                />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
             </div>
@@ -34,7 +32,7 @@ export const Hero: React.FC = () => {
       ========================================= */}
             <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-6 md:px-12">
 
-                <div className="mb-8 text-sbh-cream/90 animate-spin-slower opacity-90">
+                <div className="mb-8 text-sbh-cream/90 animate-spin-slower opacity-90" style={{ willChange: 'transform' }}>
                     <SunStamp className="w-24 h-24 md:w-32 md:h-32" />
                 </div>
 
@@ -53,9 +51,6 @@ export const Hero: React.FC = () => {
                     </h1>
                 </div>
 
-                {/* =========================================
-                    SIMPLIFIED SEARCH BAR (LOCATION + CAPACITY)
-                ========================================= */}
                 {/* =========================================
                     NEW HERO ACTIONS (COLLECTIONS + BUTTONS)
                 ========================================= */}
@@ -82,10 +77,9 @@ export const Hero: React.FC = () => {
                     </div>
 
                     <div className="mt-8 md:mt-10 text-center px-2 w-full">
-                        <p
-                            className="font-sans font-medium text-xs md:text-base text-sbh-cream/95 max-w-2xl mx-auto drop-shadow-lg leading-relaxed md:leading-loose"
-                            dangerouslySetInnerHTML={{ __html: t.hero.disclaimerText }}
-                        />
+                        <p className="font-sans font-medium text-xs md:text-base text-sbh-cream/95 max-w-2xl mx-auto drop-shadow-lg leading-relaxed md:leading-loose">
+                            {t.hero.disclaimerText}
+                        </p>
                     </div>
 
                 </div>

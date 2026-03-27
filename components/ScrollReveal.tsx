@@ -7,15 +7,11 @@ export const ScrollReveal = () => {
     const pathname = usePathname();
 
     useEffect(() => {
-        // Reset scroll on route change (optional but Next.js does it)
-        // Re-run observer setup on route change
-
         const observerOptions = { threshold: 0.05, rootMargin: "0px 0px -50px 0px" };
 
         const intersectObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add a small staggered delay based on index if available, or random
                     setTimeout(() => {
                         entry.target.classList.add('reveal-visible');
                     }, 100);
@@ -30,17 +26,23 @@ export const ScrollReveal = () => {
             });
         };
 
-        // Initial observation
-        // Small delay to ensure DOM is ready
+        // Small delay to ensure DOM is ready after navigation
         const timer = setTimeout(observeElements, 100);
 
-        // Mutation Observer to handle dynamically added content
         const mutationObserver = new MutationObserver((mutations) => {
-            mutations.forEach(mutation => {
-                if (mutation.addedNodes.length) {
-                    observeElements();
+            let hasNewRevealElements = false;
+            for (const mutation of mutations) {
+                for (const node of mutation.addedNodes) {
+                    if (node instanceof HTMLElement) {
+                        if (node.classList?.contains('reveal-on-scroll') || node.querySelector?.('.reveal-on-scroll')) {
+                            hasNewRevealElements = true;
+                            break;
+                        }
+                    }
                 }
-            });
+                if (hasNewRevealElements) break;
+            }
+            if (hasNewRevealElements) observeElements();
         });
 
         mutationObserver.observe(document.body, { childList: true, subtree: true });
