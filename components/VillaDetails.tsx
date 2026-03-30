@@ -41,9 +41,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     const villa = useTranslatedVilla(originalVilla);
     // useSimilarVillas: lean fetch (7 fields only) instead of full useVillas() over-fetch
     const { similarVillas } = useSimilarVillas(
-        villa?.id ?? null,
-        villa?.listingType ?? null,
-        villa?.location?.name ?? null
+        originalVilla?.id ?? null,
+        originalVilla?.listingType ?? null,
+        originalVilla?.location?.name ?? null
     );
     const [arrivalDate, setArrivalDate] = useState("");
     const [departureDate, setDepartureDate] = useState("");
@@ -60,6 +60,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
 
     const arrivalRef = useRef<HTMLInputElement>(null);
     const departureRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        // Shift WhatsApp button up on mobile for pages with sticky bar
+        document.body.classList.add('whatsapp-shifted');
+        return () => {
+            document.body.classList.remove('whatsapp-shifted');
+        };
+    }, []);
 
     useEffect(() => {
         // NOTE: Next.js App Router handles scroll reset automatically.
@@ -93,16 +101,33 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         );
     }
 
-    // similarVillas is already pre-sorted by getSimilarVillas (same-location first, capped at 6)
-    // Apply the same guest-proximity tier logic client-side on the lean dataset
+    // similarVillas is pre-sorted by getSimilarVillas (same-location first, capped at 6)
     const computedSimilarVillas = (() => {
+        if (!similarVillas || similarVillas.length === 0) return [];
+        if (!originalVilla) return similarVillas.slice(0, 3);
+
         const candidates = similarVillas;
-        const tier1 = candidates.filter(v => v.location.name === villa.location.name && Math.abs((v.guests || 0) - villa.guests) <= 2);
+        const targetLocationName = originalVilla.location?.name;
+        const targetGuests = originalVilla.guests || 2;
+
+        // Tier 1: Same location and similar occupancy (+/- 2 guests)
+        const tier1 = candidates.filter(v => 
+            v.location?.name === targetLocationName && 
+            Math.abs((v.guests || 2) - targetGuests) <= 2
+        );
         if (tier1.length >= 3) return tier1.slice(0, 3);
-        const tier2 = candidates.filter(v => v.location.name === villa.location.name && !tier1.includes(v));
+
+        // Tier 2: Same location (any occupancy)
+        const tier2 = candidates.filter(v => 
+            v.location?.name === targetLocationName && !tier1.includes(v)
+        );
+        
         const combined = [...tier1, ...tier2];
         if (combined.length >= 3) return combined.slice(0, 3);
-        return [...combined, ...candidates.filter(v => !combined.includes(v))].slice(0, 3);
+
+        // Tier 3: Other locations (any occupancy)
+        const others = candidates.filter(v => !combined.includes(v));
+        return [...combined, ...others].slice(0, 3);
     })();
     const today = new Date().toISOString().split('T')[0];
 

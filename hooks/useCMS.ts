@@ -73,11 +73,18 @@ export const useSimilarVillas = (
   const [similarVillas, setSimilarVillas] = useState<Villa[]>([]);
 
   useEffect(() => {
-    if (!excludeId || !listingType || !locationName) return;
+    if (!excludeId || !listingType) {
+      setSimilarVillas([]);
+      return;
+    }
 
-    CmsService.getSimilarVillas(excludeId, listingType, locationName)
+    // locationName can be null (though less ideal for sorting)
+    CmsService.getSimilarVillas(excludeId, listingType, locationName || '')
       .then(setSimilarVillas)
-      .catch(() => setSimilarVillas([]));
+      .catch((err) => {
+        console.error('[useSimilarVillas] Fetch error:', err);
+        setSimilarVillas([]);
+      });
   }, [excludeId, listingType, locationName]);
 
   return { similarVillas };

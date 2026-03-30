@@ -156,18 +156,19 @@ const villaFields = `
 `;
 
 // Lean projection for similar villa recommendation cards
-// Only fetches what is rendered in cross-nav cards — ~7 fields vs ~25 in full query
+// Only fetches what is rendered in cross-nav cards — ~10 fields vs ~30 in full query
 const similarVillaFields = `
   _id,
   name,
   listingType,
-  location->{ _id, name },
+  location->{ _id, name, order },
   guests,
+  bedrooms,
+  bathrooms,
   pricePerNight,
   pricePerWeek,
   salePrice,
-  mainImage,
-  mainImageUrl
+  mainImage
 `;
 
 export const CmsService = {
@@ -209,7 +210,9 @@ export const CmsService = {
    * Fetches only the 7 fields needed for card rendering — avoids full villa over-fetch.
    */
   getSimilarVillas: async (excludeId: string, listingType: string, locationName: string): Promise<Villa[]> => {
-    const query = `*[_type == "villa" && !(_id in path("drafts.**")) && _id != $excludeId && listingType == $listingType] | order(location->name == $locationName desc, name asc) [0...6] { ${similarVillaFields} }`;
+    // order() with dereferencing (location->name) can cause 400 Bad Request in some cases.
+    // Fetching 12 candidates sorted by name and filtering/tiering in JS for better reliability.
+    const query = `*[_type == "villa" && !(_id in path("drafts.**")) && _id != $excludeId && listingType == $listingType] | order(name asc) [0...12] { ${similarVillaFields} }`;
     try {
       const docs = await fetchSanity(query, { excludeId, listingType, locationName });
       return docs.map(mapSanityVilla);

@@ -99,6 +99,14 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         }
     }, [mode]);
 
+    useEffect(() => {
+        // Shift WhatsApp button up on mobile for pages with listing filters
+        document.body.classList.add('whatsapp-shifted');
+        return () => {
+            document.body.classList.remove('whatsapp-shifted');
+        };
+    }, []);
+
     // Close amenities dropdown when clicking outside
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
