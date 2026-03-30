@@ -23,6 +23,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'images.unsplash.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'image.mux.com',
+            },
         ],
         // Enable modern image formats
         formats: ['image/avif', 'image/webp'],
@@ -72,7 +76,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io https://maps.googleapis.com https://*.googleapis.com https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://cdn.sanity.io https://storage.googleapis.com https://images.unsplash.com https://maps.gstatic.com https://*.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.sanity.io https://*.googleapis.com https://vitals.vercel-insights.com; frame-src 'self' https://player.mux.com https://vercel.live;"
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io https://maps.googleapis.com https://*.googleapis.com https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://cdn.sanity.io https://storage.googleapis.com https://images.unsplash.com https://image.mux.com https://maps.gstatic.com https://*.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.sanity.io https://*.googleapis.com https://vitals.vercel-insights.com; frame-src 'self' https://player.mux.com https://vercel.live;"
                     }
                 ],
             },

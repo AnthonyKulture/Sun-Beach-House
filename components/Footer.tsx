@@ -10,7 +10,7 @@ import { HoneypotField } from './HoneypotField';
 import { EncryptedLink } from './EncryptedLink';
 
 export const Footer: React.FC = () => {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
 
     return (
         <footer className="bg-sbh-darkgreen text-sbh-cream relative overflow-hidden pt-24 pb-12">
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
                     {/* Column 1: Brand Identity - Centered on Mobile */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-8 reveal-on-scroll">
                         <Link
-                            href="/"
+                            href={`/${language}`}
                             className="hover:opacity-80 transition-opacity w-full flex justify-center md:justify-start"
                             aria-label="Retour à l'accueil"
                         >
@@ -51,27 +51,27 @@ export const Footer: React.FC = () => {
                         <nav>
                             <ul className="space-y-4 font-serif text-lg md:text-xl text-sbh-cream/90 flex flex-col items-center md:items-start">
                                 <li>
-                                    <Link href="/" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href={`/${language}`} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.home}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/rentals" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href={`/${language}/rentals`} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.ourCollections}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/destinations" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href={`/${language}/destinations`} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.destination}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/about" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href={`/${language}/about`} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.about}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/contact" className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
+                                    <Link href={`/${language}/contact`} className="hover:text-sbh-blue hover:translate-x-2 transition-all duration-300 flex items-center gap-2">
                                         {t.footer.contact}
                                     </Link>
                                 </li>
@@ -131,9 +131,9 @@ export const Footer: React.FC = () => {
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-8 font-sans text-[10px] uppercase tracking-[0.2em] text-sbh-sand font-medium">
-                        <Link href="/conditions-generales" className="hover:text-white transition-colors duration-300">{t.footer.bookingConditions}</Link>
-                        <Link href="/mentions-legales" className="hover:text-white transition-colors duration-300">{t.footer.legalNotice}</Link>
-                        <Link href="/politique-de-confidentialite" className="hover:text-white transition-colors duration-300">{t.footer.privacy}</Link>
+                        <Link href={`/${language}/conditions-generales`} className="hover:text-white transition-colors duration-300">{t.footer.bookingConditions}</Link>
+                        <Link href={`/${language}/mentions-legales`} className="hover:text-white transition-colors duration-300">{t.footer.legalNotice}</Link>
+                        <Link href={`/${language}/politique-de-confidentialite`} className="hover:text-white transition-colors duration-300">{t.footer.privacy}</Link>
                     </div>
                 </div>
             </div>

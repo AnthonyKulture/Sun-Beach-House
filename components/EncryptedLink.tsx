@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 
 interface EncryptedLinkProps {
-    text: string;           // The visible text (e.g. "hello@sunbeachhouse.com")
+    text: string;           // The visible text (e.g. "hello@sun-beach-house.com")
     type: 'email' | 'phone'; // The type of link
-    value: string;          // The actual value (e.g. "hello@sunbeachhouse.com" or "+590...")
+    value: string;          // The actual value (e.g. "hello@sun-beach-house.com" or "+590...")
     className?: string;
 }
 

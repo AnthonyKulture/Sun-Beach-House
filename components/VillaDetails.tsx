@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import { Villa, HomeFeature } from '../types';
-import { useVillas, useVilla } from '../hooks/useCMS';
+import { useVilla, useSimilarVillas } from '../hooks/useCMS';
 import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home, Trees } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { VillaMap } from './VillaMap';
@@ -39,7 +39,12 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     const { language, t } = useLanguage();
     const { villa: originalVilla, loading, error } = useVilla(villaId);
     const villa = useTranslatedVilla(originalVilla);
-    const { villas } = useVillas(); // Fetch all villas to determine similarities
+    // useSimilarVillas: lean fetch (7 fields only) instead of full useVillas() over-fetch
+    const { similarVillas } = useSimilarVillas(
+        villa?.id ?? null,
+        villa?.listingType ?? null,
+        villa?.location?.name ?? null
+    );
     const [arrivalDate, setArrivalDate] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [guests, setGuests] = useState(2);
@@ -57,7 +62,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     const departureRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // NOTE: Next.js App Router handles scroll reset automatically.
         setArrivalDate("");
         setDepartureDate("");
         setGuests(2);
@@ -88,22 +93,16 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         );
     }
 
-    // Smart recommendation system: Same Type > Same Location > Similar Capacity (+/- 2 guests)
-    const similarVillas = (() => {
-        const candidates = villas.filter(v => v.id !== villa.id && v.listingType === villa.listingType);
-
-        // Priority 1: Same location AND similar capacity
-        const tier1 = candidates.filter(v => v.location.name === villa.location.name && Math.abs(v.guests - villa.guests) <= 2);
+    // similarVillas is already pre-sorted by getSimilarVillas (same-location first, capped at 6)
+    // Apply the same guest-proximity tier logic client-side on the lean dataset
+    const computedSimilarVillas = (() => {
+        const candidates = similarVillas;
+        const tier1 = candidates.filter(v => v.location.name === villa.location.name && Math.abs((v.guests || 0) - villa.guests) <= 2);
         if (tier1.length >= 3) return tier1.slice(0, 3);
-
-        // Priority 2: Same location
         const tier2 = candidates.filter(v => v.location.name === villa.location.name && !tier1.includes(v));
-        const combinedTier12 = [...tier1, ...tier2];
-        if (combinedTier12.length >= 3) return combinedTier12.slice(0, 3);
-
-        // Priority 3: Similar capacity
-        const tier3 = candidates.filter(v => Math.abs(v.guests - villa.guests) <= 2 && !combinedTier12.includes(v));
-        return [...combinedTier12, ...tier3, ...candidates.filter(v => !combinedTier12.includes(v) && !tier3.includes(v))].slice(0, 3);
+        const combined = [...tier1, ...tier2];
+        if (combined.length >= 3) return combined.slice(0, 3);
+        return [...combined, ...candidates.filter(v => !combined.includes(v))].slice(0, 3);
     })();
     const today = new Date().toISOString().split('T')[0];
 
@@ -152,10 +151,11 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
 
     const schemaData = {
         "@context": "https://schema.org",
-        "@type": "VacationRental",
-        "name": villa.name,
+        "@type": villa.listingType === 'rent' ? "VacationRental" : "RealEstateListing",
+        "name": `${villa.name} — ${villa.location.name}, St. Barth`,
         "description": villa.description,
         "image": [villa.mainImage, ...villa.galleryImages],
+        "url": `https://sun-beach-house.com/${language}/villas/${villa.id}`,
         "priceRange": villa.listingType === 'rent' ? `${villa.pricePerNight} USD` : `${villa.salePrice} EUR`,
         "address": {
             "@type": "PostalAddress",
@@ -172,7 +172,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
             "@type": "LocationFeatureSpecification",
             "name": a.name,
             "value": true
-        }))
+        })),
+        "numberOfBedrooms": villa.bedrooms,
+        "numberOfBathroomsTotal": villa.bathrooms,
+        "floorSize": villa.surface ? {
+            "@type": "QuantitativeValue",
+            "value": villa.surface,
+            "unitCode": "MTK"
+        } : undefined
     };
 
     const isSale = villa.listingType === 'sale';
@@ -224,10 +231,17 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
 
             {/* HERO SECTION */}
             <div className="relative h-[50vh] md:h-[80vh] w-full overflow-hidden">
-                <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[2s] scale-105"
-                    style={{ backgroundImage: `url('${villa.mainImage}')` }}
-                ></div>
+                {villa.mainImage ? (
+                    <Image
+                        src={villa.mainImage}
+                        alt={`${villa.name} — Villa de luxe à ${villa.location.name}, Saint-Barthélemy`}
+                        fill
+                        priority
+                        sizes="100vw"
+                        className="object-cover object-center"
+                        quality={85}
+                    />
+                ) : null}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/90"></div>
 
                 <div className="absolute bottom-0 left-0 w-full p-6 md:p-16 text-white flex flex-col md:flex-row items-end justify-between z-10">
@@ -389,10 +403,11 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     >
                                         <Image
                                             src={img}
-                                            alt={`Gallery ${idx + 1}`}
+                                            alt={`${villa.name} — ${villa.location.name}${language === 'fr' ? ' - photo de la villa' : ' - villa photo'} ${idx + 1}`}
                                             fill
                                             sizes="(max-width: 768px) 50vw, 25vw"
                                             className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                            loading="lazy"
                                         />
 
                                         {isLast && remainingCount > 0 ? (
@@ -762,7 +777,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                         {isSale ? t.villa.otherOpportunities : t.villa.otherCollections}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {similarVillas.map((v, idx) => (
+                        {computedSimilarVillas.map((v, idx) => (
                             <Link href={`/villas/${v.id}`} key={v.id} className="group cursor-pointer reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
                                 <div className="aspect-[4/3] overflow-hidden rounded-sm mb-4 relative">
                                     {v.mainImage ? (

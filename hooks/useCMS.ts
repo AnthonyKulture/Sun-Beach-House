@@ -60,3 +60,26 @@ export const useVilla = (id: string | null) => {
 
   return { villa, loading, error };
 };
+
+/**
+ * Lean hook to fetch similar villa cards — only fetches fields needed for cards.
+ * Use this in VillaDetails instead of useVillas() to avoid the full over-fetch.
+ */
+export const useSimilarVillas = (
+  excludeId: string | null,
+  listingType: string | null,
+  locationName: string | null
+) => {
+  const [similarVillas, setSimilarVillas] = useState<Villa[]>([]);
+
+  useEffect(() => {
+    if (!excludeId || !listingType || !locationName) return;
+
+    CmsService.getSimilarVillas(excludeId, listingType, locationName)
+      .then(setSimilarVillas)
+      .catch(() => setSimilarVillas([]));
+  }, [excludeId, listingType, locationName]);
+
+  return { similarVillas };
+};
+

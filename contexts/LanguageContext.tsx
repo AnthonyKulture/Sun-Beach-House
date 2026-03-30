@@ -13,28 +13,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const STORAGE_KEY = 'sbh-language';
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    // Always start with 'fr' to match SSR
-    const [language, setLanguageState] = useState<Language>('fr');
-    const [mounted, setMounted] = useState(false);
+export const LanguageProvider: React.FC<{ children: ReactNode; initialLanguage: Language }> = ({ children, initialLanguage }) => {
+    const [language, setLanguageState] = useState<Language>(initialLanguage);
 
-    // After hydration, load from localStorage
     useEffect(() => {
-        setMounted(true);
-        if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem(STORAGE_KEY) as Language;
-            if (stored === 'fr' || stored === 'en' || stored === 'pt' || stored === 'es') {
-                setLanguageState(stored);
-            }
-        }
-    }, []);
-
-    // Persist to localStorage when language changes (only on client)
-    useEffect(() => {
-        if (mounted && typeof window !== 'undefined') {
-            localStorage.setItem(STORAGE_KEY, language);
-        }
-    }, [language, mounted]);
+        setLanguageState(initialLanguage);
+    }, [initialLanguage]);
 
     const setLanguage = (lang: Language) => {
         setLanguageState(lang);

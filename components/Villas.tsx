@@ -95,7 +95,7 @@ export const Villas: React.FC = () => {
                 {/* Footer Link */}
                 <div className="mt-24 md:mt-48 flex justify-center reveal-on-scroll relative" style={{ transitionDelay: '200ms' }}>
                     <div className="hidden md:block absolute top-[-50px] h-[50px] w-px bg-sbh-charcoal/10"></div>
-                    <Link href="/rentals" className="font-sans text-sm uppercase tracking-[0.3em] text-sbh-charcoal border border-sbh-charcoal/30 px-12 py-6 hover:bg-sbh-green hover:text-sbh-charcoal hover:border-sbh-green transition-all duration-500 rounded-full bg-sbh-cream z-10 touch-target text-center w-full md:w-auto inline-block">
+                    <Link href={`/${language}/rentals`} className="font-sans text-sm uppercase tracking-[0.3em] text-sbh-charcoal border border-sbh-charcoal/30 px-12 py-6 hover:bg-sbh-green hover:text-sbh-charcoal hover:border-sbh-green transition-all duration-500 rounded-full bg-sbh-cream z-10 touch-target text-center w-full md:w-auto inline-block">
                         {t.villas.exploreAll}
                     </Link>
                 </div>
@@ -115,7 +115,7 @@ const VillaCard: React.FC<{ villa: Villa; number: string; delay?: string; langua
     const descriptionText = getDescriptionText(villa.description, language);
 
     return (
-        <Link href={`/villas/${villa.id}`} className="group cursor-pointer reveal-on-scroll block" style={{ transitionDelay: delay }}>
+        <Link href={`/${language}/villas/${villa.id}`} className="group cursor-pointer reveal-on-scroll block" style={{ transitionDelay: delay }}>
             <div className="flex items-baseline justify-between mb-4 border-b border-gray-300 pb-2">
                 <span className="font-sans text-[10px] text-sbh-green tracking-widest font-bold">NO. {number}</span>
                 <span className="font-serif italic text-lg text-sbh-charcoal group-hover:text-sbh-blue transition-colors">{villa.name}</span>

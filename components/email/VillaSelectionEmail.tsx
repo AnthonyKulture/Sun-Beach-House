@@ -28,7 +28,7 @@ const getDescription = (desc: any) => {
 export const VillaSelectionEmail = ({
     message,
     villas = [],
-    baseUrl = 'https://sunbeachhouse.com',
+    baseUrl = 'https://sun-beach-house.com',
 }: VillaSelectionEmailProps) => {
     const previewText = `Votre sélection de villas par Sun-Beach-House`;
 

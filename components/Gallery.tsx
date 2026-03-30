@@ -7,10 +7,15 @@ export const Gallery: React.FC = () => {
 
       {/* Full Width Visual Break - Caribbean Panorama */}
       <div className="w-full h-[80vh] relative mb-32 reveal-on-scroll shadow-lg">
-        <div
-          className="absolute inset-0 bg-cover bg-fixed bg-center opacity-90 transition-all duration-[2s]"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?q=80&w=2000&auto=format&fit=crop')" }}
-        ></div>
+        <Image
+          src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1"
+          alt="Caribbean panorama"
+          fill
+          className="object-cover opacity-90"
+          sizes="100vw"
+          quality={60}
+          loading="lazy"
+        />
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <h3 className="font-serif text-white text-3xl md:text-7xl opacity-90 mix-blend-overlay italic drop-shadow-lg">

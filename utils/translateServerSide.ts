@@ -1,22 +1,4 @@
-// Manual overrides to fix specific translation errors
-// Format: { targetLang: { originalTextLowercase: translatedText } }
-const MANUAL_TRANSLATIONS: Record<string, Record<string, string>> = {
-    fr: {
-        'thanksgiving': 'Thanksgiving',
-        'thanksgiving ': 'Thanksgiving',
-        'kitchen': 'Cuisine',
-        'living room': 'Salon',
-        'bedroom': 'Chambre',
-        'bathroom': 'Salle de bain',
-        'pool': 'Piscine',
-        'view': 'Vue',
-        'sea view': 'Vue mer',
-    },
-    en: {
-        'cuisine': 'Kitchen',
-        'salon': 'Living Room',
-    },
-};
+import { getManualTranslation } from './translationService';
 
 interface TranslateParams {
     text: string;
@@ -35,10 +17,9 @@ export async function translateServerSide({ text, targetLang, sourceLang }: Tran
     }
 
     // 1. Check manual overrides first
-    const lowerText = text.toLowerCase().trim();
-    const overrides = MANUAL_TRANSLATIONS[targetLang];
-    if (overrides?.[lowerText]) {
-        return overrides[lowerText];
+    const manual = getManualTranslation(text, targetLang);
+    if (manual) {
+        return manual;
     }
 
     // 2. Call Google Translate directly (cache disabled to prevent Next.js deadlock)

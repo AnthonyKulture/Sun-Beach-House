@@ -7,7 +7,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
 
 export const Hero: React.FC = () => {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
     const router = useRouter();
 
     return (
@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
       ========================================= */}
             <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
                 <iframe
-                    src="https://player.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw?background=true&muted=true&loop=true&autoplay=true&controls=false"
+                    src="https://player.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw?background=true&muted=true&loop=true&autoplay=true&controls=false&poster-width=1280"
                     className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-0 animate-fade-in"
                     allow="autoplay; encrypted-media"
                     title="Sun Beach House"
@@ -62,14 +62,14 @@ export const Hero: React.FC = () => {
 
                     <div className="flex flex-col md:flex-row gap-6 w-full max-w-2xl justify-center items-center">
                         <button
-                            onClick={() => router.push('/rentals')}
+                            onClick={() => router.push(`/${language}/rentals`)}
                             className="w-full md:w-80 bg-sbh-cream hover:bg-white text-sbh-charcoal px-8 py-4 rounded-full font-sans text-xs md:text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 group relative z-20 whitespace-nowrap"
                         >
                             {t.hero.seasonalRentals}
                         </button>
 
                         <button
-                            onClick={() => router.push('/sales')}
+                            onClick={() => router.push(`/${language}/sales`)}
                             className="w-full md:w-80 bg-sbh-cream hover:bg-white text-sbh-charcoal px-8 py-4 rounded-full font-sans text-xs md:text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 group relative z-20 whitespace-nowrap"
                         >
                             {t.hero.propertiesForSale}

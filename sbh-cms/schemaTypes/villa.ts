@@ -143,6 +143,7 @@ const villa = defineType({
       validation: (rule) => rule.required().max(100)
         .error('Le nom est obligatoire (100 caractères max)'),
     }),
+/*
     defineField({
       name: 'slug',
       title: 'URL de la page',
@@ -166,6 +167,7 @@ const villa = defineType({
       },
       validation: (rule) => rule.required().error('Cliquez sur "Generate" pour créer l\'URL'),
     }),
+    */
     defineField({
       name: 'listingType',
       title: 'Type d\'annonce',
@@ -450,6 +452,7 @@ const villa = defineType({
         }),
       ],
     }),
+    /*
     defineField({
       name: 'mainImageUrl',
       title: 'OU lien vers photo principale',
@@ -457,6 +460,7 @@ const villa = defineType({
       group: 'media',
       description: 'Alternative : collez un lien vers l\'image (si pas de téléchargement)',
     }),
+    */
     defineField({
       name: 'galleryImages',
       title: 'Galerie photos',
@@ -485,6 +489,7 @@ const villa = defineType({
         layout: 'grid',
       },
     }),
+    /*
     defineField({
       name: 'galleryImageUrls',
       title: 'OU liens vers photos galerie',
@@ -493,6 +498,7 @@ const villa = defineType({
       of: [{ type: 'url' }],
       description: 'Alternative : collez des liens vers les images',
     }),
+    */
     defineField({
       name: 'videoUrl',
       title: 'Lien vidéo (YouTube / Vimeo)',

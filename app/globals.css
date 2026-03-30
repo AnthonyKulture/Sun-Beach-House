@@ -120,6 +120,8 @@ body {
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+  /* Release GPU layer once animation is done */
+  will-change: auto;
 }
 
 /* Accessibility: Disable motion for users with vestibular disorders */

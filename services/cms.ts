@@ -5,7 +5,8 @@ const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'i6dkdu7j';
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 const API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-03-01';
 
-const SANITY_API_URL = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/query/${DATASET}`;
+// Use the Sanity CDN endpoint for global edge caching (was api.sanity.io)
+const SANITY_API_URL = `https://${PROJECT_ID}.apicdn.sanity.io/v${API_VERSION}/data/query/${DATASET}`;
 
 // Fonction pour exécuter une requête GROQ
 const fetchSanity = async (query: string, params?: Record<string, string>) => {
@@ -26,12 +27,14 @@ const fetchSanity = async (query: string, params?: Record<string, string>) => {
   return data.result;
 };
 
-// Helper pour construire les URLs d'images Sanity
-const buildImageUrl = (ref: string) => {
+// Helper to build optimized Sanity image URLs with CDN parameters
+// Automatically delivers WebP/AVIF, resizes to requested width, and compresses
+const buildImageUrl = (ref: string, width = 1600, quality = 85) => {
   if (!ref) return '';
   const [, id, dimensions, format] = ref.split('-');
   if (!id || !dimensions || !format) return '';
-  return `https://cdn.sanity.io/images/${PROJECT_ID}/${DATASET}/${id}-${dimensions}.${format}`;
+  const base = `https://cdn.sanity.io/images/${PROJECT_ID}/${DATASET}/${id}-${dimensions}.${format}`;
+  return `${base}?auto=format&q=${quality}&w=${width}&fit=max`;
 };
 
 /** Raw document shape returned by the Sanity GROQ query */
@@ -60,18 +63,18 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
       icon: a.icon,
     })) || [];
 
-  let mainImage = doc.mainImageUrl || '';
+  let mainImage = '';
   if (doc.mainImage?.asset?._ref) {
-    mainImage = buildImageUrl(doc.mainImage.asset._ref);
+    // Hero/main image: 1600px wide for full-screen cover
+    mainImage = buildImageUrl(doc.mainImage.asset._ref, 1600, 85);
   }
 
   let galleryImages: string[] = [];
   if (doc.galleryImages?.length > 0 && doc.galleryImages[0]?.asset?._ref) {
     galleryImages = doc.galleryImages
-      .map((img: any) => buildImageUrl(img.asset?._ref))
+      // Gallery thumbnails: 800px wide (displayed at ~25vw max)
+      .map((img: any) => buildImageUrl(img.asset?._ref, 800, 80))
       .filter(Boolean);
-  } else if (doc.galleryImageUrls?.length > 0) {
-    galleryImages = doc.galleryImageUrls;
   }
 
   return {
@@ -115,7 +118,6 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
 const villaFields = `
   _id,
   name,
-  "slug": slug.current,
   location->{ _id, name, order },
   listingType,
   description,
@@ -131,9 +133,7 @@ const villaFields = `
   propertyType,
   pricingDetails,
   mainImage,
-  mainImageUrl,
   galleryImages,
-  galleryImageUrls,
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
   "brochurePdfUrl": brochurePdf.asset->url,
@@ -153,6 +153,21 @@ const villaFields = `
   },
   geopoint,
   privateInfo
+`;
+
+// Lean projection for similar villa recommendation cards
+// Only fetches what is rendered in cross-nav cards — ~7 fields vs ~25 in full query
+const similarVillaFields = `
+  _id,
+  name,
+  listingType,
+  location->{ _id, name },
+  guests,
+  pricePerNight,
+  pricePerWeek,
+  salePrice,
+  mainImage,
+  mainImageUrl
 `;
 
 export const CmsService = {
@@ -186,6 +201,35 @@ export const CmsService = {
     } catch (error) {
       console.error('Erreur CMS:', error);
       return undefined;
+    }
+  },
+
+  /**
+   * Lean fetch for "Similar Villas" recommendation cards.
+   * Fetches only the 7 fields needed for card rendering — avoids full villa over-fetch.
+   */
+  getSimilarVillas: async (excludeId: string, listingType: string, locationName: string): Promise<Villa[]> => {
+    const query = `*[_type == "villa" && !(_id in path("drafts.**")) && _id != $excludeId && listingType == $listingType] | order(location->name == $locationName desc, name asc) [0...6] { ${similarVillaFields} }`;
+    try {
+      const docs = await fetchSanity(query, { excludeId, listingType, locationName });
+      return docs.map(mapSanityVilla);
+    } catch (error) {
+      console.error('Erreur getSimilarVillas:', error);
+      return [];
+    }
+  },
+
+  getSitemapData: async (): Promise<{ id: string; updatedAt: string }[]> => {
+    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { "_id": _id, "_updatedAt": _updatedAt }`;
+    try {
+      const docs = await fetchSanity(query);
+      return docs.map((doc: any) => ({
+        id: doc._id,
+        updatedAt: doc._updatedAt,
+      }));
+    } catch (error) {
+      console.error('Erreur getSitemapData:', error);
+      return [];
     }
   },
 };

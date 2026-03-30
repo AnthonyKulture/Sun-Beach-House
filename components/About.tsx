@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const About: React.FC = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   return (
     <section id="about" className="py-24 md:py-40 px-6 md:px-12 bg-white text-sbh-charcoal overflow-hidden relative">
 
@@ -50,7 +50,7 @@ export const About: React.FC = () => {
 
             <div className="mt-12 reveal-on-scroll" style={{ transitionDelay: '500ms' }}>
               <Link
-                href="/rentals"
+                href={`/${language}/rentals`}
                 className="inline-block text-sm font-sans tracking-[0.25em] uppercase border-b border-black pb-2 hover:text-sbh-green hover:border-sbh-green transition-colors touch-target"
               >
                 {t.about.discoverProperties}

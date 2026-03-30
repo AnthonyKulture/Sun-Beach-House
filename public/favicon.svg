@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+    <circle cx="100" cy="100" r="40" stroke="#94B4D4" stroke-width="8" />
+    <g stroke="#94B4D4" stroke-width="8" stroke-linecap="round">
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(0 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(45 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(90 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(135 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(180 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(225 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(270 100 100)" />
+        <line x1="100" y1="45" x2="100" y2="5" transform="rotate(315 100 100)" />
+    </g>
+</svg>

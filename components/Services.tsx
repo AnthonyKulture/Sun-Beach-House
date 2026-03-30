@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { SunStamp, NorthStar } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
@@ -8,17 +9,17 @@ import Link from 'next/link';
 const serviceKeys = ['chef', 'spa', 'transfer', 'reservations', 'nautical', 'travel', 'vip'] as const;
 
 const serviceImages: Record<string, string> = {
-    chef: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1600&auto=format&fit=crop",
-    spa: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1600&auto=format&fit=crop",
-    transfer: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1600&auto=format&fit=crop",
-    reservations: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1600&auto=format&fit=crop",
-    nautical: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1600&auto=format&fit=crop",
-    travel: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?q=80&w=1600&auto=format&fit=crop",
-    vip: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600&auto=format&fit=crop"
+    chef: "https://images.unsplash.com/photo-1559339352-11d035aa65de",
+    spa: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874",
+    transfer: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d",
+    reservations: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+    nautical: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a",
+    travel: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e",
+    vip: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05"
 };
 
 export const Services: React.FC = () => {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     // Get service title and description from translations
@@ -39,14 +40,23 @@ export const Services: React.FC = () => {
     return (
         <section id="services" className="bg-sbh-green py-24 md:py-32 px-6 md:px-12 text-sbh-charcoal relative overflow-hidden min-h-[90vh] flex flex-col justify-center">
 
-            {/* Dynamic Background Image on Hover */}
+            {/* Dynamic Background Image on Hover — uses next/image for auto WebP/AVIF + lazy loading */}
             <div className="absolute inset-0 z-0 transition-opacity duration-700 ease-in-out pointer-events-none mix-blend-overlay opacity-20">
                 {serviceKeys.map((key, index) => (
                     <div
                         key={key}
-                        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}
-                        style={{ backgroundImage: `url('${serviceImages[key]}')` }}
-                    ></div>
+                        className={`absolute inset-0 transition-opacity duration-700 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}
+                    >
+                        <Image
+                            src={serviceImages[key]}
+                            alt={`${getServiceInfo(key).title} - Sun Beach House St. Barth`}
+                            fill
+                            className="object-cover"
+                            sizes="100vw"
+                            quality={60}
+                            loading="lazy"
+                        />
+                    </div>
                 ))}
             </div>
 
@@ -106,13 +116,13 @@ export const Services: React.FC = () => {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Link
-                            href="/conciergerie"
+                            href={`/${language}/conciergerie`}
                             className="px-10 py-4 bg-sbh-charcoal text-white rounded-full font-sans text-sm uppercase tracking-[0.25em] hover:bg-white hover:text-sbh-charcoal transition-all duration-500 relative overflow-hidden group touch-target inline-block shadow-lg hover:shadow-xl"
                         >
                             <span className="relative z-10">{t.collections.discover}</span>
                         </Link>
                         <Link
-                            href="/contact"
+                            href={`/${language}/contact`}
                             className="px-10 py-4 border border-sbh-charcoal/30 rounded-full font-sans text-sm uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white hover:border-sbh-charcoal transition-all duration-500 bg-transparent relative overflow-hidden group touch-target inline-block"
                         >
                             <span className="relative z-10">{t.services.contactButton}</span>

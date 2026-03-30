@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface VillaImagePlaceholderProps {
     className?: string;
@@ -12,11 +13,14 @@ export const VillaImagePlaceholder: React.FC<VillaImagePlaceholderProps> = ({
     return (
         <div className={`relative overflow-hidden ${className}`}>
             {/* Blurred St Barth background */}
-            <div
-                className="absolute inset-0 bg-cover bg-center blur-md scale-110"
-                style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1200&auto=format&fit=crop')",
-                }}
+            <Image
+                src="https://images.unsplash.com/photo-1559827260-dc66d52bef19"
+                alt=""
+                fill
+                className="object-cover blur-md scale-110"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={30}
+                loading="lazy"
             />
 
             {/* Dark overlay */}

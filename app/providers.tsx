@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { Language } from '@/i18n/types';
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children, locale }: { children: React.ReactNode; locale: Language }) {
     return (
-        <LanguageProvider>
+        <LanguageProvider initialLanguage={locale}>
             {children}
         </LanguageProvider>
     );

@@ -17,14 +17,77 @@ const serviceImages = {
 };
 
 export const ConciergerieContent: React.FC = () => {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
 
     const services = ['chef', 'spa', 'transfer', 'reservations', 'nautical'] as const;
 
 
 
+    const servicesListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Services de Conciergerie Sun Beach House St. Barth",
+        "description": "Prestations de luxe sur-mesure à Saint-Barthélemy",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Service",
+                    "name": t.conciergeriePage.chef.title,
+                    "description": t.conciergeriePage.chef.shortDesc,
+                    "provider": { "@type": "LocalBusiness", "name": "Sun Beach House" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Service",
+                    "name": t.conciergeriePage.spa.title,
+                    "description": t.conciergeriePage.spa.shortDesc,
+                    "provider": { "@type": "LocalBusiness", "name": "Sun Beach House" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Service",
+                    "name": t.conciergeriePage.transfer.title,
+                    "description": t.conciergeriePage.transfer.shortDesc,
+                    "provider": { "@type": "LocalBusiness", "name": "Sun Beach House" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "Service",
+                    "name": t.conciergeriePage.nautical.title,
+                    "description": t.conciergeriePage.nautical.shortDesc,
+                    "provider": { "@type": "LocalBusiness", "name": "Sun Beach House" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "Service",
+                    "name": t.conciergeriePage.vip.title,
+                    "description": t.conciergeriePage.vip.shortDesc,
+                    "provider": { "@type": "LocalBusiness", "name": "Sun Beach House" }
+                }
+            }
+        ]
+    };
+
     return (
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24 text-sbh-charcoal relative overflow-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesListSchema) }}
+            />
 
             {/* HERO SECTION */}
             <div className="relative h-[80vh] xl:h-[70vh] w-full overflow-hidden mb-16">
@@ -277,7 +340,7 @@ export const ConciergerieContent: React.FC = () => {
                             &ldquo;{t.services.quote}&rdquo;
                         </p>
                         <Link
-                            href="/contact"
+                            href={`/${language}/contact`}
                             className="inline-block px-8 md:px-10 py-3 md:py-4 bg-sbh-charcoal text-white font-sans text-xs md:text-sm uppercase tracking-[0.25em] hover:bg-sbh-green transition-all duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform"
                         >
                             {t.conciergeriePage.cta}

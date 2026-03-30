@@ -5,14 +5,15 @@ import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { Logo } from './Logo';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface NavbarProps {
   forceDark?: boolean; // New prop to force dark text on white pages
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, t } = useLanguage();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [collectionsOpen, setCollectionsOpen] = useState(false); // Mobile dropdown state
@@ -24,7 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    // passive: true prevents blocking the main thread on mobile scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,8 +46,16 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
 
   // Helper for active state
   const isActive = (path: string) => {
-    if (path === '/') return pathname === '/';
-    return pathname?.startsWith(path);
+    const localizedPath = `/${language}${path === '/' ? '' : path}`;
+    if (path === '/') return pathname === localizedPath || pathname === `/${language}`;
+    return pathname?.startsWith(localizedPath);
+  };
+
+  const handleLanguageChange = (newLocale: string) => {
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+    router.push(segments.join('/'));
+    setLangMenuOpen(false);
   };
 
   const isCollectionsActive = isActive('/rentals') || isActive('/sales');
@@ -62,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
 
         {/* Logo - Navigates to Home */}
         <Link
-          href="/"
+          href={`/${language}`}
           onClick={() => setMenuOpen(false)}
           className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${(isDarkText || menuOpen) ? 'text-sbh-darkgreen' : 'text-white'}`}
         >
@@ -96,29 +106,29 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             {/* Dropdown Menu */}
             <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 transition-all duration-300 ${desktopCollectionsHover ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-2 invisible'}`}>
               <div className="bg-white shadow-xl rounded-sm p-4 min-w-[180px] flex flex-col gap-2 border border-gray-100 text-sbh-charcoal">
-                <Link href="/rentals" className={`text-left px-4 py-2 hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors whitespace-nowrap ${isActive('/rentals') ? 'text-sbh-blue' : ''}`}>
+                <Link href={`/${language}/rentals`} className={`text-left px-4 py-2 hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors whitespace-nowrap ${isActive('/rentals') ? 'text-sbh-blue' : ''}`}>
                   {t.nav.rentals}
                 </Link>
-                <Link href="/sales" className={`text-left px-4 py-2 hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors whitespace-nowrap ${isActive('/sales') ? 'text-sbh-blue' : ''}`}>
+                <Link href={`/${language}/sales`} className={`text-left px-4 py-2 hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors whitespace-nowrap ${isActive('/sales') ? 'text-sbh-blue' : ''}`}>
                   {t.nav.sales}
                 </Link>
               </div>
             </div>
           </div>
 
-          <Link href="/destinations" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/destinations') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/destinations`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/destinations') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.destination}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/destinations') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/conciergerie" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/conciergerie') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/conciergerie`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/conciergerie') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.concierge}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/conciergerie') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/about" className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/about') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/about`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/about') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.spirit}
             <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href="/contact" className={`hover:text-sbh-blue transition-colors duration-300 hover:opacity-100 uppercase tracking-[0.15em] ${isActive('/contact') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/contact`} className={`hover:text-sbh-blue transition-colors duration-300 hover:opacity-100 uppercase tracking-[0.15em] ${isActive('/contact') ? 'text-sbh-blue font-semibold' : ''}`}>
             {t.nav.contact}
           </Link>
 
@@ -136,10 +146,10 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             {/* Language Dropdown */}
             <div className={`absolute top-full right-0 pt-2 transition-all duration-300 ${langMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'}`}>
               <div className="bg-white shadow-xl rounded-sm p-2 min-w-[100px] flex flex-col gap-1 border border-gray-100 text-sbh-charcoal text-xs">
-                <button onClick={() => setLanguage('fr')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'fr' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇫🇷 FR</button>
-                <button onClick={() => setLanguage('en')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'en' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇬🇧 EN</button>
-                <button onClick={() => setLanguage('pt')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'pt' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇵🇹 PT</button>
-                <button onClick={() => setLanguage('es')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'es' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇪🇸 ES</button>
+                <button onClick={() => handleLanguageChange('fr')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'fr' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇫🇷 FR</button>
+                <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'en' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇬🇧 EN</button>
+                <button onClick={() => handleLanguageChange('pt')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'pt' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇵🇹 PT</button>
+                <button onClick={() => handleLanguageChange('es')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'es' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇪🇸 ES</button>
               </div>
             </div>
           </div>
@@ -159,7 +169,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
       {menuOpen && (
         <div className="fixed inset-0 bg-sbh-cream z-[999] flex flex-col items-center justify-start pt-32 pb-12 gap-8 animate-fade-in overflow-y-auto overscroll-contain">
 
-          <Link href="/" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.home}</Link>
+          <Link href={`/${language}`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.home}</Link>
 
           {/* Mobile Collapsible Collections */}
           <div className="flex flex-col items-center">
@@ -172,27 +182,27 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             </button>
             {collectionsOpen && (
               <div className="flex flex-col items-center gap-4 mt-4 bg-sbh-charcoal/5 w-64 py-4 rounded-lg animate-slide-up">
-                <Link href="/rentals" onClick={() => setMenuOpen(false)} className={`text-sm font-sans uppercase tracking-widest ${isActive('/rentals') ? 'text-sbh-blue' : 'text-sbh-charcoal/80'}`}>
+                <Link href={`/${language}/rentals`} onClick={() => setMenuOpen(false)} className={`text-sm font-sans uppercase tracking-widest ${isActive('/rentals') ? 'text-sbh-blue' : 'text-sbh-charcoal/80'}`}>
                   {t.nav.rentals}
                 </Link>
-                <Link href="/sales" onClick={() => setMenuOpen(false)} className={`text-sm font-sans uppercase tracking-widest ${isActive('/sales') ? 'text-sbh-blue' : 'text-sbh-charcoal/80'}`}>
+                <Link href={`/${language}/sales`} onClick={() => setMenuOpen(false)} className={`text-sm font-sans uppercase tracking-widest ${isActive('/sales') ? 'text-sbh-blue' : 'text-sbh-charcoal/80'}`}>
                   {t.nav.sales}
                 </Link>
               </div>
             )}
           </div>
 
-          <Link href="/destinations" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/destinations') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.destination}</Link>
-          <Link href="/conciergerie" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/conciergerie') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.concierge}</Link>
-          <Link href="/about" onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/about') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.spirit}</Link>
-          <Link href="/contact" onClick={() => setMenuOpen(false)} className={`text-xs font-sans tracking-[0.3em] uppercase mt-8 border-b pb-1 ${isActive('/contact') ? 'text-sbh-blue border-sbh-blue' : 'text-sbh-charcoal border-sbh-charcoal'}`}>{t.nav.contact}</Link>
+          <Link href={`/${language}/destinations`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/destinations') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.destination}</Link>
+          <Link href={`/${language}/conciergerie`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/conciergerie') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.concierge}</Link>
+          <Link href={`/${language}/about`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/about') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.spirit}</Link>
+          <Link href={`/${language}/contact`} onClick={() => setMenuOpen(false)} className={`text-xs font-sans tracking-[0.3em] uppercase mt-8 border-b pb-1 ${isActive('/contact') ? 'text-sbh-blue border-sbh-blue' : 'text-sbh-charcoal border-sbh-charcoal'}`}>{t.nav.contact}</Link>
 
           {/* Language Switcher Mobile */}
           <div className="flex gap-2 mt-8">
-            <button onClick={() => setLanguage('fr')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'fr' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇫🇷 FR</button>
-            <button onClick={() => setLanguage('en')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'en' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇬🇧 EN</button>
-            <button onClick={() => setLanguage('pt')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'pt' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇵🇹 PT</button>
-            <button onClick={() => setLanguage('es')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'es' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇪🇸 ES</button>
+            <button onClick={() => handleLanguageChange('fr')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'fr' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇫🇷 FR</button>
+            <button onClick={() => handleLanguageChange('en')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'en' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇬🇧 EN</button>
+            <button onClick={() => handleLanguageChange('pt')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'pt' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇵🇹 PT</button>
+            <button onClick={() => handleLanguageChange('es')} className={`px-3 py-2 text-xs font-sans tracking-wider uppercase rounded-sm transition-colors ${language === 'es' ? 'bg-sbh-blue text-white' : 'bg-sbh-charcoal/5 text-sbh-charcoal/60 hover:bg-sbh-charcoal/10'}`}>🇪🇸 ES</button>
           </div>
         </div>
       )}

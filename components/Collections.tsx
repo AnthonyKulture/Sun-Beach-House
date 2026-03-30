@@ -39,6 +39,9 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isAmenitiesOpen, setIsAmenitiesOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
+    // Local slider display values — decoupled from filters to prevent re-render on every tick
+    const [bedroomDisplay, setBedroomDisplay] = useState(initialFilters.bedrooms);
+    const [priceDisplay, setPriceDisplay] = useState(initialFilters.price);
     const amenitiesRef = useRef<HTMLDivElement>(null);
     const prevModeRef = useRef<'rent' | 'sale'>(mode);
 
@@ -211,10 +214,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
         }
     };
 
-    // Scroll effect
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // NOTE: Next.js App Router handles scroll reset — no manual scrollTo needed.
 
     // Helper for safe date formatting
     const formatDate = (dateStr?: string) => {
@@ -266,15 +266,20 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     return (
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24">
 
-            {/* HERO BANNER - With Overlay fix for navbar */}
+            {/* HERO BANNER - With next/image for LCP */}
             <div className="relative h-[60vh] xl:h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${mode === 'rent' ? '/images/optimized-rentals-hero.jpg' : '/images/optimized-sales-hero.jpg'})` }}
-                ></div>
+                <Image
+                    src={mode === 'rent' ? '/images/optimized-rentals-hero.jpg' : '/images/optimized-sales-hero.jpg'}
+                    alt={mode === 'rent' ? 'Villas de location à Saint-Barthélemy' : 'Villas à vendre à Saint-Barthélemy'}
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover object-center"
+                    quality={85}
+                />
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative z-10 text-center text-white px-6 animate-slide-up pt-20 xl:pt-0">
-                    <div className="mb-6 flex justify-center opacity-80 animate-spin-slower">
+                    <div className="mb-6 flex justify-center opacity-80 animate-spin-slower" style={{ willChange: 'transform' }}>
                         <SunStamp className="w-20 h-20 text-white" />
                     </div>
                     <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl italic mb-4">{heroTitle}</h1>
@@ -354,11 +359,13 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                             <div className="flex items-center gap-2 md:gap-4">
                                 <input
                                     type="range" min="1" max="10" step="1"
-                                    value={filters.bedrooms}
-                                    onChange={(e) => onUpdateFilters({ ...filters, bedrooms: parseInt(e.target.value) })}
+                                    value={bedroomDisplay}
+                                    onChange={(e) => setBedroomDisplay(parseInt(e.target.value))}
+                                    onPointerUp={(e) => onUpdateFilters({ ...filters, bedrooms: parseInt((e.target as HTMLInputElement).value) })}
+                                    onMouseUp={(e) => onUpdateFilters({ ...filters, bedrooms: parseInt((e.target as HTMLInputElement).value) })}
                                     className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                 />
-                                <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-6 md:w-8 text-right">{filters.bedrooms}</span>
+                                <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-6 md:w-8 text-right">{bedroomDisplay}</span>
                             </div>
                         </div>
 
@@ -371,15 +378,17 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                 <div className="flex items-center gap-2 md:gap-4">
                                     <input
                                         type="range" min="0" max="25000000" step="100000"
-                                        value={filters.price}
-                                        onChange={(e) => onUpdateFilters({ ...filters, price: parseInt(e.target.value) })}
+                                        value={priceDisplay}
+                                        onChange={(e) => setPriceDisplay(parseInt(e.target.value))}
+                                        onPointerUp={(e) => onUpdateFilters({ ...filters, price: parseInt((e.target as HTMLInputElement).value) })}
+                                        onMouseUp={(e) => onUpdateFilters({ ...filters, price: parseInt((e.target as HTMLInputElement).value) })}
                                         className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-sbh-green"
                                     />
                                     <span className="font-serif text-lg md:text-sm lg:text-lg text-sbh-charcoal w-20 md:w-24 lg:w-24 text-right whitespace-nowrap overflow-visible">
-                                        {filters.price === 0 ? t.collections.all : (
-                                            filters.price >= 25000000 ? '25M€ +' :
-                                                filters.price >= 1000000 ? `${filters.price / 1000000}M€` :
-                                                    `${filters.price / 1000}k€`
+                                        {priceDisplay === 0 ? t.collections.all : (
+                                            priceDisplay >= 25000000 ? '25M€ +' :
+                                                priceDisplay >= 1000000 ? `${priceDisplay / 1000000}M€` :
+                                                    `${priceDisplay / 1000}k€`
                                         )}
                                     </span>
                                 </div>
@@ -470,7 +479,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                 ) : filteredVillas.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
                         {filteredVillas.map((villa) => (
-                            <Link href={`/villas/${villa.id}`} key={villa.id} className="group cursor-pointer flex flex-col">
+                            <Link href={`/${language}/villas/${villa.id}`} key={villa.id} className="group cursor-pointer flex flex-col">
                                 <div className="relative aspect-[4/3] overflow-hidden rounded-sm mb-6">
                                     {villa.mainImage ? (
                                         <Image
