@@ -31,7 +31,7 @@ const fr: Translations = {
         ourCollections: 'Nos Collections',
         seasonalRentals: 'Locations saisonnières',
         propertiesForSale: 'Biens à vendre',
-        disclaimerText: 'Certaines villas d’exception sont volontairement conservées hors ligne<br/>afin de préserver la discrétion de leurs propriétaires.<br/>Notre équipe pourra vous les présenter de manière personnalisée selon vos critères.',
+        disclaimerText: 'Certaines villas d’exception sont volontairement conservées hors ligne\nafin de préserver la discrétion de leurs propriétaires.\nNotre équipe pourra vous les présenter de manière personnalisée selon vos critères.',
     },
 
     collections: {

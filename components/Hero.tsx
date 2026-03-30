@@ -77,7 +77,7 @@ export const Hero: React.FC = () => {
                     </div>
 
                     <div className="mt-8 md:mt-10 text-center px-2 w-full">
-                        <p className="font-sans font-medium text-xs md:text-base text-sbh-cream/95 max-w-2xl mx-auto drop-shadow-lg leading-relaxed md:leading-loose">
+                        <p className="font-sans font-medium text-xs md:text-base text-sbh-cream/95 max-w-2xl mx-auto drop-shadow-lg leading-relaxed md:leading-loose whitespace-pre-line">
                             {t.hero.disclaimerText}
                         </p>
                     </div>
