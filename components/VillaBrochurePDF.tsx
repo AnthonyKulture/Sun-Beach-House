@@ -397,7 +397,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                                 );
 
                                 return (
-                                    <View key={index}>
+                                    <View key={index} wrap={false}>
                                         {/* Season header */}
                                         <View style={styles.seasonHeaderRow}>
                                             <Text style={styles.seasonHeaderLabel}>
