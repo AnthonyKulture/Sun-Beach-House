@@ -154,11 +154,11 @@ const styles = StyleSheet.create({
         flex: 1,
         lineHeight: 1.4,
     },
-    // Pricing Section - Page 2
+    // Pricing Section - dedicated page
     pricingSection: {
         padding: 30,
         paddingTop: 20,
-        paddingBottom: 20,
+        paddingBottom: 50, // Space for fixed footer
     },
     priceTable: {
         marginTop: 12,
@@ -350,11 +350,11 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                 <View style={styles.footer} fixed />
             </Page>
 
-            {/* PAGE 2: Équipements + Tarifs */}
+            {/* PAGE 2: Équipements */}
             <Page size="A4" style={styles.page}>
                 <View style={styles.header}>
                     <Text style={{ ...styles.villaName, fontSize: 20 }}>
-                        Amenities{showSeasonalPricing ? ' & Pricing' : ''}
+                        Amenities
                     </Text>
                 </View>
 
@@ -363,7 +363,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                     {displayedAmenities && displayedAmenities.length > 0 ? (
                         <View style={styles.amenitiesGrid}>
                             {displayedAmenities.map((amenity, index) => {
-                                const displayName = amenity.name_en || amenity.name; // Fallback to French name if EN missing
+                                const displayName = amenity.name_en || amenity.name;
 
                                 return (
                                     <View key={index} style={styles.amenityItem}>
@@ -378,10 +378,30 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                     )}
                 </View>
 
-                {/* Seasonal Pricing (if enabled) */}
-                {showSeasonalPricing && (
+                {/* Feature Image if no pricing */}
+                {!showSeasonalPricing && villa.galleryImages && villa.galleryImages.length > 0 && (
+                    <View style={styles.featureImageSection}>
+                        <Image
+                            src={optimizeImageForPDF(villa.galleryImages[0])}
+                            style={styles.featureImage}
+                        />
+                    </View>
+                )}
+
+                {/* Footer */}
+                <View style={styles.footer} fixed />
+            </Page>
+
+            {/* PAGE 3 (if pricing): Grille tarifaire – page dédiée, peut s'étendre sur plusieurs pages */}
+            {showSeasonalPricing && (
+                <Page size="A4" style={styles.page}>
+                    <View style={styles.header}>
+                        <Text style={{ ...styles.villaName, fontSize: 20 }}>
+                            Seasonal Pricing
+                        </Text>
+                    </View>
+
                     <View style={styles.pricingSection}>
-                        <Text style={styles.sectionTitle}>Seasonal Pricing</Text>
                         <View style={styles.priceTable}>
                             {villa.seasonalPrices!.map((season, index) => {
                                 const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
@@ -391,7 +411,6 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
 
                                 const dateString = translateDate(season.dates, 'en');
 
-                                // Sort bedroom prices ascending
                                 const sortedPrices = [...(season.prices || [])].sort(
                                     (a, b) => a.bedrooms - b.bedrooms
                                 );
@@ -430,21 +449,11 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                             Prices per week. Service and taxes not included.
                         </Text>
                     </View>
-                )}
 
-                {/* Feature Image to fill empty space if no pricing */}
-                {!showSeasonalPricing && villa.galleryImages && villa.galleryImages.length > 0 && (
-                    <View style={styles.featureImageSection}>
-                        <Image
-                            src={optimizeImageForPDF(villa.galleryImages[0])}
-                            style={styles.featureImage}
-                        />
-                    </View>
-                )}
-
-                {/* Footer */}
-                <View style={styles.footer} fixed />
-            </Page>
+                    {/* Footer */}
+                    <View style={styles.footer} fixed />
+                </Page>
+            )}
 
 
 
