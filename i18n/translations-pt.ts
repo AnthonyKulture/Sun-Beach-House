@@ -268,7 +268,7 @@ export const pt: Translations = {
     services: {
         title: 'Concierge',
         contactButton: 'Contatar Valérie',
-        quote: '"Fazer de cada estadia em Saint-Barth um momento único."',
+        quote: 'Fazer de cada estadia em Saint-Barth um momento único.',
         chef: {
             title: 'Chefs em Casa',
             desc: 'Gastronomia sob medida na villa',
@@ -466,7 +466,7 @@ export const pt: Translations = {
             p3: 'Voltar não foi fácil. Tive que reconstruir, encontrar meus marcos novamente, dar significado a esse retorno. Mas fiquei. Porque sabia que estava exatamente onde deveria estar, para construir a Sun Beach House.',
         },
         philosophy: {
-            quote: 'Hoje, meu trabalho não é uma transação. É um encontro.',
+            quote: 'Hoje, o meu trabalho não é apenas um serviço, é uma ligação humana.',
             intro: 'Não alugo apenas uma villa. Crio um espaço onde você pode viver algo:',
             list1: 'férias que transformam',
             list2: 'um momento que marca',

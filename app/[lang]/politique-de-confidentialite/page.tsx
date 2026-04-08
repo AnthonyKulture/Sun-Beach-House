@@ -84,7 +84,7 @@ export default function PolitiqueConfidentialite() {
                             Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d&apos;un droit d&apos;accès, de rectification, d&apos;effacement, et de portabilité de vos données. Vous pouvez également vous opposer au traitement de vos données ou en demander la limitation.
                         </p>
                         <p>
-                            Pour exercer ces droits, veuillez nous contacter à l&apos;adresse suivante : <strong>hello@sun-beach-house.com</strong>
+                            Pour exercer ces droits, veuillez nous contacter à l&apos;adresse suivante : <strong>valerie@sun-beach-house.com</strong>
                         </p>
                     </section>
 

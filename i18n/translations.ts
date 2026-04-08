@@ -240,7 +240,7 @@ const fr: Translations = {
     services: {
         title: 'Conciergerie',
         contactButton: 'Contacter Valérie',
-        quote: '"Faire de chaque séjour à Saint-Barth un moment unique."',
+        quote: 'Faire de chaque séjour à Saint-Barth un moment unique.',
         chef: {
             title: 'Chefs à Domicile',
             desc: 'Gastronomie sur mesure en villa',
@@ -473,7 +473,7 @@ const fr: Translations = {
             p3: "Revenir n'a pas été simple. Il a fallu reconstruire, retrouver mes repères, redonner du sens à ce retour. Mais je suis restée. Parce que je savais que j'étais exactement là où je devais être, pour bâtir Sun Beach House.",
         },
         philosophy: {
-            quote: "Aujourd'hui, mon travail n'est pas une transaction. C'est une rencontre.",
+            quote: "Aujourd’hui, mon travail n’est pas seulement un service, c’est une connexion humaine.",
             intro: "Je ne loue pas seulement une villa. Je crée un espace où vous pouvez vivre quelque chose :",
             list1: "des vacances qui transforment",
             list2: "un moment qui marque",
@@ -737,7 +737,7 @@ const en: Translations = {
     services: {
         title: 'Concierge',
         contactButton: 'Contact Valérie',
-        quote: '"Making every stay in Saint-Barth a unique moment."',
+        quote: 'Making every stay in Saint-Barth a unique moment.',
         chef: {
             title: 'Private Chefs',
             desc: 'Tailor-made gastronomy at your villa',
@@ -964,7 +964,7 @@ const en: Translations = {
             p3: "Coming back wasn't easy. I had to rebuild, find my bearings again, give meaning to this return. But I stayed. Because I knew I was exactly where I needed to be, to build Sun Beach House.",
         },
         philosophy: {
-            quote: "Today, my work is not a transaction. It's an encounter.",
+            quote: "Today, my work is not just a service, it's a human connection.",
             intro: "I don't just rent a villa. I create a space where you can experience something:",
             list1: "vacations that transform",
             list2: "a moment that marks you",

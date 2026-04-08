@@ -86,7 +86,7 @@ export const ContactPage: React.FC = () => {
                     {/* Upper Visual */}
                     <div className="h-64 lg:h-1/2 relative overflow-hidden">
                         <Image
-                            src="https://storage.googleapis.com/images-sbh/f7f7fd16-3e6c-43e6-93fd-b13f74bf9418.jpg"
+                            src="https://storage.googleapis.com/images-sbh/corossol-sun-beach-house-villa-rental-saint-barth-02.JPG"
                             alt="Atmosphere St Barth"
                             fill
                             sizes="(max-width: 1024px) 100vw, 40vw"

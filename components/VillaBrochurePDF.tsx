@@ -162,22 +162,42 @@ const styles = StyleSheet.create({
     },
     priceTable: {
         marginTop: 12,
-        gap: 5,
+        gap: 4,
     },
+    // Season group header row
+    seasonHeaderRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 7,
+        paddingHorizontal: 12,
+        backgroundColor: colors.green,
+        marginTop: 6,
+    },
+    seasonHeaderLabel: {
+        fontSize: 9,
+        fontFamily: 'Helvetica-Bold',
+        color: colors.white,
+    },
+    seasonHeaderDates: {
+        fontSize: 8,
+        fontFamily: 'Helvetica',
+        color: colors.white,
+    },
+    // Bedroom sub-row inside a season
     priceRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 8,
+        paddingVertical: 5,
         paddingHorizontal: 12,
         backgroundColor: colors.white,
     },
     priceLabel: {
-        fontSize: 9,
+        fontSize: 8.5,
         fontFamily: 'Helvetica',
         color: colors.charcoal,
     },
     priceValue: {
-        fontSize: 10,
+        fontSize: 9,
         fontFamily: 'Helvetica-Bold',
         color: colors.green,
     },
@@ -363,9 +383,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                     <View style={styles.pricingSection}>
                         <Text style={styles.sectionTitle}>Seasonal Pricing</Text>
                         <View style={styles.priceTable}>
-                            {villa.seasonalPrices!.slice(0, 6).map((season, index) => {
-                                // Localize: Only translate if language is NOT French (source language)
-                                // We are forcing English
+                            {villa.seasonalPrices!.map((season, index) => {
                                 const normalizedKey = getSeasonTranslationKey(season.seasonName.name);
                                 const translatedName = normalizedKey
                                     ? t.villa.seasons[normalizedKey]
@@ -373,14 +391,37 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
 
                                 const dateString = translateDate(season.dates, 'en');
 
+                                // Sort bedroom prices ascending
+                                const sortedPrices = [...(season.prices || [])].sort(
+                                    (a, b) => a.bedrooms - b.bedrooms
+                                );
+
                                 return (
-                                    <View key={index} style={styles.priceRow}>
-                                        <Text style={styles.priceLabel}>
-                                            {translatedName} ({dateString})
-                                        </Text>
-                                        <Text style={styles.priceValue}>
-                                            From ${season.prices[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-                                        </Text>
+                                    <View key={index}>
+                                        {/* Season header */}
+                                        <View style={styles.seasonHeaderRow}>
+                                            <Text style={styles.seasonHeaderLabel}>
+                                                {translatedName}
+                                            </Text>
+                                            <Text style={styles.seasonHeaderDates}>
+                                                {dateString}
+                                            </Text>
+                                        </View>
+
+                                        {/* One sub-row per bedroom count */}
+                                        {sortedPrices.map((bp, bpIndex) => (
+                                            <View key={bpIndex} style={[
+                                                styles.priceRow,
+                                                bpIndex % 2 === 1 ? { backgroundColor: '#F5F5F0' } : {}
+                                            ]}>
+                                                <Text style={styles.priceLabel}>
+                                                    {bp.bedrooms} bedroom{bp.bedrooms > 1 ? 's' : ''}
+                                                </Text>
+                                                <Text style={styles.priceValue}>
+                                                    ${bp.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} / week
+                                                </Text>
+                                            </View>
+                                        ))}
                                     </View>
                                 );
                             })}

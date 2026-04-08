@@ -466,7 +466,7 @@ export const es: Translations = {
             p3: 'Volver no fue fácil. Tuve que reconstruir, encontrar mis referencias nuevamente, dar significado a ese regreso. Pero me quedé. Porque sabía que estaba exactamente donde debía estar, para construir Sun Beach House.',
         },
         philosophy: {
-            quote: 'Hoy, mi trabajo no es una transacción. Es un encuentro.',
+            quote: 'Hoy, mi trabajo no es solo un servicio, es una conexión humana.',
             intro: 'No solo alquilo una villa. Creo un espacio donde puede vivir algo:',
             list1: 'vacaciones que transforman',
             list2: 'un momento que marca',

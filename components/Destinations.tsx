@@ -131,14 +131,6 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                                 alt="Gastronomy and Culture"
                                 className="w-full h-full object-cover"
                             />
-                            {/* Floating secondary image */}
-                            <div className="absolute -bottom-12 -right-12 w-1/2 h-2/3 border-8 border-sbh-cream overflow-hidden shadow-lg hidden md:block reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=800&auto=format&fit=crop"
-                                    alt="Artisanat"
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
                         </div>
                     </div>
 
@@ -199,8 +191,8 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                         </div>
                         <div className="order-1 md:order-2 relative aspect-[4/5] overflow-hidden rounded-t-[100px] border border-sbh-charcoal/5 reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
                             <img
-                                src="/images/optimized-dest-gustavia.jpg"
-                                alt="Gustavia"
+                                src="https://storage.googleapis.com/images-sbh/phare-gustavia-saint-barth-sun-beach-house-villa-rental.JPG"
+                                alt="Phare de Gustavia à Saint-Barthélemy - Sun Beach House"
                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s]"
                             />
                         </div>
