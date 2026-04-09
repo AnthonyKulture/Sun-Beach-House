@@ -39,6 +39,23 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     const { language, t } = useLanguage();
     const { villa: originalVilla, loading, error } = useVilla(villaId);
     const villa = useTranslatedVilla(originalVilla);
+    
+    // Price formatting helper based on villa currency
+    const formatPrice = (price: number, cur: 'USD' | 'EUR' = 'USD') => {
+        if (cur === 'EUR') {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'EUR',
+                maximumFractionDigits: 0,
+            }).format(price);
+        }
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0,
+        }).format(price);
+    };
+
     // useSimilarVillas: lean fetch (7 fields only) instead of full useVillas() over-fetch
     const { similarVillas } = useSimilarVillas(
         originalVilla?.id ?? null,
@@ -212,14 +229,15 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
     // Determine display price with fallback to "Prix sur demande"
     const getDisplayPrice = () => {
         if (isSale) {
-            return villa.salePrice && villa.salePrice > 0 ? `${villa.salePrice.toLocaleString('fr-FR')}€` : null;
+            return villa.salePrice && villa.salePrice > 0 ? `${villa.salePrice.toLocaleString('fr-FR')} €` : null;
         }
         // For rentals: prioritize pricePerWeek, fallback to pricePerNight
+        const baseCurrency = villa.currency || 'USD';
         if (villa.pricePerWeek && villa.pricePerWeek > 0) {
-            return `$${villa.pricePerWeek.toLocaleString('en-US')}`;
+            return formatPrice(villa.pricePerWeek, baseCurrency);
         }
         if (villa.pricePerNight && villa.pricePerNight > 0) {
-            return `$${villa.pricePerNight.toLocaleString('en-US')}`;
+            return formatPrice(villa.pricePerNight, baseCurrency);
         }
         return null;
     };
@@ -619,7 +637,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                                             </div>
                                                             <div className="flex items-center gap-2">
                                                                 <span className="font-medium text-lg text-sbh-charcoal">
-                                                                    ${tier.price.toLocaleString('en-US')}
+                                                                    {formatPrice(tier.price, villa.currency || 'USD')}
                                                                 </span>
                                                                 <span className="text-[10px] text-gray-400 uppercase tracking-widest">{t.villa.week}</span>
                                                             </div>

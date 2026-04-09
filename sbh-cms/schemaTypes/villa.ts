@@ -18,7 +18,7 @@ const bedroomPrice = defineType({
     }),
     defineField({
       name: 'price',
-      title: 'Prix ($ / semaine)',
+      title: 'Prix net (/ semaine)',
       type: 'number',
       validation: (rule) => rule.required().min(0)
         .error('Le prix doit être positif'),
@@ -28,7 +28,7 @@ const bedroomPrice = defineType({
     select: { bedrooms: 'bedrooms', price: 'price' },
     prepare({ bedrooms, price }) {
       return {
-        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → $${price?.toLocaleString('en-US')}`,
+        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → ${price?.toLocaleString('en-US')} (selon devise)`,
       }
     },
   },
@@ -143,7 +143,6 @@ const villa = defineType({
       validation: (rule) => rule.required().max(100)
         .error('Le nom est obligatoire (100 caractères max)'),
     }),
-/*
     defineField({
       name: 'slug',
       title: 'URL de la page',
@@ -165,9 +164,7 @@ const villa = defineType({
           .replace(/[^a-z0-9-]/g, '')
           .slice(0, 96)
       },
-      validation: (rule) => rule.required().error('Cliquez sur "Generate" pour créer l\'URL'),
     }),
-    */
     defineField({
       name: 'listingType',
       title: 'Type d\'annonce',
@@ -343,8 +340,24 @@ const villa = defineType({
     // GROUPE : TARIFICATION
     // ═══════════════════════════════════════════════════════════
     defineField({
+      name: 'currency',
+      title: 'Devise de location',
+      type: 'string',
+      group: 'pricing',
+      description: 'Devise appliquée aux tarifs de location de cette villa.',
+      options: {
+        list: [
+          { title: 'USD ($)', value: 'USD' },
+          { title: 'EUR (€)', value: 'EUR' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'USD',
+      hidden: ({ document }) => document?.listingType === 'sale',
+    }),
+    defineField({
       name: 'pricePerNight',
-      title: 'Prix par nuit (à partir de) - $',
+      title: 'Prix par nuit (à partir de)',
       type: 'number',
       group: 'pricing',
       description: 'Prix par nuit (Basse Saison) - si applicable',
@@ -352,7 +365,7 @@ const villa = defineType({
     }),
     defineField({
       name: 'pricePerWeek',
-      title: 'Prix par semaine (à partir de) - $',
+      title: 'Prix par semaine (à partir de)',
       type: 'number',
       group: 'pricing',
       description: 'Prix par semaine (Basse Saison) - si applicable',
@@ -452,15 +465,13 @@ const villa = defineType({
         }),
       ],
     }),
-    /*
     defineField({
       name: 'mainImageUrl',
-      title: 'OU lien vers photo principale',
+      title: 'OU lien vers photo principale (Optionnel)',
       type: 'url',
       group: 'media',
       description: 'Alternative : collez un lien vers l\'image (si pas de téléchargement)',
     }),
-    */
     defineField({
       name: 'galleryImages',
       title: 'Galerie photos',
@@ -489,16 +500,14 @@ const villa = defineType({
         layout: 'grid',
       },
     }),
-    /*
     defineField({
       name: 'galleryImageUrls',
-      title: 'OU liens vers photos galerie',
+      title: 'OU liens vers photos galerie (Optionnel)',
       type: 'array',
       group: 'media',
       of: [{ type: 'url' }],
       description: 'Alternative : collez des liens vers les images',
     }),
-    */
     defineField({
       name: 'videoUrl',
       title: 'Lien vidéo (YouTube / Vimeo)',
@@ -569,15 +578,17 @@ const villa = defineType({
       pricePerNight: 'pricePerNight',
       pricePerWeek: 'pricePerWeek',
       salePrice: 'salePrice',
+      currency: 'currency',
     },
-    prepare({ title, location, listingType, media, bedrooms, pricePerNight, pricePerWeek, salePrice }) {
-      const typeLabel = listingType === 'sale' ? 'VENTE' : 'LOCATION'
+    prepare({ title, location, listingType, media, bedrooms, pricePerNight, pricePerWeek, salePrice, currency }) {
+      const typeLabel = listingType === 'sale' ? 'VENTE' : 'LOCATION';
       let displayPrice = '';
       if (listingType === 'sale') {
         displayPrice = `${(salePrice || 0).toLocaleString('fr-FR')} €`;
       } else {
-        if (pricePerNight) displayPrice = `$${pricePerNight.toLocaleString('en-US')} / nuit`;
-        if (pricePerWeek) displayPrice = displayPrice ? `${displayPrice} | $${pricePerWeek.toLocaleString('en-US')} / semaine` : `$${pricePerWeek.toLocaleString('en-US')} / semaine`;
+        const symbol = currency === 'EUR' ? '€' : '$';
+        if (pricePerNight) displayPrice = `${symbol}${pricePerNight.toLocaleString('en-US')} / nuit`;
+        if (pricePerWeek) displayPrice = displayPrice ? `${displayPrice} | ${symbol}${pricePerWeek.toLocaleString('en-US')} / semaine` : `${symbol}${pricePerWeek.toLocaleString('en-US')} / semaine`;
         if (!displayPrice) displayPrice = 'Prix sur demande';
       }
 

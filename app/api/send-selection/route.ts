@@ -51,7 +51,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://votre-site.vercel.app';
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sun-beach-house.com';
 
         // Générer le HTML de l'email avec React Email
         const html = await render(
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         // En mode expéditeur non vérifié, Resend oblige à utiliser onboarding@resend.dev 
         // et n'autorise l'envoi qu'à l'adresse email du compte Resend.
         const { data, error } = await resend.emails.send({
-            from: 'Sun-Beach-House <onboarding@resend.dev>',
+            from: 'Sun-Beach-House <valerie@sun-beach-house.com>',
             to: [clientEmail],
             subject: subject,
             html: html,

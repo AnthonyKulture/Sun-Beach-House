@@ -3,14 +3,23 @@ import Image from 'next/image';
 
 interface LogoProps {
     className?: string;
-    variant?: 'blue' | 'beige';
+    variant?: 'blue' | 'beige' | 'darkgreen';
 }
 
 export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'blue' }) => {
-    const logoSrc = variant === 'blue' ? '/images/logo-sbh-blue.png' : '/images/logo-sbh-beige.png';
+    let logoSrc = '/images/logo-sbh-blue.png';
+    let filter = '';
+
+    if (variant === 'beige') {
+        logoSrc = '/images/logo-sbh-beige.png';
+    } else if (variant === 'darkgreen') {
+        // Filter to transform the light blue logo (#89ACDE) into dark green (#1A3C34)
+        // Approximate values to get close to the brand green
+        filter = 'brightness(0.3) saturate(1.2) sepia(0.8) hue-rotate(100deg)';
+    }
     
     return (
-        <div className={`relative aspect-[600/525] ${className}`}>
+        <div className={`relative aspect-[600/525] ${className}`} style={filter ? { filter } : undefined}>
             <Image
                 src={logoSrc}
                 alt="Sun Beach House"

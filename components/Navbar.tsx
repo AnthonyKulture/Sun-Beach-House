@@ -41,7 +41,10 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
   }, [menuOpen]);
 
   // Determine text color based on state and pathname
-  const isWhitePage = ['/contact', '/booking', '/sales-contact', '/mentions-legales', '/politique-de-confidentialite'].some(p => pathname?.startsWith(p));
+  const isWhitePage = ['/contact', '/booking', '/sales-contact', '/mentions-legales', '/politique-de-confidentialite'].some(p => {
+    const localizedPath = `/${language}${p}`;
+    return pathname === localizedPath || pathname?.startsWith(`${localizedPath}/`);
+  });
   const isDarkText = forceDark || isWhitePage || scrolled;
 
   // Helper for active state
@@ -77,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
           className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${(isDarkText || menuOpen) ? 'text-sbh-darkgreen' : 'text-white'}`}
         >
           <Logo 
-            variant={isDarkText || menuOpen ? 'blue' : 'beige'}
+            variant={isDarkText || menuOpen ? 'darkgreen' : 'beige'}
             className={`transition-all duration-700 ${scrolled
               ? 'h-8 md:h-10 lg:h-12'
               : 'h-10 md:h-12 lg:h-20'
@@ -86,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
         </Link>
 
         {/* Desktop Links - Hidden on Tablet (md), Visible on Desktop (lg) */}
-        <div className={`hidden lg:flex items-center gap-6 xl:gap-10 font-sans text-sm tracking-[0.08em] uppercase transition-colors duration-500 font-semibold ${isDarkText ? 'text-sbh-charcoal' : 'text-white [text-shadow:_0_2px_8px_rgb(0_0_0_/_40%)]'
+        <div className={`hidden lg:flex items-center gap-6 xl:gap-10 font-sans text-sm tracking-[0.08em] uppercase transition-colors duration-500 font-semibold ${isDarkText ? 'text-sbh-darkgreen' : 'text-white [text-shadow:_0_2px_8px_rgb(0_0_0_/_40%)]'
           }`}>
 
           {/* Collections Dropdown */}
@@ -96,11 +99,11 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             onMouseLeave={() => setDesktopCollectionsHover(false)}
           >
             <button
-              className={`hover:text-sbh-blue transition-colors duration-300 relative uppercase tracking-[0.15em] flex items-center gap-1.5 ${isCollectionsActive ? 'text-sbh-blue font-semibold' : ''}`}
+              className={`hover:text-sbh-blue transition-colors duration-300 relative uppercase tracking-[0.15em] flex items-center gap-1.5 ${isCollectionsActive ? (isDarkText ? 'text-sbh-darkgreen font-bold underline underline-offset-8' : 'text-sbh-blue font-semibold') : ''}`}
             >
               {t.nav.collections}
               <ChevronDown size={10} className={`transition-transform duration-300 ${desktopCollectionsHover ? 'rotate-180' : ''}`} />
-              {isCollectionsActive && <span className="absolute -bottom-2 left-0 w-full h-px bg-sbh-blue"></span>}
+              {isCollectionsActive && !isDarkText && <span className="absolute -bottom-2 left-0 w-full h-px bg-sbh-blue"></span>}
             </button>
 
             {/* Dropdown Menu */}
@@ -116,19 +119,19 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             </div>
           </div>
 
-          <Link href={`/${language}/destinations`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/destinations') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/destinations`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/destinations') ? (isDarkText ? 'text-sbh-darkgreen font-bold' : 'text-sbh-blue font-semibold') : ''}`}>
             {t.nav.destination}
-            <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/destinations') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            <span className={`absolute -bottom-2 left-0 h-px ${isDarkText ? 'bg-sbh-darkgreen' : 'bg-sbh-blue'} transition-all duration-300 ${isActive('/destinations') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href={`/${language}/conciergerie`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/conciergerie') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/conciergerie`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/conciergerie') ? (isDarkText ? 'text-sbh-darkgreen font-bold' : 'text-sbh-blue font-semibold') : ''}`}>
             {t.nav.concierge}
-            <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/conciergerie') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            <span className={`absolute -bottom-2 left-0 h-px ${isDarkText ? 'bg-sbh-darkgreen' : 'bg-sbh-blue'} transition-all duration-300 ${isActive('/conciergerie') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href={`/${language}/about`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/about') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/about`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/about') ? (isDarkText ? 'text-sbh-darkgreen font-bold' : 'text-sbh-blue font-semibold') : ''}`}>
             {t.nav.spirit}
-            <span className={`absolute -bottom-2 left-0 h-px bg-sbh-blue transition-all duration-300 ${isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+            <span className={`absolute -bottom-2 left-0 h-px ${isDarkText ? 'bg-sbh-darkgreen' : 'bg-sbh-blue'} transition-all duration-300 ${isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
-          <Link href={`/${language}/contact`} className={`hover:text-sbh-blue transition-colors duration-300 hover:opacity-100 uppercase tracking-[0.15em] ${isActive('/contact') ? 'text-sbh-blue font-semibold' : ''}`}>
+          <Link href={`/${language}/contact`} className={`hover:text-sbh-blue transition-colors duration-300 hover:opacity-100 uppercase tracking-[0.15em] ${isActive('/contact') ? (isDarkText ? 'text-sbh-darkgreen font-bold underline underline-offset-8' : 'text-sbh-blue font-semibold') : ''}`}>
             {t.nav.contact}
           </Link>
 
@@ -144,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             </button>
 
             {/* Language Dropdown */}
-            <div className={`absolute top-full right-0 pt-2 transition-all duration-300 ${langMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'}`}>
+            <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-300 ${langMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'}`}>
               <div className="bg-white shadow-xl rounded-sm p-2 min-w-[100px] flex flex-col gap-1 border border-gray-100 text-sbh-charcoal text-xs">
                 <button onClick={() => handleLanguageChange('fr')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'fr' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇫🇷 FR</button>
                 <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1.5 text-left hover:bg-sbh-cream/50 hover:text-sbh-blue transition-colors rounded-sm ${language === 'en' ? 'text-sbh-blue bg-sbh-cream/30' : ''}`}>🇬🇧 EN</button>
@@ -157,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
 
         {/* Mobile/Tablet Menu Button - Visible until Desktop (lg) */}
         <button
-          className={`lg:hidden transition-colors duration-500 z-[1002] p-2 -mr-2 ${isDarkText && !menuOpen ? 'text-sbh-charcoal' : !menuOpen ? 'text-white' : 'text-sbh-charcoal'}`}
+          className={`lg:hidden transition-colors duration-500 z-[1002] p-2 -mr-2 ${isDarkText && !menuOpen ? 'text-sbh-darkgreen' : !menuOpen ? 'text-white' : 'text-sbh-darkgreen'}`}
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <span className="sr-only">Menu</span>

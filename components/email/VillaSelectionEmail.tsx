@@ -44,7 +44,12 @@ export const VillaSelectionEmail = ({
                             <Text style={paragraph}>
                                 {message.split('\n').map((line, i) => (
                                     <React.Fragment key={i}>
-                                        {line}
+                                        {line.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                                            if (part.startsWith('**') && part.endsWith('**')) {
+                                                return <strong key={j}>{part.slice(2, -2)}</strong>;
+                                            }
+                                            return part;
+                                        })}
                                         {i !== message.split('\n').length - 1 && <br />}
                                     </React.Fragment>
                                 ))}

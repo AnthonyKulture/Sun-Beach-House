@@ -256,9 +256,20 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
     }
 
     // Price formatting helper
-    const formatPrice = (price: number) => {
+    const formatPrice = (price: number, cur: 'USD' | 'EUR' = 'USD') => {
         if (mode === 'rent') {
-            return `$${price.toLocaleString('en-US')}`;
+            if (cur === 'EUR') {
+                return new Intl.NumberFormat('fr-FR', {
+                    style: 'currency',
+                    currency: 'EUR',
+                    maximumFractionDigits: 0,
+                }).format(price);
+            }
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0,
+            }).format(price);
         }
         return `${price.toLocaleString('fr-FR')}€`;
     };
@@ -508,8 +519,8 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                     </div>
                                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 font-serif italic text-lg text-sbh-charcoal rounded-sm">
                                         {mode === 'rent'
-                                            ? (villa.pricePerWeek && villa.pricePerWeek > 0 ? `${formatPrice(villa.pricePerWeek)} ${t.collections.weekAbbrev}` : (villa.pricePerNight && villa.pricePerNight > 0 ? `${formatPrice(villa.pricePerNight)} ${t.collections.perNight}` : t.villa.priceOnRequest))
-                                            : (villa.salePrice && villa.salePrice > 0 ? formatPrice(villa.salePrice) : t.villa.priceOnRequest)
+                                            ? (villa.pricePerWeek && villa.pricePerWeek > 0 ? `${formatPrice(villa.pricePerWeek, villa.currency || 'USD')} ${t.collections.weekAbbrev}` : (villa.pricePerNight && villa.pricePerNight > 0 ? `${formatPrice(villa.pricePerNight, villa.currency || 'USD')} ${t.collections.perNight}` : t.villa.priceOnRequest))
+                                            : (villa.salePrice && villa.salePrice > 0 ? formatPrice(villa.salePrice, 'EUR') : t.villa.priceOnRequest)
                                         }
                                     </div>
                                 </div>

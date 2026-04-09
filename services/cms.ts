@@ -91,6 +91,7 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
       : doc.fullDescription || { en: '', fr: '' },
     pricePerNight: doc.pricePerNight,
     pricePerWeek: doc.pricePerWeek,
+    currency: doc.currency || 'USD',
     salePrice: doc.salePrice,
     bedrooms: doc.bedrooms,
     bathrooms: doc.bathrooms,
@@ -124,6 +125,7 @@ const villaFields = `
   fullDescription,
   pricePerNight,
   pricePerWeek,
+  currency,
   salePrice,
   bedrooms,
   bathrooms,
@@ -167,6 +169,7 @@ const similarVillaFields = `
   bathrooms,
   pricePerNight,
   pricePerWeek,
+  currency,
   salePrice,
   mainImage
 `;

@@ -8,8 +8,8 @@ import Image from 'next/image';
 
 const serviceImages = {
     chef: '/images/optimized-conciergerie-chef.jpg',
-    spa: '/images/optimized-conciergerie-spa.jpg',
-    transfer: '/images/optimized-conciergerie-vip.jpg',
+    spa: 'https://storage.googleapis.com/images-sbh/spa-welness-sun-beach-house-saint-barth-villa-rental-02.JPG',
+    transfer: 'https://storage.googleapis.com/images-sbh/sun-beach-house-chauffeur.jpg',
     reservations: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop',
     nautical: '/images/optimized-conciergerie-nautique.jpg',
     travel: '/images/optimized-conciergerie-travel.jpg',

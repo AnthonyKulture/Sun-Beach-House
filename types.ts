@@ -60,6 +60,7 @@ export interface Villa {
   fullDescription: string | { fr: string; en: string }; // Transition: accepts both formats
   pricePerNight?: number; // Optional, for rentals (base price for display if no weekly)
   pricePerWeek?: number; // Optional, preferred for rentals
+  currency?: 'USD' | 'EUR'; // Base currency for pricing
   salePrice?: number; // Optional, for sales
   listingType: 'rent' | 'sale'; // New discriminator
   propertyType?: 'villa' | 'apartment' | 'land' | 'commercial'; // villa, apartment, land or commercial

@@ -26,6 +26,22 @@ const getDescriptionText = (description: string | { fr: string; en: string }, la
 
 export function VillasMapView({ villas: propVillas }: VillasMapViewProps) {
     const { language, t } = useLanguage();
+
+    const formatPrice = (price: number, cur: 'USD' | 'EUR' = 'USD') => {
+        if (cur === 'EUR') {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'EUR',
+                maximumFractionDigits: 0,
+            }).format(price);
+        }
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0,
+        }).format(price);
+    };
+
     const { villas: fetchedVillas, loading: hookLoading, error: hookError } = useVillas();
 
     // Use passed villas if provided, otherwise fallback to fetched villas
@@ -185,14 +201,14 @@ export function VillasMapView({ villas: propVillas }: VillasMapViewProps) {
                                             <div className="flex items-center justify-between gap-3">
                                                 {villa.listingType === 'sale' ? (
                                                     <p className="text-sm font-medium text-sbh-blue">
-                                                        {villa.salePrice && villa.salePrice > 0 ? `${villa.salePrice.toLocaleString('fr-FR')}€` : t.villa.priceOnRequest}
+                                                        {villa.salePrice && villa.salePrice > 0 ? formatPrice(villa.salePrice, 'EUR') : t.villa.priceOnRequest}
                                                     </p>
                                                 ) : (
                                                     <p className="text-sm font-medium text-sbh-green">
                                                         {villa.pricePerWeek && villa.pricePerWeek > 0
-                                                            ? `$${villa.pricePerWeek.toLocaleString('en-US')} ${t.collections.perWeek}`
+                                                            ? `${formatPrice(villa.pricePerWeek, villa.currency || 'USD')} ${t.collections.perWeek}`
                                                             : villa.pricePerNight && villa.pricePerNight > 0
-                                                                ? `$${villa.pricePerNight.toLocaleString('en-US')} ${t.collections.perNight}`
+                                                                ? `${formatPrice(villa.pricePerNight, villa.currency || 'USD')} ${t.collections.perNight}`
                                                                 : t.villa.priceOnRequest}
                                                     </p>
                                                 )}

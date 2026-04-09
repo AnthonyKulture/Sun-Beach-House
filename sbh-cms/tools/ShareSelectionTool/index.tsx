@@ -18,6 +18,31 @@ import {
 import { EnvelopeIcon, SearchIcon, CheckmarkCircleIcon, ArrowRightIcon, ArrowLeftIcon, ErrorOutlineIcon } from '@sanity/icons'
 import { useClient } from 'sanity'
 
+const POPULAR_AMENITIES = [
+    "Piscine Chauffée",
+    "Jacuzzi",
+    "Court de Tennis",
+    "Sauna / Hammam",
+    "Salle de Fitness",
+    "Accès Plage Direct",
+    "Court de Padel",
+]
+
+const renderMessageWithBold = (text: string) => {
+    if (!text) return null;
+    return text.split('\n').map((line, i) => (
+        <React.Fragment key={i}>
+            {line.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                if (part.startsWith('**') && part.endsWith('**')) {
+                    return <strong key={j}>{part.slice(2, -2)}</strong>
+                }
+                return part
+            })}
+            {i !== text.split('\n').length - 1 && <br />}
+        </React.Fragment>
+    ))
+}
+
 const VILLA_QUERY = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) {
   _id,
   name,
@@ -27,7 +52,8 @@ const VILLA_QUERY = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(
   salePrice,
   bedrooms,
   "locationName": location->name,
-  "imageUrl": mainImage.asset->url
+  "imageUrl": mainImage.asset->url,
+  "amenities": amenities[]->{name}
 }`
 
 export function ShareSelectionTool() {
@@ -43,11 +69,30 @@ export function ShareSelectionTool() {
     const [listingType, setListingType] = useState('')
     const [location, setLocation] = useState('')
     const [bedrooms, setBedrooms] = useState('')
+    const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
 
     // Form
     const [clientEmail, setClientEmail] = useState('')
     const [subject, setSubject] = useState('Votre sélection de villas par Sun-Beach-House')
-    const [message, setMessage] = useState('Bonjour,\n\nSuite à nos échanges, voici une sélection personnalisée de villas qui correspondent à vos critères.\n\nN\'hésitez pas à me contacter si vous souhaitez plus d\'informations concernant l\'une de ces propriétés.\n\nBien cordialement,')
+    const [message, setMessage] = useState(`Cher ……….
+
+Nous vous remercions pour votre confiance et serions ravis de vous accompagner pour votre séjour à Saint-Barthélemy, du date arrivée/date de départ
+
+Vous trouverez ci-dessous une **sélection de villas d’exception**, personnellement présélectionnées selon vos critères et **disponibles aux dates souhaitées**.
+
+Au-delà de la villa, Sun Beach House vous propose un accompagnement de type **haute conciergerie**, pensé comme un service de **butler** : discret, constant, et entièrement tourné vers votre confort. **Tout est préparé en amont**, avant votre arrivée, afin que votre séjour se déroule avec une parfaite fluidité.
+
+Nous organisons et réservons, selon vos souhaits : **restaurants et beach clubs**, transferts, **véhicules avec ou sans chauffeur**, expériences sur mesure, ainsi que l’ensemble des services à la villa. Sur place, notre équipe reste disponible à tout moment pour ajuster, confirmer et orchestrer chaque détail, **jusqu’à votre départ**.
+
+**Les tarifs indiqués incluent notamment** :
+
+Un accueil personnalisé à votre arrivée (aéroport ou ferry)
+Le transfert jusqu’à la villa, ainsi qu’une visite d’arrivée
+Un service de conciergerie **24h/24 – 7j/7**
+Le ménage **6 jours par semaine** (hors dimanches et jours fériés)
+Nous restons bien entendu à votre entière disposition pour toute information complémentaire, et pour affiner cette sélection afin d’identifier la villa la plus parfaitement adaptée à votre séjour.
+
+Bien cordialement,`)
 
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState('')
@@ -74,9 +119,20 @@ export function ShareSelectionTool() {
             const matchType = listingType ? villa.listingType === listingType : true
             const matchLocation = location ? villa.locationName === location : true
             const matchBedrooms = bedrooms ? villa.bedrooms >= parseInt(bedrooms, 10) : true
-            return matchSearch && matchType && matchLocation && matchBedrooms
+            const matchAmenities = selectedAmenities.length === 0 || selectedAmenities.every(filterAmenity =>
+                (villa.amenities || []).some((a: any) =>
+                    (a?.name || '').toLowerCase() === filterAmenity.toLowerCase()
+                )
+            )
+            return matchSearch && matchType && matchLocation && matchBedrooms && matchAmenities
         })
-    }, [villas, searchTerm, listingType, location, bedrooms])
+    }, [villas, searchTerm, listingType, location, bedrooms, selectedAmenities])
+
+    const toggleAmenity = (amenity: string) => {
+        setSelectedAmenities(prev =>
+            prev.includes(amenity) ? prev.filter(a => a !== amenity) : [...prev, amenity]
+        )
+    }
 
     const toggleSelection = (id: string) => {
         const newSelected = new Set(selectedIds)
@@ -99,7 +155,7 @@ export function ShareSelectionTool() {
         setErrorMessage('')
 
         try {
-            const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+            const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'https://sun-beach-house.com'
             const response = await fetch(`${apiUrl}/api/send-selection`, {
                 method: 'POST',
                 headers: {
@@ -244,7 +300,9 @@ export function ShareSelectionTool() {
                                 {/* Message */}
                                 {message && (
                                     <Box marginBottom={4} style={{ whiteSpace: 'pre-wrap' }}>
-                                        <Text size={2} style={{ color: '#374151', lineHeight: 1.6 }}>{message}</Text>
+                                        <Text size={2} style={{ color: '#374151', lineHeight: 1.6 }}>
+                                            {renderMessageWithBold(message)}
+                                        </Text>
                                     </Box>
                                 )}
 
@@ -282,7 +340,7 @@ export function ShareSelectionTool() {
                                 </Stack>
 
                                 <Box marginTop={5} style={{ textAlign: 'left' }}>
-                                    <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png`} alt="Signature Sun Beach House" style={{ maxWidth: '392px', height: 'auto', display: 'block', margin: '0' }} />
+                                    <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'https://sun-beach-house.com'}/signature.png`} alt="Signature Sun Beach House" style={{ maxWidth: '392px', height: 'auto', display: 'block', margin: '0' }} />
                                 </Box>
                             </Box>
                         </Box>
@@ -338,8 +396,63 @@ export function ShareSelectionTool() {
                         <option value="3">3+ chambres</option>
                         <option value="4">4+ chambres</option>
                         <option value="5">5+ chambres</option>
+                        <option value="6">6+ chambres</option>
+                        <option value="7">7+ chambres</option>
+                        <option value="8">8+ chambres</option>
+                        <option value="9">9+ chambres</option>
+                        <option value="10">10+ chambres</option>
                     </Select>
                 </Grid>
+
+                {/* Equipements Filter */}
+                <Box>
+                    <Text size={1} weight="semibold" style={{ marginBottom: '8px', display: 'block' }}>Équipements</Text>
+                    <Flex wrap="wrap" gap={2}>
+                        {POPULAR_AMENITIES.map(amenity => {
+                            const isActive = selectedAmenities.includes(amenity)
+                            return (
+                                <button
+                                    key={amenity}
+                                    onClick={() => toggleAmenity(amenity)}
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '6px',
+                                        padding: '4px 12px',
+                                        borderRadius: '9999px',
+                                        border: `1px solid ${isActive ? 'var(--card-focus-ring-color)' : 'var(--card-border-color)'}`,
+                                        backgroundColor: isActive ? 'var(--card-focus-ring-color)' : 'transparent',
+                                        color: isActive ? '#fff' : 'inherit',
+                                        cursor: 'pointer',
+                                        fontSize: '13px',
+                                        fontFamily: 'inherit',
+                                        transition: 'all 0.15s ease',
+                                    }}
+                                >
+                                    {isActive && <CheckmarkCircleIcon style={{ width: 14, height: 14 }} />}
+                                    {amenity}
+                                </button>
+                            )
+                        })}
+                        {selectedAmenities.length > 0 && (
+                            <button
+                                onClick={() => setSelectedAmenities([])}
+                                style={{
+                                    padding: '4px 12px',
+                                    borderRadius: '9999px',
+                                    border: '1px solid var(--card-border-color)',
+                                    background: 'transparent',
+                                    cursor: 'pointer',
+                                    fontSize: '12px',
+                                    color: 'var(--card-muted-fg-color)',
+                                    fontFamily: 'inherit',
+                                }}
+                            >
+                                Réinitialiser
+                            </button>
+                        )}
+                    </Flex>
+                </Box>
 
                 {/* Grid */}
                 <Grid columns={[1, 2, 3, 4]} gap={4}>
