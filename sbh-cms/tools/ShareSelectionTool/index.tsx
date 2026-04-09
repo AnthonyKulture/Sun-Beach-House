@@ -155,7 +155,7 @@ Bien cordialement,`)
         setErrorMessage('')
 
         try {
-            const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'https://sun-beach-house.com'
+            const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
             const response = await fetch(`${apiUrl}/api/send-selection`, {
                 method: 'POST',
                 headers: {
@@ -340,7 +340,7 @@ Bien cordialement,`)
                                 </Stack>
 
                                 <Box marginTop={5} style={{ textAlign: 'left' }}>
-                                    <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'https://sun-beach-house.com'}/signature.png`} alt="Signature Sun Beach House" style={{ maxWidth: '392px', height: 'auto', display: 'block', margin: '0' }} />
+                                    <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png`} alt="Signature Sun Beach House" style={{ maxWidth: '392px', height: 'auto', display: 'block', margin: '0' }} />
                                 </Box>
                             </Box>
                         </Box>

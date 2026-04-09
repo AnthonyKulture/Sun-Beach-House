@@ -13,7 +13,7 @@ export const GeneratePDFAction: DocumentActionComponent = (props) => {
             props.onComplete()
 
             try {
-                const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'https://sun-beach-house.com'
+                const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
                 const response = await fetch(
                     `${apiUrl}/api/generate-pdf?villaId=${villaId}&lang=en&includePricing=false&t=${Date.now()}`
                 )
