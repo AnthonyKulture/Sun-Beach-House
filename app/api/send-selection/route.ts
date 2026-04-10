@@ -59,25 +59,15 @@ export async function POST(request: Request) {
 
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sun-beach-house.com';
 
-        // Générer le HTML de l'email avec React Email
-        const html = await render(
-            React.createElement(VillaSelectionEmail, {
-                message,
-                villas: selectedVillas,
-                baseUrl,
-                lang
-            })
-        );
+        // TEST D'ISOLATION : On bypass le template
+        const html = `<b>Ceci est un test d'envoi pour diagnostiquer l'erreur 404</b><p>Villa(s) sélectionnée(s) : ${villaIds.join(', ')}</p>`;
 
         const resend = new Resend(process.env.RESEND_API_KEY);
 
-        // Envoyer l'email via Resend
-        // En mode expéditeur non vérifié, Resend oblige à utiliser onboarding@resend.dev 
-        // et n'autorise l'envoi qu'à l'adresse email du compte Resend.
         const { data, error } = await resend.emails.send({
-            from: 'Sun Beach House - Villa Rental St-Barth <valerie@sun-beach-house.com>',
+            from: 'valerie@sun-beach-house.com',
             to: [clientEmail],
-            subject: subject,
+            subject: 'TEST - ' + subject,
             html: html,
         });
 
@@ -85,7 +75,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ 
                 error: error.message, 
                 details: error,
-                hint: "Vérifiez si l'adresse d'expédition est bien autorisée dans Resend"
+                hint: "SI VOUS VOYEZ CECI, le problème est la Clé API ou le Domaine dans Resend. Générez une nouvelle clé."
             }, { status: 400, headers: corsHeaders });
         }
 
