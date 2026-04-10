@@ -454,6 +454,12 @@ const fr: Translations = {
         download: 'Télécharger',
         downloadBrochure: 'Télécharger la brochure',
         menu: 'Menu',
+        notFound: {
+            title: '404',
+            subtitle: 'Page Introuvable',
+            message: "Désolé, la page que vous recherchez semble s'être envolée vers d'autres horizons. Laissez-nous vous guider vers l'essentiel.",
+            backToHome: "Retour à l'Accueil"
+        }
     },
 
     aboutPage: {
@@ -978,6 +984,12 @@ const en: Translations = {
         download: 'Download',
         downloadBrochure: 'Download brochure',
         menu: 'Menu',
+        notFound: {
+            title: '404',
+            subtitle: 'Page Not Found',
+            message: "Sorry, the page you're looking for seems to have flown to other horizons. Let us guide you to the essential.",
+            backToHome: "Back to Home"
+        }
     },
 
     aboutPage: {

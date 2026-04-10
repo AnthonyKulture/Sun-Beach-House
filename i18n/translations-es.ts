@@ -445,8 +445,14 @@ export const es: Translations = {
         error: 'Error',
         close: 'Cerrar',
         download: 'Descargar',
-        downloadBrochure: 'Descargar el folleto',
+        downloadBrochure: 'Descargar brochure',
         menu: 'Menú',
+        notFound: {
+            title: '404',
+            subtitle: 'Página no encontrada',
+            message: 'Lo sentimos, la página que busca parece haber volado a otros horizontes. Permítanos guiarle hacia lo esencial.',
+            backToHome: 'Volver al Inicio'
+        }
     },
 
     aboutPage: {

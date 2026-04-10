@@ -149,6 +149,18 @@ const nextConfig = {
             { source: '/locations-villa-international/:path*', destination: '/fr/rentals', permanent: true },
             { source: '/international-villa-rentals/:path*', destination: '/fr/rentals', permanent: true },
             { source: '/bien-a-louer/:slug', destination: '/fr/rentals', permanent: true },
+
+            // Catch-all for legacy st_barth territory pages (SEO preservation)
+            { source: '/st_barth/:path*', destination: '/fr/destinations', permanent: true },
+            { source: '/fr/st_barth/:path*', destination: '/fr/destinations', permanent: true },
+
+            // Legacy Search query mapping (WordPress style)
+            { 
+                source: '/', 
+                has: [{ type: 'query', key: 's' }], 
+                destination: '/fr/rentals', 
+                permanent: true 
+            },
         ]
     },
 

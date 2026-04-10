@@ -447,6 +447,12 @@ export const pt: Translations = {
         download: 'Baixar',
         downloadBrochure: 'Baixar a brochura',
         menu: 'Menu',
+        notFound: {
+            title: '404',
+            subtitle: 'Página não encontrada',
+            message: 'Lamentamos, mas a página que procura parece ter voado para outros horizontes. Deixe-nos guiá-lo para o essencial.',
+            backToHome: 'Voltar ao Início'
+        }
     },
 
     aboutPage: {

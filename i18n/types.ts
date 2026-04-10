@@ -401,6 +401,12 @@ export interface Translations {
         download: string;
         downloadBrochure: string;
         menu: string;
+        notFound: {
+            title: string;
+            subtitle: string;
+            message: string;
+            backToHome: string;
+        };
     };
 
     // About Page
