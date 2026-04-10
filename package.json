@@ -11,7 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mux/mux-player-react": "^3.11.7",
+    "@mux/mux-background-video": "^0.2.0",
     "@react-email/components": "^1.0.8",
     "@react-email/render": "^2.0.4",
     "@react-pdf/renderer": "^4.3.1",

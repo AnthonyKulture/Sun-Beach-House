@@ -1,40 +1,56 @@
 'use client';
 
 import Image from 'next/image';
-import MuxPlayer from '@mux/mux-player-react';
+import dynamic from 'next/dynamic';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
+
+// Dynamically load the lightweight background video component to unblock the main thread
+const MuxBackgroundVideo = dynamic(
+    () => import('@mux/mux-background-video/react'),
+    { ssr: false }
+);
 
 export const Hero: React.FC = () => {
     const { language, t } = useLanguage();
     const router = useRouter();
 
+    const playbackId = "oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw";
+    // Optimized poster URL: using a smaller default width for mobile first
+    const posterUrl = `https://image.mux.com/${playbackId}/thumbnail.webp?time=0`;
+
     return (
         <section className="relative w-full h-screen min-h-[700px] overflow-hidden bg-sbh-cream">
 
             {/* =========================================
-                BACKGROUND (FULL SCREEN) — MuxPlayer + Image Poster for LCP
+                BACKGROUND (FULL SCREEN) — Lightweight Video + Responsive Poster
             ========================================= */}
             <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" style={{ contain: 'layout style' }}>
-                {/* Background Poster Image (Initial Paint) */}
+                {/* 
+                    Background Poster Image (Initial Paint)
+                    Optimized with sizes to ensure mobile devices load a smaller version (800px)
+                    while desktop gets the full 1920px version.
+                */}
                 <Image
-                    src="https://image.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw/thumbnail.webp?width=1920&time=0"
+                    src={posterUrl}
                     alt="Sun Beach House Background"
                     fill
                     priority
+                    sizes="(max-width: 768px) 800px, 1920px"
                     fetchPriority="high"
                     className="object-cover z-0"
+                    unoptimized={false}
                 />
                 
-                {/* MuxPlayer for Adaptive Bitrate (High Quality + Fast Load) */}
-                <MuxPlayer
-                    playbackId="oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw"
+                {/* 
+                    MuxBackgroundVideo for High Performance looping background
+                    - PlaysInline, Muted, AutoPlay, Loop are handled by default
+                    - No heavy player UI or controls
+                */}
+                <MuxBackgroundVideo
+                    playbackId={playbackId}
                     metadataVideoTitle="Sun Beach House Hero"
-                    streamType="on-demand"
-                    autoPlay="muted"
-                    loop
-                    primaryColor="#FFFFFF"
                     className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-10"
                 />
 
@@ -45,7 +61,7 @@ export const Hero: React.FC = () => {
             {/* =========================================
           CONTENT CONTAINER
       ========================================= */}
-            <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-6 md:px-12">
+            <div className="relative z-30 w-full h-full flex flex-col justify-center items-center px-6 md:px-12">
 
                 <div className="mb-8 text-sbh-cream/90 animate-spin-slower opacity-90" style={{ willChange: 'transform' }}>
                     <SunStamp className="w-24 h-24 md:w-32 md:h-32" />
@@ -102,4 +118,5 @@ export const Hero: React.FC = () => {
             </div>
         </section>
     );
+};
 };
