@@ -81,7 +81,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
             }
             return prev;
         });
-    }, [searchParams]);
+    }, [searchParams, mode]);
 
     // Reset filters only when mode actually changes
     useEffect(() => {

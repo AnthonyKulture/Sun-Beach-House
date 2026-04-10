@@ -35,7 +35,7 @@ export const SalesInquiryEmail = ({
 }: SalesInquiryEmailProps) => (
     <Html>
         <Head />
-        <Preview>Nouvelle demande d'information immobilière pour {villaName}</Preview>
+        <Preview>Nouvelle demande d&apos;information immobilière pour {villaName}</Preview>
         <Body style={main}>
             <Container style={container}>
                 <Heading style={h1}>Opportunité Immobilière</Heading>
@@ -61,7 +61,7 @@ export const SalesInquiryEmail = ({
 
                     <Section>
                         <Heading as="h3" style={h3}>Coordonnées Client</Heading>
-                        <Text style={label}>Nom de l'intérêt</Text>
+                        <Text style={label}>Nom de l&apos;intérêt</Text>
                         <Text style={value}>{customerName}</Text>
                         
                         <Text style={label}>Email</Text>
@@ -81,7 +81,7 @@ export const SalesInquiryEmail = ({
 
                 <Hr style={hr} />
                 <Text style={footer}>
-                    Sun Beach House - Ventes Immobilières d'Exception
+                    Sun Beach House - Ventes Immobilières d&apos;Exception
                 </Text>
             </Container>
         </Body>
