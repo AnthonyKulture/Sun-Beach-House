@@ -102,6 +102,10 @@ export default function LocaleLayout({
                                 'ad_personalization': 'denied'
                             };
                             gtag('consent', 'default', consent);
+                            
+                            // Advanced Consent Mode: Redact ads data and enable URL passthrough when consent is denied
+                            gtag('set', 'ads_data_redaction', true);
+                            gtag('set', 'url_passthrough', true);
                         })();
                     `
                 }} />
