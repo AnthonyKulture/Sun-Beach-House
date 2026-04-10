@@ -92,7 +92,8 @@ Un service de conciergerie **24h/24 – 7j/7**
 Le ménage **6 jours par semaine** (hors dimanches et jours fériés)
 Nous restons bien entendu à votre entière disposition pour toute information complémentaire, et pour affiner cette sélection afin d’identifier la villa la plus parfaitement adaptée à votre séjour.
 
-Bien cordialement,`)
+Bien cordialement,
+Valérie Kerckhofs`)
 
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState('')
