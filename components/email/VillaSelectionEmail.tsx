@@ -9,6 +9,7 @@ import {
     Button,
     Hr,
     Preview,
+    Link,
 } from '@react-email/components';
 import { Villa } from '@/types';
 import * as React from 'react';
@@ -17,20 +18,22 @@ interface VillaSelectionEmailProps {
     message: string;
     villas: Villa[];
     baseUrl: string;
+    lang?: 'fr' | 'en';
 }
 
-const getDescription = (desc: any) => {
+const getDescription = (desc: any, lang: 'fr' | 'en') => {
     if (!desc) return '';
     if (typeof desc === 'string') return desc;
-    return desc.fr || desc.en || '';
+    return lang === 'en' ? (desc.en || desc.fr || '') : (desc.fr || desc.en || '');
 };
 
 export const VillaSelectionEmail = ({
     message,
     villas = [],
     baseUrl = 'https://sun-beach-house.com',
+    lang = 'fr',
 }: VillaSelectionEmailProps) => {
-    const previewText = `Votre sélection de villas par Sun-Beach-House`;
+    const previewText = lang === 'en' ? `Your villa selection by Sun-Beach-House` : `Votre sélection de villas par Sun-Beach-House`;
 
     return (
         <Html>
@@ -61,11 +64,11 @@ export const VillaSelectionEmail = ({
 
                     {/* Villas List */}
                     <Section style={villasSection}>
-                        <Text style={sectionTitle}>Notre Sélection Exclusive</Text>
+                        <Text style={sectionTitle}>{lang === 'en' ? 'Our Exclusive Selection' : 'Notre Sélection Exclusive'}</Text>
 
                         {villas.map((villa) => {
-                            const desc = getDescription(villa.description);
-                            const villaUrl = `${baseUrl}/villas/${villa.id}`;
+                            const desc = getDescription(villa.description, lang);
+                            const villaUrl = `${baseUrl}/${lang}/villas/${villa.id}`;
 
                             return (
                                 <Section key={villa.id} style={villaCard}>
@@ -80,17 +83,19 @@ export const VillaSelectionEmail = ({
                                     )}
                                     <div style={villaContent}>
                                         <Text style={villaTag}>
-                                            {villa.listingType === 'sale' ? 'EN VENTE' : 'À LOUER'}
+                                            {villa.listingType === 'sale' 
+                                                ? (lang === 'en' ? 'FOR SALE' : 'EN VENTE') 
+                                                : (lang === 'en' ? 'FOR RENT' : 'À LOUER')}
                                         </Text>
                                         <Text style={villaTitle}>{villa.name}</Text>
                                         <Text style={villaMeta}>
-                                            {villa.location?.name} • {villa.bedrooms} chambres
+                                            {villa.location?.name} • {villa.bedrooms} {lang === 'en' ? 'bedrooms' : 'chambres'}
                                         </Text>
                                         <Text style={villaDesc}>
                                             {desc}
                                         </Text>
                                         <Button href={villaUrl} style={ctaButton}>
-                                            Découvrir cette propriété
+                                            {lang === 'en' ? 'Discover this property' : 'Découvrir cette propriété'}
                                         </Button>
                                     </div>
                                 </Section>
@@ -100,12 +105,14 @@ export const VillaSelectionEmail = ({
 
                     {/* Signature */}
                     <Section style={{ padding: '20px 0', textAlign: 'left' }}>
-                        <Img
-                            src="https://sun-beach-house.com/signature.png?v=2"
-                            alt="Signature Sun Beach House"
-                            width="600"
-                            style={{ display: 'block', margin: '0', width: '100%', maxWidth: '600px', height: 'auto' }}
-                        />
+                        <Link href="https://sun-beach-house.com" target="_blank" style={{ display: 'inline-block' }}>
+                            <Img
+                                src="https://sun-beach-house.com/signature.png?v=2"
+                                alt="Signature Sun Beach House"
+                                width="600"
+                                style={{ display: 'block', margin: '0', width: '100%', maxWidth: '600px', height: 'auto', border: 'none' }}
+                            />
+                        </Link>
                     </Section>
                 </Container>
             </Body>

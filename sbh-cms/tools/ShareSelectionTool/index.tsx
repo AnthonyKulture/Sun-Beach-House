@@ -56,25 +56,7 @@ const VILLA_QUERY = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(
   "amenities": amenities[]->{name}
 }`
 
-export function ShareSelectionTool() {
-    const client = useClient({ apiVersion: '2024-03-01' })
-    const [villas, setVillas] = useState<any[]>([])
-    const [loading, setLoading] = useState(true)
-
-    const [step, setStep] = useState<1 | 2>(1)
-    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
-
-    // Filters
-    const [searchTerm, setSearchTerm] = useState('')
-    const [listingType, setListingType] = useState('')
-    const [location, setLocation] = useState('')
-    const [bedrooms, setBedrooms] = useState('')
-    const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
-
-    // Form
-    const [clientEmail, setClientEmail] = useState('')
-    const [subject, setSubject] = useState('Votre sélection de villas par Sun-Beach-House')
-    const [message, setMessage] = useState(`Cher ……….
+const defaultMessageFr = `Cher ……….
 
 Nous vous remercions pour votre confiance et serions ravis de vous accompagner pour votre séjour à Saint-Barthélemy, du date arrivée/date de départ
 
@@ -93,7 +75,52 @@ Le ménage **6 jours par semaine** (hors dimanches et jours fériés)
 Nous restons bien entendu à votre entière disposition pour toute information complémentaire, et pour affiner cette sélection afin d’identifier la villa la plus parfaitement adaptée à votre séjour.
 
 Bien cordialement,
-Valérie Kerckhofs`)
+Valérie Kerckhofs`;
+
+const defaultMessageEn = `Dear ……….
+
+Thank you for your trust. We would be delighted to assist you with your stay in Saint-Barthélemy, from arrival date/departure date.
+
+Below, you will find a **selection of exceptional villas**, personally pre-selected according to your criteria and **available for your desired dates**.
+
+Beyond the villa, Sun Beach House offers a **high-end concierge** service, designed like a **butler** service: discreet, constant, and entirely focused on your comfort. **Everything is prepared in advance**, before your arrival, so that your stay unfolds flawlessly.
+
+We organize and book, according to your wishes: **restaurants and beach clubs**, transfers, **vehicles with or without a driver**, tailor-made experiences, as well as all services at the villa. On site, our team remains available at all times to adjust, confirm, and orchestrate every detail, **until your departure**.
+
+**The rates indicated notably include**:
+
+A personalized welcome upon your arrival (airport or ferry)
+Transfer to the villa, as well as an arrival tour
+A **24/7** concierge service
+Housekeeping **6 days a week** (excluding Sundays and public holidays)
+We remain at your entire disposal for any further information, and to refine this selection in order to identify the villa perfectly suited to your stay.
+
+Best regards,
+Valérie Kerckhofs`;
+
+const defaultSubjectFr = 'Votre sélection de villas par Sun-Beach-House';
+const defaultSubjectEn = 'Your villa selection by Sun-Beach-House';
+
+export function ShareSelectionTool() {
+    const client = useClient({ apiVersion: '2024-03-01' })
+    const [villas, setVillas] = useState<any[]>([])
+    const [loading, setLoading] = useState(true)
+
+    const [step, setStep] = useState<1 | 2>(1)
+    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+
+    // Filters
+    const [searchTerm, setSearchTerm] = useState('')
+    const [listingType, setListingType] = useState('')
+    const [location, setLocation] = useState('')
+    const [bedrooms, setBedrooms] = useState('')
+    const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
+
+    // Form
+    const [clientEmail, setClientEmail] = useState('')
+    const [subject, setSubject] = useState(defaultSubjectFr)
+    const [message, setMessage] = useState(defaultMessageFr)
+    const [lang, setLang] = useState<'fr' | 'en'>('fr')
 
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState('')
@@ -166,7 +193,8 @@ Valérie Kerckhofs`)
                     clientEmail,
                     subject,
                     message,
-                    villaIds: Array.from(selectedIds)
+                    villaIds: Array.from(selectedIds),
+                    lang
                 })
             })
 
@@ -232,9 +260,37 @@ Valérie Kerckhofs`)
                 <Grid columns={[1, 1, 2]} gap={4}>
                     <Card padding={4} radius={3} shadow={1}>
                         <Stack space={4}>
-                            <Flex align="center" gap={2}>
-                                <Text size={3}><EnvelopeIcon /></Text>
-                                <Heading as="h2" size={2}>Paramètres de l'email</Heading>
+                            <Flex align="center" justify="space-between">
+                                <Flex align="center" gap={2}>
+                                    <Text size={3}><EnvelopeIcon /></Text>
+                                    <Heading as="h2" size={2}>Paramètres de l'email</Heading>
+                                </Flex>
+                                <Flex gap={2}>
+                                    <Button
+                                        mode={lang === 'fr' ? 'default' : 'ghost'}
+                                        tone={lang === 'fr' ? 'primary' : 'default'}
+                                        text="FR"
+                                        padding={2}
+                                        fontSize={1}
+                                        onClick={() => {
+                                           setLang('fr');
+                                           if (message === defaultMessageEn) setMessage(defaultMessageFr);
+                                           if (subject === defaultSubjectEn) setSubject(defaultSubjectFr);
+                                        }}
+                                    />
+                                    <Button
+                                        mode={lang === 'en' ? 'default' : 'ghost'}
+                                        tone={lang === 'en' ? 'primary' : 'default'}
+                                        text="EN"
+                                        padding={2}
+                                        fontSize={1}
+                                        onClick={() => {
+                                           setLang('en');
+                                           if (message === defaultMessageFr) setMessage(defaultMessageEn);
+                                           if (subject === defaultSubjectFr) setSubject(defaultSubjectEn);
+                                        }}
+                                    />
+                                </Flex>
                             </Flex>
 
                             <Card padding={4} radius={2} tone="transparent" border>
@@ -307,7 +363,7 @@ Valérie Kerckhofs`)
 
                                 <Box marginBottom={4} style={{ borderBottom: '1px solid #e5e7eb' }} />
 
-                                <Heading as="h3" size={2} style={{ marginBottom: '24px', color: '#2D2D2D' }}>Notre Sélection Exclusive</Heading>
+                                <Heading as="h3" size={2} style={{ marginBottom: '24px', color: '#2D2D2D' }}>{lang === 'en' ? 'Our Exclusive Selection' : 'Notre Sélection Exclusive'}</Heading>
 
                                 <Stack space={4}>
                                     {Array.from(selectedIds).map(id => {
@@ -323,14 +379,14 @@ Valérie Kerckhofs`)
                                                 )}
                                                 <Box padding={3} style={{ backgroundColor: '#fff' }}>
                                                     <Box marginBottom={2}>
-                                                        <Badge tone="default">{villa.listingType === 'sale' ? 'Vente' : 'Location'}</Badge>
+                                                        <Badge tone="default">{villa.listingType === 'sale' ? (lang === 'en' ? 'Sale' : 'Vente') : (lang === 'en' ? 'Rent' : 'Location')}</Badge>
                                                     </Box>
                                                     <Heading as="h4" size={2} style={{ marginBottom: '8px', color: '#2D2D2D' }}>{villa.name}</Heading>
                                                     <Text size={1} weight="semibold" style={{ color: '#A05C4D', textTransform: 'uppercase' }}>
-                                                        {villa.locationName} • {villa.bedrooms} chambres
+                                                        {villa.locationName} • {villa.bedrooms} {lang === 'en' ? 'bedrooms' : 'chambres'}
                                                     </Text>
                                                     <Box marginTop={3}>
-                                                        <Button text="Découvrir cette propriété" tone="primary" style={{ backgroundColor: '#1A3C34', color: '#F6F5F1', borderColor: '#1A3C34' }} fontSize={1} padding={2} />
+                                                        <Button text={lang === 'en' ? 'Discover this property' : 'Découvrir cette propriété'} tone="primary" style={{ backgroundColor: '#1A3C34', color: '#F6F5F1', borderColor: '#1A3C34' }} fontSize={1} padding={2} />
                                                     </Box>
                                                 </Box>
                                             </Card>
@@ -339,7 +395,9 @@ Valérie Kerckhofs`)
                                 </Stack>
 
                                 <Box marginTop={5} style={{ textAlign: 'left' }}>
-                                    <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png?v=2`} alt="Signature Sun Beach House" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0' }} />
+                                    <a href="https://sun-beach-house.com" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+                                        <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png?v=2`} alt="Signature Sun Beach House" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0', border: 'none' }} />
+                                    </a>
                                 </Box>
                             </Box>
                         </Box>

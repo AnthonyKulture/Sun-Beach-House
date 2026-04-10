@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const corsHeaders = getCorsHeaders(request);
     try {
         const body = await request.json();
-        const { clientEmail, subject, message, villaIds } = body;
+        const { clientEmail, subject, message, villaIds, lang = 'fr' } = body;
 
         if (!clientEmail || !subject || !villaIds || !Array.isArray(villaIds) || villaIds.length === 0) {
             return NextResponse.json(
@@ -62,7 +62,8 @@ export async function POST(request: Request) {
             VillaSelectionEmail({
                 message,
                 villas: selectedVillas,
-                baseUrl
+                baseUrl,
+                lang
             })
         );
 
@@ -72,7 +73,7 @@ export async function POST(request: Request) {
         // En mode expéditeur non vérifié, Resend oblige à utiliser onboarding@resend.dev 
         // et n'autorise l'envoi qu'à l'adresse email du compte Resend.
         const { data, error } = await resend.emails.send({
-            from: 'Sun-Beach-House <valerie@sun-beach-house.com>',
+            from: 'Sun Beach House - Villa Rental St-Barth <valerie@sun-beach-house.com>',
             to: [clientEmail],
             subject: subject,
             html: html,
