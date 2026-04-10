@@ -34,8 +34,8 @@ export default function NotFound() {
             <div className="w-16 h-[1px] bg-[#A05C4D] mx-auto opacity-40" />
             
             <p className="max-w-md mx-auto text-base md:text-lg text-sbh-charcoal/70 font-sans tracking-wide leading-relaxed">
-              Désolé, la page que vous recherchez semble s'être envolée vers d'autres horizons. 
-              Lessez-nous vous guider vers l'essentiel.
+              Désolé, la page que vous recherchez semble s&apos;être envolée vers d&apos;autres horizons. 
+              Lessez-nous vous guider vers l&apos;essentiel.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function NotFound() {
               href="/fr/contact" 
               className="px-6 py-4 border border-[#1A3C34]/30 text-[#1A3C34] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1A3C34] hover:text-[#F6F5F1] transition-all duration-500"
             >
-              Besoin d'aide ?
+              Besoin d&apos;aide ?
             </Link>
           </div>
 
@@ -65,7 +65,7 @@ export default function NotFound() {
             href="/fr" 
             className="text-[10px] uppercase tracking-[0.4em] text-[#A05C4D] hover:text-[#1A3C34] transition-colors duration-300 border-b border-transparent hover:border-[#1A3C34] pb-1 font-semibold"
           >
-            Retour à l'Accueil
+            Retour à l&apos;Accueil
           </Link>
         </div>
       </main>

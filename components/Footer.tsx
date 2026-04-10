@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Logo } from './Logo';
-import { Instagram, Facebook, Mail, Phone, MapPin, ArrowRight, Heart } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone, MapPin, ArrowRight, Heart, Map as MapIcon } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
