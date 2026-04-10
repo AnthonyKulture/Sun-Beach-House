@@ -108,7 +108,7 @@ export async function POST(request: Request) {
         const { data, error } = await resend.emails.send({
             from: 'Sun Beach House Website <valerie@sun-beach-house.com>',
             to: [VALERIE_EMAIL],
-            reply_to: email, // Allow Valerie to reply directly to the customer
+            replyTo: email, // Allow Valerie to reply directly to the customer
             subject: subject,
             html: html,
         });
