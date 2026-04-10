@@ -1,0 +1,7 @@
+{
+  "clientEmail": "test@example.com",
+  "subject": "Test",
+  "message": "Hello",
+  "villaIds": ["2de30f9a-14db-40a2-aa92-f3dc16dc7190"],
+  "lang": "fr"
+}
