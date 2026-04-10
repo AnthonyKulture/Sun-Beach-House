@@ -40,6 +40,16 @@ const nextConfig = {
         serverComponentsExternalPackages: ['@react-pdf/renderer'],
     },
 
+    // Rewrites to proxy Sanity images (to avoid suspicious activity flags in emails)
+    async rewrites() {
+        return [
+            {
+                source: '/sanity-assets/:path*',
+                destination: 'https://cdn.sanity.io/images/i6dkdu7j/:path*',
+            },
+        ]
+    },
+
     // Security headers
     async headers() {
         return [

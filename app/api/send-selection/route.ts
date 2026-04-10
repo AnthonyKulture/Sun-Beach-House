@@ -4,6 +4,7 @@ import { render } from '@react-email/render';
 import React from 'react';
 import VillaSelectionEmail from '@/components/email/VillaSelectionEmail';
 import { CmsService } from '@/services/cms';
+import { getProxyImageURL } from '@/utils/email-images';
 
 // The Resend instance will be created inside the POST handler
 // to prevent breaking the OPTIONS preflight request if the key is missing or loaded late.
@@ -59,11 +60,17 @@ export async function POST(request: Request) {
 
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sun-beach-house.com';
 
+        // Transform Sanity images to brand proxy URLs for email deliverability
+        const villasWithProxiedImages = selectedVillas.map(villa => ({
+            ...villa,
+            mainImage: getProxyImageURL(villa.mainImage)
+        }));
+
         // Générer le HTML de l'email avec React Email
         const html = await render(
             React.createElement(VillaSelectionEmail, {
                 message,
-                villas: selectedVillas,
+                villas: villasWithProxiedImages as any,
                 baseUrl,
                 lang
             })

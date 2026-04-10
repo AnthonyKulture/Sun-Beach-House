@@ -5,6 +5,7 @@ import React from 'react';
 import ContactEmail from '@/components/email/ContactEmail';
 import BookingInquiryEmail from '@/components/email/BookingInquiryEmail';
 import SalesInquiryEmail from '@/components/email/SalesInquiryEmail';
+import { getProxyImageURL } from '@/utils/email-images';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const VALERIE_EMAIL = 'valerie@sun-beach-house.com';
@@ -31,6 +32,9 @@ export async function POST(request: Request) {
             guests,
             price
         } = body;
+
+        // Transform Sanity image URL to brand proxy URL to avoid email deliverability issues
+        const proxiedVillaImage = getProxyImageURL(villaImage);
 
         // 1. Unified Spam Check (Honeypot)
         if (confirm_website_url || confirm_booking_request || confirm_sales_inquiry) {
@@ -61,7 +65,7 @@ export async function POST(request: Request) {
                 html = await render(
                     React.createElement(BookingInquiryEmail, {
                         villaName,
-                        villaImage,
+                        villaImage: proxiedVillaImage,
                         location,
                         arrival,
                         departure,
@@ -79,7 +83,7 @@ export async function POST(request: Request) {
                 html = await render(
                     React.createElement(SalesInquiryEmail, {
                         villaName,
-                        villaImage,
+                        villaImage: proxiedVillaImage,
                         location,
                         price,
                         customerName: fullName,
