@@ -103,8 +103,8 @@ export const VillaSelectionEmail = ({
                         <Img
                             src="https://sun-beach-house.com/signature.png"
                             alt="Signature Sun Beach House"
-                            width="180"
-                            style={{ display: 'block', margin: '0' }}
+                            width="240"
+                            style={{ display: 'block', margin: '0', width: '100%', maxWidth: '240px', height: 'auto' }}
                         />
                     </Section>
                 </Container>
