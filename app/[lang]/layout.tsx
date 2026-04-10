@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Playfair_Display } from 'next/font/google'
 import '../globals.css'
 import { Providers } from '@/app/providers'
@@ -85,6 +86,19 @@ export default function LocaleLayout({
     return (
         <html lang={locale} className={`scroll-smooth ${playfair.variable}`} style={{ scrollPaddingTop: '100px' }}>
             <head>
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-JY1FQ1MG2F"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+
+                      gtag('config', 'G-JY1FQ1MG2F');
+                    `}
+                </Script>
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
