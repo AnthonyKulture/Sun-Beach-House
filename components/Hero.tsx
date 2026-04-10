@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 // Dynamically load the lightweight background video component to unblock the main thread
 const MuxBackgroundVideo = dynamic(
-    () => import('@mux/mux-background-video/react'),
+    () => import('@mux/mux-background-video/react').then(mod => mod.MuxBackgroundVideo),
     { ssr: false }
 );
 
