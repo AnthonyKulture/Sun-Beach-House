@@ -246,9 +246,7 @@ Bien cordialement,`)
                                             value={clientEmail}
                                             onChange={(e: any) => setClientEmail(e.currentTarget.value)}
                                         />
-                                        <Card padding={3} radius={2} tone="caution">
-                                            <Text size={1}>En mode Test (Resend Onboarding), utilisez obligatoirement l'adresse email de votre compte Resend.</Text>
-                                        </Card>
+
                                     </Stack>
 
                                     <Stack space={3}>

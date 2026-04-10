@@ -101,7 +101,7 @@ export const VillaSelectionEmail = ({
                     {/* Signature */}
                     <Section style={{ padding: '20px 0', textAlign: 'left' }}>
                         <Img
-                            src={`${baseUrl}/signature.png`}
+                            src="https://sun-beach-house.com/signature.png"
                             alt="Signature Sun Beach House"
                             width="392"
                             style={{ maxWidth: '392px', height: 'auto', display: 'block', margin: '0' }}
