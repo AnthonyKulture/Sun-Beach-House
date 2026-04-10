@@ -6,20 +6,24 @@ import { CmsService } from '@/services/cms';
 // The Resend instance will be created inside the POST handler
 // to prevent breaking the OPTIONS preflight request if the key is missing or loaded late.
 
-const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+const getCorsHeaders = (request: Request) => {
+    const origin = request.headers.get('origin') || 'https://sbh-admin.sanity.studio';
+    return {
+        'Access-Control-Allow-Origin': origin,
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
 };
 
 export async function OPTIONS(request: Request) {
     return new Response(null, {
         status: 200,
-        headers: corsHeaders
+        headers: getCorsHeaders(request)
     });
 }
 
 export async function POST(request: Request) {
+    const corsHeaders = getCorsHeaders(request);
     try {
         const body = await request.json();
         const { clientEmail, subject, message, villaIds } = body;
