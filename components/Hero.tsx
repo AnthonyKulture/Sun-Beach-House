@@ -49,8 +49,7 @@ export const Hero: React.FC = () => {
                     - No heavy player UI or controls
                 */}
                 <MuxBackgroundVideo
-                    playbackId={playbackId}
-                    metadataVideoTitle="Sun Beach House Hero"
+                    src={`https://stream.mux.com/${playbackId}.m3u8`}
                     className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-10"
                 />
 
