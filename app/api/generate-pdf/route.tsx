@@ -11,13 +11,14 @@ import { Villa } from '../../../types';
 export const dynamic = 'force-dynamic';
 
 // Handle OPTIONS request for CORS preflight
-export async function OPTIONS() {
+export async function OPTIONS(request: NextRequest) {
+    const origin = request.headers.get('origin') || 'https://sbh-admin.sanity.studio';
     return new NextResponse(null, {
         status: 200,
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': origin,
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         },
     });
 }
@@ -91,10 +92,11 @@ export async function GET(request: NextRequest) {
         const pdfBuffer = await renderToBuffer(pdfDocument);
         const fileName = generatePDFFileName(villa);
 
+        const origin = request.headers.get('origin') || 'https://sbh-admin.sanity.studio';
         const CORS_HEADERS = {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': origin,
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         };
 
         return new NextResponse(pdfBuffer as unknown as BodyInit, {
