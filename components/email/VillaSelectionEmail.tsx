@@ -101,10 +101,10 @@ export const VillaSelectionEmail = ({
                     {/* Signature */}
                     <Section style={{ padding: '20px 0', textAlign: 'left' }}>
                         <Img
-                            src="https://sun-beach-house.com/signature.png"
+                            src="https://sun-beach-house.com/signature.png?v=2"
                             alt="Signature Sun Beach House"
-                            width="240"
-                            style={{ display: 'block', margin: '0', width: '100%', maxWidth: '240px', height: 'auto' }}
+                            width="600"
+                            style={{ display: 'block', margin: '0', width: '100%', maxWidth: '600px', height: 'auto' }}
                         />
                     </Section>
                 </Container>
