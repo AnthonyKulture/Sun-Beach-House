@@ -64,19 +64,42 @@ export default async function VillaPage({ params }: Props) {
 
     if (!villa) return null;
 
+    const isRental = villa.listingType === 'rent';
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'LodgingBusiness',
-        'name': villa.name,
+        '@type': isRental ? 'VacationRental' : 'RealEstateListing',
+        'name': `${villa.name} — Villa de luxe à ${villa.location?.name || 'St. Barth'}`,
         'description': typeof villa.description === 'string' ? villa.description : (villa.description[lang as keyof typeof villa.description] || villa.description.fr || ''),
-        'image': villa.mainImage,
+        'image': [villa.mainImage, ...(villa.galleryImages || [])],
         'address': {
             '@type': 'PostalAddress',
             'addressLocality': villa.location?.name || 'St. Barth',
-            'addressCountry': 'FR'
+            'addressRegion': 'Saint-Barthélemy',
+            'addressCountry': 'BL'
         },
         'telephone': '+590690634725',
-        'priceRange': villa.listingType === 'rent' ? '$$$$' : '$$$$$',
+        'url': `https://sun-beach-house.com/${lang}/villas/${id}`,
+        'brand': {
+            '@type': 'Brand',
+            'name': 'Sun Beach House'
+        },
+        'offers': {
+            '@type': 'Offer',
+            'priceCurrency': isRental ? (villa.currency || 'USD') : 'EUR',
+            'price': isRental ? (villa.pricePerWeek || villa.pricePerNight) : villa.salePrice,
+            'url': `https://sun-beach-house.com/${lang}/villas/${id}`,
+            'availability': 'https://schema.org/InStock'
+        },
+        'amenityFeature': villa.amenities?.map(a => ({
+            '@type': 'LocationFeatureSpecification',
+            'name': a.name,
+            'value': true
+        })),
+        'floorSize': villa.surface ? {
+            '@type': 'QuantitativeValue',
+            'value': villa.surface,
+            'unitCode': 'MTK'
+        } : undefined,
         'numberOfRooms': villa.bedrooms,
         'occupancy': {
             '@type': 'QuantitativeValue',

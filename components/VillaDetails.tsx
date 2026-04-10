@@ -191,38 +191,6 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
         router.push(`/sales-contact?villaId=${villa.id}`);
     };
 
-    const schemaData = {
-        "@context": "https://schema.org",
-        "@type": villa.listingType === 'rent' ? "VacationRental" : "RealEstateListing",
-        "name": `${villa.name} — ${villa.location.name}, St. Barth`,
-        "description": villa.description,
-        "image": [villa.mainImage, ...villa.galleryImages],
-        "url": `https://sun-beach-house.com/${language}/villas/${villa.id}`,
-        "priceRange": villa.listingType === 'rent' ? `${villa.pricePerNight} USD` : `${villa.salePrice} EUR`,
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Saint-Barthélemy",
-            "addressRegion": villa.location.name,
-            "addressCountry": "BL"
-        },
-        "numberOfRooms": villa.bedrooms,
-        "occupancy": {
-            "@type": "QuantitativeValue",
-            "value": villa.guests
-        },
-        "amenityFeature": villa.amenities.map(a => ({
-            "@type": "LocationFeatureSpecification",
-            "name": a.name,
-            "value": true
-        })),
-        "numberOfBedrooms": villa.bedrooms,
-        "numberOfBathroomsTotal": villa.bathrooms,
-        "floorSize": villa.surface ? {
-            "@type": "QuantitativeValue",
-            "value": villa.surface,
-            "unitCode": "MTK"
-        } : undefined
-    };
 
     const isSale = villa.listingType === 'sale';
 
@@ -251,9 +219,6 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
 
     return (
         <div className="bg-white min-h-screen animate-fade-in relative pb-32 xl:pb-0">
-            <script type="application/ld+json">
-                {JSON.stringify(schemaData)}
-            </script>
 
             {/* 
           FIXED BACK BUTTON 
@@ -418,7 +383,10 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                 {villa.mainImage ? (
                                     <Image
                                         src={villa.mainImage}
-                                        alt="Main view"
+                                        alt={language === 'fr' 
+                                            ? `Photographie principale de la villa ${villa.name} à ${villa.location.name}, Saint-Barthélemy` 
+                                            : `Main view of villa ${villa.name} in ${villa.location.name}, St. Barts`
+                                        }
                                         fill
                                         sizes="(max-width: 768px) 100vw, 66vw"
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -478,7 +446,17 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                 onClick={() => { setGalleryStartIndex(0); setIsGalleryOpen(true); }}
                             >
                                 {villa.mainImage ? (
-                                    <Image src={villa.mainImage} alt="Main" fill sizes="90vw" className="object-cover" priority />
+                                    <Image 
+                                        src={villa.mainImage} 
+                                        alt={language === 'fr' 
+                                            ? `Villa ${villa.name} - Vue d'ensemble` 
+                                            : `Villa ${villa.name} - Overview`
+                                        } 
+                                        fill 
+                                        sizes="90vw" 
+                                        className="object-cover" 
+                                        priority 
+                                    />
                                 ) : (
                                     <VillaImagePlaceholder className="w-full h-full" />
                                 )}
@@ -489,7 +467,16 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                     onClick={() => { setGalleryStartIndex(idx + 1); setIsGalleryOpen(true); }}
                                 >
-                                    <Image src={img} alt={`Gallery ${idx + 1}`} fill sizes="90vw" className="object-cover" />
+                                    <Image 
+                                        src={img} 
+                                        alt={language === 'fr' 
+                                            ? `Détail de la villa ${villa.name} à Saint-Barthélemy - photo ${idx + 1}` 
+                                            : `Detail of villa ${villa.name} in St. Barts - photo ${idx + 1}`
+                                        } 
+                                        fill 
+                                        sizes="90vw" 
+                                        className="object-cover" 
+                                    />
                                 </div>
                             ))}
                             {villa.galleryImages.length > 6 && (
@@ -715,7 +702,13 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
                                     <div className="border-t border-gray-100 pt-4 mt-4">
                                         <div className="flex items-center gap-4 mb-2">
                                             <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden relative">
-                                                <Image src="/images/valerie-founder.jpg" alt="Agent" fill sizes="48px" className="object-cover" />
+                                                <Image 
+                                                    src="/images/valerie-founder.jpg" 
+                                                    alt={language === 'fr' ? "Valérie Kerckhofs - Fondatrice de Sun Beach House" : "Valérie Kerckhofs - Founder of Sun Beach House"} 
+                                                    fill 
+                                                    sizes="48px" 
+                                                    className="object-cover" 
+                                                />
                                             </div>
                                             <div>
                                                 <p className="font-serif text-sbh-charcoal">{t.villa.valerie}</p>

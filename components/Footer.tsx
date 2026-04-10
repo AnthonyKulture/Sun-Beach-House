@@ -42,6 +42,9 @@ export const Footer: React.FC = () => {
                             <a href="https://www.instagram.com/sun.beach.house" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="p-3 rounded-full border border-sbh-green/20 text-sbh-green hover:border-sbh-cream hover:text-sbh-cream hover:bg-white/5 transition-all duration-300 group touch-target">
                                 <Instagram size={20} strokeWidth={1.5} />
                             </a>
+                            <a href="https://share.google/Ho4uufMpWmqr2tUc8" target="_blank" rel="noopener noreferrer" aria-label="Retrouvez-nous sur Google Business" className="p-3 rounded-full border border-sbh-green/20 text-sbh-green hover:border-sbh-cream hover:text-sbh-cream hover:bg-white/5 transition-all duration-300 group touch-target">
+                                <MapIcon size={20} strokeWidth={1.5} />
+                            </a>
                         </div>
                     </div>
 

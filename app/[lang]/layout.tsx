@@ -116,6 +116,7 @@ export default function LocaleLayout({
                             },
                             sameAs: [
                                 'https://www.instagram.com/sun.beach.house',
+                                'https://share.google/Ho4uufMpWmqr2tUc8',
                             ],
                             areaServed: 'Saint-Barthélemy',
                             priceRange: '$$$$',
