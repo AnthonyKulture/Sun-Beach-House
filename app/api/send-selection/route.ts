@@ -1,7 +1,5 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from 'next/server'; import { Resend } from 'resend';
 import { render } from '@react-email/render';
-import React from 'react';
 import VillaSelectionEmail from '@/components/email/VillaSelectionEmail';
 import { CmsService } from '@/services/cms';
 
@@ -30,14 +28,11 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { clientEmail, subject, message, villaIds, lang = 'fr' } = body;
 
-        if (!clientEmail) {
-            return NextResponse.json({ error: 'Email du client manquant' }, { status: 400, headers: corsHeaders });
-        }
-        if (!subject) {
-            return NextResponse.json({ error: 'Sujet de l\'email manquant' }, { status: 400, headers: corsHeaders });
-        }
-        if (!villaIds || !Array.isArray(villaIds) || villaIds.length === 0) {
-            return NextResponse.json({ error: 'Sélection de villas vide ou invalide' }, { status: 400, headers: corsHeaders });
+        if (!clientEmail || !subject || !villaIds || !Array.isArray(villaIds) || villaIds.length === 0) {
+            return NextResponse.json(
+                { error: 'Champs manquants ou sélection de villas vide' },
+                { status: 400, headers: corsHeaders }
+            );
         }
 
         if (!process.env.RESEND_API_KEY) {
@@ -64,7 +59,7 @@ export async function POST(request: Request) {
 
         // Générer le HTML de l'email avec React Email
         const html = await render(
-            React.createElement(VillaSelectionEmail, {
+            VillaSelectionEmail({
                 message,
                 villas: selectedVillas,
                 baseUrl,
@@ -78,7 +73,7 @@ export async function POST(request: Request) {
         // En mode expéditeur non vérifié, Resend oblige à utiliser onboarding@resend.dev 
         // et n'autorise l'envoi qu'à l'adresse email du compte Resend.
         const { data, error } = await resend.emails.send({
-            from: '"Sun Beach House - Villa Rental St-Barth" <valerie@sun-beach-house.com>',
+            from: 'Sun Beach House - Villa Rental St-Barth <valerie@sun-beach-house.com>',
             to: [clientEmail],
             subject: subject,
             html: html,
