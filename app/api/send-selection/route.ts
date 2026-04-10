@@ -59,15 +59,22 @@ export async function POST(request: Request) {
 
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sun-beach-house.com';
 
-        // TEST D'ISOLATION : On bypass le template
-        const html = `<b>Ceci est un test d'envoi pour diagnostiquer l'erreur 404</b><p>Villa(s) sélectionnée(s) : ${villaIds.join(', ')}</p>`;
+        // Générer le HTML de l'email avec React Email
+        const html = await render(
+            React.createElement(VillaSelectionEmail, {
+                message,
+                villas: selectedVillas,
+                baseUrl,
+                lang
+            })
+        );
 
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         const { data, error } = await resend.emails.send({
-            from: 'valerie@sun-beach-house.com',
+            from: 'Sun Beach House - Villa Rental St-Barth <valerie@sun-beach-house.com>',
             to: [clientEmail],
-            subject: 'TEST - ' + subject,
+            subject: subject,
             html: html,
         });
 
@@ -75,7 +82,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ 
                 error: error.message, 
                 details: error,
-                hint: "SI VOUS VOYEZ CECI, le problème est la Clé API ou le Domaine dans Resend. Générez une nouvelle clé."
+                hint: "Vérifiez la clé API Resend dans Vercel"
             }, { status: 400, headers: corsHeaders });
         }
 
