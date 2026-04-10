@@ -68,7 +68,7 @@ export default async function VillaPage({ params }: Props) {
         '@context': 'https://schema.org',
         '@type': 'LodgingBusiness',
         'name': villa.name,
-        'description': villa.description?.[lang as keyof typeof villa.description] || villa.description?.fr || '',
+        'description': typeof villa.description === 'string' ? villa.description : (villa.description[lang as keyof typeof villa.description] || villa.description.fr || ''),
         'image': villa.mainImage,
         'address': {
             '@type': 'PostalAddress',
