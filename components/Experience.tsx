@@ -16,6 +16,7 @@ export const Experience: React.FC = () => {
       subtitle: t.experience.morning.subtitle,
       description: t.experience.morning.description,
       img: "/images/optimized-morning-st-barth.jpg",
+      alt: t.alts.experienceMorning,
       color: "bg-sbh-cream"
     },
     {
@@ -24,6 +25,7 @@ export const Experience: React.FC = () => {
       subtitle: t.experience.blueInfinity.subtitle,
       description: t.experience.blueInfinity.description,
       img: "/images/optimized-lagoon-st-barth.jpg",
+      alt: t.alts.experienceBlue,
       color: "bg-sbh-cream"
     },
     {
@@ -32,6 +34,7 @@ export const Experience: React.FC = () => {
       subtitle: t.experience.goldenHour.subtitle,
       description: t.experience.goldenHour.description,
       img: "/images/optimized-golden-hour-st-barth.jpg",
+      alt: t.alts.experienceGolden,
       color: "bg-sbh-cream"
     }
   ];
@@ -74,7 +77,7 @@ export const Experience: React.FC = () => {
               <div className={`relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-sm shadow-xl shadow-sbh-charcoal/5 group order-1 ${index % 2 === 1 ? 'md:order-1' : 'md:order-2'} w-full max-w-lg mx-auto md:max-w-none`}>
                 <Image
                   src={exp.img}
-                  alt={exp.title}
+                  alt={exp.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"

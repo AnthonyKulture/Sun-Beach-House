@@ -503,7 +503,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
                                     {villa.mainImage ? (
                                         <Image
                                             src={villa.mainImage}
-                                            alt={villa.name}
+                                            alt={`${t.alts.villaCardPrefix} ${villa.name}`}
                                             fill
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"

@@ -14,17 +14,33 @@ export const Hero: React.FC = () => {
         <section className="relative w-full h-screen min-h-[700px] overflow-hidden bg-sbh-cream">
 
             {/* =========================================
-          BACKGROUND IMAGE (FULL SCREEN) — next/image for LCP
-      ========================================= */}
+                BACKGROUND (FULL SCREEN) — Native Video + Image Poster for LCP
+            ========================================= */}
             <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" style={{ contain: 'layout style' }}>
-                <iframe
-                    src="https://player.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw?background=true&muted=true&loop=true&autoplay=true&controls=false&poster-width=1280"
-                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-0 animate-fade-in"
-                    allow="autoplay; encrypted-media"
-                    title="Sun Beach House"
+                {/* Background Poster Image (Initial Paint) */}
+                <Image
+                    src="https://image.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw/thumbnail.webp?width=1920&time=0"
+                    alt="Sun Beach House Background"
+                    fill
+                    priority
+                    fetchPriority="high"
+                    className="object-cover z-0"
                 />
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+                
+                {/* Native Video Loop */}
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-10"
+                >
+                    <source src="https://stream.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw/high.mp4" type="video/mp4" />
+                    {/* Fallback to HLS if needed, though high.mp4 is more reliable for background loops if enabled */}
+                </video>
+
+                <div className="absolute inset-0 bg-black/20 z-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 z-20"></div>
             </div>
 
             {/* =========================================

@@ -8,11 +8,19 @@ import { OrganicLine, NorthStar, SunStamp } from './Decorations';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const Villas: React.FC = () => {
-    const { language, t } = useLanguage();
-    const { villas, loading } = useVillas();
+interface VillasProps {
+    initialVillas?: Villa[];
+}
 
-    // Filterm and sort logic remain same
+export const Villas: React.FC<VillasProps> = ({ initialVillas }) => {
+    const { language, t } = useLanguage();
+    // Only fetch if initialVillas is missing
+    const { villas: fetchedVillas, loading: fetchedLoading } = useVillas(!!initialVillas);
+
+    const villas = initialVillas || fetchedVillas;
+    const loading = initialVillas ? false : fetchedLoading;
+
+    // Filter and sort logic
     const featuredVillas = villas
         .filter(v => v.listingType === 'rent' && v.featuredOnHomepage && v.homepageOrder !== undefined)
         .sort((a, b) => (a.homepageOrder || 999) - (b.homepageOrder || 999))
@@ -124,7 +132,7 @@ const VillaCard: React.FC<{ villa: Villa; number: string; delay?: string; langua
             <div className="img-zoom-wrapper relative aspect-[3/4] bg-gray-100 overflow-hidden rounded-sm shadow-md hover:shadow-xl transition-shadow duration-500">
                 <Image
                     src={villa.mainImage}
-                    alt={villa.name}
+                    alt={`${t.alts.villaCardPrefix} ${villa.name}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"

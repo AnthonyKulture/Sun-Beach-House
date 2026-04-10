@@ -36,12 +36,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function HomePage() {
+import { CmsService } from '@/services/cms'
+
+export default async function HomePage() {
+    // Fetch villas on the server for better performance and SEO
+    const villas = await CmsService.getAllVillas();
+
     return (
         <>
             <Hero />
             <About />
-            <Villas />
+            <Villas initialVillas={villas} />
             <Services />
             <Experience />
         </>

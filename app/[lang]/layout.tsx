@@ -125,7 +125,7 @@ export default function LocaleLayout({
                 <link
                     rel="preload"
                     as="image"
-                    href="https://image.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw/thumbnail.webp?width=1280&time=0"
+                    href="https://image.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw/thumbnail.webp?width=1920&time=0"
                     // @ts-ignore
                     fetchPriority="high"
                 />
@@ -138,8 +138,8 @@ export default function LocaleLayout({
                         aria-hidden="true"
                         className="fixed inset-0 z-0 pointer-events-none select-none"
                         style={{
-                            backgroundImage: 'url("/noise.svg")',
-                            opacity: 0.025,
+                            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'1\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+                            opacity: 0.015,
                         }}
                     />
                     <Navbar />

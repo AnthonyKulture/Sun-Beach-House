@@ -489,4 +489,13 @@ export const es: Translations = {
             text: 'Estoy aquí para acompañarle. Con sencillez. Con integridad. Con ese conocimiento íntimo que solo los antiguos amantes de la isla llevan consigo.',
         },
     },
+
+    alts: {
+        aboutMain: "Terraza de una villa de lujo con vista al mar en San Bartolomé",
+        aboutSecondary: "Experiencia de bienestar y spa privado en villa en St Barth",
+        experienceMorning: "Yoga matutino frente al mar en la terraza de una villa en St Barth",
+        experienceBlue: "Barco anclado en las aguas turquesas de San Bartolomé",
+        experienceGolden: "Puesta de sol dorada sobre el puerto de Gustavia en San Bartolomé",
+        villaCardPrefix: "Villa de lujo en San Bartolomé",
+    },
 };

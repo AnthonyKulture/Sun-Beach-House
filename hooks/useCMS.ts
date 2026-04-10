@@ -5,12 +5,14 @@ import { CmsService } from '../services/cms';
 /**
  * Hook pour récupérer la liste complète des villas
  */
-export const useVillas = () => {
+export const useVillas = (skip = false) => {
   const [villas, setVillas] = useState<Villa[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!skip);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    if (skip) return;
+
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -24,7 +26,7 @@ export const useVillas = () => {
     };
 
     fetchData();
-  }, []);
+  }, [skip]);
 
   return { villas, loading, error };
 };

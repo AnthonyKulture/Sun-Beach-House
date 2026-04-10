@@ -58,6 +58,39 @@ export async function generateMetadata(
     };
 }
 
-export default function VillaPage({ params }: Props) {
-    return <VillaDetails villaId={params.id} />;
+export default async function VillaPage({ params }: Props) {
+    const { id, lang } = params;
+    const villa = await CmsService.getVillaById(id);
+
+    if (!villa) return null;
+
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'LodgingBusiness',
+        'name': villa.name,
+        'description': villa.description?.[lang as keyof typeof villa.description] || villa.description?.fr || '',
+        'image': villa.mainImage,
+        'address': {
+            '@type': 'PostalAddress',
+            'addressLocality': villa.location?.name || 'St. Barth',
+            'addressCountry': 'FR'
+        },
+        'telephone': '+590690634725',
+        'priceRange': villa.listingType === 'rent' ? '$$$$' : '$$$$$',
+        'numberOfRooms': villa.bedrooms,
+        'occupancy': {
+            '@type': 'QuantitativeValue',
+            'value': villa.guests
+        }
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <VillaDetails villaId={id} />
+        </>
+    );
 }

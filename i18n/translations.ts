@@ -496,6 +496,15 @@ const fr: Translations = {
             text: "Je suis là pour vous accompagner. Avec simplicité. Avec intégrité. Avec cette connaissance intime que seuls les anciens amoureux de l'île portent en eux.",
         },
     },
+
+    alts: {
+        aboutMain: "Terrasse d'une villa de luxe avec vue sur mer à Saint-Barthélemy",
+        aboutSecondary: "Expérience bien-être et spa privé en villa à St Barth",
+        experienceMorning: "Yoga matinal face à la mer sur une terrasse de villa à St Barth",
+        experienceBlue: "Bateau au mouillage dans les eaux turquoise de Saint-Barthélemy",
+        experienceGolden: "Coucher de soleil doré sur le port de Gustavia à Saint-Barth",
+        villaCardPrefix: "Villa de luxe à Saint-Barth",
+    },
 };
 
 const en: Translations = {
@@ -986,6 +995,15 @@ const en: Translations = {
             quote: "Saint-Barth is lived. It's not a destination to consume.",
             text: "I'm here to accompany you. With simplicity. With integrity. With this intimate knowledge that only the island's former lovers carry within them.",
         },
+    },
+
+    alts: {
+        aboutMain: "Luxury villa terrace with sea view in Saint-Barthélemy",
+        aboutSecondary: "Wellness experience and private spa in a St Barth villa",
+        experienceMorning: "Morning yoga facing the sea on a villa terrace in St Barth",
+        experienceBlue: "Boat anchored in the turquoise waters of Saint-Barthélemy",
+        experienceGolden: "Golden sunset over Gustavia harbor in Saint-Barth",
+        villaCardPrefix: "Luxury villa in Saint-Barth",
     },
 };
 

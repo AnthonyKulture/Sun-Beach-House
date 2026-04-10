@@ -444,4 +444,14 @@ export interface Translations {
             text: string;
         };
     };
+
+    // Alts & SEO
+    alts: {
+        aboutMain: string;
+        aboutSecondary: string;
+        experienceMorning: string;
+        experienceBlue: string;
+        experienceGolden: string;
+        villaCardPrefix: string;
+    };
 }

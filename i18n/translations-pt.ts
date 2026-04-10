@@ -489,4 +489,13 @@ export const pt: Translations = {
             text: 'Estou aqui para acompanhá-lo. Com simplicidade. Com integridade. Com esse conhecimento íntimo que apenas os antigos amantes da ilha carregam consigo.',
         },
     },
+
+    alts: {
+        aboutMain: "Terraço de uma villa de luxo com vista para o mar em Saint-Barthélemy",
+        aboutSecondary: "Experiência de bem-estar e spa privado em villa em St Barth",
+        experienceMorning: "Ioga matinal de frente para o mar no terraço de uma villa em St Barth",
+        experienceBlue: "Barco ancorado nas águas azul-turquesa de Saint-Barthélemy",
+        experienceGolden: "Pôr do sol dourado sobre o porto de Gustavia em Saint-Barth",
+        villaCardPrefix: "Villa de luxo em Saint-Barth",
+    },
 };
