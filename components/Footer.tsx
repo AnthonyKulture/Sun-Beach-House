@@ -123,7 +123,7 @@ export const Footer: React.FC = () => {
                 <div className="border-t border-sbh-green/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left reveal-on-scroll" style={{ transitionDelay: '300ms' }}>
                     <div className="flex flex-col gap-2">
                         <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-sbh-sand font-medium">
-                            {t.footer.rights}
+                            © {new Date().getFullYear()} {t.footer.rights}
                         </p>
                         <p className="font-sans text-[10px] tracking-widest text-sbh-green hover:text-sbh-sand transition-colors flex items-center justify-center md:justify-start gap-1 font-medium">
                             {t.footer.madeWith} <Heart size={10} fill="currentColor" className="text-sbh-terracotta" /> by <a href="https://www.kulturecom.fr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Anthony PROFIT - www.kulturecom.fr</a>

@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
+import MuxPlayer from '@mux/mux-player-react';
 import { SunStamp } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
         <section className="relative w-full h-screen min-h-[700px] overflow-hidden bg-sbh-cream">
 
             {/* =========================================
-                BACKGROUND (FULL SCREEN) — Native Video + Image Poster for LCP
+                BACKGROUND (FULL SCREEN) — MuxPlayer + Image Poster for LCP
             ========================================= */}
             <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" style={{ contain: 'layout style' }}>
                 {/* Background Poster Image (Initial Paint) */}
@@ -27,17 +27,16 @@ export const Hero: React.FC = () => {
                     className="object-cover z-0"
                 />
                 
-                {/* Native Video Loop */}
-                <video
-                    autoPlay
-                    muted
+                {/* MuxPlayer for Adaptive Bitrate (High Quality + Fast Load) */}
+                <MuxPlayer
+                    playbackId="oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw"
+                    metadataVideoTitle="Sun Beach House Hero"
+                    streamType="on-demand"
+                    autoPlay="muted"
                     loop
-                    playsInline
+                    primaryColor="#FFFFFF"
                     className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-10"
-                >
-                    <source src="https://stream.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw/high.mp4" type="video/mp4" />
-                    {/* Fallback to HLS if needed, though high.mp4 is more reliable for background loops if enabled */}
-                </video>
+                />
 
                 <div className="absolute inset-0 bg-black/20 z-20"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 z-20"></div>
