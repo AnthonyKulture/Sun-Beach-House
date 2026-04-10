@@ -505,6 +505,30 @@ const fr: Translations = {
         experienceGolden: "Coucher de soleil doré sur le port de Gustavia à Saint-Barth",
         villaCardPrefix: "Villa de luxe à Saint-Barth",
     },
+
+    cookies: {
+        title: "Respect de votre vie privée",
+        description: "Nous utilisons des cookies pour optimiser votre expérience, analyser le trafic et personnaliser nos contenus. Votre parcours sur l'île commence par le respect de vos données.",
+        accept: "Tout accepter",
+        decline: "Tout refuser",
+        customize: "Paramètres",
+        settings: {
+            title: "Paramètres des cookies",
+            necessary: {
+                title: "Essentiels",
+                desc: "Ces cookies sont nécessaires au fonctionnement du site et ne peuvent pas être désactivés."
+            },
+            analytics: {
+                title: "Mesure d'audience",
+                desc: "Nous permettent de comprendre comment vous interagissez avec le site pour l'améliorer."
+            },
+            marketing: {
+                title: "Personnalisation",
+                desc: "Utilisés pour vous proposer des contenus et services adaptés à vos centres d'intérêts."
+            },
+            save: "Enregistrer mes choix"
+        }
+    },
 };
 
 const en: Translations = {
@@ -1004,6 +1028,30 @@ const en: Translations = {
         experienceBlue: "Boat anchored in the turquoise waters of Saint-Barthélemy",
         experienceGolden: "Golden sunset over Gustavia harbor in Saint-Barth",
         villaCardPrefix: "Luxury villa in Saint-Barth",
+    },
+
+    cookies: {
+        title: "We value your privacy",
+        description: "We use cookies to optimize your experience, analyze traffic, and personalize our content. Your journey on the island begins with respect for your data.",
+        accept: "Accept all",
+        decline: "Decline all",
+        customize: "Settings",
+        settings: {
+            title: "Cookie Settings",
+            necessary: {
+                title: "Essential",
+                desc: "These cookies are necessary for the website to function and cannot be switched off."
+            },
+            analytics: {
+                title: "Analytics",
+                desc: "Allow us to understand how you interact with the site to improve it."
+            },
+            marketing: {
+                title: "Personalization",
+                desc: "Used to provide you with content and services tailored to your interests."
+            },
+            save: "Save my choices"
+        }
     },
 };
 

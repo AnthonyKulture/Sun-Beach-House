@@ -498,4 +498,28 @@ export const pt: Translations = {
         experienceGolden: "Pôr do sol dourado sobre o porto de Gustavia em Saint-Barth",
         villaCardPrefix: "Villa de luxo em Saint-Barth",
     },
+
+    cookies: {
+        title: "Valorizamos a sua privacidade",
+        description: "Utilizamos cookies para otimizar a sua experiência, analisar o tráfego e personalizar o nosso conteúdo. A sua viagem na ilha começa com o respeito pelos seus dados.",
+        accept: "Aceitar todos",
+        decline: "Recusar todos",
+        customize: "Configurações",
+        settings: {
+            title: "Configurações de Cookies",
+            necessary: {
+                title: "Essenciais",
+                desc: "Estes cookies são necessários para que o sítio web funcione e não podem ser desativados."
+            },
+            analytics: {
+                title: "Analítica",
+                desc: "Permitem-nos compreender como interage com o sítio para o melhorar."
+            },
+            marketing: {
+                title: "Personalização",
+                desc: "Utilizados para lhe oferecer conteúdos e serviços adaptados aos seus interesses."
+            },
+            save: "Guardar as minhas escolhas"
+        }
+    },
 };

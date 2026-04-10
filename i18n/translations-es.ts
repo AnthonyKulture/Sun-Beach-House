@@ -498,4 +498,28 @@ export const es: Translations = {
         experienceGolden: "Puesta de sol dorada sobre el puerto de Gustavia en San Bartolomé",
         villaCardPrefix: "Villa de lujo en San Bartolomé",
     },
+
+    cookies: {
+        title: "Valoramos su privacidad",
+        description: "Utilizamos cookies para optimizar su experiencia, analizar el tráfico y personalizar nuestro contenido. Su viaje por la isla comienza con el respeto a sus datos.",
+        accept: "Aceptar todo",
+        decline: "Rechazar todo",
+        customize: "Configuración",
+        settings: {
+            title: "Configuración de Cookies",
+            necessary: {
+                title: "Esenciales",
+                desc: "Estas cookies son necesarias para que el sitio web funcione y no se pueden desactivar."
+            },
+            analytics: {
+                title: "Analítica",
+                desc: "Nos permiten entender cómo interactúa con el sitio para mejorarlo."
+            },
+            marketing: {
+                title: "Personalización",
+                desc: "Se utilizan para ofrecerle contenidos y servicios adaptados a sus intereses."
+            },
+            save: "Guardar mis opciones"
+        }
+    },
 };

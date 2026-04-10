@@ -454,4 +454,20 @@ export interface Translations {
         experienceGolden: string;
         villaCardPrefix: string;
     };
+
+    // Cookies
+    cookies: {
+        title: string;
+        description: string;
+        accept: string;
+        decline: string;
+        customize: string;
+        settings: {
+            title: string;
+            necessary: { title: string; desc: string };
+            analytics: { title: string; desc: string };
+            marketing: { title: string; desc: string };
+            save: string;
+        }
+    };
 }

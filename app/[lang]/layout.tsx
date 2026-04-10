@@ -5,6 +5,7 @@ import '../globals.css'
 import { Providers } from '@/app/providers'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { CookieBanner } from '@/components/CookieBanner'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { Language } from '@/i18n/types'
@@ -86,6 +87,24 @@ export default function LocaleLayout({
     return (
         <html lang={locale} className={`scroll-smooth ${playfair.variable}`} style={{ scrollPaddingTop: '100px' }}>
             <head>
+                <script dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        
+                        // Default consent state (DMA & GDPR Compliance)
+                        (function() {
+                            const saved = typeof window !== 'undefined' ? localStorage.getItem('google-consent') : null;
+                            const consent = saved ? JSON.parse(saved) : {
+                                'ad_storage': 'denied',
+                                'analytics_storage': 'denied',
+                                'ad_user_data': 'denied',
+                                'ad_personalization': 'denied'
+                            };
+                            gtag('consent', 'default', consent);
+                        })();
+                    `
+                }} />
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-JY1FQ1MG2F"
                     strategy="afterInteractive"
@@ -181,6 +200,7 @@ export default function LocaleLayout({
                         {children}
                     </main>
                     <WhatsAppButton />
+                    <CookieBanner />
                     <div className="relative z-10">
                         <Footer />
                     </div>
