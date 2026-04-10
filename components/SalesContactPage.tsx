@@ -16,6 +16,7 @@ export const SalesContactPage: React.FC = () => {
 
   const onBack = () => router.back();
   const { villa, loading } = useVilla(villaId);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -37,17 +38,56 @@ export const SalesContactPage: React.FC = () => {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Spam check
-    const formData = new FormData(e.target as HTMLFormElement);
-    if (formData.get('confirm_sales_inquiry')) return;
+    setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    const form = e.target as HTMLFormElement;
+    const rawFormData = new FormData(form);
+
+    // Spam check
+    if (rawFormData.get('confirm_sales_inquiry')) {
       setIsSubmitted(true);
-      window.scrollTo(0, 0);
-    }, 800);
+      return;
+    }
+
+    // Prepare payload
+    const payload = {
+      type: 'sales',
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      confirm_sales_inquiry: rawFormData.get('confirm_sales_inquiry'),
+      // Sales data
+      villaId: villa.id,
+      villaName: villa.name,
+      villaImage: villa.mainImage,
+      location: villa.location?.name || 'St Barth',
+      price: `${villa.salePrice?.toLocaleString()} €`
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        window.scrollTo(0, 0);
+      } else {
+        const err = await response.json();
+        alert(err.error || "Une erreur est survenue lors de l'envoi.");
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert("Impossible d'envoyer la demande. Vérifiez votre connexion.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -230,10 +270,18 @@ export const SalesContactPage: React.FC = () => {
             </div>
 
             <div className="pt-8">
-              <button type="submit" className="w-full md:w-auto bg-sbh-charcoal text-white px-10 py-5 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform flex items-center justify-center gap-4 group">
-                <Mail size={16} />
-                Envoyer ma demande
-                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full md:w-auto bg-sbh-charcoal text-white px-10 py-5 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform flex items-center justify-center gap-4 group disabled:opacity-50"
+              >
+                {isSubmitting ? 'Envoi en cours...' : (
+                  <>
+                    <Mail size={16} />
+                    Envoyer ma demande
+                    <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                  </>
+                )}
               </button>
               <p className="text-xs text-gray-400 mt-4 text-center md:text-left">
                 Vos informations sont confidentielles et traitées par Sun Beach House uniquement.

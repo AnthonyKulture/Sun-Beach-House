@@ -8,6 +8,9 @@ import Image from 'next/image';
 
 export const ContactPage: React.FC = () => {
     const { t } = useLanguage();
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
+    const [isSubmitted, setIsSubmitted] = React.useState(false);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -24,60 +27,111 @@ export const ContactPage: React.FC = () => {
                         {t.contact.subtitle}
                     </p>
 
-                    <form className="space-y-12 max-w-xl" onSubmit={(e) => {
-                        e.preventDefault();
-                        const formData = new FormData(e.currentTarget);
-                        const honeypot = formData.get('confirm_website_url');
-                        // Simple spam check: if honeypot is filled, do nothing (or pretend to succeed)
-                        if (honeypot) {
-                            console.log('Spam detected');
-                            return;
-                        }
-                        // Continue with submission...
-                        console.log('Form submitted');
-                    }}>
-                        {/* Security Field - Bot Trap */}
-                        <HoneypotField />
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            <div className="group relative">
-                                <input name="name" type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
-                                <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
-                                    {t.contact.name}
-                                </label>
+                    {isSubmitted ? (
+                        <div className="max-w-xl animate-fade-in text-center lg:text-left">
+                            <div className="w-16 h-16 bg-sbh-green rounded-full flex items-center justify-center text-white mb-6 mx-auto lg:mx-0">
+                                <ArrowRight size={24} />
                             </div>
-                            <div className="group relative">
-                                <input name="firstname" type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" />
-                                <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
-                                    Prénom
-                                </label>
-                            </div>
-                        </div>
-
-                        <div className="group relative">
-                            <input name="email" type="email" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
-                            <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
-                                {t.contact.email}
-                            </label>
-                        </div>
-
-                        <div className="group relative">
-                            <textarea name="message" rows={4} placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg resize-none" required></textarea>
-                            <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
-                                {t.contact.message}
-                            </label>
-                        </div>
-
-                        <div className="pt-8">
-                            <button className="group flex items-center gap-4 text-sbh-charcoal font-sans text-xs uppercase tracking-[0.25em] font-bold hover:text-sbh-green transition-colors">
-                                {t.contact.send}
-                                <span className="p-2 rounded-full border border-sbh-charcoal/30 group-hover:border-sbh-green group-hover:bg-sbh-green group-hover:text-white transition-all">
-                                    <ArrowRight size={16} />
-                                </span>
+                            <h2 className="font-serif text-3xl italic text-sbh-charcoal mb-4">Message envoyé</h2>
+                            <p className="font-sans text-gray-600 mb-8">
+                                Merci pour votre message. Valérie vous recontactera dans les plus brefs délais.
+                            </p>
+                            <button 
+                                onClick={() => setIsSubmitted(false)}
+                                className="text-sbh-green font-sans text-xs uppercase tracking-widest font-bold hover:underline"
+                            >
+                                Envoyer un autre message
                             </button>
                         </div>
+                    ) : (
+                        <form className="space-y-12 max-w-xl" onSubmit={async (e) => {
+                            e.preventDefault();
+                            setIsSubmitting(true);
+                            const form = e.currentTarget;
+                            const formData = new FormData(form);
+                            
+                            // 1. Honeypot check
+                            if (formData.get('confirm_website_url')) {
+                                setIsSubmitted(true);
+                                return;
+                            }
 
-                    </form>
+                            // 2. Prepare payload
+                            const payload = {
+                                type: 'general',
+                                firstName: formData.get('firstname') as string,
+                                lastName: formData.get('name') as string,
+                                email: formData.get('email') as string,
+                                message: formData.get('message') as string,
+                                confirm_website_url: formData.get('confirm_website_url')
+                            };
+
+                            try {
+                                const response = await fetch('/api/contact', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(payload)
+                                });
+
+                                if (response.ok) {
+                                    setIsSubmitted(true);
+                                    form.reset();
+                                } else {
+                                    const err = await response.json();
+                                    alert(err.error || "Une erreur est survenue lors de l'envoi.");
+                                }
+                            } catch (error) {
+                                console.error('Submission error:', error);
+                                alert("Erreur de connexion impossible d'envoyer le message.");
+                            } finally {
+                                setIsSubmitting(false);
+                            }
+                        }}>
+                            {/* Security Field - Bot Trap */}
+                            <HoneypotField />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div className="group relative">
+                                    <input name="name" type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
+                                    <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                        {t.contact.name}
+                                    </label>
+                                </div>
+                                <div className="group relative">
+                                    <input name="firstname" type="text" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" />
+                                    <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                        Prénom
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="group relative">
+                                <input name="email" type="email" placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg" required />
+                                <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                    {t.contact.email}
+                                </label>
+                            </div>
+
+                            <div className="group relative">
+                                <textarea name="message" rows={4} placeholder=" " className="peer w-full border-b border-gray-300 bg-transparent py-3 text-sbh-charcoal outline-none focus:border-sbh-green transition-colors font-serif text-lg resize-none" required></textarea>
+                                <label className="absolute left-0 top-3 text-xs uppercase tracking-widest text-gray-400 transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-sbh-green peer-placeholder-shown:top-3 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                    {t.contact.message}
+                                </label>
+                            </div>
+
+                            <div className="pt-8">
+                                <button 
+                                    disabled={isSubmitting}
+                                    className="group flex items-center gap-4 text-sbh-charcoal font-sans text-xs uppercase tracking-[0.25em] font-bold hover:text-sbh-green transition-colors disabled:opacity-50"
+                                >
+                                    {isSubmitting ? 'Envoi en cours...' : t.contact.send}
+                                    <span className="p-2 rounded-full border border-sbh-charcoal/30 group-hover:border-sbh-green group-hover:bg-sbh-green group-hover:text-white transition-all">
+                                        <ArrowRight size={16} />
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    )}
                 </div>
 
                 {/* RIGHT COLUMN: INFO & VISUALS */}

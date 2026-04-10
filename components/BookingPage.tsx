@@ -25,6 +25,7 @@ export const BookingPage: React.FC = () => {
    const onBack = () => router.back();
    const { t, language } = useLanguage();
    const { villa, loading } = useVilla(bookingParams.villaId);
+   const [isSubmitting, setIsSubmitting] = useState(false);
    const [isSubmitted, setIsSubmitted] = useState(false);
    const [isMounted, setIsMounted] = useState(false);
    const [formData, setFormData] = useState({
@@ -63,17 +64,58 @@ export const BookingPage: React.FC = () => {
    const taxes = Math.round(total * 0.05); // 5% tourism tax
    const grandTotal = total + serviceFee + taxes;
 
-   const handleSubmit = (e: React.FormEvent) => {
+   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      // Spam check
-      const formData = new FormData(e.target as HTMLFormElement);
-      if (formData.get('confirm_booking_request')) return;
+      setIsSubmitting(true);
 
-      // Simulate API call
-      setTimeout(() => {
+      const form = e.target as HTMLFormElement;
+      const rawFormData = new FormData(form);
+
+      // Spam check
+      if (rawFormData.get('confirm_booking_request')) {
          setIsSubmitted(true);
-         window.scrollTo(0, 0);
-      }, 800);
+         return;
+      }
+
+      // Prepare payload
+      const payload = {
+         type: 'booking',
+         firstName: formData.firstName,
+         lastName: formData.lastName,
+         email: formData.email,
+         phone: formData.phone,
+         message: formData.message,
+         confirm_booking_request: rawFormData.get('confirm_booking_request'),
+         // Booking data
+         villaId: villa.id,
+         villaName: villa.name,
+         villaImage: villa.mainImage,
+         location: villa.location?.name || 'St Barth',
+         arrival: formatDate(bookingParams.arrival),
+         departure: formatDate(bookingParams.departure),
+         guests: bookingParams.guests
+      };
+
+      try {
+         const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+         });
+
+         if (response.ok) {
+            setIsSubmitted(true);
+            window.scrollTo(0, 0);
+         } else {
+            const err = await response.json();
+            alert(err.error || "Une erreur est survenue lors de l'envoi.");
+         }
+      } catch (error) {
+         console.error('Submission error:', error);
+         alert("Impossible d'envoyer la demande. Vérifiez votre connexion.");
+      } finally {
+         setIsSubmitting(false);
+      }
    };
 
    const formatDate = (dateStr: string) => {
@@ -274,9 +316,13 @@ export const BookingPage: React.FC = () => {
                   </div>
 
                   <div className="pt-4">
-                     <button type="submit" className="w-full md:w-auto bg-sbh-charcoal text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform flex items-center justify-center gap-3 group">
-                        {t.booking.finalizeRequest}
-                        <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                     <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full md:w-auto bg-sbh-charcoal text-white px-8 py-4 font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-green transition-colors duration-500 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1 transform flex items-center justify-center gap-3 group disabled:opacity-50"
+                     >
+                        {isSubmitting ? 'Envoi en cours...' : t.booking.finalizeRequest}
+                        {!isSubmitting && <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />}
                      </button>
                      <p className="text-xs text-gray-400 mt-4 text-center md:text-left">
                         {t.booking.termsAgreement}
