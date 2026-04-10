@@ -72,7 +72,7 @@ export async function POST(request: Request) {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         const { data, error } = await resend.emails.send({
-            from: 'Sun Beach House - Villa Rental St-Barth <valerie@sun-beach-house.com>',
+            from: 'onboarding@resend.dev',
             to: [clientEmail],
             subject: subject,
             html: html,
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ 
                 error: error.message, 
                 details: error,
-                hint: "Vérifiez la clé API Resend dans Vercel"
+                hint: "Si onboarding@resend.dev échoue aussi, le problème est au niveau de la création du compte Resend ou de la région API."
             }, { status: 400, headers: corsHeaders });
         }
 
