@@ -140,6 +140,7 @@ export const BookingPage: React.FC = () => {
             </h2>
             <p className="font-sans text-lg text-gray-600 max-w-lg mb-12 animate-slide-up" style={{ animationDelay: '0.2s' }}>
                {t.booking.requestReceived.replace('{villa}', villa.name)}
+               <br />
                {t.booking.staffWillContact}
             </p>
             <button

@@ -101,6 +101,7 @@ export const SalesContactPage: React.FC = () => {
         </h2>
         <p className="font-sans text-lg text-gray-600 max-w-lg mb-12 animate-slide-up" style={{ animationDelay: '0.2s' }}>
           Votre demande d&apos;information pour la <strong>{villa.name}</strong> a bien été transmise à notre équipe commerciale.
+          <br />
           Valérie ou un de nos agents vous recontactera dans les plus brefs délais.
         </p>
         <button
