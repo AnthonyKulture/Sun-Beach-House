@@ -111,17 +111,19 @@ body {
 /* --- SCROLL REVEAL ANIMATION (Global) --- */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
-  /* Accéléré de 1.2s à 0.8s pour plus de fluidité */
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
+  /* Limit layout recalculation scope to this element only */
+  contain: layout;
 }
 
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
-  /* Release GPU layer once animation is done */
+  /* Release GPU layer once animation completes */
   will-change: auto;
+  contain: none;
 }
 
 /* Accessibility: Disable motion for users with vestibular disorders */

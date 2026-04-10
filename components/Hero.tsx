@@ -16,7 +16,7 @@ export const Hero: React.FC = () => {
             {/* =========================================
           BACKGROUND IMAGE (FULL SCREEN) — next/image for LCP
       ========================================= */}
-            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" style={{ contain: 'layout style' }}>
                 <iframe
                     src="https://player.mux.com/oXL4cy02saoCX5kH6L00J2E1r2dkQO4n8a01GMxDe4NThw?background=true&muted=true&loop=true&autoplay=true&controls=false&poster-width=1280"
                     className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none z-0 animate-fade-in"
@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
                     <SunStamp className="w-24 h-24 md:w-32 md:h-32" />
                 </div>
 
-                <div className="text-center mb-12 md:mb-16 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                <div className="text-center mb-12 md:mb-16 animate-slide-up" style={{ animationDelay: '0.2s', willChange: 'opacity, transform' }}>
                     <div className="flex items-center justify-center gap-4 mb-4">
                         <span className="h-px w-8 bg-sbh-cream/80"></span>
                         <span className="font-sans text-[10px] md:text-sm tracking-[0.4em] uppercase text-sbh-cream font-medium drop-shadow-md">
@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
                 {/* =========================================
                     NEW HERO ACTIONS (COLLECTIONS + BUTTONS)
                 ========================================= */}
-                <div className="w-full max-w-4xl animate-slide-up relative z-50 flex flex-col items-center" style={{ animationDelay: '0.4s' }}>
+                <div className="w-full max-w-4xl animate-slide-up relative z-50 flex flex-col items-center" style={{ animationDelay: '0.4s', willChange: 'opacity, transform' }}>
 
                     <h2 className="font-serif text-2xl md:text-3xl text-sbh-cream mb-8 tracking-wide drop-shadow-md">
                         {t.hero.ourCollections}

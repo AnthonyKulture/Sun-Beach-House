@@ -12,9 +12,7 @@ export const ScrollReveal = () => {
         const intersectObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('reveal-visible');
-                    }, 100);
+                    entry.target.classList.add('reveal-visible');
                     intersectObserver.unobserve(entry.target);
                 }
             });
@@ -26,29 +24,33 @@ export const ScrollReveal = () => {
             });
         };
 
-        // Small delay to ensure DOM is ready after navigation
-        const timer = setTimeout(observeElements, 100);
+        // Use requestAnimationFrame for frame-perfect timing (no arbitrary delay)
+        let rafId = requestAnimationFrame(observeElements);
 
+        // Debounce MutationObserver with RAF to batch DOM changes into one pass per frame
+        let mutationRafId: number | null = null;
         const mutationObserver = new MutationObserver((mutations) => {
-            let hasNewRevealElements = false;
+            if (mutationRafId !== null) return; // Already scheduled this frame
             for (const mutation of mutations) {
                 for (const node of mutation.addedNodes) {
                     if (node instanceof HTMLElement) {
                         if (node.classList?.contains('reveal-on-scroll') || node.querySelector?.('.reveal-on-scroll')) {
-                            hasNewRevealElements = true;
-                            break;
+                            mutationRafId = requestAnimationFrame(() => {
+                                observeElements();
+                                mutationRafId = null;
+                            });
+                            return;
                         }
                     }
                 }
-                if (hasNewRevealElements) break;
             }
-            if (hasNewRevealElements) observeElements();
         });
 
         mutationObserver.observe(document.body, { childList: true, subtree: true });
 
         return () => {
-            clearTimeout(timer);
+            cancelAnimationFrame(rafId);
+            if (mutationRafId !== null) cancelAnimationFrame(mutationRafId);
             intersectObserver.disconnect();
             mutationObserver.disconnect();
         };

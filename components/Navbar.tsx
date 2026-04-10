@@ -64,27 +64,44 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
   const isCollectionsActive = isActive('/rentals') || isActive('/sales');
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[9999] px-6 md:px-8 lg:px-12 transition-all duration-700">
+    <nav className="fixed top-0 left-0 w-full z-[9999] px-6 md:px-8 lg:px-12">
 
-      {/* Background Element - Handles the Blur/Color independently to avoid clipping fixed children */}
-      <div className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${scrolled ? 'bg-sbh-cream/95 backdrop-blur-md shadow-sm' : 'bg-transparent'
-        }`}></div>
+      {/* Background Element - Separate GPU layer to avoid main-thread paint cost */}
+      <div
+        className="absolute inset-0 w-full h-full shadow-sm"
+        style={{
+          backgroundColor: scrolled ? 'rgba(246, 245, 241, 0.95)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+          opacity: scrolled ? 1 : 0,
+          transition: 'opacity 500ms ease, background-color 500ms ease',
+          willChange: 'opacity',
+        }}
+      ></div>
 
-      <div className={`relative z-[1001] flex justify-between items-center transition-all duration-700 ${scrolled ? 'py-3 lg:py-4' : 'py-4 lg:py-8'
-        }`}>
+      <div
+        className="relative z-[1001] flex justify-between items-center"
+        style={{
+          paddingTop: scrolled ? '0.75rem' : '1rem',
+          paddingBottom: scrolled ? '0.75rem' : '1rem',
+          transition: 'padding 500ms ease',
+        }}
+      >
 
         {/* Logo - Navigates to Home */}
         <Link
           href={`/${language}`}
           onClick={() => setMenuOpen(false)}
-          className={`transition-colors duration-700 origin-left hover:opacity-80 flex items-center ${(isDarkText || menuOpen) ? 'text-sbh-darkgreen' : 'text-white'}`}
+          className={`origin-left hover:opacity-80 flex items-center ${(isDarkText || menuOpen) ? 'text-sbh-darkgreen' : 'text-white'}`}
+          style={{ transition: 'color 400ms ease' }}
         >
           <Logo 
             variant={isDarkText || menuOpen ? 'darkgreen' : 'beige'}
-            className={`transition-all duration-700 ${scrolled
-              ? 'h-8 md:h-10 lg:h-12'
-              : 'h-10 md:h-12 lg:h-20'
-              }`} 
+            style={{
+              height: scrolled ? 'clamp(2rem, 3vw, 3rem)' : 'clamp(2.5rem, 4vw, 5rem)',
+              transition: 'height 500ms ease',
+            }}
+            className=""
           />
         </Link>
 

@@ -3,10 +3,11 @@ import Image from 'next/image';
 
 interface LogoProps {
     className?: string;
+    style?: React.CSSProperties;
     variant?: 'blue' | 'beige' | 'darkgreen';
 }
 
-export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'blue' }) => {
+export const Logo: React.FC<LogoProps> = ({ className = "", style, variant = 'blue' }) => {
     let logoSrc = '/images/logo-sbh-blue.png';
     let filter = '';
 
@@ -19,7 +20,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", variant = 'blue' }) 
     }
     
     return (
-        <div className={`relative aspect-[600/525] ${className}`} style={filter ? { filter } : undefined}>
+        <div className={`relative aspect-[600/525] ${className}`} style={filter ? { filter, ...style } : style}>
             <Image
                 src={logoSrc}
                 alt="Sun Beach House"

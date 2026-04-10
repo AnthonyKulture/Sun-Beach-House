@@ -13,19 +13,18 @@ export const GeneratePDFWithPricingAction: DocumentActionComponent = (props) => 
             props.onComplete()
 
             try {
-                const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
-                const response = await fetch(
-                    `${apiUrl}/api/generate-pdf?villaId=${villaId}&lang=en&includePricing=true&t=${Date.now()}`
-                )
+                const apiUrl = (process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000').replace(/\/$/, '')
+                const url = `${apiUrl}/api/generate-pdf?villaId=${villaId}&lang=en&includePricing=true&t=${Date.now()}`
+                const response = await fetch(url)
 
                 if (!response.ok) {
-                    throw new Error('Failed to generate PDF')
+                    throw new Error(`HTTP ${response.status} — ${response.statusText}`)
                 }
 
                 downloadPdfBlob(await response.blob(), `villa-${villaId}-brochure-avec-tarifs.pdf`)
             } catch (error) {
                 console.error('Error generating PDF:', error)
-                alert("Erreur lors de la génération du PDF. Vérifiez que le site est en cours d'exécution.")
+                alert(`Erreur lors de la génération du PDF.\n\nDétail: ${error instanceof Error ? error.message : String(error)}`)
             }
         },
     }

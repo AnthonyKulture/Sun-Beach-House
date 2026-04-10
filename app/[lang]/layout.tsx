@@ -133,12 +133,15 @@ export default function LocaleLayout({
             <body className={`${playfair.className} font-sans text-sbh-charcoal bg-sbh-cream min-h-screen flex flex-col`}>
                 <Providers locale={locale}>
                     <ScrollReveal />
-                    <div className="fixed inset-0 z-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+                    {/* Noise texture: pointer-events-none, no mix-blend to avoid full-page compositing */}
+                    <div
+                        aria-hidden="true"
+                        className="fixed inset-0 z-0 pointer-events-none select-none"
                         style={{
                             backgroundImage: 'url("/noise.svg")',
-                            pointerEvents: 'none'
-                        }}>
-                    </div>
+                            opacity: 0.025,
+                        }}
+                    />
                     <Navbar />
                     <main className="flex-grow flex flex-col pt-0">
                         {children}

@@ -46,9 +46,10 @@ const nextConfig = {
             {
                 source: '/api/:path*',
                 headers: [
-                    { key: 'Access-Control-Allow-Origin', value: '*' },
+                    { key: 'Access-Control-Allow-Origin', value: 'https://i6dkdu7j.sanity.studio' },
                     { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS' },
                     { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
+                    { key: 'Access-Control-Allow-Credentials', value: 'true' },
                 ]
             },
             {
@@ -76,7 +77,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io https://maps.googleapis.com https://*.googleapis.com https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://cdn.sanity.io https://storage.googleapis.com https://images.unsplash.com https://image.mux.com https://maps.gstatic.com https://*.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.sanity.io https://*.googleapis.com https://vitals.vercel-insights.com; frame-src 'self' https://player.mux.com https://vercel.live;"
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io https://maps.googleapis.com https://*.googleapis.com https://va.vercel-scripts.com https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://cdn.sanity.io https://storage.googleapis.com https://images.unsplash.com https://image.mux.com https://maps.gstatic.com https://*.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.sanity.io https://*.googleapis.com https://vitals.vercel-insights.com https://*.sanity.studio; frame-src 'self' https://player.mux.com https://vercel.live https://*.sanity.studio;"
                     }
                 ],
             },
