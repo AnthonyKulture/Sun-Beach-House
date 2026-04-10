@@ -1,5 +1,7 @@
-import { NextResponse } from 'next/server'; import { Resend } from 'resend';
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
 import { render } from '@react-email/render';
+import React from 'react';
 import VillaSelectionEmail from '@/components/email/VillaSelectionEmail';
 import { CmsService } from '@/services/cms';
 
@@ -59,7 +61,7 @@ export async function POST(request: Request) {
 
         // Générer le HTML de l'email avec React Email
         const html = await render(
-            VillaSelectionEmail({
+            React.createElement(VillaSelectionEmail, {
                 message,
                 villas: selectedVillas,
                 baseUrl,
@@ -80,7 +82,11 @@ export async function POST(request: Request) {
         });
 
         if (error) {
-            return NextResponse.json({ error: error.message }, { status: 400, headers: corsHeaders });
+            return NextResponse.json({ 
+                error: error.message, 
+                details: error,
+                hint: "Vérifiez si l'adresse d'expédition est bien autorisée dans Resend"
+            }, { status: 400, headers: corsHeaders });
         }
 
         return NextResponse.json({ success: true, data }, { headers: corsHeaders });
