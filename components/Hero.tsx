@@ -26,7 +26,12 @@ export const Hero: React.FC = () => {
             {/* =========================================
                 BACKGROUND (FULL SCREEN) — Lightweight Video + Responsive Poster
             ========================================= */}
-            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" style={{ contain: 'layout style' }}>
+            <div className="absolute inset-0 w-full h-full z-0 overflow-hidden" 
+                 style={{ 
+                    contain: 'layout style', 
+                    transform: 'translateZ(0)', // Force GPU layer promotion
+                    willChange: 'transform'      // Prepare GPU for potentially fast transforms
+                 }}>
                 {/* 
                     Background Poster Image (Initial Paint)
                     Optimized with sizes to ensure mobile devices load a smaller version (800px)

@@ -22,8 +22,15 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
   const pathname = usePathname();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     // passive: true prevents blocking the main thread on mobile scroll
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -71,11 +78,12 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
         className="absolute inset-0 w-full h-full shadow-sm"
         style={{
           backgroundColor: scrolled ? 'rgba(246, 245, 241, 0.95)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+          backdropFilter: scrolled ? 'blur(8px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(8px)' : 'none',
           opacity: scrolled ? 1 : 0,
-          transition: 'opacity 500ms ease, background-color 500ms ease',
-          willChange: 'opacity',
+          transition: 'opacity 400ms ease, background-color 400ms ease, backdrop-filter 400ms ease',
+          willChange: 'opacity, backdrop-filter',
+          transform: 'translateZ(0)', // Force GPU layer promotion
         }}
       ></div>
 
