@@ -28,19 +28,19 @@ export default function NotFound() {
           </div>
 
           {/* Text Section */}
-          <div className="space-y-6 text-sbh-green">
+          <div className="space-y-6">
             <div className="relative inline-block">
-              <span className="text-8xl md:text-[12rem] font-light opacity-10 select-none">
+              <span className="text-8xl md:text-[12rem] font-light opacity-10 select-none text-sbh-darkgreen">
                 {t.common.notFound.title}
               </span>
-              <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-3xl md:text-5xl font-light tracking-tight">
+              <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-3xl md:text-5xl font-light tracking-tight text-sbh-darkgreen">
                 {t.common.notFound.subtitle.split(' ')[0]} <span className="italic">{t.common.notFound.subtitle.split(' ').slice(1).join(' ')}</span>
               </h1>
             </div>
             
-            <div className="w-16 h-[1px] bg-sbh-green/40 mx-auto" />
+            <div className="w-16 h-[1px] bg-sbh-terracotta/40 mx-auto" />
             
-            <p className="max-w-md mx-auto text-base md:text-lg text-sbh-charcoal/70 font-sans tracking-wide leading-relaxed">
+            <p className="max-w-md mx-auto text-base md:text-lg text-sbh-charcoal/80 font-sans tracking-wide leading-relaxed">
               {t.common.notFound.message}
             </p>
           </div>
@@ -49,19 +49,19 @@ export default function NotFound() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl pt-4">
             <Link 
               href="/rentals" 
-              className="px-6 py-4 bg-sbh-green text-sbh-cream text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-charcoal transition-all duration-500 shadow-sm"
+              className="px-6 py-4 bg-sbh-darkgreen text-sbh-cream text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-charcoal transition-all duration-500 shadow-sm"
             >
               {t.nav.rentals}
             </Link>
             <Link 
               href="/sales" 
-              className="px-6 py-4 border border-sbh-green/30 text-sbh-green text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-green hover:text-sbh-cream transition-all duration-500"
+              className="px-6 py-4 border border-sbh-darkgreen/30 text-sbh-darkgreen text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-darkgreen hover:text-sbh-cream transition-all duration-500"
             >
               {t.nav.sales}
             </Link>
             <Link 
               href="/contact" 
-              className="px-6 py-4 border border-sbh-green/30 text-sbh-green text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-green hover:text-sbh-cream transition-all duration-500"
+              className="px-6 py-4 border border-sbh-darkgreen/30 text-sbh-darkgreen text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-darkgreen hover:text-sbh-cream transition-all duration-500"
             >
               {t.nav.contact}
             </Link>
