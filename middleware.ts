@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const locales = ['fr', 'en', 'pt', 'es'];
-const defaultLocale = 'fr';
+const defaultLocale = 'en';
 
 function getLocale(request: NextRequest): string {
   // 1. Try to get locale from cookie
