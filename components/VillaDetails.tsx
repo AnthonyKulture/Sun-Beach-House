@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 
 interface VillaDetailsProps {
     villaId: string;
+    slug?: string;
 }
 
 // Helper to normalize season names to translation keys
@@ -34,7 +35,7 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
-export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId }) => {
+export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => {
     const router = useRouter();
     const { language, t } = useLanguage();
     const { villa: originalVilla, loading, error } = useVilla(villaId);
