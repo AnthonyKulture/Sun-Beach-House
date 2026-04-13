@@ -92,18 +92,31 @@ export default function LocaleLayout({
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         
-                        // Default consent state (DMA & GDPR Compliance)
+                        // Consent Mode V2 Implementation
                         (function() {
                             const saved = typeof window !== 'undefined' ? localStorage.getItem('google-consent') : null;
-                            const consent = saved ? JSON.parse(saved) : {
-                                'ad_storage': 'denied',
-                                'analytics_storage': 'denied',
-                                'ad_user_data': 'denied',
-                                'ad_personalization': 'denied'
-                            };
-                            gtag('consent', 'default', consent);
+                            if (saved) {
+                                // Apply saved preferences immediately if existing
+                                gtag('consent', 'default', JSON.parse(saved));
+                            } else {
+                                // Default for EEE + UK (Strict/GDPR)
+                                gtag('consent', 'default', {
+                                    'ad_storage': 'denied',
+                                    'analytics_storage': 'denied',
+                                    'ad_user_data': 'denied',
+                                    'ad_personalization': 'denied',
+                                    'region': ['AT', 'BE', 'BG', 'CH', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HR', 'HU', 'IE', 'IS', 'IT', 'LI', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK']
+                                });
+                                // Default for Rest of World (Permissive) - Fixes the "0% consent" warning in GTM
+                                gtag('consent', 'default', {
+                                    'ad_storage': 'granted',
+                                    'analytics_storage': 'granted',
+                                    'ad_user_data': 'granted',
+                                    'ad_personalization': 'granted'
+                                });
+                            }
                             
-                            // Advanced Consent Mode: Redact ads data and enable URL passthrough when consent is denied
+                            // Advanced Privacy Settings
                             gtag('set', 'ads_data_redaction', true);
                             gtag('set', 'url_passthrough', true);
                         })();
