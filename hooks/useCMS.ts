@@ -48,7 +48,7 @@ export const useVilla = (id: string | null) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await CmsService.getVillaById(id);
+        const data = await CmsService.getVillaByIdOrSlug(id);
         setVilla(data || null);
       } catch (err) {
         setError(err as Error);

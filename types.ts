@@ -86,6 +86,7 @@ export interface Villa {
   }; // GPS coordinates for map
   privateInfo?: string; // Internal notes (not displayed on site)
   brochurePdfUrl?: string; // URL of the uploaded PDF brochure
+  slug?: string; // URL-friendly unique identifier
 }
 
 

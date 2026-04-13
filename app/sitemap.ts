@@ -46,17 +46,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Villa Routes
     villas.forEach((villa) => {
+      const preferredId = villa.slug || villa.id
       sitemapEntries.push({
-        url: `${baseUrl}/${locale}/villas/${villa.id}`,
+        url: `${baseUrl}/${locale}/villas/${preferredId}`,
         lastModified: new Date(villa.updatedAt),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
         alternates: {
           languages: {
-            'fr': `${baseUrl}/fr/villas/${villa.id}`,
-            'en': `${baseUrl}/en/villas/${villa.id}`,
-            'es': `${baseUrl}/es/villas/${villa.id}`,
-            'pt': `${baseUrl}/pt/villas/${villa.id}`,
+            'fr': `${baseUrl}/fr/villas/${preferredId}`,
+            'en': `${baseUrl}/en/villas/${preferredId}`,
+            'es': `${baseUrl}/es/villas/${preferredId}`,
+            'pt': `${baseUrl}/pt/villas/${preferredId}`,
           }
         }
       })

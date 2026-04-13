@@ -113,12 +113,14 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
     geopoint: doc.geopoint,
     privateInfo: doc.privateInfo,
     brochurePdfUrl: doc.brochurePdfUrl,
+    slug: doc.slug?.current,
   };
 };
 
 const villaFields = `
   _id,
   name,
+  "slug": slug.current,
   location->{ _id, name, order },
   listingType,
   description,
@@ -209,6 +211,22 @@ export const CmsService = {
   },
 
   /**
+   * Universal resolver that handles both UUIDs and human-readable Slugs.
+   * Crucial for SEO migrations and resolving GSC "legacy" URLs.
+   */
+  getVillaByIdOrSlug: async (idOrSlug: string): Promise<Villa | undefined> => {
+    // 1. Try by ID (UUID format usually)
+    let villa = await CmsService.getVillaById(idOrSlug);
+    
+    // 2. Fallback to Slug if not found by ID
+    if (!villa) {
+      villa = await CmsService.getVillaBySlug(idOrSlug);
+    }
+    
+    return villa;
+  },
+
+  /**
    * Lean fetch for "Similar Villas" recommendation cards.
    * Fetches only the 7 fields needed for card rendering — avoids full villa over-fetch.
    */
@@ -225,12 +243,13 @@ export const CmsService = {
     }
   },
 
-  getSitemapData: async (): Promise<{ id: string; updatedAt: string }[]> => {
-    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { "_id": _id, "_updatedAt": _updatedAt }`;
+  getSitemapData: async (): Promise<{ id: string; slug?: string; updatedAt: string }[]> => {
+    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { "_id": _id, "slug": slug.current, "_updatedAt": _updatedAt }`;
     try {
       const docs = await fetchSanity(query);
       return docs.map((doc: any) => ({
         id: doc._id,
+        slug: doc.slug,
         updatedAt: doc._updatedAt,
       }));
     } catch (error) {

@@ -141,6 +141,15 @@ const nextConfig = {
             { source: '/fr/bien-a-louer/les-palmes', destination: '/fr/villas/villa-796', permanent: true },
             { source: '/rental/pasha', destination: '/fr/villas/villa-5297', permanent: true },
             { source: '/rental/manonjul', destination: '/fr/villas/villa-380', permanent: true },
+            { source: '/location/ti-castelle', destination: '/fr/villas/ti-castelle', permanent: true },
+            { source: '/rental/ti-castelle', destination: '/fr/villas/ti-castelle', permanent: true },
+            { source: '/location/castelle', destination: '/fr/villas/villa-2252', permanent: true },
+            { source: '/rental/bohemian-blue', destination: '/fr/villas/bohemian-blue', permanent: true },
+            { source: '/rental/tourmaline', destination: '/fr/villas/villa-3584', permanent: true },
+            { source: '/rental/lagon-jaune-estate', destination: '/fr/villas/villa-3472', permanent: true },
+            { source: '/rental/lagon-vert', destination: '/fr/villas/villa-3654', permanent: true },
+            { source: '/location/sea-star', destination: '/fr/villas/villa-103f231e-9618-40d1-93ff-4627e14ad998', permanent: true },
+            { source: '/rental/floating-garden', destination: '/fr/villas/villa-3653', permanent: true },
 
             // General pattern fallbacks
             { source: '/location/:slug', destination: '/fr/rentals', permanent: true },

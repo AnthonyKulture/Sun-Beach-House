@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 import { VillaDetails } from '@/components/VillaDetails';
 import { CmsService } from '@/services/cms';
+import { getAlternates } from '@/utils/seo';
+import { redirect } from 'next/navigation';
 
 type Props = {
     params: { id: string, lang: string }
 }
 
-import { getAlternates } from '@/utils/seo';
-
 export async function generateMetadata(
     { params }: Props
 ): Promise<Metadata> {
     const { id, lang } = params;
-    const villa = await CmsService.getVillaById(id);
+    const villa = await CmsService.getVillaByIdOrSlug(id);
     
     if (!villa) {
         return {
@@ -20,6 +20,7 @@ export async function generateMetadata(
         };
     }
 
+    const preferredId = villa.slug || villa.id;
     const locationName = villa.location?.name || 'St. Barth';
     
     const typeLabel: Record<string, string> = {
@@ -40,7 +41,7 @@ export async function generateMetadata(
         fr: `${type} de la villa de luxe ${villa.name} à ${locationName}. ${villa.bedrooms} chambres, ${villa.guests} invités${featureText}. Découvrez l'excellence à Saint-Barthélemy with Sun Beach House.`,
         en: `Luxury ${type.toLowerCase()} of villa ${villa.name} in ${locationName}. ${villa.bedrooms} bedrooms, sleeps ${villa.guests}${featureText}. Experience excellence in St. Barth with Sun Beach House.`,
         es: `${type} de la villa de lujo ${villa.name} en ${locationName}. ${villa.bedrooms} habitaciones, ${villa.guests} huéspedes${featureText}. Descubra la excelencia en San Bartolomé con Sun Beach House.`,
-        pt: `${type} da villa de luxo ${villa.name} em ${locationName}. ${villa.bedrooms} quartos, ${villa.guests} hóspedes${featureText}. Descubra a excelência em Saint-Barthélemy com a Sun Beach House.`,
+        pt: `${type} da villa de luxo ${villa.name} em ${locationName}. ${villa.bedrooms} quartos, ${villa.guests} hóspedes${featureText}. Descubra a excelência en Saint-Barthélemy com a Sun Beach House.`,
     };
 
     const description = descriptions[lang] || descriptions.fr;
@@ -48,21 +49,27 @@ export async function generateMetadata(
     return {
         title: mainTitle,
         description: description,
-        alternates: getAlternates(lang, `/villas/${id}`),
+        alternates: getAlternates(lang, `/villas/${preferredId}`),
         openGraph: {
             title: `${villa.name} | Sun Beach House St. Barth`,
             description: description,
             images: villa.mainImage ? [villa.mainImage] : [],
-            url: `https://sun-beach-house.com/${lang}/villas/${id}`,
+            url: `https://sun-beach-house.com/${lang}/villas/${preferredId}`,
         },
     };
 }
 
 export default async function VillaPage({ params }: Props) {
     const { id, lang } = params;
-    const villa = await CmsService.getVillaById(id);
+    const villa = await CmsService.getVillaByIdOrSlug(id);
 
     if (!villa) return null;
+
+    // SEO Enforcement: Redirect UUID or legacy slugs to the preferred Sanity slug
+    const preferredId = villa.slug || villa.id;
+    if (id !== preferredId) {
+        redirect(`/${lang}/villas/${preferredId}`);
+    }
 
     const isRental = villa.listingType === 'rent';
     const jsonLd = {
@@ -78,7 +85,7 @@ export default async function VillaPage({ params }: Props) {
             'addressCountry': 'BL'
         },
         'telephone': '+590690634725',
-        'url': `https://sun-beach-house.com/${lang}/villas/${id}`,
+        'url': `https://sun-beach-house.com/${lang}/villas/${preferredId}`,
         'brand': {
             '@type': 'Brand',
             'name': 'Sun Beach House'
@@ -87,7 +94,7 @@ export default async function VillaPage({ params }: Props) {
             '@type': 'Offer',
             'priceCurrency': isRental ? (villa.currency || 'USD') : 'EUR',
             'price': isRental ? (villa.pricePerWeek || villa.pricePerNight) : villa.salePrice,
-            'url': `https://sun-beach-house.com/${lang}/villas/${id}`,
+            'url': `https://sun-beach-house.com/${lang}/villas/${preferredId}`,
             'availability': 'https://schema.org/InStock'
         },
         'amenityFeature': villa.amenities?.map(a => ({
@@ -113,7 +120,7 @@ export default async function VillaPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <VillaDetails villaId={id} />
+            <VillaDetails villaId={villa.id} slug={villa.slug} />
         </>
     );
 }
