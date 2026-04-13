@@ -4,6 +4,31 @@ import type { NextRequest } from 'next/server';
 const locales = ['fr', 'en', 'pt', 'es'];
 const defaultLocale = 'fr';
 
+function getLocale(request: NextRequest): string {
+  // 1. Try to get locale from cookie
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    return cookieLocale;
+  }
+
+  // 2. Try to get locale from Accept-Language header
+  const acceptLanguage = request.headers.get('accept-language');
+  if (acceptLanguage) {
+    const preferredLocales = acceptLanguage
+      .split(',')
+      .map((lang) => lang.split(';')[0].trim().split('-')[0].toLowerCase());
+
+    for (const lang of preferredLocales) {
+      if (locales.includes(lang)) {
+        return lang;
+      }
+    }
+  }
+
+  // 3. Fallback
+  return defaultLocale;
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -26,7 +51,7 @@ export function middleware(request: NextRequest) {
   }
 
   // Redirect if there is no locale
-  const locale = defaultLocale;
+  const locale = getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
   
   // Response with redirect

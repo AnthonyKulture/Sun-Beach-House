@@ -66,6 +66,9 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
   };
 
   const handleLanguageChange = (newLocale: string) => {
+    // Set cookie to remember language preference (valid for 1 year)
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+
     const segments = pathname.split('/');
     segments[1] = newLocale;
     router.push(segments.join('/'));
