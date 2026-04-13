@@ -437,7 +437,7 @@ const fr: Translations = {
         },
         blueInfinity: {
             title: 'Bleu Infini',
-            subtitle: '12:30 PM — Colombier',
+            subtitle: '12:30 PM — Grand Cul-de-sac',
             description: 'Mouillage exclusif dans la réserve naturelle. Baignade dans les eaux turquoises et déjeuner sur le pont.',
         },
         goldenHour: {

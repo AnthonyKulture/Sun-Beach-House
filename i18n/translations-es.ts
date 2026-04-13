@@ -430,7 +430,7 @@ export const es: Translations = {
         },
         blueInfinity: {
             title: 'Azul Infinito',
-            subtitle: '12:30 PM — Colombier',
+            subtitle: '12:30 PM — Grand Cul-de-sac',
             description: 'Anclaje exclusivo en la reserva natural. Baño en las aguas turquesas y almuerzo en cubierta.',
         },
         goldenHour: {
