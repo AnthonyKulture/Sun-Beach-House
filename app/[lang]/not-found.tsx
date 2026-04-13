@@ -23,7 +23,7 @@ export default function NotFound() {
           {/* Logo Section */}
           <div className="hover:opacity-80 transition-opacity duration-500">
             <Link href="/">
-              <Logo variant="darkgreen" className="w-40 md:w-56 h-auto" />
+              <Logo variant="darkgreen" className="w-52 md:w-72 h-auto" />
             </Link>
           </div>
 

@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
           <Logo 
             variant={isDarkText || menuOpen ? 'darkgreen' : 'beige'}
             style={{
-              height: scrolled ? 'clamp(2rem, 3vw, 3rem)' : 'clamp(2.5rem, 4vw, 5rem)',
+              height: scrolled ? 'clamp(2.6rem, 3.9vw, 3.9rem)' : 'clamp(3.25rem, 5.2vw, 6.5rem)',
               transition: 'height 500ms ease',
             }}
             className=""

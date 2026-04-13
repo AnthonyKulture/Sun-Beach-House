@@ -19,7 +19,7 @@ export default function NotFound() {
             <div className="max-w-3xl w-full flex flex-col items-center gap-12 animate-fade-in">
               <div className="hover:opacity-80 transition-opacity duration-500">
                 <Link href="/fr">
-                  <Logo variant="darkgreen" className="w-40 md:w-56 h-auto" />
+                  <Logo variant="darkgreen" className="w-52 md:w-72 h-auto" />
                 </Link>
               </div>
 
