@@ -72,7 +72,8 @@ export interface Villa {
   landSurface?: number; // m2 - Optional, land surface area
   homeFeatures?: HomeFeature[]; // Room and space details
   mainImage: string;
-  galleryImages: string[]; // Array of image URLs
+  galleryImages: string[]; // Array of image URLs (optimized for grid)
+  fullResGalleryImages?: string[]; // Array of high-res image URLs (optimized for viewer)
   videoUrl?: string; // YouTube/Vimeo URL
   videoFileUrl?: string; // Sanity uploaded video URL
   amenities: Equipment[]; // Array of Equipment references

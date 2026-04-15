@@ -70,10 +70,16 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
   }
 
   let galleryImages: string[] = [];
+  let fullResGalleryImages: string[] = [];
   if (doc.galleryImages?.length > 0 && doc.galleryImages[0]?.asset?._ref) {
+    // Gallery thumbnails: 800px wide (displayed at ~25vw max)
     galleryImages = doc.galleryImages
-      // Gallery thumbnails: 800px wide (displayed at ~25vw max)
       .map((img: any) => buildImageUrl(img.asset?._ref, 800, 80))
+      .filter(Boolean);
+
+    // Full-res images for viewer: 1600px wide matching mainImage quality
+    fullResGalleryImages = doc.galleryImages
+      .map((img: any) => buildImageUrl(img.asset?._ref, 1600, 85))
       .filter(Boolean);
   }
 
@@ -102,6 +108,7 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
     pricingDetails: doc.pricingDetails || '',
     mainImage,
     galleryImages,
+    fullResGalleryImages,
     videoUrl: doc.videoUrl,
     videoFileUrl: doc.videoFileUrl,
     amenities,

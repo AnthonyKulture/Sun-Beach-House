@@ -944,7 +944,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
             {
                 isGalleryOpen && (
                     <FullscreenGallery
-                        images={[villa.mainImage, ...villa.galleryImages].filter(Boolean)}
+                        images={[villa.mainImage, ...(villa.fullResGalleryImages || villa.galleryImages)].filter(Boolean)}
                         initialIndex={galleryStartIndex}
                         onClose={() => setIsGalleryOpen(false)}
                     />
