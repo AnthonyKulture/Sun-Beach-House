@@ -199,6 +199,7 @@ export interface Translations {
 
     // Footer
     footer: {
+        tagline: string;
         explore: string;
         findUs: string;
         newsletter: string;

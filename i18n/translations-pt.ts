@@ -191,6 +191,7 @@ export const pt: Translations = {
     },
 
     footer: {
+        tagline: 'A arte de viver em St. Barts.\nUma coleção exclusiva de villas e serviço de concierge personalizado por Valérie.',
         explore: 'Explorar',
         findUs: 'Nos Encontrar',
         newsletter: 'Newsletter',

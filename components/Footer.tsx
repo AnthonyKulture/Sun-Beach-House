@@ -34,9 +34,8 @@ export const Footer: React.FC = () => {
                         >
                             <Logo variant="beige" className="h-32 md:h-16 w-auto" />
                         </Link>
-                        <p className="font-sans text-base md:text-lg font-light leading-relaxed text-sbh-green/80 max-w-sm text-balance mx-auto md:mx-0">
-                            L&apos;art de vivre à Saint-Barthélemy. <br />
-                            Une collection de villas d&apos;exception et un service de conciergerie sur-mesure par Valérie.
+                        <p className="font-sans text-base md:text-lg font-light leading-relaxed text-sbh-green/80 max-w-sm text-balance mx-auto md:mx-0 whitespace-pre-line">
+                            {t.footer.tagline}
                         </p>
                         <div className="flex gap-4 pt-2 justify-center md:justify-start">
                             <a href="https://www.instagram.com/sun.beach.house" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="p-3 rounded-full border border-sbh-green/20 text-sbh-green hover:border-sbh-cream hover:text-sbh-cream hover:bg-white/5 transition-all duration-300 group touch-target">

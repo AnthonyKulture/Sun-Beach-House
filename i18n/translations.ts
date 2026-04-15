@@ -163,6 +163,7 @@ const fr: Translations = {
     },
 
     footer: {
+        tagline: "L'art de vivre à Saint-Barthélemy.\nUne collection de villas d'exception et un service de conciergerie sur-mesure par Valérie.",
         explore: 'Explorer',
         findUs: 'Nous Trouver',
         newsletter: 'Newsletter',
@@ -692,6 +693,7 @@ const en: Translations = {
     },
 
     footer: {
+        tagline: 'The art of living in St. Barts.\nAn exclusive collection of villas and personalized concierge service by Valérie.',
         explore: 'Explore',
         findUs: 'Find Us',
         newsletter: 'Newsletter',
