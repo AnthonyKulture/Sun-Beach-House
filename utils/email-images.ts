@@ -11,7 +11,7 @@ export function getProxyImageURL(originalUrl: string | undefined): string | unde
     const PROXY_PATH = '/sanity-assets/';
     
     // Website absolute URL (required for emails)
-    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sun-beach-house.com';
+    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sun-beach-house.com';
 
     // If the URL is already absolute but from Sanity, swap the hostname part
     if (originalUrl.includes(SANITY_HOSTNAME) && originalUrl.includes(PROJECT_ID)) {

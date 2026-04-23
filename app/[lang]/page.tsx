@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         pt: 'Descubra uma coleção exclusiva de villas de luxo em Saint-Barthélemy. Aluguéis de temporada, vendas e serviços de concierge personalizados.',
     };
 
-    const baseUrl = 'https://sun-beach-house.com';
+    const baseUrl = 'https://www.sun-beach-house.com';
 
     return {
         title: titles[lang] || titles.fr,
@@ -36,19 +36,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
+export async function generateStaticParams() {
+    return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'es' }, { lang: 'pt' }];
+}
+
 import { CmsService } from '@/services/cms'
+import { notFound } from 'next/navigation';
 
-export default async function HomePage() {
-    // Fetch villas on the server for better performance and SEO
-    const villas = await CmsService.getAllVillas();
+export default async function HomePage({ params }: Props) {
+    const { lang } = params;
 
-    return (
-        <>
-            <Hero />
-            <About />
-            <Villas initialVillas={villas} />
-            <Services />
-            <Experience />
-        </>
-    );
+    // Validate locale against supported list
+    const supportedLocales = ['fr', 'en', 'es', 'pt'];
+    if (!supportedLocales.includes(lang)) {
+        notFound();
+    }
+
+    try {
+        // Fetch villas on the server for better performance and SEO
+        const villas = await CmsService.getAllVillas();
+
+        return (
+            <>
+                <Hero />
+                <About />
+                <Villas initialVillas={villas} />
+                <Services />
+                <Experience />
+            </>
+        );
+    } catch (error) {
+        console.error(`[HomePage] Error rendering for lang ${lang}:`, error);
+        // Fallback or throw to trigger error.tsx
+        throw error;
+    }
 }

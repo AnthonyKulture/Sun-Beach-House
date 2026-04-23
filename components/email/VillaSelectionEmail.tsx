@@ -30,7 +30,7 @@ const getDescription = (desc: any, lang: 'fr' | 'en') => {
 export const VillaSelectionEmail = ({
     message,
     villas = [],
-    baseUrl = 'https://sun-beach-house.com',
+    baseUrl = 'https://www.sun-beach-house.com',
     lang = 'fr',
 }: VillaSelectionEmailProps) => {
     const previewText = lang === 'en' ? `Your villa selection by Sun-Beach-House` : `Votre sélection de villas par Sun-Beach-House`;
@@ -105,9 +105,9 @@ export const VillaSelectionEmail = ({
 
                     {/* Signature */}
                     <Section style={{ padding: '20px 0', textAlign: 'left' }}>
-                        <Link href="https://sun-beach-house.com" target="_blank" style={{ display: 'inline-block' }}>
+                        <Link href="https://www.sun-beach-house.com" target="_blank" style={{ display: 'inline-block' }}>
                             <Img
-                                src="https://sun-beach-house.com/signature.png?v=2"
+                                src="https://www.sun-beach-house.com/signature.png?v=2"
                                 alt="Signature Sun Beach House"
                                 width="600"
                                 style={{ display: 'block', margin: '0', width: '100%', maxWidth: '600px', height: 'auto', border: 'none' }}

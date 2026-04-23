@@ -58,7 +58,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sun-beach-house.com';
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sun-beach-house.com';
 
         // Transform Sanity images to brand proxy URLs for email deliverability
         const villasWithProxiedImages = selectedVillas.map(villa => ({

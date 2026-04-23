@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/'],
       }
     ],
-    sitemap: 'https://sun-beach-house.com/sitemap.xml',
+    sitemap: 'https://www.sun-beach-house.com/sitemap.xml',
   }
 }

@@ -395,7 +395,7 @@ export function ShareSelectionTool() {
                                 </Stack>
 
                                 <Box marginTop={5} style={{ textAlign: 'left' }}>
-                                    <a href="https://sun-beach-house.com" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+                                    <a href="https://www.sun-beach-house.com" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
                                         <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png?v=2`} alt="Signature Sun Beach House" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0', border: 'none' }} />
                                     </a>
                                 </Box>

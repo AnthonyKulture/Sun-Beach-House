@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { CmsService } from '../services/cms'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://sun-beach-house.com'
+  const baseUrl = 'https://www.sun-beach-house.com'
   const locales = ['fr', 'en', 'es', 'pt']
   
   const staticPaths = [

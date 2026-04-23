@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { VillaDetails } from '@/components/VillaDetails';
 import { CmsService } from '@/services/cms';
 import { getAlternates } from '@/utils/seo';
-import { redirect } from 'next/navigation';
+import { redirect, notFound } from 'next/navigation';
 
 type Props = {
     params: { id: string, lang: string }
@@ -54,16 +54,30 @@ export async function generateMetadata(
             title: `${villa.name} | Sun Beach House St. Barth`,
             description: description,
             images: villa.mainImage ? [villa.mainImage] : [],
-            url: `https://sun-beach-house.com/${lang}/villas/${preferredId}`,
+            url: `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
         },
     };
+}
+
+export async function generateStaticParams() {
+    const villas = await CmsService.getSitemapData();
+    const locales = ['fr', 'en', 'es', 'pt'];
+    
+    return villas.flatMap((villa) => 
+        locales.map((lang) => ({
+            id: villa.slug || villa.id,
+            lang,
+        }))
+    );
 }
 
 export default async function VillaPage({ params }: Props) {
     const { id, lang } = params;
     const villa = await CmsService.getVillaByIdOrSlug(id);
 
-    if (!villa) return null;
+    if (!villa) {
+        notFound();
+    }
 
     // SEO Enforcement: Redirect UUID or legacy slugs to the preferred Sanity slug
     const preferredId = villa.slug || villa.id;
@@ -85,7 +99,7 @@ export default async function VillaPage({ params }: Props) {
             'addressCountry': 'BL'
         },
         'telephone': '+590690634725',
-        'url': `https://sun-beach-house.com/${lang}/villas/${preferredId}`,
+        'url': `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
         'brand': {
             '@type': 'Brand',
             'name': 'Sun Beach House'
@@ -94,7 +108,7 @@ export default async function VillaPage({ params }: Props) {
             '@type': 'Offer',
             'priceCurrency': isRental ? (villa.currency || 'USD') : 'EUR',
             'price': isRental ? (villa.pricePerWeek || villa.pricePerNight) : villa.salePrice,
-            'url': `https://sun-beach-house.com/${lang}/villas/${preferredId}`,
+            'url': `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
             'availability': 'https://schema.org/InStock'
         },
         'amenityFeature': villa.amenities?.map(a => ({

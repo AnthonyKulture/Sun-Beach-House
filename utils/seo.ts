@@ -1,5 +1,5 @@
 export const getAlternates = (lang: string, path: string) => {
-    const baseUrl = 'https://sun-beach-house.com';
+    const baseUrl = 'https://www.sun-beach-house.com';
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
     
     return {
