@@ -18,13 +18,33 @@ interface VillaSelectionEmailProps {
     message: string;
     villas: Villa[];
     baseUrl: string;
-    lang?: 'fr' | 'en';
+    lang?: 'fr' | 'en' | 'pt' | 'es';
 }
 
-const getDescription = (desc: any, lang: 'fr' | 'en') => {
+const t = {
+    preview: { fr: 'Votre sélection de villas par Sun-Beach-House', en: 'Your villa selection by Sun-Beach-House', es: 'Su selección de villas por Sun-Beach-House', pt: 'Sua seleção de vilas por Sun-Beach-House' },
+    tagline: { fr: "LOCATIONS & VENTES DE VILLAS D'EXCEPTION", en: 'EXCLUSIVE VILLA RENTALS & SALES', es: 'ALQUILERES Y VENTAS DE VILLAS EXCLUSIVAS', pt: 'ALUGUÉIS E VENDAS DE VILAS EXCLUSIVAS' },
+    section: { fr: 'Notre Sélection Exclusive', en: 'Our Exclusive Selection', es: 'Nuestra Selección Exclusiva', pt: 'Nossa Seleção Exclusiva' },
+    sale: { fr: 'EN VENTE', en: 'FOR SALE', es: 'EN VENTA', pt: 'À VENDA' },
+    rent: { fr: 'À LOUER', en: 'FOR RENT', es: 'EN ALQUILER', pt: 'PARA ALUGAR' },
+    bedrooms: { fr: 'chambres', en: 'bedrooms', es: 'habitaciones', pt: 'quartos' },
+    cta: { fr: 'Découvrir cette propriété', en: 'Discover this property', es: 'Descubrir esta propiedad', pt: 'Descobrir esta propriedade' },
+    footer: {
+        fr: 'Vous recevez cet email car une sélection de villas a été spécifiquement préparée pour vous. Pour garantir la réception de nos emails, ajoutez valerie@sun-beach-house.com à vos contacts.',
+        en: 'You are receiving this email because a villa selection was specifically prepared for you. To ensure delivery, please add valerie@sun-beach-house.com to your address book.',
+        es: 'Recibe este correo electrónico porque se ha preparado una selección de villas específicamente para usted. Para garantizar la recepción, agregue valerie@sun-beach-house.com a sus contactos.',
+        pt: 'Você está recebendo este e-mail porque uma seleção de vilas foi preparada especificamente para você. Para garantir o recebimento, adicione valerie@sun-beach-house.com aos seus contatos.'
+    }
+};
+
+const getDescription = (desc: any, lang: 'fr' | 'en' | 'pt' | 'es') => {
     if (!desc) return '';
     if (typeof desc === 'string') return desc;
-    return lang === 'en' ? (desc.en || desc.fr || '') : (desc.fr || desc.en || '');
+    if (lang === 'fr') return desc.fr || desc.en || '';
+    if (lang === 'en') return desc.en || desc.fr || '';
+    if (lang === 'pt') return desc.pt || desc.en || desc.fr || '';
+    if (lang === 'es') return desc.es || desc.en || desc.fr || '';
+    return desc.en || '';
 };
 
 export const VillaSelectionEmail = ({
@@ -33,7 +53,7 @@ export const VillaSelectionEmail = ({
     baseUrl = 'https://www.sun-beach-house.com',
     lang = 'fr',
 }: VillaSelectionEmailProps) => {
-    const previewText = lang === 'en' ? `Your villa selection by Sun-Beach-House` : `Votre sélection de villas par Sun-Beach-House`;
+    const previewText = t.preview[lang] || t.preview['fr'];
     const logoUrl = `${baseUrl}/logo-sbh.png`;
 
     return (
@@ -53,7 +73,7 @@ export const VillaSelectionEmail = ({
                             />
                         </Link>
                         <Text style={taglineText}>
-                            {lang === 'en' ? 'EXCLUSIVE VILLA RENTALS & SALES' : 'LOCATIONS & VENTES DE VILLAS D\'EXCEPTION'}
+                            {t.tagline[lang] || t.tagline['fr']}
                         </Text>
                     </Section>
 
@@ -80,7 +100,7 @@ export const VillaSelectionEmail = ({
 
                     {/* Villas List */}
                     <Section style={villasSection}>
-                        <Text style={sectionTitle}>{lang === 'en' ? 'Our Exclusive Selection' : 'Notre Sélection Exclusive'}</Text>
+                        <Text style={sectionTitle}>{t.section[lang] || t.section['fr']}</Text>
 
                         {villas.map((villa) => {
                             const desc = getDescription(villa.description, lang);
@@ -102,18 +122,18 @@ export const VillaSelectionEmail = ({
                                     <div style={villaContent}>
                                         <Text style={villaTag}>
                                             {villa.listingType === 'sale' 
-                                                ? (lang === 'en' ? 'FOR SALE' : 'EN VENTE') 
-                                                : (lang === 'en' ? 'FOR RENT' : 'À LOUER')}
+                                                ? t.sale[lang] || t.sale['fr'] 
+                                                : t.rent[lang] || t.rent['fr']}
                                         </Text>
                                         <Text style={villaTitle}>{villa.name}</Text>
                                         <Text style={villaMeta}>
-                                            {villa.location?.name} • {villa.bedrooms} {lang === 'en' ? 'bedrooms' : 'chambres'}
+                                            {villa.location?.name} • {villa.bedrooms} {t.bedrooms[lang] || t.bedrooms['fr']}
                                         </Text>
                                         <Text style={villaDesc}>
                                             {desc}
                                         </Text>
                                         <Button href={villaUrl} style={ctaButton}>
-                                            {lang === 'en' ? 'Discover this property' : 'Découvrir cette propriété'}
+                                            {t.cta[lang] || t.cta['fr']}
                                         </Button>
                                     </div>
                                 </Section>
@@ -137,9 +157,7 @@ export const VillaSelectionEmail = ({
                         <Hr style={{ borderColor: '#f1f1f1', margin: '20px 0' }} />
                         
                         <Text style={footerNote}>
-                            {lang === 'en' 
-                                ? 'You are receiving this email because a villa selection was specifically prepared for you. To ensure delivery, please add valerie@sun-beach-house.com to your address book.'
-                                : 'Vous recevez cet email car une sélection de villas a été spécifiquement préparée pour vous. Pour garantir la réception de nos emails, ajoutez valerie@sun-beach-house.com à vos contacts.'}
+                            {t.footer[lang] || t.footer['fr']}
                         </Text>
                     </Section>
                 </Container>

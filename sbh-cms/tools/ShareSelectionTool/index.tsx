@@ -101,6 +101,51 @@ Valérie Kerckhofs`;
 const defaultSubjectFr = 'Votre sélection de villas par Sun-Beach-House';
 const defaultSubjectEn = 'Your villa selection by Sun-Beach-House';
 
+const defaultMessageEs = `Estimado/a ……….
+
+Le agradecemos su confianza y estaremos encantados de acompañarle en su estancia en San Bartolomé, del [fecha de llegada] al [fecha de salida].
+
+A continuación, encontrará una **selección de villas excepcionales**, preseleccionadas personalmente según sus criterios y **disponibles en las fechas deseadas**.
+
+Más allá de la villa, Sun Beach House le ofrece un servicio de **alta conserjería**, diseñado como un servicio de **mayordomo**: discreto, constante y completamente centrado en su comodidad. **Todo se prepara con antelación**, antes de su llegada, para que su estancia se desarrolle con perfecta fluidez.
+
+Organizamos y reservamos, según sus deseos: **restaurantes y clubes de playa**, traslados, **vehículos con o sin conductor**, experiencias a medida, así como todos los servicios en la villa. In situ, nuestro equipo permanece disponible en todo momento para ajustar, confirmar y orquestar cada detalle, **hasta su partida**.
+
+**Las tarifas indicadas incluyen notablemente**:
+
+Una bienvenida personalizada a su llegada (aeropuerto o ferry)
+El traslado a la villa, así como un recorrido de llegada
+Un servicio de conserjería **24/7**
+Limpieza **6 días a la semana** (excepto domingos y festivos)
+Quedamos a su entera disposición para cualquier información adicional y para refinar esta selección con el fin de identificar la villa que mejor se adapte a su estancia.
+
+Atentamente,
+Valérie Kerckhofs`;
+
+const defaultMessagePt = `Prezado/a ……….
+
+Agradecemos a sua confiança e teríamos o maior prazer em acompanhá-lo na sua estadia em Saint-Barthélemy, de [data de chegada] a [data de partida].
+
+Abaixo, você encontrará uma **seleção de vilas excepcionais**, pré-selecionadas pessoalmente de acordo com seus critérios e **disponíveis nas datas desejadas**.
+
+Além da vila, a Sun Beach House oferece um serviço de **alta conciergerie**, projetado como um serviço de **mordomo**: discreto, constante e totalmente voltado para o seu conforto. **Tudo é preparado com antecedência**, antes da sua chegada, para que a sua estadia transcorra com perfeita fluidez.
+
+Organizamos e reservamos, de acordo com os seus desejos: **restaurantes e clubes de praia**, transfers, **veículos com ou sem motorista**, experiências sob medida, bem como todos os serviços na vila. No local, nossa equipe permanece disponível em todos os momentos para ajustar, confirmar e orquestrar cada detalhe, **até a sua partida**.
+
+**As tarifas indicadas incluem notavelmente**:
+
+Uma recepção personalizada à sua chegada (aeroporto ou ferry)
+O transfer para a vila, bem como um tour de chegada
+Um serviço de concierge **24/7**
+Limpeza **6 dias por semana** (exceto domingos e feriados)
+Continuamos à sua inteira disposição para qualquer informação adicional e para refinar esta seleção a fim de identificar a vila perfeitamente adequada à sua estadia.
+
+Atenciosamente,
+Valérie Kerckhofs`;
+
+const defaultSubjectEs = 'Su selección de villas por Sun-Beach-House';
+const defaultSubjectPt = 'Sua seleção de vilas por Sun-Beach-House';
+
 export function ShareSelectionTool() {
     const client = useClient({ apiVersion: '2024-03-01' })
     const [villas, setVillas] = useState<any[]>([])
@@ -120,7 +165,7 @@ export function ShareSelectionTool() {
     const [clientEmail, setClientEmail] = useState('')
     const [subject, setSubject] = useState(defaultSubjectFr)
     const [message, setMessage] = useState(defaultMessageFr)
-    const [lang, setLang] = useState<'fr' | 'en'>('fr')
+    const [lang, setLang] = useState<'fr' | 'en' | 'es' | 'pt'>('fr')
 
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState('')
@@ -285,8 +330,8 @@ export function ShareSelectionTool() {
                                         fontSize={1}
                                         onClick={() => {
                                            setLang('fr');
-                                           if (message === defaultMessageEn) setMessage(defaultMessageFr);
-                                           if (subject === defaultSubjectEn) setSubject(defaultSubjectFr);
+                                           if ([defaultMessageEn, defaultMessageEs, defaultMessagePt].includes(message)) setMessage(defaultMessageFr);
+                                           if ([defaultSubjectEn, defaultSubjectEs, defaultSubjectPt].includes(subject)) setSubject(defaultSubjectFr);
                                         }}
                                     />
                                     <Button
@@ -297,8 +342,32 @@ export function ShareSelectionTool() {
                                         fontSize={1}
                                         onClick={() => {
                                            setLang('en');
-                                           if (message === defaultMessageFr) setMessage(defaultMessageEn);
-                                           if (subject === defaultSubjectFr) setSubject(defaultSubjectEn);
+                                           if ([defaultMessageFr, defaultMessageEs, defaultMessagePt].includes(message)) setMessage(defaultMessageEn);
+                                           if ([defaultSubjectFr, defaultSubjectEs, defaultSubjectPt].includes(subject)) setSubject(defaultSubjectEn);
+                                        }}
+                                    />
+                                    <Button
+                                        mode={lang === 'es' ? 'default' : 'ghost'}
+                                        tone={lang === 'es' ? 'primary' : 'default'}
+                                        text="ES"
+                                        padding={2}
+                                        fontSize={1}
+                                        onClick={() => {
+                                           setLang('es');
+                                           if ([defaultMessageFr, defaultMessageEn, defaultMessagePt].includes(message)) setMessage(defaultMessageEs);
+                                           if ([defaultSubjectFr, defaultSubjectEn, defaultSubjectPt].includes(subject)) setSubject(defaultSubjectEs);
+                                        }}
+                                    />
+                                    <Button
+                                        mode={lang === 'pt' ? 'default' : 'ghost'}
+                                        tone={lang === 'pt' ? 'primary' : 'default'}
+                                        text="PT"
+                                        padding={2}
+                                        fontSize={1}
+                                        onClick={() => {
+                                           setLang('pt');
+                                           if ([defaultMessageFr, defaultMessageEn, defaultMessageEs].includes(message)) setMessage(defaultMessagePt);
+                                           if ([defaultSubjectFr, defaultSubjectEn, defaultSubjectEs].includes(subject)) setSubject(defaultSubjectPt);
                                         }}
                                     />
                                 </Flex>
@@ -374,7 +443,9 @@ export function ShareSelectionTool() {
 
                                 <Box marginBottom={4} style={{ borderBottom: '1px solid #e5e7eb' }} />
 
-                                <Heading as="h3" size={2} style={{ marginBottom: '24px', color: '#2D2D2D' }}>{lang === 'en' ? 'Our Exclusive Selection' : 'Notre Sélection Exclusive'}</Heading>
+                                <Heading as="h3" size={2} style={{ marginBottom: '24px', color: '#2D2D2D' }}>
+                                    {lang === 'en' ? 'Our Exclusive Selection' : lang === 'es' ? 'Nuestra Selección Exclusiva' : lang === 'pt' ? 'Nossa Seleção Exclusiva' : 'Notre Sélection Exclusive'}
+                                </Heading>
 
                                 <Stack space={4}>
                                     {Array.from(selectedIds).map(id => {
@@ -390,14 +461,14 @@ export function ShareSelectionTool() {
                                                 )}
                                                 <Box padding={3} style={{ backgroundColor: '#fff' }}>
                                                     <Box marginBottom={2}>
-                                                        <Badge tone="default">{villa.listingType === 'sale' ? (lang === 'en' ? 'Sale' : 'Vente') : (lang === 'en' ? 'Rent' : 'Location')}</Badge>
+                                                        <Badge tone="default">{villa.listingType === 'sale' ? (lang === 'en' ? 'Sale' : lang === 'es' ? 'Venta' : lang === 'pt' ? 'Venda' : 'Vente') : (lang === 'en' ? 'Rent' : lang === 'es' ? 'Alquiler' : lang === 'pt' ? 'Aluguel' : 'Location')}</Badge>
                                                     </Box>
                                                     <Heading as="h4" size={2} style={{ marginBottom: '8px', color: '#2D2D2D' }}>{villa.name}</Heading>
                                                     <Text size={1} weight="semibold" style={{ color: '#A05C4D', textTransform: 'uppercase' }}>
-                                                        {villa.locationName} • {villa.bedrooms} {lang === 'en' ? 'bedrooms' : 'chambres'}
+                                                        {villa.locationName} • {villa.bedrooms} {lang === 'en' ? 'bedrooms' : lang === 'es' ? 'habitaciones' : lang === 'pt' ? 'quartos' : 'chambres'}
                                                     </Text>
                                                     <Box marginTop={3}>
-                                                        <Button text={lang === 'en' ? 'Discover this property' : 'Découvrir cette propriété'} tone="primary" style={{ backgroundColor: '#1A3C34', color: '#F6F5F1', borderColor: '#1A3C34' }} fontSize={1} padding={2} />
+                                                        <Button text={lang === 'en' ? 'Discover this property' : lang === 'es' ? 'Descubrir esta propiedad' : lang === 'pt' ? 'Descobrir esta propriedade' : 'Découvrir cette propriété'} tone="primary" style={{ backgroundColor: '#1A3C34', color: '#F6F5F1', borderColor: '#1A3C34' }} fontSize={1} padding={2} />
                                                     </Box>
                                                 </Box>
                                             </Card>
