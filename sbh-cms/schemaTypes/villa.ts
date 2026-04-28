@@ -18,17 +18,31 @@ const bedroomPrice = defineType({
     }),
     defineField({
       name: 'price',
-      title: 'Prix net (/ semaine)',
+      title: 'Prix net',
       type: 'number',
       validation: (rule) => rule.required().min(0)
         .error('Le prix doit être positif'),
     }),
+    defineField({
+      name: 'priceUnit',
+      title: 'Unité de facturation',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Par Semaine', value: 'week' },
+          { title: 'Par Nuit', value: 'night' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'week',
+    }),
   ],
   preview: {
-    select: { bedrooms: 'bedrooms', price: 'price' },
-    prepare({ bedrooms, price }) {
+    select: { bedrooms: 'bedrooms', price: 'price', priceUnit: 'priceUnit' },
+    prepare({ bedrooms, price, priceUnit }) {
+      const unitLabel = priceUnit === 'night' ? '/ nuit' : '/ semaine';
       return {
-        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → ${price?.toLocaleString('en-US')} (selon devise)`,
+        title: `${bedrooms} chambre${bedrooms > 1 ? 's' : ''} → ${price?.toLocaleString('en-US')} ${unitLabel}`,
       }
     },
   },

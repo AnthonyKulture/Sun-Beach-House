@@ -45,8 +45,8 @@ export async function POST(request: Request) {
             );
         }
 
-        // Récupérer toutes les villas depuis Sanity pour garantir des données à jour
-        const allVillas = await CmsService.getAllVillas();
+        // Récupérer toutes les villas depuis Sanity pour garantir des données à jour (y compris les brouillons)
+        const allVillas = await CmsService.getAllVillas(true);
 
         // Filtrer pour ne garder que les villas sélectionnées
         const selectedVillas = allVillas.filter(v => villaIds.includes(v.id));
@@ -81,6 +81,7 @@ export async function POST(request: Request) {
         const { data, error } = await resend.emails.send({
             from: 'Sun-Beach-House <valerie@sun-beach-house.com>',
             to: [clientEmail],
+            replyTo: 'valerie@sun-beach-house.com',
             subject: subject,
             html: html,
         });

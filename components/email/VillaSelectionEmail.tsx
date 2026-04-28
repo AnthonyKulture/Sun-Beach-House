@@ -34,6 +34,7 @@ export const VillaSelectionEmail = ({
     lang = 'fr',
 }: VillaSelectionEmailProps) => {
     const previewText = lang === 'en' ? `Your villa selection by Sun-Beach-House` : `Votre sélection de villas par Sun-Beach-House`;
+    const logoUrl = `${baseUrl}/logo-sbh.png`;
 
     return (
         <Html>
@@ -41,6 +42,21 @@ export const VillaSelectionEmail = ({
             <Preview>{previewText}</Preview>
             <Body style={main}>
                 <Container style={container}>
+                    {/* Header */}
+                    <Section style={header}>
+                        <Link href={baseUrl}>
+                            <Img
+                                src={logoUrl}
+                                alt="Sun Beach House"
+                                width="180"
+                                style={logo}
+                            />
+                        </Link>
+                        <Text style={taglineText}>
+                            {lang === 'en' ? 'EXCLUSIVE VILLA RENTALS & SALES' : 'LOCATIONS & VENTES DE VILLAS D\'EXCEPTION'}
+                        </Text>
+                    </Section>
+
                     {/* Message */}
                     {message && (
                         <Section style={messageSection}>
@@ -73,13 +89,15 @@ export const VillaSelectionEmail = ({
                             return (
                                 <Section key={villa.id} style={villaCard}>
                                     {villa.mainImage && (
-                                        <Img
-                                            src={villa.mainImage}
-                                            alt={villa.name}
-                                            width="600"
-                                            height="338"
-                                            style={villaImage}
-                                        />
+                                        <Link href={villaUrl}>
+                                            <Img
+                                                src={villa.mainImage}
+                                                alt={villa.name}
+                                                width="600"
+                                                height="338"
+                                                style={villaImage}
+                                            />
+                                        </Link>
                                     )}
                                     <div style={villaContent}>
                                         <Text style={villaTag}>
@@ -103,16 +121,26 @@ export const VillaSelectionEmail = ({
                         })}
                     </Section>
 
-                    {/* Signature */}
-                    <Section style={{ padding: '20px 0', textAlign: 'left' }}>
-                        <Link href="https://www.sun-beach-house.com" target="_blank" style={{ display: 'inline-block' }}>
-                            <Img
-                                src="https://www.sun-beach-house.com/signature.png?v=2"
-                                alt="Signature Sun Beach House"
-                                width="600"
-                                style={{ display: 'block', margin: '0', width: '100%', maxWidth: '600px', height: 'auto', border: 'none' }}
-                            />
-                        </Link>
+                    <Hr style={divider} />
+
+                    {/* Footer / Signature */}
+                    <Section style={footer}>
+                        <Text style={footerTextBold}>Valérie Kerckhofs</Text>
+                        <Text style={footerText}>Sun Beach House St. Barth</Text>
+                        <Text style={footerLink}>
+                            <Link href={baseUrl} style={{ color: '#1A3C34', textDecoration: 'none' }}>www.sun-beach-house.com</Link>
+                        </Text>
+                        <Text style={footerContact}>
+                            Email: valerie@sun-beach-house.com | Tel: +590 690 63 47 25
+                        </Text>
+                        
+                        <Hr style={{ borderColor: '#f1f1f1', margin: '20px 0' }} />
+                        
+                        <Text style={footerNote}>
+                            {lang === 'en' 
+                                ? 'You are receiving this email because a villa selection was specifically prepared for you. To ensure delivery, please add valerie@sun-beach-house.com to your address book.'
+                                : 'Vous recevez cet email car une sélection de villas a été spécifiquement préparée pour vous. Pour garantir la réception de nos emails, ajoutez valerie@sun-beach-house.com à vos contacts.'}
+                        </Text>
                     </Section>
                 </Container>
             </Body>
@@ -124,117 +152,115 @@ export default VillaSelectionEmail;
 
 // Styles for React Email
 const main = {
-    backgroundColor: '#ffffff',
-    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+    backgroundColor: '#F6F5F1',
+    fontFamily: 'HelveticaNeue,Helvetica,Arial,sans-serif',
 };
 
 const container = {
     margin: '0 auto',
-    padding: '20px',
-    maxWidth: '640px',
+    padding: '40px 20px',
+    maxWidth: '600px',
+    backgroundColor: '#ffffff',
 };
 
 const header = {
-    backgroundColor: '#0f172a',
-    padding: '32px 20px',
+    padding: '32px 0',
     textAlign: 'center' as const,
-    borderRadius: '8px 8px 0 0',
 };
 
-const logoText = {
-    color: '#ffffff',
-    fontSize: '28px',
-    fontWeight: 'bold',
-    fontFamily: 'Georgia, serif',
-    margin: '0',
+const logo = {
+    margin: '0 auto',
+    display: 'block',
 };
 
 const taglineText = {
-    color: '#cbd5e1',
-    fontSize: '12px',
+    color: '#1A3C34',
+    fontSize: '10px',
+    fontWeight: 'bold',
     letterSpacing: '2px',
-    margin: '8px 0 0 0',
+    margin: '16px 0 0 0',
+    textAlign: 'center' as const,
 };
 
 const messageSection = {
-    padding: '10px 0',
+    padding: '20px 0',
 };
 
 const paragraph = {
     fontSize: '16px',
     lineHeight: '26px',
-    color: '#374151',
+    color: '#2D2D2D',
     whiteSpace: 'pre-wrap' as const,
 };
 
 const divider = {
-    borderColor: '#e5e7eb',
-    margin: '0',
+    borderColor: '#E5E7EB',
+    margin: '40px 0',
 };
 
 const villasSection = {
-    padding: '10px 0 20px',
+    padding: '0',
 };
 
 const sectionTitle = {
-    fontSize: '20px',
+    fontSize: '22px',
     fontWeight: 'bold',
-    color: '#2D2D2D',
-    marginTop: '32px',
-    marginBottom: '24px',
+    color: '#1A3C34',
+    margin: '0 0 32px 0',
+    textAlign: 'center' as const,
 };
 
 const villaCard = {
-    marginBottom: '40px',
-    overflow: 'hidden',
+    marginBottom: '60px',
 };
 
 const villaImage = {
+    borderRadius: '8px',
     objectFit: 'cover' as const,
     display: 'block',
     maxWidth: '100%',
 };
 
 const villaContent = {
-    padding: '24px 0',
+    padding: '24px 0 0 0',
 };
 
 const villaTag = {
     fontSize: '12px',
     fontWeight: 'bold',
-    color: '#C3CBC4',
-    letterSpacing: '1px',
-    margin: '0 0 12px 0',
+    color: '#A05C4D',
+    letterSpacing: '1.5px',
+    margin: '0 0 8px 0',
 };
 
 const villaTitle = {
-    fontSize: '24px',
+    fontSize: '28px',
     fontWeight: 'bold',
-    color: '#2D2D2D',
-    margin: '0 0 8px 0',
+    color: '#1A3C34',
+    margin: '0 0 4px 0',
 };
 
 const villaMeta = {
     fontSize: '14px',
     fontWeight: '600',
-    color: '#A05C4D',
+    color: '#6B7280',
     margin: '0 0 16px 0',
     textTransform: 'uppercase' as const,
 };
 
 const villaDesc = {
-    fontSize: '14px',
-    lineHeight: '22px',
-    color: '#6b7280',
+    fontSize: '15px',
+    lineHeight: '24px',
+    color: '#4B5563',
     margin: '0 0 24px 0',
 };
 
 const ctaButton = {
     backgroundColor: '#1A3C34',
     color: '#F6F5F1',
-    padding: '12px 24px',
-    borderRadius: '6px',
-    fontWeight: '600',
+    padding: '14px 28px',
+    borderRadius: '4px',
+    fontWeight: 'bold',
     fontSize: '14px',
     textDecoration: 'none',
     textAlign: 'center' as const,
@@ -242,29 +268,38 @@ const ctaButton = {
 };
 
 const footer = {
-    backgroundColor: '#f8fafc',
-    padding: '32px',
+    padding: '0 0 20px 0',
     textAlign: 'center' as const,
-    borderRadius: '0 0 8px 8px',
-    border: '1px solid #e5e7eb',
-    borderTop: 'none',
 };
 
 const footerTextBold = {
-    fontSize: '14px',
+    fontSize: '16px',
     fontWeight: 'bold',
-    color: '#111827',
+    color: '#1A3C34',
     margin: '0 0 4px 0',
 };
 
 const footerText = {
+    fontSize: '14px',
+    color: '#4B5563',
+    margin: '0 0 4px 0',
+};
+
+const footerLink = {
+    fontSize: '14px',
+    margin: '0 0 12px 0',
+};
+
+const footerContact = {
     fontSize: '12px',
-    color: '#6b7280',
-    margin: '0 0 16px 0',
+    color: '#9CA3AF',
+    margin: '0',
 };
 
 const footerNote = {
-    fontSize: '12px',
-    color: '#9ca3af',
+    fontSize: '11px',
+    lineHeight: '18px',
+    color: '#9CA3AF',
+    fontStyle: 'italic',
     margin: '0',
 };

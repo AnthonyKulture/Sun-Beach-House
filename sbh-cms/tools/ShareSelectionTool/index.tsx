@@ -43,7 +43,7 @@ const renderMessageWithBold = (text: string) => {
     ))
 }
 
-const VILLA_QUERY = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) {
+const VILLA_QUERY = `*[_type == "villa"] | order(name asc) {
   _id,
   name,
   listingType,
@@ -126,8 +126,19 @@ export function ShareSelectionTool() {
     const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
-        client.fetch(VILLA_QUERY).then((res) => {
-            setVillas(res)
+        client.fetch(VILLA_QUERY).then((res: any[]) => {
+            const deduplicated = res.reduce((acc, villa) => {
+                const isDraft = villa._id.startsWith('drafts.')
+                const publishedId = isDraft ? villa._id.replace('drafts.', '') : villa._id
+                if (isDraft) {
+                    acc[publishedId] = villa
+                } else if (!acc[publishedId]) {
+                    acc[publishedId] = villa
+                }
+                return acc
+            }, {} as Record<string, any>)
+            
+            setVillas(Object.values(deduplicated))
             setLoading(false)
         }).catch(err => {
             console.error(err)

@@ -19,7 +19,7 @@ const fetchSanity = async (query: string, params?: Record<string, string>) => {
     });
   }
 
-  const response = await fetch(url.toString());
+  const response = await fetch(url.toString(), { cache: 'no-store' });
   if (!response.ok) {
     throw new Error(`Sanity API error: ${response.status}`);
   }
@@ -52,6 +52,7 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
       prices: sp.prices?.map((p: any): BedroomPrice => ({
         bedrooms: p.bedrooms,
         price: p.price,
+        priceUnit: p.priceUnit || 'week',
       })) || [],
     }));
 
@@ -160,7 +161,7 @@ const villaFields = `
     _key,
     seasonName->{ _id, name, "name_en": name_en, order },
     dates,
-    prices[] { _key, bedrooms, price }
+    prices[] { _key, bedrooms, price, priceUnit }
   },
   geopoint,
   privateInfo
@@ -184,8 +185,9 @@ const similarVillaFields = `
 `;
 
 export const CmsService = {
-  getAllVillas: async (): Promise<Villa[]> => {
-    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { ${villaFields} }`;
+  getAllVillas: async (includeDrafts = false): Promise<Villa[]> => {
+    const draftFilter = includeDrafts ? '' : '&& !(_id in path("drafts.**"))';
+    const query = `*[_type == "villa" ${draftFilter}] | order(name asc) { ${villaFields} }`;
     try {
       const docs = await fetchSanity(query);
       return docs.map(mapSanityVilla);

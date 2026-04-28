@@ -437,7 +437,7 @@ export const VillaBrochurePDF: React.FC<VillaBrochurePDFProps> = ({ villa, inclu
                                                     {bp.bedrooms} bedroom{bp.bedrooms > 1 ? 's' : ''}
                                                 </Text>
                                                 <Text style={styles.priceValue}>
-                                                    {villa.currency === 'EUR' ? '€' : '$'}{bp.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} / week
+                                                    {villa.currency === 'EUR' ? '€' : '$'}{bp.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} / {bp.priceUnit === 'night' ? 'night' : 'week'}
                                                 </Text>
                                             </View>
                                         ))}

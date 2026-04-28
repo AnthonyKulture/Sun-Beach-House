@@ -627,7 +627,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
                                                                 <span className="font-medium text-lg text-sbh-charcoal">
                                                                     {formatPrice(tier.price, villa.currency || 'USD')}
                                                                 </span>
-                                                                <span className="text-[10px] text-gray-400 uppercase tracking-widest">{t.villa.week}</span>
+                                                                <span className="text-[10px] text-gray-400 uppercase tracking-widest">{tier.priceUnit === 'night' ? t.villa.perNight : t.villa.week}</span>
                                                             </div>
                                                         </div>
                                                     ))}

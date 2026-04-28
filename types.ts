@@ -24,6 +24,7 @@ export interface Location {
 export interface BedroomPrice {
   bedrooms: number;
   price: number;
+  priceUnit?: 'week' | 'night';
 }
 
 export interface SeasonalPrice {
