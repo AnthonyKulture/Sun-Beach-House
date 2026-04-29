@@ -21,18 +21,6 @@ interface VillaSelectionEmailProps {
     lang?: 'fr' | 'en' | 'pt' | 'es';
 }
 
-const getDescription = (desc: any, lang: 'fr' | 'en' | 'pt' | 'es') => {
-    if (!desc) return '';
-    if (typeof desc === 'string') return desc;
-    
-    if (lang === 'fr') return desc.fr || desc.en || '';
-    if (lang === 'en') return desc.en || desc.fr || '';
-    if (lang === 'pt') return desc.pt || desc.en || desc.fr || '';
-    if (lang === 'es') return desc.es || desc.en || desc.fr || '';
-    
-    return desc.en || desc.fr || '';
-};
-
 const t = {
     preview: {
         fr: 'Votre sélection de villas par Sun-Beach-House',
@@ -141,7 +129,6 @@ export const VillaSelectionEmail = ({
                         <Text style={sectionTitle}>{t.section[currentLang]}</Text>
 
                         {villas.map((villa) => {
-                            const desc = getDescription(villa.description, currentLang);
                             const villaUrl = `${baseUrl}/${currentLang}/villas/${villa.id}`;
 
                             return (
@@ -166,9 +153,6 @@ export const VillaSelectionEmail = ({
                                         <Text style={villaTitle}>{villa.name}</Text>
                                         <Text style={villaMeta}>
                                             {villa.location?.name} • {villa.bedrooms} {t.bedrooms[currentLang]}
-                                        </Text>
-                                        <Text style={villaDesc}>
-                                            {desc}
                                         </Text>
                                         <Button href={villaUrl} style={ctaButton}>
                                             {t.cta[currentLang]}
