@@ -19,7 +19,9 @@ const fetchSanity = async (query: string, params?: Record<string, string>) => {
     });
   }
 
-  const response = await fetch(url.toString(), { cache: 'no-store' });
+  // Enable Incremental Static Regeneration (ISR) - revalidate every 5 minutes (300 seconds)
+  // This drastically reduces Vercel CPU and prevents Sanity API rate-limiting errors (500s).
+  const response = await fetch(url.toString(), { next: { revalidate: 300 } });
   if (!response.ok) {
     throw new Error(`Sanity API error: ${response.status}`);
   }
