@@ -69,6 +69,12 @@ const t = {
         en: 'You are receiving this email because a villa selection was specifically prepared for you. To ensure delivery, please add valerie@sun-beach-house.com to your address book.',
         es: 'Recibe este correo electrónico porque se ha preparado una selección de villas específicamente para usted. Para garantizar la recepción, agregue valerie@sun-beach-house.com a sus contactos.',
         pt: 'Você está recebendo este e-mail parce que uma seleção de vilas foi preparada especificamente para você. Para garantir o recebimento, adicione valerie@sun-beach-house.com aos seus contatos.'
+    },
+    closing: {
+        fr: 'Bien cordialement,\nValérie Kerckhofs\nSun Beach House\n\nFaire de chaque séjour à Saint-Barthélemy un moment unique.',
+        en: 'Best regards,\nValérie Kerckhofs\nSun Beach House\n\nMaking every stay in Saint-Barthélemy a unique moment.',
+        es: 'Atentamente,\nValérie Kerckhofs\nSun Beach House\n\nHaciendo de cada estancia en San Bartolomé un momento único.',
+        pt: 'Atenciosamente,\nValérie Kerckhofs\nSun Beach House\n\nFazendo de cada estadia em Saint-Barthélemy um momento único.'
     }
 };
 
@@ -164,6 +170,17 @@ export const VillaSelectionEmail = ({
                     </Section>
 
                     <Hr style={divider} />
+
+                    <Section style={{ padding: '0 0 20px 0', textAlign: 'left' }}>
+                        <Text style={paragraph}>
+                            {t.closing[currentLang].split('\n').map((line, i) => (
+                                <React.Fragment key={i}>
+                                    {line}
+                                    {i !== t.closing[currentLang].split('\n').length - 1 && <br />}
+                                </React.Fragment>
+                            ))}
+                        </Text>
+                    </Section>
 
                     {/* Footer / Signature */}
                     <Section style={footer}>

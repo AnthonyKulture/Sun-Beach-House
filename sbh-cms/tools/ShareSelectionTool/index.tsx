@@ -56,92 +56,148 @@ const VILLA_QUERY = `*[_type == "villa"] | order(name asc) {
   "amenities": amenities[]->{name}
 }`
 
-const defaultMessageFr = `Cher ……….
+const defaultMessageFr = `Cher/Chère [Nom du client],
 
-Nous vous remercions pour votre confiance et serions ravis de vous accompagner pour votre séjour à Saint-Barthélemy, du date arrivée/date de départ
+Nous vous remercions pour votre confiance et serions ravis de vous accompagner dans l’organisation de votre séjour à Saint-Barthélemy, du [date d’arrivée] au [date de départ].
 
-Vous trouverez ci-dessous une **sélection de villas d’exception**, personnellement présélectionnées selon vos critères et **disponibles aux dates souhaitées**.
+Vous trouverez ci-dessous une sélection de villas d’exception, soigneusement présélectionnées selon vos critères et disponibles aux dates souhaitées.
 
-Au-delà de la villa, Sun Beach House vous propose un accompagnement de type **haute conciergerie**, pensé comme un service de **butler** : discret, constant, et entièrement tourné vers votre confort. **Tout est préparé en amont**, avant votre arrivée, afin que votre séjour se déroule avec une parfaite fluidité.
+Au-delà de la villa, Sun Beach House vous propose un service de conciergerie haut de gamme, pensé comme une véritable expérience sur mesure : discrète, fluide et entièrement dédiée à votre confort. Chaque détail est anticipé en amont afin que votre séjour se déroule en toute sérénité.
 
-Nous organisons et réservons, selon vos souhaits : **restaurants et beach clubs**, transferts, **véhicules avec ou sans chauffeur**, expériences sur mesure, ainsi que l’ensemble des services à la villa. Sur place, notre équipe reste disponible à tout moment pour ajuster, confirmer et orchestrer chaque détail, **jusqu’à votre départ**.
+Nous vous accompagnons dans l’organisation de l’ensemble de votre séjour en prenant en charge toutes vos réservations :
+– Restaurants et beach clubs
+– Location de véhicules (avec ou sans chauffeur)
+– Transferts, voyages et assistance aéroport (Saint-Martin ou autres)
+– Sorties en bateau, yachts privés et activités nautiques
+– Expériences personnalisées sur l’île
 
-**Les tarifs indiqués incluent notamment** :
+Notre rôle est de vous conseiller, organiser et réserver pour vous, afin que vous n’ayez à vous soucier de rien. Ces prestations sont organisées sur mesure et restent à votre charge.
 
-Un accueil personnalisé à votre arrivée (aéroport ou ferry)
-Le transfert jusqu’à la villa, ainsi qu’une visite d’arrivée
-Un service de conciergerie **24h/24 – 7j/7**
-Le ménage **6 jours par semaine** (hors dimanches et jours fériés)
-Nous restons bien entendu à votre entière disposition pour toute information complémentaire, et pour affiner cette sélection afin d’identifier la villa la plus parfaitement adaptée à votre séjour.
+Sont inclus dans votre séjour :
+– Un accueil personnalisé à l’aéroport ou au port
+– Le transfert jusqu’à votre villa avec assistance à l’arrivée
+– Un service de conciergerie dédié 24h/24 – 7j/7
+– Le ménage (6 jours sur 7, parfois 7 jours sur 7 selon la villa, hors dimanches et jours fériés)
+– La gestion et coordination de vos réservations avant et pendant votre séjour
 
-Bien cordialement,
-Valérie Kerckhofs`;
+Sur place, notre équipe reste disponible à tout moment pour vous accompagner, ajuster et orchestrer chaque détail de votre expérience.
 
-const defaultMessageEn = `Dear ……….
+Pour aller encore plus loin dans la personnalisation de votre séjour, des services complémentaires peuvent être organisés à la carte (en supplément), tels que : chef privé, service de butler, soins bien-être, coaching sportif, etc.
 
-Thank you for your trust. We would be delighted to assist you with your stay in Saint-Barthélemy, from arrival date/departure date.
+Nous vous invitons à découvrir plus en détail notre service de conciergerie :
+https://www.sun-beach-house.com/en/conciergerie
 
-Below, you will find a **selection of exceptional villas**, personally pre-selected according to your criteria and **available for your desired dates**.
+Nous restons bien entendu à votre entière disposition pour toute information complémentaire et pour affiner cette sélection afin de trouver la villa parfaitement adaptée à votre séjour.
 
-Beyond the villa, Sun Beach House offers a **high-end concierge** service, designed like a **butler** service: discreet, constant, and entirely focused on your comfort. **Everything is prepared in advance**, before your arrival, so that your stay unfolds flawlessly.
+`;
 
-We organize and book, according to your wishes: **restaurants and beach clubs**, transfers, **vehicles with or without a driver**, tailor-made experiences, as well as all services at the villa. On site, our team remains available at all times to adjust, confirm, and orchestrate every detail, **until your departure**.
+const defaultMessageEn = `Dear [Client Name],
 
-**The rates indicated notably include**:
+Thank you for your trust. We would be delighted to assist you in organizing your stay in Saint-Barthélemy, from [arrival date] to [departure date].
 
-A personalized welcome upon your arrival (airport or ferry)
-Transfer to the villa, as well as an arrival tour
-A **24/7** concierge service
-Housekeeping **6 days a week** (excluding Sundays and public holidays)
-We remain at your entire disposal for any further information, and to refine this selection in order to identify the villa perfectly suited to your stay.
+Below, you will find a selection of exceptional villas, carefully pre-selected according to your criteria and available for your desired dates.
 
-Best regards,
-Valérie Kerckhofs`;
+Beyond the villa, Sun Beach House offers a high-end concierge service, designed as a truly tailor-made experience: discreet, seamless, and entirely dedicated to your comfort. Every detail is anticipated in advance so that your stay unfolds in complete serenity.
+
+We accompany you in organizing your entire stay by taking care of all your reservations:
+– Restaurants and beach clubs
+– Vehicle rentals (with or without a driver)
+– Transfers, travel, and airport assistance (Saint-Martin or others)
+– Boat trips, private yachts, and water activities
+– Personalized experiences on the island
+
+Our role is to advise, organize, and book for you, so you don't have to worry about a thing. These services are tailor-made and remain at your expense.
+
+Included in your stay:
+– A personalized welcome at the airport or port
+– Transfer to your villa with arrival assistance
+– A dedicated 24/7 concierge service
+– Housekeeping (6 days a week, sometimes 7 depending on the villa, excluding Sundays and public holidays)
+– Management and coordination of your reservations before and during your stay
+
+On site, our team remains available at all times to accompany you, adjust, and orchestrate every detail of your experience.
+
+To go even further in personalizing your stay, additional à la carte services can be arranged (at an extra cost), such as: private chef, butler service, wellness treatments, sports coaching, etc.
+
+We invite you to discover our concierge service in more detail:
+https://www.sun-beach-house.com/en/conciergerie
+
+We remain, of course, at your entire disposal for any further information and to refine this selection to find the perfect villa for your stay.
+
+`;
 
 const defaultSubjectFr = 'Votre sélection de villas par Sun-Beach-House';
 const defaultSubjectEn = 'Your villa selection by Sun-Beach-House';
 
-const defaultMessageEs = `Estimado/a ……….
+const defaultMessageEs = `Estimado/a [Nombre del cliente],
 
-Le agradecemos su confianza y estaremos encantados de acompañarle en su estancia en San Bartolomé, del [fecha de llegada] al [fecha de salida].
+Le agradecemos su confianza y estaremos encantados de acompañarle en la organización de su estancia en San Bartolomé, del [fecha de llegada] al [fecha de salida].
 
-A continuación, encontrará una **selección de villas excepcionales**, preseleccionadas personalmente según sus criterios y **disponibles en las fechas deseadas**.
+A continuación, encontrará una selección de villas excepcionales, cuidadosamente preseleccionadas según sus criterios y disponibles en las fechas deseadas.
 
-Más allá de la villa, Sun Beach House le ofrece un servicio de **alta conserjería**, diseñado como un servicio de **mayordomo**: discreto, constante y completamente centrado en su comodidad. **Todo se prepara con antelación**, antes de su llegada, para que su estancia se desarrolle con perfecta fluidez.
+Más allá de la villa, Sun Beach House le ofrece un servicio de conserjería de alta gama, pensado como una verdadera experiencia a medida: discreta, fluida y completamente dedicada a su comodidad. Cada detalle se anticipa con antelación para que su estancia se desarrolle con total serenidad.
 
-Organizamos y reservamos, según sus deseos: **restaurantes y clubes de playa**, traslados, **vehículos con o sin conductor**, experiencias a medida, así como todos los servicios en la villa. In situ, nuestro equipo permanece disponible en todo momento para ajustar, confirmar y orquestar cada detalle, **hasta su partida**.
+Le acompañamos en la organización de toda su estancia gestionando todas sus reservas:
+– Restaurantes y clubes de playa
+– Alquiler de vehículos (con o sin conductor)
+– Traslados, viajes y asistencia en el aeropuerto (San Martín u otros)
+– Paseos en barco, yates privados y actividades acuáticas
+– Experiencias personalizadas en la isla
 
-**Las tarifas indicadas incluyen notablemente**:
+Nuestro papel es asesorarle, organizar y reservar por usted, para que no tenga que preocuparse por nada. Estos servicios son a medida y corren por su cuenta.
 
-Una bienvenida personalizada a su llegada (aeropuerto o ferry)
-El traslado a la villa, así como un recorrido de llegada
-Un servicio de conserjería **24/7**
-Limpieza **6 días a la semana** (excepto domingos y festivos)
-Quedamos a su entera disposición para cualquier información adicional y para refinar esta selección con el fin de identificar la villa que mejor se adapte a su estancia.
+Se incluyen en su estancia:
+– Una bienvenida personalizada en el aeropuerto o puerto
+– El traslado a su villa con asistencia a la llegada
+– Un servicio de conserjería dedicado 24/7
+– Limpieza (6 días a la semana, a veces 7 dependiendo de la villa, excepto domingos y festivos)
+– La gestión y coordinación de sus reservas antes y durante su estancia
 
-Atentamente,
-Valérie Kerckhofs`;
+In situ, nuestro equipo permanece disponible en todo momento para acompañarle, ajustar y orquestar cada detalle de su experiencia.
 
-const defaultMessagePt = `Prezado/a ……….
+Para ir aún más lejos en la personalización de su estancia, se pueden organizar servicios adicionales a la carta (con costo extra), tales como: chef privado, servicio de mayordomo, tratamientos de bienestar, entrenamiento deportivo, etc.
 
-Agradecemos a sua confiança e teríamos o maior prazer em acompanhá-lo na sua estadia em Saint-Barthélemy, de [data de chegada] a [data de partida].
+Le invitamos a descubrir más en detalle nuestro servicio de conserjería:
+https://www.sun-beach-house.com/en/conciergerie
 
-Abaixo, você encontrará uma **seleção de vilas excepcionais**, pré-selecionadas pessoalmente de acordo com seus critérios e **disponíveis nas datas desejadas**.
+Quedamos, por supuesto, a su entera disposición para cualquier información adicional y para refinar esta selección con el fin de encontrar la villa perfectamente adaptada a su estancia.
 
-Além da vila, a Sun Beach House oferece um serviço de **alta conciergerie**, projetado como um serviço de **mordomo**: discreto, constante e totalmente voltado para o seu conforto. **Tudo é preparado com antecedência**, antes da sua chegada, para que a sua estadia transcorra com perfeita fluidez.
+`;
 
-Organizamos e reservamos, de acordo com os seus desejos: **restaurantes e clubes de praia**, transfers, **veículos com ou sem motorista**, experiências sob medida, bem como todos os serviços na vila. No local, nossa equipe permanece disponível em todos os momentos para ajustar, confirmar e orquestrar cada detalhe, **até a sua partida**.
+const defaultMessagePt = `Prezado/a [Nome do cliente],
 
-**As tarifas indicadas incluem notavelmente**:
+Agradecemos a sua confiança e teríamos o maior prazer em acompanhá-lo na organização da sua estadia em Saint-Barthélemy, de [data de chegada] a [data de partida].
 
-Uma recepção personalizada à sua chegada (aeroporto ou ferry)
-O transfer para a vila, bem como um tour de chegada
-Um serviço de concierge **24/7**
-Limpeza **6 dias por semana** (exceto domingos e feriados)
-Continuamos à sua inteira disposição para qualquer informação adicional e para refinar esta seleção a fim de identificar a vila perfeitamente adequada à sua estadia.
+Abaixo, você encontrará uma seleção de vilas excepcionais, cuidadosamente pré-selecionadas de acordo com seus critérios e disponíveis nas datas desejadas.
 
-Atenciosamente,
-Valérie Kerckhofs`;
+Além da vila, a Sun Beach House oferece um serviço de concierge de alto padrão, pensado como uma verdadeira experiência sob medida: discreto, fluido e totalmente dedicado ao seu conforto. Cada detalhe é antecipado com antecedência para que a sua estadia transcorra com total serenidade.
+
+Acompanhamos você na organização de toda a sua estadia, cuidando de todas as suas reservas:
+– Restaurantes e clubes de praia
+– Aluguel de veículos (com ou sem motorista)
+– Transfers, viagens e assistência no aeroporto (Saint-Martin ou outros)
+– Passeios de barco, iates privados e atividades náuticas
+– Experiências personalizadas na ilha
+
+O nosso papel é aconselhá-lo, organizar e reservar por você, para que não tenha de se preocupar com nada. Esses serviços são sob medida e ficam por sua conta.
+
+Estão incluídos na sua estadia:
+– Uma recepção personalizada no aeroporto ou porto
+– O transfer para a sua vila com assistência à chegada
+– Um serviço de concierge dedicado 24/7
+– Limpeza (6 dias por semana, por vezes 7 dependendo da vila, exceto domingos e feriados)
+– A gestão e coordenação de suas reservas antes e durante a sua estadia
+
+No local, nossa equipe permanece disponível em todos os momentos para acompanhá-lo, ajustar e orquestrar cada detalhe da sua experiência.
+
+Para ir ainda mais longe na personalização da sua estadia, podem ser organizados serviços adicionais à la carte (com custo extra), tais como: chef privado, serviço de mordomo, tratamentos de bem-estar, coaching esportivo, etc.
+
+Convidamos você a descobrir mais detalhadamente o nosso serviço de concierge:
+https://www.sun-beach-house.com/en/conciergerie
+
+Continuamos, obviamente, à sua inteira disposição para qualquer informação adicional e para refinar esta seleção a fim de encontrar a vila perfeitamente adaptada à sua estadia.
+
+`;
 
 const defaultSubjectEs = 'Su selección de villas por Sun-Beach-House';
 const defaultSubjectPt = 'Sua seleção de vilas por Sun-Beach-House';
@@ -477,6 +533,12 @@ export function ShareSelectionTool() {
                                 </Stack>
 
                                 <Box marginTop={5} style={{ textAlign: 'left' }}>
+                                    <Text size={2} style={{ color: '#374151', lineHeight: 1.6, marginBottom: '24px', whiteSpace: 'pre-wrap' }}>
+                                        {lang === 'en' ? `Best regards,\nValérie Kerckhofs\nSun Beach House\n\nMaking every stay in Saint-Barthélemy a unique moment.` :
+                                         lang === 'es' ? `Atentamente,\nValérie Kerckhofs\nSun Beach House\n\nHaciendo de cada estancia en San Bartolomé un momento único.` :
+                                         lang === 'pt' ? `Atenciosamente,\nValérie Kerckhofs\nSun Beach House\n\nFazendo de cada estadia em Saint-Barthélemy um momento único.` :
+                                         `Bien cordialement,\nValérie Kerckhofs\nSun Beach House\n\nFaire de chaque séjour à Saint-Barthélemy un moment unique.`}
+                                    </Text>
                                     <a href="https://www.sun-beach-house.com" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
                                         <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png?v=2`} alt="Signature Sun Beach House" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0', border: 'none' }} />
                                     </a>

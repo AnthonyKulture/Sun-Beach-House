@@ -31,17 +31,17 @@ export async function generateMetadata(
     };
 
     const type = typeLabel[lang] || typeLabel.fr;
-    const mainTitle = `${villa.name} - ${locationName}, St. Barth | Sun Beach House`;
+    const mainTitle = `${villa.name} - ${locationName}, St. Barth (St barths) | Sun Beach House`;
     
     // Build a richer description
     const amenitiesList = villa.amenities?.slice(0, 3).map(a => a.name).join(', ') || '';
     const featureText = amenitiesList ? `. Équipements: ${amenitiesList}` : '';
     
     const descriptions: Record<string, string> = {
-        fr: `${type} de la villa de luxe ${villa.name} à ${locationName}. ${villa.bedrooms} chambres, ${villa.guests} invités${featureText}. Découvrez l'excellence à Saint-Barthélemy with Sun Beach House.`,
-        en: `Luxury ${type.toLowerCase()} of villa ${villa.name} in ${locationName}. ${villa.bedrooms} bedrooms, sleeps ${villa.guests}${featureText}. Experience excellence in St. Barth with Sun Beach House.`,
-        es: `${type} de la villa de lujo ${villa.name} en ${locationName}. ${villa.bedrooms} habitaciones, ${villa.guests} huéspedes${featureText}. Descubra la excelencia en San Bartolomé con Sun Beach House.`,
-        pt: `${type} da villa de luxo ${villa.name} em ${locationName}. ${villa.bedrooms} quartos, ${villa.guests} hóspedes${featureText}. Descubra a excelência en Saint-Barthélemy com a Sun Beach House.`,
+        fr: `${type} de la villa de luxe ${villa.name} à ${locationName} (St barths). ${villa.bedrooms} chambres, ${villa.guests} invités${featureText}. Découvrez l'excellence à Saint-Barthélemy avec Sun Beach House.`,
+        en: `Luxury ${type.toLowerCase()} of villa ${villa.name} in ${locationName} (St barths). ${villa.bedrooms} bedrooms, sleeps ${villa.guests}${featureText}. Experience excellence in St. Barth with Sun Beach House.`,
+        es: `${type} de la villa de lujo ${villa.name} en ${locationName} (St barths). ${villa.bedrooms} habitaciones, ${villa.guests} huéspedes${featureText}. Descubra la excelencia en San Bartolomé con Sun Beach House.`,
+        pt: `${type} da villa de luxo ${villa.name} em ${locationName} (St barths). ${villa.bedrooms} quartos, ${villa.guests} hóspedes${featureText}. Descubra a excelência em Saint-Barthélemy com a Sun Beach House.`,
     };
 
     const description = descriptions[lang] || descriptions.fr;
