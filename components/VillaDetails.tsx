@@ -335,42 +335,11 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
 
                 </div>
             </div>
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 pt-12 md:pt-24 w-full">
 
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-24 grid grid-cols-1 xl:grid-cols-12 lg:grid-cols-12 lg:gap-8 xl:gap-16 relative">
-
-                {/* LEFT CONTENT COLUMN */}
-                <div className="lg:col-span-7 xl:col-span-8 order-1">
-
-                    {/* STORYTELLING */}
-                    <div className="mb-16 md:mb-24 reveal-on-scroll">
-                        <h2 className="font-serif text-2xl md:text-3xl text-sbh-charcoal mb-8 leading-tight">
-                            {villa.description as string}                        </h2>
-                        <div className="prose prose-lg text-gray-600 font-sans font-light leading-relaxed whitespace-pre-line text-justify">
-                            {typeof villa.fullDescription === 'object'
-                                // @ts-ignore
-                                ? (villa.fullDescription[language] || villa.fullDescription['fr'] || villa.fullDescription['en'] || '')
-                                : villa.fullDescription}
-                        </div>
-                    </div>
-
-                    {/* CARACTÉRISTIQUES DE LA MAISON */}
-                    {villa.homeFeatures && villa.homeFeatures.length > 0 && (
-                        <div className="mb-16 md:mb-24 reveal-on-scroll">
-                            <h3 className="font-serif text-2xl italic text-sbh-charcoal mb-8 flex items-center gap-4">
-                                {t.villa.features}
-                                <span className="h-px flex-1 bg-sbh-charcoal/10"></span>
-                            </h3>
-
-                            <div className="space-y-2">
-                                {villa.homeFeatures.map((feature, idx) => (
-                                    <FeatureAccordion key={idx} feature={feature} index={idx} />
-                                ))}
-                            </div>
-                        </div>
-                    )}
 
                     {/* GALLERY */}
-                    <div className="mb-16 md:mb-24 w-full">
+                    <div className="mb-0 md:mb-24 w-full">
                         <h3 className="font-serif text-2xl italic text-sbh-charcoal mb-8 flex items-center gap-4 reveal-on-scroll">
                             {t.villa.gallery} <span className="h-px flex-1 bg-sbh-charcoal/10"></span>
                         </h3>
@@ -441,9 +410,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
                         </div>
 
                         {/* Mobile Gallery - Optimized for horizontal scrolling with better aspect ratio */}
-                        <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory -mx-6 px-6 pb-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory -mx-6 px-6 pb-6 pr-12" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             <div
-                                className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
+                                className="min-w-[85vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                 onClick={() => { setGalleryStartIndex(0); setIsGalleryOpen(true); }}
                             >
                                 {villa.mainImage ? (
@@ -465,7 +434,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
                             {villa.galleryImages.slice(0, 6).map((img, idx) => (
                                 <div
                                     key={idx}
-                                    className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
+                                    className="min-w-[85vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer"
                                     onClick={() => { setGalleryStartIndex(idx + 1); setIsGalleryOpen(true); }}
                                 >
                                     <Image 
@@ -482,7 +451,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
                             ))}
                             {villa.galleryImages.length > 6 && (
                                 <div
-                                    className="min-w-[90vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer bg-sbh-charcoal flex items-center justify-center text-white"
+                                    className="min-w-[85vw] aspect-[4/3] snap-center rounded-sm overflow-hidden relative shadow-lg cursor-pointer bg-sbh-charcoal flex items-center justify-center text-white"
                                     onClick={() => { setGalleryStartIndex(7); setIsGalleryOpen(true); }}
                                 >
                                     <div className="text-center">
@@ -497,6 +466,41 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
                             )}
                         </div>
                     </div>
+            </div>
+
+
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-24 grid grid-cols-1 xl:grid-cols-12 lg:grid-cols-12 lg:gap-8 xl:gap-16 relative">
+
+                {/* LEFT CONTENT COLUMN */}
+                <div className="lg:col-span-7 xl:col-span-8 order-1">
+
+                    {/* STORYTELLING */}
+                    <div className="mb-16 md:mb-24 reveal-on-scroll">
+                        <h2 className="font-serif text-2xl md:text-3xl text-sbh-charcoal mb-8 leading-tight">
+                            {villa.description as string}                        </h2>
+                        <div className="prose prose-lg text-gray-600 font-sans font-light leading-relaxed whitespace-pre-line text-justify">
+                            {typeof villa.fullDescription === 'object'
+                                // @ts-ignore
+                                ? (villa.fullDescription[language] || villa.fullDescription['fr'] || villa.fullDescription['en'] || '')
+                                : villa.fullDescription}
+                        </div>
+                    </div>
+
+                    {/* CARACTÉRISTIQUES DE LA MAISON */}
+                    {villa.homeFeatures && villa.homeFeatures.length > 0 && (
+                        <div className="mb-16 md:mb-24 reveal-on-scroll">
+                            <h3 className="font-serif text-2xl italic text-sbh-charcoal mb-8 flex items-center gap-4">
+                                {t.villa.features}
+                                <span className="h-px flex-1 bg-sbh-charcoal/10"></span>
+                            </h3>
+
+                            <div className="space-y-2">
+                                {villa.homeFeatures.map((feature, idx) => (
+                                    <FeatureAccordion key={idx} feature={feature} index={idx} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     {/* VIDEO SECTION */}
                     {(villa.videoFileUrl || villa.videoUrl) && (
