@@ -7,10 +7,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Découvrez St. Barth | Destinations Incontournables',
-        en: 'Discover St. Barth | Iconic Destinations',
-        es: 'Descubra St. Barth | Destinos Icónicos',
-        pt: 'Descubra St. Barth | Destinos Icônicos',
+        fr: 'Les Plus Beaux Quartiers',
+        en: 'The Most Beautiful Areas',
+        es: 'Las Zonas más Bellas',
+        pt: 'As Áreas Mais Bonitas',
     };
     const descriptions: Record<string, string> = {
         fr: 'Explorez les plus beaux quartiers de Saint-Barthélemy : Gustavia, Saint-Jean, Flamands, et bien d\'autres avec Sun Beach House.',

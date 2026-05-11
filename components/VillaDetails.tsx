@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation';
 interface VillaDetailsProps {
     villaId: string;
     slug?: string;
+    initialVilla?: Villa;
 }
 
 // Helper to normalize season names to translation keys
@@ -35,11 +36,12 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
-export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => {
+export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initialVilla }) => {
     const router = useRouter();
     const { language, t } = useLanguage();
-    const { villa: originalVilla, loading, error } = useVilla(villaId);
-    const villa = useTranslatedVilla(originalVilla);
+    const { villa: fetchedVilla, loading, error } = useVilla(initialVilla ? null : villaId);
+    const villaData = initialVilla || fetchedVilla;
+    const villa = useTranslatedVilla(villaData);
     
     // Price formatting helper based on villa currency
     const formatPrice = (price: number, cur: 'USD' | 'EUR' = 'USD') => {
@@ -59,9 +61,9 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
 
     // useSimilarVillas: lean fetch (7 fields only) instead of full useVillas() over-fetch
     const { similarVillas } = useSimilarVillas(
-        originalVilla?.id ?? null,
-        originalVilla?.listingType ?? null,
-        originalVilla?.location?.name ?? null
+        villaData?.id ?? null,
+        villaData?.listingType ?? null,
+        villaData?.location?.name ?? null
     );
     const [arrivalDate, setArrivalDate] = useState("");
     const [departureDate, setDepartureDate] = useState("");
@@ -122,11 +124,11 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug }) => 
     // similarVillas is pre-sorted by getSimilarVillas (same-location first, capped at 6)
     const computedSimilarVillas = (() => {
         if (!similarVillas || similarVillas.length === 0) return [];
-        if (!originalVilla) return similarVillas.slice(0, 3);
+        if (!villaData) return similarVillas.slice(0, 3);
 
         const candidates = similarVillas;
-        const targetLocationName = originalVilla.location?.name;
-        const targetGuests = originalVilla.guests || 2;
+        const targetLocationName = villaData.location?.name;
+        const targetGuests = villaData.guests || 2;
 
         // Tier 1: Same location and similar occupancy (+/- 2 guests)
         const tier1 = candidates.filter(v => 

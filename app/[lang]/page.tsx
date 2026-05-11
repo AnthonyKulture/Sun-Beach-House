@@ -13,11 +13,11 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { lang } = params;
 
-    const titles: Record<string, string> = {
-        fr: 'Sun Beach House | Villas de Luxe & Services d\'Exception à St Barth',
-        en: 'Sun Beach House | Luxury Villas & Premium Concierge in St Barth',
-        es: 'Sun Beach House | Villas de Lujo y Servicios Exclusivos en St Barth',
-        pt: 'Sun Beach House | Villas de Luxo e Serviços Exclusivos em St Barth',
+    const titles: Record<string, { absolute: string }> = {
+        fr: { absolute: 'Villa de luxe à Saint-Barth - Sun Beach House' },
+        en: { absolute: 'Luxury Villas in St. Barth - Sun Beach House' },
+        es: { absolute: 'Villas de lujo en San Bartolomé - Sun Beach House' },
+        pt: { absolute: 'Villas de luxo em Saint-Barthélemy - Sun Beach House' },
     };
 
     const descriptions: Record<string, string> = {

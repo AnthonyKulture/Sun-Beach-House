@@ -7,10 +7,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Contactez-Nous | Sun Beach House St. Barth',
-        en: 'Contact Us | Sun Beach House St. Barth',
-        es: 'Contáctenos | Sun Beach House St. Barth',
-        pt: 'Contate-nos | Sun Beach House St. Barth',
+        fr: 'Contactez-Nous',
+        en: 'Contact Us',
+        es: 'Contáctenos',
+        pt: 'Contate-nos',
     };
     const descriptions: Record<string, string> = {
         fr: 'Une question sur un projet de location ou de vente ? Contactez Valérie et l\'équipe Sun Beach House pour un service sur mesure.',

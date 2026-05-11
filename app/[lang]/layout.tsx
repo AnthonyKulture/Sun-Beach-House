@@ -24,8 +24,8 @@ export async function generateStaticParams() {
 
 export const metadata: Metadata = {
     title: {
-        default: 'Sun Beach House | St. Barth - Location & Vente de Villas de Luxe',
-        template: '%s | Sun Beach House St. Barth'
+        default: 'Villa de luxe à Saint-Barth - Sun Beach House',
+        template: '%s | St-Barth | Sun Beach House'
     },
     description: 'Sun Beach House - Votre agence immobilière de prestige à Saint-Barthélemy. Location et vente de villas de luxe, conciergerie privée et services sur mesure avec Valérie.',
     keywords: ['villa luxe saint barth', 'location villa st barth', 'vente villa saint barthélemy', 'conciergerie privée st barth', 'Sun Beach House'],

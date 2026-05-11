@@ -7,10 +7,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'L\'Esprit Sun Beach House | À Propos de Nous',
-        en: 'The Sun Beach House Spirit | About Us',
-        es: 'El Espíritu de Sun Beach House | Sobre Nosotros',
-        pt: 'O Espírito da Sun Beach House | Sobre Nós',
+        fr: 'À Propos de Nous',
+        en: 'About Us',
+        es: 'Sobre Nosotros',
+        pt: 'Sobre Nós',
     };
     const descriptions: Record<string, string> = {
         fr: 'Découvrez l\'histoire de Sun Beach House et la vision de Valérie pour l\'immobilier de luxe à Saint-Barthélemy.',

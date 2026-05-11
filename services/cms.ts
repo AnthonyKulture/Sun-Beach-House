@@ -123,7 +123,7 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
     geopoint: doc.geopoint,
     privateInfo: doc.privateInfo,
     brochurePdfUrl: doc.brochurePdfUrl,
-    slug: doc.slug?.current,
+    slug: doc.slug,
   };
 };
 
@@ -189,7 +189,8 @@ const similarVillaFields = `
 export const CmsService = {
   getAllVillas: async (includeDrafts = false): Promise<Villa[]> => {
     const draftFilter = includeDrafts ? '' : '&& !(_id in path("drafts.**"))';
-    const query = `*[_type == "villa" ${draftFilter}] | order(name asc) { ${villaFields} }`;
+    // SEO Protection: Filter out suspected duplicates (slugs ending with " 1", " 2", etc.)
+    const query = `*[_type == "villa" ${draftFilter} && !(slug.current match "* 1") && !(slug.current match "* 2")] | order(name asc) { ${villaFields} }`;
     try {
       const docs = await fetchSanity(query);
       return docs.map(mapSanityVilla);
@@ -233,6 +234,16 @@ export const CmsService = {
     if (!villa) {
       villa = await CmsService.getVillaBySlug(idOrSlug);
     }
+
+    // 3. SEO Fallback: If not found, try cleaning "ghost" suffixes (space + number)
+    // This resolves legacy broken links indexed by Google (e.g. "villa-name 1")
+    if (!villa) {
+      const decoded = decodeURIComponent(idOrSlug);
+      const cleanedSlug = decoded.replace(/\s+\d+$/, '').trim();
+      if (cleanedSlug !== decoded) {
+        villa = await CmsService.getVillaBySlug(cleanedSlug);
+      }
+    }
     
     return villa;
   },
@@ -255,7 +266,8 @@ export const CmsService = {
   },
 
   getSitemapData: async (): Promise<{ id: string; slug?: string; updatedAt: string }[]> => {
-    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { "_id": _id, "slug": slug.current, "_updatedAt": _updatedAt }`;
+    // SEO Protection: Filter out suspected duplicates from sitemap as well
+    const query = `*[_type == "villa" && !(_id in path("drafts.**")) && !(slug.current match "* 1") && !(slug.current match "* 2")] | order(name asc) { "_id": _id, "slug": slug.current, "_updatedAt": _updatedAt }`;
     try {
       const docs = await fetchSanity(query);
       return docs.map((doc: any) => ({

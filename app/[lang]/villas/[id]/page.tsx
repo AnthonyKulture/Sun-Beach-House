@@ -31,7 +31,7 @@ export async function generateMetadata(
     };
 
     const type = typeLabel[lang] || typeLabel.fr;
-    const mainTitle = `${villa.name} - ${locationName}, St. Barth (St barths) | Sun Beach House`;
+    const mainTitle = villa.location?.name && villa.location.name !== 'St. Barth' ? `${villa.name} - ${villa.location.name}` : villa.name;
     
     // Build a richer description
     const amenitiesList = villa.amenities?.slice(0, 3).map(a => a.name).join(', ') || '';
@@ -51,7 +51,7 @@ export async function generateMetadata(
         description: description,
         alternates: getAlternates(lang, `/villas/${preferredId}`),
         openGraph: {
-            title: `${villa.name} | Sun Beach House St. Barth`,
+            title: `${villa.name} | St-Barth`,
             description: description,
             images: villa.mainImage ? [villa.mainImage] : [],
             url: `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
@@ -134,7 +134,7 @@ export default async function VillaPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <VillaDetails villaId={villa.id} slug={villa.slug} />
+            <VillaDetails villaId={villa.id} slug={villa.slug} initialVilla={villa} />
         </>
     );
 }

@@ -6,10 +6,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Mentions Légales | Sun Beach House',
-        en: 'Legal Notice | Sun Beach House',
-        es: 'Aviso Legal | Sun Beach House',
-        pt: 'Aviso Legal | Sun Beach House',
+        fr: 'Mentions Légales',
+        en: 'Legal Notice',
+        es: 'Aviso Legal',
+        pt: 'Aviso Legal',
     };
     return {
         title: titles[lang] || titles.fr,

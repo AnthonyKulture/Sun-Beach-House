@@ -15,10 +15,13 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 interface CollectionsProps {
     mode: 'rent' | 'sale';
+    initialVillas?: import('../types').Villa[];
 }
 
-export const Collections: React.FC<CollectionsProps> = ({ mode }) => {
-    const { villas, loading } = useVillas();
+export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas }) => {
+    const { villas: fetchedVillas, loading: fetchedLoading } = useVillas(!!initialVillas);
+    const villas = initialVillas || fetchedVillas;
+    const loading = initialVillas ? false : fetchedLoading;
     const { language, t } = useLanguage();
     const searchParams = useSearchParams();
     const router = useRouter();

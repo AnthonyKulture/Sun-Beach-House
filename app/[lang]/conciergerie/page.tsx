@@ -6,10 +6,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Conciergerie de Luxe à Saint-Barthélemy | Sun Beach House',
-        en: 'Luxury Concierge Services in Saint-Barthélemy | Sun Beach House',
-        es: 'Servicios de Conserjería de Lujo en San Bartolomé | Sun Beach House',
-        pt: 'Serviços de Concierge de Luxo em Saint-Barthélemy | Sun Beach House',
+        fr: 'Conciergerie de Luxe',
+        en: 'Luxury Concierge Services',
+        es: 'Servicios de Conserjería de Lujo',
+        pt: 'Serviços de Concierge de Luxo',
     };
     const descriptions: Record<string, string> = {
         fr: 'Services de conciergerie haut de gamme à Saint-Barth: chefs privés, spa, transferts VIP, yachting, réservations restaurants, services aéroport. Une expérience sur mesure par Valérie.',
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         description: descriptions[lang] || descriptions.fr,
         keywords: 'conciergerie luxe saint barth, chef privé st barth, spa villa saint barthélemy, transfert vip sbh, service aéroport premium, yacht charter caribbean, concierge service st barts',
         openGraph: {
-            title: titles[lang] || titles.fr,
+            title: `${titles[lang] || titles.fr} | St-Barth`,
             description: descriptions[lang] || descriptions.fr,
             images: [{
                 url: '/images/optimized-conciergerie-hero.jpg',
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         },
         twitter: {
             card: 'summary_large_image',
-            title: titles[lang] || titles.fr,
+            title: `${titles[lang] || titles.fr} | St-Barth`,
             description: descriptions[lang] || descriptions.fr,
             images: ['/images/optimized-conciergerie-hero.jpg'],
         },

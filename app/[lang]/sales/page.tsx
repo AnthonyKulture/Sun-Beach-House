@@ -6,10 +6,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Villas de Luxe à Vendre à St. Barth | Sun Beach House',
-        en: 'Luxury Villas for Sale in St. Barth | Sun Beach House',
-        es: 'Villas de Lujo en Venta en St. Barth | Sun Beach House', 
-        pt: 'Villas de Luxo para Venda em St. Barth | Sun Beach House',
+        fr: 'Villas de Luxe à Vendre',
+        en: 'Luxury Villas for Sale',
+        es: 'Villas de Lujo en Venta',
+        pt: 'Villas de Luxo para Venda',
     };
     const descriptions: Record<string, string> = {
         fr: 'Investissez dans l\'exception à Saint-Barthélemy. Découvrez notre sélection exclusive de villas et propriétés de prestige.',
@@ -25,12 +25,15 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     }
 }
 
+import { CmsService } from '@/services/cms'
 import { Suspense } from 'react';
 
-export default function SalesPage() {
+export default async function SalesPage() {
+    const villas = await CmsService.getAllVillas();
+    
     return (
         <Suspense>
-            <Collections mode="sale" />
+            <Collections mode="sale" initialVillas={villas} />
         </Suspense>
     );
 }

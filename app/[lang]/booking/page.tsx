@@ -6,10 +6,10 @@ import { getAlternates } from '@/utils/seo';
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Demande de Réservation | Sun Beach House',
-        en: 'Booking Request | Sun Beach House',
-        es: 'Solicitud de Reserva | Sun Beach House',
-        pt: 'Pedido de Reserva | Sun Beach House',
+        fr: 'Demande de Réservation',
+        en: 'Booking Request',
+        es: 'Solicitud de Reserva',
+        pt: 'Pedido de Reserva',
     };
     return {
         title: titles[lang] || titles.fr,

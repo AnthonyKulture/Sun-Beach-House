@@ -1,15 +1,17 @@
 export const getAlternates = (lang: string, path: string) => {
     const baseUrl = 'https://www.sun-beach-house.com';
-    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    // Normalize path: ensure it starts with / and remove trailing / to match Next.js default behavior
+    const normalizedPath = path.replace(/^\/+|\/+$/g, '');
+    const finalPath = normalizedPath ? `/${normalizedPath}` : '';
     
     return {
-        canonical: `${baseUrl}/${lang}${cleanPath}`,
+        canonical: `${baseUrl}/${lang}${finalPath}`,
         languages: {
-            'fr-FR': `${baseUrl}/fr${cleanPath}`,
-            'en-US': `${baseUrl}/en${cleanPath}`,
-            'es-ES': `${baseUrl}/es${cleanPath}`,
-            'pt-PT': `${baseUrl}/pt${cleanPath}`,
-            'x-default': `${baseUrl}/fr${cleanPath}`,
+            'fr-FR': `${baseUrl}/fr${finalPath}`,
+            'en-US': `${baseUrl}/en${finalPath}`,
+            'es-ES': `${baseUrl}/es${finalPath}`,
+            'pt-PT': `${baseUrl}/pt${finalPath}`,
+            'x-default': `${baseUrl}/fr${finalPath}`,
         },
     };
 };
