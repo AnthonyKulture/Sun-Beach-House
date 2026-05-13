@@ -134,6 +134,10 @@ const villa = defineType({
   name: 'villa',
   title: 'Villa',
   type: 'document',
+  __experimental_search: [
+    { path: 'name', weight: 10 },
+    { path: 'location.name', weight: 5 },
+  ],
   groups: [
     { name: 'essential', title: 'Essentiel', default: true },
     { name: 'description', title: 'Description' },
