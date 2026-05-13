@@ -45,8 +45,10 @@ export default defineConfig({
             S.listItem()
               .title('📋 Toutes les villas')
               .child(
-                S.documentTypeList('villa')
+                S.documentList()
                   .title('Toutes les villas')
+                  .schemaType('villa')
+                  .filter('_type == "villa"')
                   .defaultOrdering([{ field: 'name', direction: 'asc' }])
               ),
 
@@ -63,9 +65,10 @@ export default defineConfig({
                     S.listItem()
                       .title('Toutes les locations')
                       .child(
-                        S.documentTypeList('villa')
+                        S.documentList()
                           .title('Toutes les locations')
-                          .filter('listingType == "rent"')
+                          .schemaType('villa')
+                          .filter('_type == "villa" && listingType == "rent"')
                           .defaultOrdering([{ field: 'name', direction: 'asc' }])
                       ),
 
@@ -78,8 +81,9 @@ export default defineConfig({
                         S.documentTypeList('location')
                           .title('Quartiers')
                           .child((locationId) =>
-                            S.documentTypeList('villa')
+                            S.documentList()
                               .title('Villas dans ce quartier (Location)')
+                              .schemaType('villa')
                               .filter('_type == "villa" && listingType == "rent" && location._ref == $locationId')
                               .params({ locationId })
                               .defaultOrdering([{ field: 'name', direction: 'asc' }])
@@ -99,9 +103,10 @@ export default defineConfig({
                     S.listItem()
                       .title('Toutes les ventes')
                       .child(
-                        S.documentTypeList('villa')
+                        S.documentList()
                           .title('Toutes les ventes')
-                          .filter('listingType == "sale"')
+                          .schemaType('villa')
+                          .filter('_type == "villa" && listingType == "sale"')
                           .defaultOrdering([{ field: 'name', direction: 'asc' }])
                       ),
 
@@ -114,8 +119,9 @@ export default defineConfig({
                         S.documentTypeList('location')
                           .title('Quartiers')
                           .child((locationId) =>
-                            S.documentTypeList('villa')
+                            S.documentList()
                               .title('Propriétés dans ce quartier (Vente)')
+                              .schemaType('villa')
                               .filter('_type == "villa" && listingType == "sale" && location._ref == $locationId')
                               .params({ locationId })
                               .defaultOrdering([{ field: 'name', direction: 'asc' }])
@@ -144,8 +150,9 @@ export default defineConfig({
                 S.documentTypeList('location')
                   .title('Quartiers')
                   .child((locationId) =>
-                    S.documentTypeList('villa')
+                    S.documentList()
                       .title('Toutes les villas dans ce quartier')
+                      .schemaType('villa')
                       .filter('_type == "villa" && location._ref == $locationId')
                       .params({ locationId })
                       .defaultOrdering([{ field: 'name', direction: 'asc' }])
@@ -158,9 +165,10 @@ export default defineConfig({
             S.listItem()
               .title('⭐ Mise en avant (Homepage)')
               .child(
-                S.documentTypeList('villa')
+                S.documentList()
                   .title('Villas mises en avant')
-                  .filter('featuredOnHomepage == true')
+                  .schemaType('villa')
+                  .filter('_type == "villa" && featuredOnHomepage == true')
                   .defaultOrdering([{ field: 'homepageOrder', direction: 'asc' }])
               ),
           ]),
