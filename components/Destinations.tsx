@@ -283,6 +283,9 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                             {t.destinations.ctaContact}
                         </button>
                     </div>
+                    <p className="mt-16 font-sans text-[10px] uppercase tracking-[0.25em] text-gray-400">
+                        <time dateTime="2026-05-13">{t.lastUpdated} : 13/05/2026</time>
+                    </p>
                 </div>
             </section>
 

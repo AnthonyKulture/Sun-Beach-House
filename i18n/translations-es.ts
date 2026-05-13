@@ -147,6 +147,7 @@ export const es: Translations = {
         },
         surface: 'Superficie',
         landSurface: 'Terreno',
+        aboutThisProperty: 'Acerca de la villa',
     },
 
     booking: {
@@ -458,6 +459,8 @@ export const es: Translations = {
 
     aboutPage: {
         title: 'El Espíritu',
+        h1: 'Valérie Kerckhofs, fundadora de Sun Beach House',
+        byline: 'Fundadora · Saint-Barthélemy desde 1996',
         intro: {
             greeting: 'Bienvenido. Soy Valérie.',
             p1: 'Y si está aquí... quizás no sea por casualidad. No soy solo alguien que alquila villas en Saint-Barthélemy. Soy alguien que conoce esta isla de corazón — no solo en un mapa.',
@@ -505,6 +508,96 @@ export const es: Translations = {
         experienceGolden: "Puesta de sol dorada sobre el puerto de Gustavia en San Bartolomé",
         villaCardPrefix: "Villa de lujo en San Bartolomé",
     },
+
+    homepageIntro: {
+        eyebrow: 'Sun Beach House',
+        h2: 'La agencia independiente de Valérie Kerckhofs en San Bartolomé',
+        body: "Fundada por Valérie Kerckhofs, residente en la isla desde 1996, Sun Beach House atiende a una clientela exigente para el alquiler vacacional y la venta de villas de prestigio en San Bartolomé. Nuestro enfoque es deliberadamente personal: cada villa es visitada y seleccionada a mano, el servicio de conserjería está incluido en cada estancia, y una selección discreta de propiedades fuera del mercado se reserva a compradores cualificados. Ya busque una semana frente al mar o una inversión patrimonial en la isla, tratará directamente con una interlocutora única — no con un número de expediente.",
+    },
+
+    collectionsIntro: {
+        rent: {
+            title: "Alquilar una villa en San Bartolomé con Sun Beach House",
+            p1: "Nuestra colección de alquileres vacacionales está seleccionada a mano, visitada personalmente por Valérie, y presentada con un conocimiento íntimo de cada barrio de la isla — de Gustavia a Pointe Milou, de Saint-Jean a Lurin. Cada propuesta que le enviamos se adapta realmente a su ritmo, su presupuesto y el carácter que busca.",
+            processTitle: "Cómo reservar",
+            process: [
+                "Envíenos sus fechas, número de invitados y el tipo de estancia que busca (vista al mar, paseo a restaurantes, aislamiento, capacidad familiar).",
+                "Verificamos personalmente cada disponibilidad — los calendarios en línea no siempre reflejan la situación real.",
+                "En 24 horas recibirá una selección personalizada con las villas que corresponden a su solicitud.",
+            ],
+            pricingTitle: "Tarifas e impuestos",
+            pricing: "Las tarifas se indican por semana, en dólares estadounidenses (USD). Se aplica una estancia mínima según la temporada. A estas tarifas se añaden los gastos de servicio (10 %) y la tasa turística (5 %), conforme a la normativa local.",
+            conciergeTitle: "Conserjería incluida",
+            concierge: "Toda reserva realizada a través de Sun Beach House incluye un acompañamiento de conserjería básico: traslados al aeropuerto, llenado del frigorífico a la llegada, contacto con un chef privado o un terapeuta de spa, y reservas en los restaurantes más solicitados. Los servicios a la carta se facturan por separado.",
+        },
+        sale: {
+            title: "Comprar en San Bartolomé",
+            p1: "El mercado inmobiliario de San Bartolomé es único: escasez de terreno, estabilidad jurídica francesa y demanda internacional constante. Cada adquisición es tanto una decisión patrimonial como un proyecto de vida. Nuestra selección incluye villas, apartamentos, terrenos y fondos de comercio en toda la isla, presentados con un expediente completo: superficies, planos, situación jurídica e historial.",
+            approachTitle: "Nuestro enfoque",
+            approach: [
+                "Comprensión precisa de su proyecto: residencia principal, inversión locativa o pied-à-terre estacional.",
+                "Selección focalizada de propiedades que realmente corresponden a sus criterios — sin saturación de listados.",
+                "Visitas presenciales o por videoconferencia, con análisis honesto de las fortalezas y limitaciones de cada propiedad.",
+                "Acompañamiento hasta la firma: notario, banca local, fiscalidad y gestión locativa si lo desea.",
+            ],
+            discretionTitle: "Discreción",
+            discretion: "Una parte importante de las transacciones en San Bartolomé se realiza fuera del mercado. Si su proyecto es confidencial, contáctenos directamente: algunas oportunidades solo se presentan a compradores cualificados, fuera del sitio web.",
+        },
+    },
+
+    faq: {
+        sectionTitle: "Preguntas frecuentes",
+        conciergerie: [
+            {
+                q: "¿Cómo se factura el servicio de conserjería?",
+                a: "El acompañamiento básico está incluido en toda reserva realizada a través de Sun Beach House (traslados simples, llenado del frigorífico, contacto con proveedores). Los servicios a la carta — chef privado, spa, alquiler de yate, servicios VIP aeropuerto — se facturan por separado, con presupuesto transparente enviado antes de la confirmación.",
+            },
+            {
+                q: "¿Con cuánta antelación debo reservar los servicios?",
+                a: "Recomendamos indicar los servicios deseados en cuanto se confirme su alquiler. Para los restaurantes más solicitados (Bonito, L'Isola, Maya's), un chef privado o un yate, un preaviso de 2 a 3 semanas garantiza la mejor disponibilidad. Para servicios aeroportuarios y traslados, 48 horas son suficientes.",
+            },
+            {
+                q: "¿Puedo usar la conserjería sin alquilar una villa?",
+                a: "Sí. Nuestros servicios — reservas, chef a domicilio, traslados, actividades náuticas — están disponibles para residentes y propietarios de la isla, así como para clientes de hotel. Contáctenos para un presupuesto personalizado.",
+            },
+            {
+                q: "¿Qué incluye el servicio VIP aeropuerto?",
+                a: "En Saint-Martin (SXM), Saint-Barth (SBH), San Juan (SJU) y Antigua (ANU): recibimiento personalizado en el avión, fast track en inmigración y aduana, gestión de equipaje, y acompañamiento hasta el vehículo, barco o vuelo de conexión. Servicio opcional, facturado por separado.",
+            },
+            {
+                q: "¿Organizan el transporte hasta San Bartolomé?",
+                a: "Sí. Coordinamos vuelos privados (avión o helicóptero), vuelos regulares vía SXM, SJU, ANU o PTP, y traslados marítimos privados desde islas vecinas. Estos servicios se organizan con socios especializados y se facturan por separado.",
+            },
+        ],
+        villa: [
+            {
+                q: "¿Cuál es la estancia mínima para un alquiler?",
+                a: "La estancia mínima varía según la temporada: generalmente 7 noches en temporada alta, 14 noches en Navidad, Año Nuevo, Acción de Gracias y Bucket Regatta. En temporada baja pueden estudiarse estancias más cortas caso por caso.",
+            },
+            {
+                q: "¿Qué incluye el precio indicado?",
+                a: "Las tarifas se indican por semana, en dólares estadounidenses (USD), e incluyen el uso de la villa, agua, electricidad, wifi y limpieza final. Se añaden los gastos de servicio (10 %) y la tasa turística (5 %), conforme a la normativa local.",
+            },
+            {
+                q: "¿Cómo funciona el proceso de reserva?",
+                a: "Envíenos sus fechas y criterios mediante el formulario. Verificamos personalmente la disponibilidad — los calendarios en línea no siempre reflejan la situación real — y le respondemos en 24 horas con una propuesta detallada. No se efectúa ningún cargo hasta su validación.",
+            },
+            {
+                q: "¿Cuál es la política de cancelación?",
+                a: "Las condiciones de cancelación se detallan en el contrato de alquiler y varían según la villa y la temporada. Le enviamos las condiciones completas antes de la firma, y siempre recomendamos contratar un seguro de cancelación para estancias en períodos premium.",
+            },
+            {
+                q: "¿Está incluida la conserjería?",
+                a: "Sí. Un acompañamiento básico está incluido en toda reserva realizada a través de Sun Beach House: traslados al aeropuerto, llenado del frigorífico a la llegada, y contacto con chef privado, terapeuta de spa o chófer. Los servicios a la carta se facturan por separado.",
+            },
+            {
+                q: "¿Cómo se gestiona la llegada a la villa?",
+                a: "Le recibimos personalmente a su llegada a la villa para la visita, entrega de llaves y presentación de los equipamientos. Si su vuelo llega tarde, podemos organizar un recibimiento diferido. Los traslados desde el aeropuerto SBH o en barco desde Saint-Martin se organizan a petición.",
+            },
+        ],
+    },
+
+    lastUpdated: 'Última actualización',
 
     cookies: {
         title: "Valoramos su privacidad",

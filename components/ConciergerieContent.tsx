@@ -3,6 +3,7 @@
 import React from 'react';
 import { SunStamp, NorthStar } from './Decorations';
 import { useLanguage } from '../contexts/LanguageContext';
+import { FaqSection } from './FaqSection';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -328,6 +329,9 @@ export const ConciergerieContent: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            {/* FAQ */}
+            <FaqSection title={t.faq.sectionTitle} items={t.faq.conciergerie} />
 
             {/* CTA SECTION */}
             <div className="max-w-[900px] mx-auto px-6 text-center my-16 md:my-24">

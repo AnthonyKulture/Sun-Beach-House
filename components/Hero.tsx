@@ -48,7 +48,7 @@ export const Hero: React.FC = () => {
                     unoptimized={false}
                 />
                 
-                {/* 
+                {/*
                     MuxBackgroundVideo for High Performance looping background
                     - PlaysInline, Muted, AutoPlay, Loop are handled by default
                     - No heavy player UI or controls

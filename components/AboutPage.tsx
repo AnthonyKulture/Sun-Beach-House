@@ -20,10 +20,16 @@ export const AboutPage: React.FC = () => {
                     style={{ backgroundImage: "url('/images/optimized-esprit-hero.jpg')" }}
                 />
                 <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute inset-x-0 bottom-0 top-32 xl:top-0 flex flex-col items-center justify-center text-white z-10 px-6">
-                    <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl xl:text-8xl italic drop-shadow-xl">
+                <div className="absolute inset-x-0 bottom-0 top-32 xl:top-0 flex flex-col items-center justify-center text-white z-10 px-6 text-center">
+                    <p className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-white/80 drop-shadow-lg mb-6">
                         {t.aboutPage.title}
+                    </p>
+                    <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl xl:text-7xl italic drop-shadow-xl max-w-4xl">
+                        {t.aboutPage.h1}
                     </h1>
+                    <p className="font-sans text-xs md:text-sm tracking-[0.25em] uppercase text-white/90 drop-shadow-lg mt-6">
+                        {t.aboutPage.byline}
+                    </p>
                 </div>
             </div>
 
@@ -187,6 +193,10 @@ export const AboutPage: React.FC = () => {
                     <p className="font-signature text-7xl md:text-8xl text-sbh-charcoal/70 -rotate-6 py-3">Valérie</p>
                     <span className="text-[10px] uppercase tracking-widest text-gray-400">{t.about.founder}</span>
                 </div>
+
+                <p className="mt-12 font-sans text-[10px] uppercase tracking-[0.25em] text-gray-400">
+                    <time dateTime="2026-05-13">{t.lastUpdated} : 13 mai 2026</time>
+                </p>
             </div>
 
         </div>

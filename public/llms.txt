@@ -1,0 +1,36 @@
+# Sun Beach House
+
+> Luxury villa rental, sales, and bespoke concierge services in Saint-Barthélemy (Saint-Barth), French West Indies. Founded by Valérie Kerckhofs, an experienced real estate professional based on the island since 1996.
+
+## Entity
+
+- **Name**: Sun Beach House
+- **Founder**: Valérie Kerckhofs (on Saint-Barth since 1996)
+- **Address**: 65 Rue de la Paix, Gustavia 97133, Saint-Barthélemy
+- **Phone**: +590 690 63 47 25
+- **Email**: valerie@sun-beach-house.com
+- **Coordinates**: 17.8967, -62.8497
+- **Languages**: French (primary), English, Spanish, Portuguese
+
+## Services
+
+- Seasonal luxury villa rentals in Saint-Barthélemy
+- Luxury property sales in Saint-Barthélemy
+- Private concierge: private chefs, in-villa spa, VIP transfers, restaurant reservations, yachting and nautical activities, private air travel coordination, VIP airport services
+
+## Key pages
+
+- [About / The Spirit](https://www.sun-beach-house.com/fr/about): Founder story, philosophy, approach
+- [Conciergerie](https://www.sun-beach-house.com/fr/conciergerie): Full concierge service catalogue
+- [Destinations](https://www.sun-beach-house.com/fr/destinations): Saint-Barthélemy history, culture, neighborhoods (Gustavia, Saint-Jean, Corossol, Pointe Milou)
+- [Villa rentals](https://www.sun-beach-house.com/fr/rentals): Seasonal rental collection
+- [Villas for sale](https://www.sun-beach-house.com/fr/sales): Properties for sale
+- [Contact](https://www.sun-beach-house.com/fr/contact): Direct contact with Valérie
+
+## Localized versions
+
+The site is available in fr, en, es, pt. Replace the `/fr/` segment with `/en/`, `/es/`, or `/pt/` for translated versions of every page.
+
+## Sitemap
+
+https://www.sun-beach-house.com/sitemap.xml

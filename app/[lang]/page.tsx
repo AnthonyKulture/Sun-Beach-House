@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
+import { HomepageIntro } from '@/components/HomepageIntro';
 import { About } from '@/components/About';
 import { Villas } from '@/components/Villas';
 import { Services } from '@/components/Services';
@@ -26,8 +27,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         es: 'Descubra una colección exclusiva de villas de lujo en San Bartolomé. Alquileres vacacionales, ventas y servicios de conserjería a medida.',
         pt: 'Descubra uma coleção exclusiva de villas de luxo em Saint-Barthélemy. Aluguéis de temporada, vendas e serviços de concierge personalizados.',
     };
-
-    const baseUrl = 'https://www.sun-beach-house.com';
 
     return {
         title: titles[lang] || titles.fr,
@@ -59,6 +58,7 @@ export default async function HomePage({ params }: Props) {
         return (
             <>
                 <Hero />
+                <HomepageIntro />
                 <About />
                 <Villas initialVillas={villas} />
                 <Services />

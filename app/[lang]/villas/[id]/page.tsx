@@ -104,6 +104,8 @@ export default async function VillaPage({ params }: Props) {
             '@type': 'Brand',
             'name': 'Sun Beach House'
         },
+        'agentOfProperty': { '@id': 'https://www.sun-beach-house.com/#org' },
+        'broker': { '@id': 'https://www.sun-beach-house.com/#org' },
         'offers': {
             '@type': 'Offer',
             'priceCurrency': isRental ? (villa.currency || 'USD') : 'EUR',
@@ -128,11 +130,51 @@ export default async function VillaPage({ params }: Props) {
         }
     };
 
+    const collectionSegment = isRental ? 'rentals' : 'sales';
+    const collectionLabel: Record<string, string> = {
+        fr: isRental ? 'Locations' : 'Ventes',
+        en: isRental ? 'Rentals' : 'Sales',
+        es: isRental ? 'Alquileres' : 'Ventas',
+        pt: isRental ? 'Aluguéis' : 'Vendas',
+    };
+    const homeLabel: Record<string, string> = {
+        fr: 'Accueil', en: 'Home', es: 'Inicio', pt: 'Início',
+    };
+
+    const breadcrumbLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': homeLabel[lang] || homeLabel.fr,
+                'item': `https://www.sun-beach-house.com/${lang}`,
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': collectionLabel[lang] || collectionLabel.fr,
+                'item': `https://www.sun-beach-house.com/${lang}/${collectionSegment}`,
+            },
+            {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': villa.name,
+                'item': `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
+            },
+        ],
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
             <VillaDetails villaId={villa.id} slug={villa.slug} initialVilla={villa} />
         </>

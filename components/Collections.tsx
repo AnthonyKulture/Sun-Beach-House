@@ -560,6 +560,68 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas })
                 )}
             </div>
 
+            {/* LONG-FORM INTRO BELOW GRID (SEO depth + buyer/renter context) */}
+            <section className="max-w-[900px] mx-auto px-6 md:px-12 mt-32 md:mt-40 text-sbh-charcoal">
+                {mode === 'rent' ? (
+                    <>
+                        <h2 className="font-serif text-2xl md:text-4xl italic mb-8 leading-tight">
+                            {t.collectionsIntro.rent.title}
+                        </h2>
+                        <p className="font-sans font-light text-base md:text-lg leading-relaxed text-sbh-charcoal/80 mb-12 text-justify">
+                            {t.collectionsIntro.rent.p1}
+                        </p>
+
+                        <h3 className="font-serif text-xl md:text-2xl italic mb-4">
+                            {t.collectionsIntro.rent.processTitle}
+                        </h3>
+                        <ol className="list-decimal list-inside space-y-3 mb-12 font-sans font-light text-base text-sbh-charcoal/80 marker:text-sbh-green marker:font-serif marker:italic">
+                            {t.collectionsIntro.rent.process.map((step, i) => (
+                                <li key={i} className="pl-2">{step}</li>
+                            ))}
+                        </ol>
+
+                        <h3 className="font-serif text-xl md:text-2xl italic mb-4">
+                            {t.collectionsIntro.rent.pricingTitle}
+                        </h3>
+                        <p className="font-sans font-light text-base text-sbh-charcoal/80 leading-relaxed mb-12 text-justify">
+                            {t.collectionsIntro.rent.pricing}
+                        </p>
+
+                        <h3 className="font-serif text-xl md:text-2xl italic mb-4">
+                            {t.collectionsIntro.rent.conciergeTitle}
+                        </h3>
+                        <p className="font-sans font-light text-base text-sbh-charcoal/80 leading-relaxed text-justify">
+                            {t.collectionsIntro.rent.concierge}
+                        </p>
+                    </>
+                ) : (
+                    <>
+                        <h2 className="font-serif text-2xl md:text-4xl italic mb-8 leading-tight">
+                            {t.collectionsIntro.sale.title}
+                        </h2>
+                        <p className="font-sans font-light text-base md:text-lg leading-relaxed text-sbh-charcoal/80 mb-12 text-justify">
+                            {t.collectionsIntro.sale.p1}
+                        </p>
+
+                        <h3 className="font-serif text-xl md:text-2xl italic mb-4">
+                            {t.collectionsIntro.sale.approachTitle}
+                        </h3>
+                        <ol className="list-decimal list-inside space-y-3 mb-12 font-sans font-light text-base text-sbh-charcoal/80 marker:text-sbh-green marker:font-serif marker:italic">
+                            {t.collectionsIntro.sale.approach.map((step, i) => (
+                                <li key={i} className="pl-2">{step}</li>
+                            ))}
+                        </ol>
+
+                        <h3 className="font-serif text-xl md:text-2xl italic mb-4">
+                            {t.collectionsIntro.sale.discretionTitle}
+                        </h3>
+                        <p className="font-sans font-light text-base text-sbh-charcoal/80 leading-relaxed text-justify">
+                            {t.collectionsIntro.sale.discretion}
+                        </p>
+                    </>
+                )}
+            </section>
+
         </div>
     );
 };

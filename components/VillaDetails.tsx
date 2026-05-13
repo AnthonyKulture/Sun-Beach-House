@@ -12,6 +12,7 @@ import { IconMap } from './IconMap';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translateDate } from '../utils/dateTranslation';
 import { useTranslatedVilla } from '../hooks/useTranslatedVilla';
+import { FaqSection } from './FaqSection';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -263,6 +264,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                         </div>
                         <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl italic mb-2 leading-none drop-shadow-lg">
                             {villa.name}
+                            <span className="sr-only"> — {villa.bedrooms} {villa.bedrooms > 1 ? t.villa.bedrooms : t.villa.bedroom} · {villa.location.name}, Saint-Barthélemy</span>
                         </h1>
                         <div className="flex items-center gap-4 mt-2 md:mt-4 drop-shadow-lg">
                             <div className="flex text-sbh-green">
@@ -478,8 +480,12 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
 
                     {/* STORYTELLING */}
                     <div className="mb-16 md:mb-24 reveal-on-scroll">
-                        <h2 className="font-serif text-2xl md:text-3xl text-sbh-charcoal mb-8 leading-tight">
-                            {villa.description as string}                        </h2>
+                        <h2 className="font-serif text-2xl md:text-3xl text-sbh-charcoal mb-4 leading-tight">
+                            {t.villa.aboutThisProperty} {villa.name}
+                        </h2>
+                        <p className="font-serif text-lg md:text-xl italic text-sbh-charcoal/70 mb-8 leading-relaxed">
+                            {villa.description as string}
+                        </p>
                         <div className="prose prose-lg text-gray-600 font-sans font-light leading-relaxed whitespace-pre-line text-justify">
                             {typeof villa.fullDescription === 'object'
                                 // @ts-ignore
@@ -812,6 +818,13 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                     </div>
                 </div>
             </div>
+
+            {/* FAQ (rentals only — FAQ items reference rental terms) */}
+            {!isSale && (
+                <div className="bg-white border-t border-sbh-charcoal/5">
+                    <FaqSection title={t.faq.sectionTitle} items={t.faq.villa} />
+                </div>
+            )}
 
             {/* CROSS NAVIGATION */}
             <div className="bg-sbh-cream py-24 px-6 md:px-12 border-t border-sbh-charcoal/5">

@@ -151,6 +151,7 @@ export interface Translations {
         };
         surface: string;
         landSurface: string;
+        aboutThisProperty: string;
     };
 
     // Booking
@@ -413,6 +414,8 @@ export interface Translations {
     // About Page
     aboutPage: {
         title: string;
+        h1: string;
+        byline: string;
         intro: {
             greeting: string;
             p1: string;
@@ -461,6 +464,45 @@ export interface Translations {
         experienceGolden: string;
         villaCardPrefix: string;
     };
+
+    // Homepage intro paragraph (between Hero and About sections)
+    homepageIntro: {
+        eyebrow: string;
+        h2: string;
+        body: string;
+    };
+
+    // Intro copy displayed below the villa grid on /rentals and /sales
+    collectionsIntro: {
+        rent: {
+            title: string;
+            p1: string;
+            processTitle: string;
+            process: string[];
+            pricingTitle: string;
+            pricing: string;
+            conciergeTitle: string;
+            concierge: string;
+        };
+        sale: {
+            title: string;
+            p1: string;
+            approachTitle: string;
+            approach: string[];
+            discretionTitle: string;
+            discretion: string;
+        };
+    };
+
+    // FAQ sections (rendered visibly + as FAQPage JSON-LD)
+    faq: {
+        sectionTitle: string;
+        conciergerie: { q: string; a: string }[];
+        villa: { q: string; a: string }[];
+    };
+
+    // Visible last-updated stamp on long-form pages
+    lastUpdated: string;
 
     // Cookies
     cookies: {

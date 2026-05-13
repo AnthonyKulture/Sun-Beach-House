@@ -148,6 +148,7 @@ const fr: Translations = {
         },
         surface: 'Habitable',
         landSurface: 'Terrain',
+        aboutThisProperty: 'À propos de la villa',
     },
 
     downloadBrochure: {
@@ -465,6 +466,8 @@ const fr: Translations = {
 
     aboutPage: {
         title: "L'Esprit",
+        h1: "Valérie Kerckhofs, fondatrice de Sun Beach House",
+        byline: "Fondatrice · Saint-Barthélemy depuis 1996",
         intro: {
             greeting: "Bienvenue. Je suis Valérie.",
             p1: "Et si vous êtes ici… ce n'est peut-être pas un hasard. Je ne suis pas seulement quelqu'un qui loue des villas à Saint-Barthélemy. Je suis quelqu'un qui connaît cette île par le cœur — pas seulement sur une carte.",
@@ -512,6 +515,96 @@ const fr: Translations = {
         experienceGolden: "Coucher de soleil doré sur le port de Gustavia à Saint-Barth",
         villaCardPrefix: "Villa de luxe à Saint-Barth",
     },
+
+    homepageIntro: {
+        eyebrow: 'Sun Beach House',
+        h2: 'L\'agence indépendante de Valérie Kerckhofs à Saint-Barthélemy',
+        body: "Fondée par Valérie Kerckhofs, présente sur l'île depuis 1996, Sun Beach House accompagne une clientèle exigeante pour la location saisonnière et la vente de villas de prestige à Saint-Barthélemy. Notre approche est volontairement à taille humaine : sélection visitée à la main, conciergerie incluse à chaque séjour, et présentation discrète de biens conservés hors-ligne pour les acquéreurs qualifiés. Que vous cherchiez une semaine face à la mer ou un investissement patrimonial sur l'île, vous êtes en contact direct avec une interlocutrice unique — pas un dossier.",
+    },
+
+    collectionsIntro: {
+        rent: {
+            title: "Louer une villa à Saint-Barthélemy avec Sun Beach House",
+            p1: "Notre collection de locations saisonnières regroupe des villas sélectionnées à la main, visitées par Valérie, et présentées avec une connaissance intime des quartiers de l'île — de Gustavia à Pointe Milou, de Saint-Jean à Lurin. Chaque proposition que nous vous adressons correspond réellement à votre rythme de séjour, à votre budget, et au caractère que vous recherchez.",
+            processTitle: "Comment réserver",
+            process: [
+                "Vous nous transmettez vos dates, le nombre d'invités et l'esprit recherché (vue mer, marche jusqu'aux restaurants, isolement, capacité famille).",
+                "Nous vérifions personnellement chaque disponibilité — les plannings en ligne ne reflètent pas toujours la situation réelle.",
+                "Vous recevez sous 24 h une proposition personnalisée avec les villas qui correspondent à votre demande.",
+            ],
+            pricingTitle: "Tarifs et taxes",
+            pricing: "Les prix indiqués sont par semaine, en dollars américains (USD). Un séjour minimum s'applique selon la période. À ces tarifs s'ajoutent les frais de service (10 %) et la taxe de séjour (5 %), conformément à la réglementation locale.",
+            conciergeTitle: "Conciergerie incluse",
+            concierge: "Toute location réservée via Sun Beach House inclut un accompagnement conciergerie de base : transferts aéroport, mise en place du frigo à l'arrivée, mise en relation avec un chef privé ou un thérapeute spa, et réservation des restaurants les plus prisés. Les prestations à la carte sont facturées séparément.",
+        },
+        sale: {
+            title: "Acheter à Saint-Barthélemy",
+            p1: "L'immobilier à Saint-Barthélemy ne ressemble à aucun autre marché : rareté foncière, stabilité juridique française, attrait constant de l'île. Chaque acquisition est une décision patrimoniale autant qu'un projet de vie. Notre sélection regroupe villas, appartements, terrains et fonds de commerce sur l'ensemble de l'île, présentés avec un dossier complet : surfaces, plans, statut juridique et historique.",
+            approachTitle: "Notre approche",
+            approach: [
+                "Compréhension précise de votre projet : résidence personnelle, investissement locatif ou pied-à-terre saisonnier.",
+                "Sélection ciblée des biens qui correspondent à vos critères — sans saturation de listings.",
+                "Visites organisées sur place ou en visio, avec analyse honnête des forces et limites de chaque propriété.",
+                "Accompagnement jusqu'à la signature : notaire, banque locale, fiscalité, et mise en gestion locative si vous le souhaitez.",
+            ],
+            discretionTitle: "Discrétion",
+            discretion: "Une part importante des transactions à Saint-Barth se fait hors-ligne. Si votre projet est confidentiel, contactez-nous directement : certaines opportunités ne sont présentées qu'à des acquéreurs qualifiés, en dehors du site.",
+        },
+    },
+
+    faq: {
+        sectionTitle: "Questions fréquentes",
+        conciergerie: [
+            {
+                q: "Comment fonctionne la facturation des services de conciergerie ?",
+                a: "L'accompagnement conciergerie de base est inclus dans toute location réservée via Sun Beach House (transferts simples, mise en place du frigo, mise en relation avec les prestataires). Les prestations à la carte — chef privé, spa, charter bateau, services VIP aéroport — sont facturées séparément, sur devis transparent transmis avant validation.",
+            },
+            {
+                q: "Quel est le délai pour réserver les services ?",
+                a: "Nous recommandons de signaler les services souhaités dès la confirmation de votre location. Pour les restaurants les plus prisés (Bonito, L'Isola, Maya's), un chef ou un yacht, un préavis de 2 à 3 semaines garantit la meilleure disponibilité. Pour les services aéroport et transferts, 48 h suffisent.",
+            },
+            {
+                q: "La conciergerie est-elle accessible en dehors d'une location de villa ?",
+                a: "Oui. Nos services concierge — réservations, chef à domicile, transferts, activités nautiques — sont accessibles aux résidents et aux propriétaires de l'île, ainsi qu'aux clients en hôtel. Contactez-nous pour un devis personnalisé.",
+            },
+            {
+                q: "Que comprend le service VIP aéroport ?",
+                a: "À Saint-Martin (SXM), Saint-Barth (SBH), San Juan (SJU) et Antigua (ANU) : accueil personnalisé à l'avion, fast track immigration et douanes, prise en charge des bagages, accompagnement jusqu'au véhicule, bateau ou vol de correspondance. Service optionnel, facturé en supplément.",
+            },
+            {
+                q: "Organisez-vous le transport jusqu'à Saint-Barth ?",
+                a: "Oui. Nous coordonnons les vols privés (avion ou hélicoptère), les vols réguliers via SXM, SJU, ANU ou PTP, et les transferts maritimes privés depuis les îles voisines. Ces prestations sont organisées avec des partenaires spécialisés et facturées séparément.",
+            },
+        ],
+        villa: [
+            {
+                q: "Quel est le séjour minimum pour une location ?",
+                a: "Le séjour minimum varie selon la période : généralement 7 nuits en haute saison, 14 nuits pendant Noël, Nouvel An, Thanksgiving et Bucket Regatta. En basse saison, des séjours plus courts peuvent être étudiés au cas par cas.",
+            },
+            {
+                q: "Que comprend le prix affiché ?",
+                a: "Les prix sont indiqués par semaine, en dollars américains (USD), et incluent l'usage de la villa, l'eau, l'électricité, le wifi, et le ménage de fin de séjour. À ces tarifs s'ajoutent les frais de service (10 %) et la taxe de séjour (5 %), conformément à la réglementation locale.",
+            },
+            {
+                q: "Comment se passe la réservation ?",
+                a: "Vous nous transmettez vos dates et critères via le formulaire de demande. Nous vérifions personnellement la disponibilité — les plannings en ligne ne reflètent pas toujours la situation réelle — et revenons vers vous sous 24 h avec une proposition détaillée. Aucun débit n'est effectué tant que vous n'avez pas validé.",
+            },
+            {
+                q: "Quelle est la politique d'annulation ?",
+                a: "Les conditions d'annulation sont précisées dans le contrat de location et varient selon la villa et la période. Nous vous transmettons les conditions complètes avant signature, et nous recommandons systématiquement une assurance annulation pour les séjours pendant les périodes premium.",
+            },
+            {
+                q: "La conciergerie est-elle incluse ?",
+                a: "Oui. Un accompagnement conciergerie de base est inclus dans toute location réservée via Sun Beach House : transferts aéroport, mise en place du frigo à l'arrivée, mise en relation avec un chef privé, un thérapeute spa, ou un chauffeur. Les prestations à la carte sont facturées séparément.",
+            },
+            {
+                q: "Comment se passe l'arrivée à la villa ?",
+                a: "Nous vous accueillons personnellement à votre arrivée à la villa pour la visite des lieux, la remise des clés et la présentation des équipements. Si votre vol arrive tard, un accueil différé peut être organisé. Les transferts depuis l'aéroport SBH ou par bateau depuis Saint-Martin sont organisés sur demande.",
+            },
+        ],
+    },
+
+    lastUpdated: 'Dernière mise à jour',
 
     cookies: {
         title: "Respect de votre vie privée",
@@ -685,6 +778,7 @@ const en: Translations = {
         },
         surface: 'Living area',
         landSurface: 'Land',
+        aboutThisProperty: 'About the villa',
     },
 
     map: {
@@ -996,6 +1090,8 @@ const en: Translations = {
 
     aboutPage: {
         title: 'The Spirit',
+        h1: 'Valérie Kerckhofs, founder of Sun Beach House',
+        byline: 'Founder · Saint-Barthélemy since 1996',
         intro: {
             greeting: "Welcome. I'm Valérie.",
             p1: "And if you're here... maybe it's not by chance. I'm not just someone who rents villas in Saint-Barthélemy. I'm someone who knows this island by heart — not just on a map.",
@@ -1043,6 +1139,96 @@ const en: Translations = {
         experienceGolden: "Golden sunset over Gustavia harbor in Saint-Barth",
         villaCardPrefix: "Luxury villa in Saint-Barth",
     },
+
+    homepageIntro: {
+        eyebrow: 'Sun Beach House',
+        h2: "Valérie Kerckhofs' independent agency in Saint-Barthélemy",
+        body: "Founded by Valérie Kerckhofs, who has lived on the island since 1996, Sun Beach House serves a discerning clientele for seasonal rentals and luxury property sales in Saint-Barthélemy. Our approach is deliberately personal: every villa is visited and selected by hand, concierge support is included with every stay, and a discreet selection of off-market properties is reserved for qualified buyers. Whether you're looking for a week by the sea or a long-term investment on the island, you'll deal directly with one person — not a file number.",
+    },
+
+    collectionsIntro: {
+        rent: {
+            title: "Renting a villa in Saint-Barthélemy with Sun Beach House",
+            p1: "Our seasonal rental collection is hand-picked, personally visited by Valérie, and presented with intimate knowledge of every neighborhood — from Gustavia to Pointe Milou, Saint-Jean to Lurin. Every proposal we send is genuinely tailored to your pace, budget, and the character you're looking for.",
+            processTitle: "How booking works",
+            process: [
+                "Send us your dates, the number of guests, and the kind of stay you want (sea view, walking distance to restaurants, seclusion, family capacity).",
+                "We personally verify each availability — online calendars don't always reflect the real situation.",
+                "Within 24 hours you receive a personalized selection matching your request.",
+            ],
+            pricingTitle: "Pricing and taxes",
+            pricing: "Rates are quoted per week in US dollars (USD). A minimum stay applies depending on the season. A 10% service fee and a 5% tourist tax are added in accordance with local regulations.",
+            conciergeTitle: "Concierge included",
+            concierge: "Every rental booked through Sun Beach House includes basic concierge support: airport transfers, fridge stocking on arrival, introductions to private chefs or spa therapists, and reservations at the island's most sought-after restaurants. À la carte services are billed separately.",
+        },
+        sale: {
+            title: "Buying in Saint-Barthélemy",
+            p1: "Real estate in Saint-Barthélemy is unlike any other market: scarce land, French legal stability, and constant international demand. Every acquisition is both a lifestyle decision and a long-term asset. Our sales selection covers villas, apartments, land, and commercial properties across the island, each presented with a full file: surfaces, plans, legal status, and history.",
+            approachTitle: "Our approach",
+            approach: [
+                "Clear understanding of your project: primary residence, rental investment, or seasonal pied-à-terre.",
+                "Focused selection of properties that actually match your criteria — no listing saturation.",
+                "On-site or remote viewings, with an honest review of each property's strengths and limits.",
+                "Full support through closing: notary, local banking, taxation, and rental management if you wish.",
+            ],
+            discretionTitle: "Discretion",
+            discretion: "A significant share of transactions on Saint-Barth happens off-market. If your project is confidential, contact us directly — certain opportunities are shown only to qualified buyers, outside the website.",
+        },
+    },
+
+    faq: {
+        sectionTitle: "Frequently asked questions",
+        conciergerie: [
+            {
+                q: "How is concierge service billed?",
+                a: "Basic concierge support is included with every rental booked through Sun Beach House (simple transfers, fridge stocking, vendor introductions). À la carte services — private chef, spa, yacht charter, VIP airport services — are billed separately, with a transparent quote sent before you commit.",
+            },
+            {
+                q: "How far in advance should I book services?",
+                a: "We recommend flagging the services you want as soon as your rental is confirmed. For the most sought-after restaurants (Bonito, L'Isola, Maya's), a private chef or a yacht, 2-3 weeks' notice secures the best availability. For airport and transfer services, 48 hours is enough.",
+            },
+            {
+                q: "Can I use concierge services without renting a villa?",
+                a: "Yes. Our concierge services — reservations, private chef at home, transfers, nautical activities — are available to island residents, second-home owners, and hotel guests. Contact us for a tailored quote.",
+            },
+            {
+                q: "What's included in the VIP airport service?",
+                a: "In Saint-Martin (SXM), Saint-Barth (SBH), San Juan (SJU) and Antigua (ANU): personal welcome at the aircraft, fast-track immigration and customs, baggage handling, and escort to your vehicle, boat, or connecting flight. Optional service, billed separately.",
+            },
+            {
+                q: "Do you arrange travel to Saint-Barth?",
+                a: "Yes. We coordinate private flights (plane or helicopter), scheduled flights via SXM, SJU, ANU or PTP, and private boat transfers from neighbouring islands. These services are arranged with specialist partners and billed separately.",
+            },
+        ],
+        villa: [
+            {
+                q: "What is the minimum stay?",
+                a: "The minimum stay varies by season: typically 7 nights in high season, 14 nights during Christmas, New Year, Thanksgiving and Bucket Regatta. In low season, shorter stays can be considered on a case-by-case basis.",
+            },
+            {
+                q: "What's included in the displayed price?",
+                a: "Rates are quoted per week in US dollars (USD) and include use of the villa, water, electricity, wifi, and end-of-stay cleaning. A 10% service fee and a 5% tourist tax are added in accordance with local regulations.",
+            },
+            {
+                q: "How does the booking process work?",
+                a: "Send us your dates and criteria via the inquiry form. We personally check availability — online calendars don't always reflect the real situation — and reply within 24 hours with a detailed proposal. No payment is taken until you confirm.",
+            },
+            {
+                q: "What is the cancellation policy?",
+                a: "Cancellation terms are detailed in the rental agreement and vary by villa and season. Full conditions are sent before signature, and we systematically recommend cancellation insurance for stays during premium periods.",
+            },
+            {
+                q: "Is concierge included?",
+                a: "Yes. Basic concierge support is included with every rental booked through Sun Beach House: airport transfers, fridge stocking on arrival, introductions to a private chef, spa therapist or driver. À la carte services are billed separately.",
+            },
+            {
+                q: "How does arrival at the villa work?",
+                a: "We welcome you in person at the villa for the walkthrough, key handover and orientation. If your flight arrives late, a delayed welcome can be arranged. Transfers from SBH airport or by boat from Saint-Martin are organized on request.",
+            },
+        ],
+    },
+
+    lastUpdated: 'Last updated',
 
     cookies: {
         title: "We value your privacy",

@@ -141,6 +141,7 @@ export default function LocaleLayout({
                         __html: JSON.stringify({
                             '@context': 'https://schema.org',
                             '@type': 'RealEstateAgent',
+                            '@id': 'https://www.sun-beach-house.com/#org',
                             name: 'Sun Beach House',
                             description: 'Location et vente de villas de luxe à Saint-Barthélemy. Conciergerie privée haut de gamme.',
                             url: 'https://www.sun-beach-house.com',
@@ -162,7 +163,19 @@ export default function LocaleLayout({
                             },
                             founder: {
                                 '@type': 'Person',
+                                '@id': 'https://www.sun-beach-house.com/#valerie',
                                 name: 'Valérie Kerckhofs',
+                                jobTitle: 'Founder & Real Estate Agent',
+                                worksFor: { '@id': 'https://www.sun-beach-house.com/#org' },
+                                knowsAbout: [
+                                    'Saint-Barthélemy real estate',
+                                    'Luxury villa rental',
+                                    'Luxury property sales',
+                                    'Private concierge services',
+                                ],
+                                knowsLanguage: ['fr', 'en'],
+                                sameAs: ['https://www.instagram.com/sun.beach.house'],
+                                image: 'https://www.sun-beach-house.com/images/valerie-founder.jpg',
                             },
                             sameAs: [
                                 'https://www.instagram.com/sun.beach.house',
