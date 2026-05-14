@@ -11,6 +11,7 @@ export interface Translations {
         destination: string;
         concierge: string;
         spirit: string;
+        magazine: string;
     };
 
     // Hero
@@ -503,6 +504,31 @@ export interface Translations {
 
     // Visible last-updated stamp on long-form pages
     lastUpdated: string;
+
+    // Blog / Magazine
+    blog: {
+        sectionLabel: string;
+        indexTitle: string;
+        indexSubtitle: string;
+        indexEmpty: string;
+        readMore: string;
+        publishedOn: string;
+        updatedOn: string;
+        author: string;
+        backToIndex: string;
+        relatedPosts: string;
+        sourcesTitle: string;
+        relatedVillasTitle: string;
+        categoryLabels: {
+            'vie-st-barth': string;
+            services: string;
+            villas: string;
+            saison: string;
+            immobilier: string;
+            destinations: string;
+            guides: string;
+        };
+    };
 
     // Cookies
     cookies: {

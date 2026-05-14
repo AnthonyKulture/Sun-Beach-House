@@ -92,6 +92,47 @@ export interface Villa {
 }
 
 
+export type Lang = 'fr' | 'en' | 'es' | 'pt';
+
+export interface LocalizedString {
+  fr?: string;
+  en?: string;
+  es?: string;
+  pt?: string;
+}
+
+export interface PostSource {
+  title: string;
+  url: string;
+  publisher?: string;
+  publishedDate?: string;
+  accessedDate?: string;
+}
+
+export interface PostListItem {
+  _id: string;
+  title: LocalizedString;
+  slug: { fr?: string; en?: string; es?: string; pt?: string };
+  excerpt: LocalizedString;
+  category: string;
+  tags?: string[];
+  mainImage?: string;
+  publishedAt: string;
+  author?: string;
+}
+
+export interface Post extends PostListItem {
+  body: LocalizedString;
+  seoTitle?: LocalizedString;
+  seoDescription?: LocalizedString;
+  targetKeywords?: { primary?: string; secondary?: string[] };
+  sources?: PostSource[];
+  relatedVillas?: { _id: string; name: string; slug?: string; mainImage?: string; location?: { name: string } }[];
+  mainImageAlt?: LocalizedString;
+  updatedAt?: string;
+  status: 'draft' | 'review' | 'published';
+}
+
 export interface ServiceItem {
   id: string;
   title: string;

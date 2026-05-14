@@ -24,7 +24,8 @@ export default defineConfig({
 
   tools: (prev) => {
     return [
-      ...prev,
+      // Hide the built-in "Releases" tab from the top navigation
+      ...prev.filter((t) => t.name !== 'releases'),
       {
         name: 'share-selection',
         title: 'Partager Sélection',
@@ -32,6 +33,11 @@ export default defineConfig({
         component: ShareSelectionTool,
       }
     ]
+  },
+
+  // Disable Content Releases feature entirely (removes the tab and its sidebar UI)
+  releases: {
+    enabled: false,
   },
 
   plugins: [
@@ -170,6 +176,131 @@ export default defineConfig({
                   .schemaType('villa')
                   .filter('_type == "villa" && featuredOnHomepage == true')
                   .defaultOrdering([{ field: 'homepageOrder', direction: 'asc' }])
+              ),
+
+            S.divider(),
+
+            // === SECTION: BLOG / MAGAZINE ===
+            S.listItem()
+              .title('📰 Blog / Magazine')
+              .child(
+                S.list()
+                  .title('Blog / Magazine')
+                  .items([
+                    S.listItem()
+                      .title('Tous les articles')
+                      .child(
+                        S.documentList()
+                          .title('Tous les articles')
+                          .schemaType('post')
+                          .filter('_type == "post"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+
+                    S.divider(),
+
+                    S.listItem()
+                      .title('Brouillons')
+                      .child(
+                        S.documentList()
+                          .title('Brouillons')
+                          .schemaType('post')
+                          .filter('_type == "post" && status == "draft"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('En relecture')
+                      .child(
+                        S.documentList()
+                          .title('En relecture')
+                          .schemaType('post')
+                          .filter('_type == "post" && status == "review"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+                    S.listItem()
+                      .title('Publiés')
+                      .child(
+                        S.documentList()
+                          .title('Publiés')
+                          .schemaType('post')
+                          .filter('_type == "post" && status == "published"')
+                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                      ),
+
+                    S.divider(),
+
+                    S.listItem()
+                      .title('📂 Par catégorie')
+                      .child(
+                        S.list()
+                          .title('Catégories')
+                          .items([
+                            S.listItem()
+                              .title('Vie à Saint-Barth')
+                              .child(
+                                S.documentList()
+                                  .title('Vie à Saint-Barth')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "vie-st-barth"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                            S.listItem()
+                              .title('Services & Conciergerie')
+                              .child(
+                                S.documentList()
+                                  .title('Services & Conciergerie')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "services"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                            S.listItem()
+                              .title('Villas & Propriétés')
+                              .child(
+                                S.documentList()
+                                  .title('Villas & Propriétés')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "villas"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                            S.listItem()
+                              .title('Saison & Évènements')
+                              .child(
+                                S.documentList()
+                                  .title('Saison & Évènements')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "saison"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                            S.listItem()
+                              .title('Immobilier & Investissement')
+                              .child(
+                                S.documentList()
+                                  .title('Immobilier & Investissement')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "immobilier"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                            S.listItem()
+                              .title('Destinations & Quartiers')
+                              .child(
+                                S.documentList()
+                                  .title('Destinations & Quartiers')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "destinations"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                            S.listItem()
+                              .title('Guides pratiques')
+                              .child(
+                                S.documentList()
+                                  .title('Guides pratiques')
+                                  .schemaType('post')
+                                  .filter('_type == "post" && category == "guides"')
+                                  .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
+                              ),
+                          ])
+                      ),
+                  ])
               ),
           ]),
     }),

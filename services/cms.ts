@@ -1,4 +1,4 @@
-import { Villa, SeasonalPrice, BedroomPrice, Equipment, Season, Location } from '../types';
+import { Villa, SeasonalPrice, BedroomPrice, Equipment, Season, Location, Post, PostListItem } from '../types';
 
 // Configuration Sanity - Using environment variables
 const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'i6dkdu7j';
@@ -261,6 +261,109 @@ export const CmsService = {
       return docs.map(mapSanityVilla);
     } catch (error) {
       console.error('Erreur getSimilarVillas:', error);
+      return [];
+    }
+  },
+
+  // ──────────────────────────────────────────────────────────────────
+  // Blog posts
+  // ──────────────────────────────────────────────────────────────────
+
+  getPublishedPosts: async (): Promise<PostListItem[]> => {
+    const query = `*[_type == "post" && status == "published" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+      _id,
+      title,
+      "slug": { "fr": slug.fr.current, "en": slug.en.current, "es": slug.es.current, "pt": slug.pt.current },
+      excerpt,
+      category,
+      tags,
+      "mainImage": mainImage.asset->url,
+      publishedAt,
+      author
+    }`;
+    try {
+      const docs = await fetchSanity(query);
+      return (docs || []).map((d: any) => ({
+        _id: d._id,
+        title: d.title || {},
+        slug: d.slug || {},
+        excerpt: d.excerpt || {},
+        category: d.category,
+        tags: d.tags || [],
+        mainImage: d.mainImage,
+        publishedAt: d.publishedAt,
+        author: d.author,
+      }));
+    } catch (error) {
+      console.error('Erreur getPublishedPosts:', error);
+      return [];
+    }
+  },
+
+  getPostBySlug: async (slug: string, lang: 'fr' | 'en' | 'es' | 'pt'): Promise<Post | undefined> => {
+    const query = `*[_type == "post" && status == "published" && slug.${lang}.current == $slug && !(_id in path("drafts.**"))][0] {
+      _id,
+      title,
+      "slug": { "fr": slug.fr.current, "en": slug.en.current, "es": slug.es.current, "pt": slug.pt.current },
+      excerpt,
+      body,
+      seoTitle,
+      seoDescription,
+      targetKeywords,
+      sources,
+      category,
+      tags,
+      "mainImage": mainImage.asset->url,
+      "mainImageAlt": { "fr": mainImage.alt, "en": mainImage.alt_en, "es": mainImage.alt_es, "pt": mainImage.alt_pt },
+      publishedAt,
+      updatedAt,
+      author,
+      status,
+      relatedVillas[]->{ _id, name, "slug": slug.current, "mainImage": mainImage.asset->url, location->{ name } }
+    }`;
+    try {
+      const doc = await fetchSanity(query, { slug });
+      if (!doc) return undefined;
+      return {
+        _id: doc._id,
+        title: doc.title || {},
+        slug: doc.slug || {},
+        excerpt: doc.excerpt || {},
+        body: doc.body || {},
+        seoTitle: doc.seoTitle,
+        seoDescription: doc.seoDescription,
+        targetKeywords: doc.targetKeywords,
+        sources: doc.sources || [],
+        category: doc.category,
+        tags: doc.tags || [],
+        mainImage: doc.mainImage,
+        mainImageAlt: doc.mainImageAlt,
+        publishedAt: doc.publishedAt,
+        updatedAt: doc.updatedAt,
+        author: doc.author,
+        status: doc.status,
+        relatedVillas: doc.relatedVillas || [],
+      };
+    } catch (error) {
+      console.error('Erreur getPostBySlug:', error);
+      return undefined;
+    }
+  },
+
+  /** All published post slug tuples for generateStaticParams + sitemap */
+  getAllPostSlugs: async (): Promise<{ slug: { fr?: string; en?: string; es?: string; pt?: string }; updatedAt: string }[]> => {
+    const query = `*[_type == "post" && status == "published" && !(_id in path("drafts.**"))] {
+      "slug": { "fr": slug.fr.current, "en": slug.en.current, "es": slug.es.current, "pt": slug.pt.current },
+      "_updatedAt": coalesce(updatedAt, publishedAt, _updatedAt)
+    }`;
+    try {
+      const docs = await fetchSanity(query);
+      return (docs || []).map((d: any) => ({
+        slug: d.slug || {},
+        updatedAt: d._updatedAt,
+      }));
+    } catch (error) {
+      console.error('Erreur getAllPostSlugs:', error);
       return [];
     }
   },

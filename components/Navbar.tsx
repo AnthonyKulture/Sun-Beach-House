@@ -163,6 +163,10 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
             {t.nav.spirit}
             <span className={`absolute -bottom-2 left-0 h-px ${isDarkText ? 'bg-sbh-darkgreen' : 'bg-sbh-blue'} transition-all duration-300 ${isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
           </Link>
+          <Link href={`/${language}/blog`} className={`hover:text-sbh-blue transition-colors duration-300 relative group uppercase tracking-[0.15em] ${isActive('/blog') ? (isDarkText ? 'text-sbh-darkgreen font-bold' : 'text-sbh-blue font-semibold') : ''}`}>
+            {t.nav.magazine}
+            <span className={`absolute -bottom-2 left-0 h-px ${isDarkText ? 'bg-sbh-darkgreen' : 'bg-sbh-blue'} transition-all duration-300 ${isActive('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+          </Link>
           <Link href={`/${language}/contact`} className={`hover:text-sbh-blue transition-colors duration-300 hover:opacity-100 uppercase tracking-[0.15em] ${isActive('/contact') ? (isDarkText ? 'text-sbh-darkgreen font-bold underline underline-offset-8' : 'text-sbh-blue font-semibold') : ''}`}>
             {t.nav.contact}
           </Link>
@@ -230,6 +234,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
           <Link href={`/${language}/destinations`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/destinations') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.destination}</Link>
           <Link href={`/${language}/conciergerie`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/conciergerie') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.concierge}</Link>
           <Link href={`/${language}/about`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/about') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.spirit}</Link>
+          <Link href={`/${language}/blog`} onClick={() => setMenuOpen(false)} className={`text-xl font-serif font-light italic ${isActive('/blog') ? 'text-sbh-blue' : 'text-sbh-charcoal'}`}>{t.nav.magazine}</Link>
           <Link href={`/${language}/contact`} onClick={() => setMenuOpen(false)} className={`text-xs font-sans tracking-[0.3em] uppercase mt-8 border-b pb-1 ${isActive('/contact') ? 'text-sbh-blue border-sbh-blue' : 'text-sbh-charcoal border-sbh-charcoal'}`}>{t.nav.contact}</Link>
 
           {/* Language Switcher Mobile */}

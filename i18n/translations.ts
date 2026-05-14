@@ -11,6 +11,7 @@ const fr: Translations = {
         destination: 'Destination',
         concierge: 'Conciergerie',
         spirit: "L'Esprit",
+        magazine: 'Magazine',
     },
 
     hero: {
@@ -606,6 +607,30 @@ const fr: Translations = {
 
     lastUpdated: 'Dernière mise à jour',
 
+    blog: {
+        sectionLabel: 'Magazine',
+        indexTitle: 'Le Magazine',
+        indexSubtitle: "Saint-Barthélemy par Sun Beach House — guides, saisons, services et art de vivre.",
+        indexEmpty: 'Les premiers articles arrivent prochainement.',
+        readMore: 'Lire l\'article',
+        publishedOn: 'Publié le',
+        updatedOn: 'Mis à jour le',
+        author: 'Par',
+        backToIndex: 'Retour au magazine',
+        relatedPosts: 'À lire également',
+        sourcesTitle: 'Sources',
+        relatedVillasTitle: 'Villas mentionnées',
+        categoryLabels: {
+            'vie-st-barth': 'Vie à Saint-Barth',
+            services: 'Services & Conciergerie',
+            villas: 'Villas & Propriétés',
+            saison: 'Saison & Évènements',
+            immobilier: 'Immobilier',
+            destinations: 'Destinations & Quartiers',
+            guides: 'Guides pratiques',
+        },
+    },
+
     cookies: {
         title: "Respect de votre vie privée",
         description: "Nous utilisons des cookies pour optimiser votre expérience, analyser le trafic et personnaliser nos contenus. Votre parcours sur l'île commence par le respect de vos données.",
@@ -641,6 +666,7 @@ const en: Translations = {
         destination: 'Destination',
         concierge: 'Concierge',
         spirit: 'The Spirit',
+        magazine: 'Magazine',
     },
 
     hero: {
@@ -1229,6 +1255,30 @@ const en: Translations = {
     },
 
     lastUpdated: 'Last updated',
+
+    blog: {
+        sectionLabel: 'Magazine',
+        indexTitle: 'The Magazine',
+        indexSubtitle: 'Saint-Barthélemy by Sun Beach House — guides, seasons, services and lifestyle.',
+        indexEmpty: 'New articles are coming soon.',
+        readMore: 'Read the article',
+        publishedOn: 'Published on',
+        updatedOn: 'Updated on',
+        author: 'By',
+        backToIndex: 'Back to the magazine',
+        relatedPosts: 'Also worth reading',
+        sourcesTitle: 'Sources',
+        relatedVillasTitle: 'Villas mentioned',
+        categoryLabels: {
+            'vie-st-barth': 'Life in Saint-Barth',
+            services: 'Services & Concierge',
+            villas: 'Villas & Properties',
+            saison: 'Season & Events',
+            immobilier: 'Real Estate',
+            destinations: 'Destinations & Neighborhoods',
+            guides: 'Practical guides',
+        },
+    },
 
     cookies: {
         title: "We value your privacy",

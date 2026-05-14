@@ -3,6 +3,7 @@ import translationCache from './translationCache'
 import { equipment } from './equipment'
 import { season } from './season'
 import { location } from './location'
+import { post } from './post'
 
 export const schemaTypes = [
   // Nouveaux types de documents (gestion dynamique)
@@ -15,5 +16,6 @@ export const schemaTypes = [
   homeFeature,
   // Types de documents
   villa,
+  post,
   translationCache,
 ]

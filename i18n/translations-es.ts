@@ -10,6 +10,7 @@ export const es: Translations = {
         destination: 'Destino',
         concierge: 'Conserje',
         spirit: 'El Espíritu',
+        magazine: 'Magazine',
     },
 
     hero: {
@@ -598,6 +599,30 @@ export const es: Translations = {
     },
 
     lastUpdated: 'Última actualización',
+
+    blog: {
+        sectionLabel: 'Magazine',
+        indexTitle: 'El Magazine',
+        indexSubtitle: 'Saint-Barthélemy por Sun Beach House — guías, temporadas, servicios y arte de vivir.',
+        indexEmpty: 'Los primeros artículos llegarán pronto.',
+        readMore: 'Leer el artículo',
+        publishedOn: 'Publicado el',
+        updatedOn: 'Actualizado el',
+        author: 'Por',
+        backToIndex: 'Volver al magazine',
+        relatedPosts: 'También para leer',
+        sourcesTitle: 'Fuentes',
+        relatedVillasTitle: 'Villas mencionadas',
+        categoryLabels: {
+            'vie-st-barth': 'Vida en Saint-Barth',
+            services: 'Servicios y Conserjería',
+            villas: 'Villas y Propiedades',
+            saison: 'Temporada y Eventos',
+            immobilier: 'Inmobiliario',
+            destinations: 'Destinos y Barrios',
+            guides: 'Guías prácticas',
+        },
+    },
 
     cookies: {
         title: "Valoramos su privacidad",

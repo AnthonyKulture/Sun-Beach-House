@@ -13,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/contact', priority: 0.7, changeFreq: 'weekly' as const },
     { path: '/conciergerie', priority: 0.8, changeFreq: 'weekly' as const },
     { path: '/destinations', priority: 0.8, changeFreq: 'weekly' as const },
+    { path: '/blog', priority: 0.7, changeFreq: 'daily' as const },
     { path: '/mentions-legales', priority: 0.3, changeFreq: 'monthly' as const },
     { path: '/politique-de-confidentialite', priority: 0.3, changeFreq: 'monthly' as const },
     { path: '/conditions-generales', priority: 0.3, changeFreq: 'monthly' as const },
@@ -20,6 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic villa routes
   const villas = await CmsService.getSitemapData()
+
+  // Dynamic blog post routes (one entry per language with its own slug)
+  const posts = await CmsService.getAllPostSlugs()
 
   const sitemapEntries: MetadataRoute.Sitemap = []
 
@@ -58,6 +62,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             'en': `${baseUrl}/en/villas/${preferredId}`,
             'es': `${baseUrl}/es/villas/${preferredId}`,
             'pt': `${baseUrl}/pt/villas/${preferredId}`,
+          }
+        }
+      })
+    })
+
+    // Blog post routes — slug differs per language, hreflang points each variant to its own slug
+    posts.forEach((post) => {
+      const currentSlug = post.slug[locale as 'fr' | 'en' | 'es' | 'pt']
+      if (!currentSlug) return // skip if no translation for this locale
+      sitemapEntries.push({
+        url: `${baseUrl}/${locale}/blog/${currentSlug}`,
+        lastModified: new Date(post.updatedAt),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+        alternates: {
+          languages: {
+            ...(post.slug.fr ? { fr: `${baseUrl}/fr/blog/${post.slug.fr}` } : {}),
+            ...(post.slug.en ? { en: `${baseUrl}/en/blog/${post.slug.en}` } : {}),
+            ...(post.slug.es ? { es: `${baseUrl}/es/blog/${post.slug.es}` } : {}),
+            ...(post.slug.pt ? { pt: `${baseUrl}/pt/blog/${post.slug.pt}` } : {}),
           }
         }
       })
