@@ -204,22 +204,6 @@ export const post = defineType({
             group: 'meta',
         }),
         defineField({
-            name: 'status',
-            title: 'Statut',
-            type: 'string',
-            group: 'meta',
-            options: {
-                list: [
-                    { title: 'Brouillon', value: 'draft' },
-                    { title: 'En relecture', value: 'review' },
-                    { title: 'Publié', value: 'published' },
-                ],
-                layout: 'radio',
-            },
-            initialValue: 'draft',
-            validation: (r) => r.required(),
-        }),
-        defineField({
             name: 'verificationNotes',
             title: 'Notes de vérification (interne)',
             description: 'Points marqués [À VÉRIFIER] par l\'agent rédactionnel à valider avant publication',
@@ -233,15 +217,13 @@ export const post = defineType({
             title: 'title.fr',
             category: 'category',
             publishedAt: 'publishedAt',
-            status: 'status',
             media: 'mainImage',
         },
-        prepare({ title, category, publishedAt, status, media }) {
+        prepare({ title, category, publishedAt, media }) {
             const date = publishedAt ? new Date(publishedAt).toLocaleDateString('fr-FR') : '?'
-            const statusLabel = status === 'published' ? '[PUB]' : status === 'review' ? '[REL]' : '[BRO]'
             return {
                 title: title || 'Article sans titre',
-                subtitle: `${statusLabel} ${category || '?'} · ${date}`,
+                subtitle: `${category || '?'} · ${date}`,
                 media,
             }
         },
@@ -251,11 +233,6 @@ export const post = defineType({
             title: 'Date de publication (récent → ancien)',
             name: 'publishedAtDesc',
             by: [{ field: 'publishedAt', direction: 'desc' }],
-        },
-        {
-            title: 'Statut',
-            name: 'statusAsc',
-            by: [{ field: 'status', direction: 'asc' }],
         },
     ],
 })

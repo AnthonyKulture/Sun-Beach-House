@@ -166,7 +166,6 @@ This must match `sbh-cms/schemaTypes/post.ts` exactly.
   "relatedVillaSlugs": ["villa-slug-1", "villa-slug-2"],
   "author": "Sun Beach House",
   "publishedAt": "2026-05-14T10:00:00Z",
-  "status": "draft",
   "verificationNotes": "Lignes à vérifier : section 2 (prix taxe de séjour 2026 cité d'après lejournaldesaintbarth, à confirmer), section 4 (date BucketRegatta 2027 — calendrier officiel non encore publié au moment de la rédaction)."
 }
 ```

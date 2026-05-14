@@ -200,36 +200,6 @@ export default defineConfig({
                     S.divider(),
 
                     S.listItem()
-                      .title('Brouillons')
-                      .child(
-                        S.documentList()
-                          .title('Brouillons')
-                          .schemaType('post')
-                          .filter('_type == "post" && status == "draft"')
-                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
-                      ),
-                    S.listItem()
-                      .title('En relecture')
-                      .child(
-                        S.documentList()
-                          .title('En relecture')
-                          .schemaType('post')
-                          .filter('_type == "post" && status == "review"')
-                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
-                      ),
-                    S.listItem()
-                      .title('Publiés')
-                      .child(
-                        S.documentList()
-                          .title('Publiés')
-                          .schemaType('post')
-                          .filter('_type == "post" && status == "published"')
-                          .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
-                      ),
-
-                    S.divider(),
-
-                    S.listItem()
                       .title('📂 Par catégorie')
                       .child(
                         S.list()

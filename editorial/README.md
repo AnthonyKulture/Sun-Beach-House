@@ -59,7 +59,6 @@ Pour chaque article, vérifier :
 - [ ] Pas de villa inventée (cross-check avec Sanity)
 - [ ] Image principale identifiée (URL ou photo à fournir)
 - [ ] Catégorie cohérente
-- [ ] Status = "draft" en sortie d'agent
 
 ## Import dans Sanity
 
@@ -82,14 +81,14 @@ npm run import-post -- --file=../editorial/posts/<slug>/post.json --dry-run
 
 Affiche : validation schéma, lookup des villas liées, structure du doc final. Aucun appel d'écriture à Sanity.
 
-### Import réel (statut "draft")
+### Import réel (en brouillon — recommandé)
 
 ```bash
 cd sbh-cms
 npm run import-post -- --file=../editorial/posts/<slug>/post.json
 ```
 
-Crée le document `post-<slug>` dans Sanity. Idempotent : ré-exécuter met à jour le même document.
+Crée un **brouillon Sanity** (`_id = drafts.post-<slug>`). L'article n'est PAS visible sur le site tant que vous n'avez pas cliqué "Publish" dans le Studio Sanity. Idempotent : ré-exécuter met à jour le même brouillon.
 
 ### Avec image principale
 
@@ -100,14 +99,14 @@ npm run import-post -- --file=../editorial/posts/<slug>/post.json --image=../pat
 
 Upload l'image en asset Sanity, l'attache à `mainImage`, et reprend les `alt` fields déjà présents dans `post.json`.
 
-### Publication directe
+### Publication directe (déconseillé)
 
 ```bash
 cd sbh-cms
 npm run import-post -- --file=../editorial/posts/<slug>/post.json --publish
 ```
 
-Force `status = "published"`. À éviter tant que la relecture humaine n'est pas faite.
+Crée directement un document publié (`_id = post-<slug>`). À éviter tant que la relecture humaine n'est pas faite — l'article apparaîtra immédiatement sur `/[lang]/blog`.
 
 ### Garde-fous du script
 
@@ -121,10 +120,10 @@ Force `status = "published"`. À éviter tant que la relecture humaine n'est pas
 1. Agent produit `editorial/posts/<slug>/post.json`
 2. Relire le `verificationNotes` et corriger si besoin
 3. `npm run import-post -- --file=... --dry-run` pour valider
-4. `npm run import-post -- --file=... --image=...` pour importer
+4. `npm run import-post -- --file=... --image=...` pour importer (en brouillon)
 5. Ouvrir le doc dans Studio (URL imprimée par le script)
-6. Vérification finale visuelle
-7. Changer `status` : `draft` → `review` → `published`
+6. Vérification finale visuelle dans le studio
+7. Cliquer **Publish** dans Sanity Studio → l'article devient visible sur `/[lang]/blog` (ISR 5 min)
 
 ## Garde-fous anti-hallucination
 

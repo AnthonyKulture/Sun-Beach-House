@@ -270,7 +270,7 @@ export const CmsService = {
   // ──────────────────────────────────────────────────────────────────
 
   getPublishedPosts: async (): Promise<PostListItem[]> => {
-    const query = `*[_type == "post" && status == "published" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+    const query = `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
       _id,
       title,
       "slug": { "fr": slug.fr.current, "en": slug.en.current, "es": slug.es.current, "pt": slug.pt.current },
@@ -301,7 +301,7 @@ export const CmsService = {
   },
 
   getPostBySlug: async (slug: string, lang: 'fr' | 'en' | 'es' | 'pt'): Promise<Post | undefined> => {
-    const query = `*[_type == "post" && status == "published" && slug.${lang}.current == $slug && !(_id in path("drafts.**"))][0] {
+    const query = `*[_type == "post" && slug.${lang}.current == $slug && !(_id in path("drafts.**"))][0] {
       _id,
       title,
       "slug": { "fr": slug.fr.current, "en": slug.en.current, "es": slug.es.current, "pt": slug.pt.current },
@@ -318,7 +318,6 @@ export const CmsService = {
       publishedAt,
       updatedAt,
       author,
-      status,
       relatedVillas[]->{ _id, name, "slug": slug.current, "mainImage": mainImage.asset->url, location->{ name } }
     }`;
     try {
@@ -341,7 +340,6 @@ export const CmsService = {
         publishedAt: doc.publishedAt,
         updatedAt: doc.updatedAt,
         author: doc.author,
-        status: doc.status,
         relatedVillas: doc.relatedVillas || [],
       };
     } catch (error) {
@@ -352,7 +350,7 @@ export const CmsService = {
 
   /** All published post slug tuples for generateStaticParams + sitemap */
   getAllPostSlugs: async (): Promise<{ slug: { fr?: string; en?: string; es?: string; pt?: string }; updatedAt: string }[]> => {
-    const query = `*[_type == "post" && status == "published" && !(_id in path("drafts.**"))] {
+    const query = `*[_type == "post" && !(_id in path("drafts.**"))] {
       "slug": { "fr": slug.fr.current, "en": slug.en.current, "es": slug.es.current, "pt": slug.pt.current },
       "_updatedAt": coalesce(updatedAt, publishedAt, _updatedAt)
     }`;

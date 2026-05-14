@@ -130,7 +130,6 @@ export interface Post extends PostListItem {
   relatedVillas?: { _id: string; name: string; slug?: string; mainImage?: string; location?: { name: string } }[];
   mainImageAlt?: LocalizedString;
   updatedAt?: string;
-  status: 'draft' | 'review' | 'published';
 }
 
 export interface ServiceItem {

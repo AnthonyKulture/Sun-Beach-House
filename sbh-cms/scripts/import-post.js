@@ -9,7 +9,9 @@
  *   --file=<path>     Required. Path to post.json (relative to cwd or absolute).
  *   --image=<path>    Optional. Local image to upload as mainImage. Inherits alt fields
  *                     already present in post.json mainImage block.
- *   --publish         Optional. Force status = "published" (overrides post.json).
+ *   --publish         Optional. Import the document in PUBLISHED state (no "drafts." prefix).
+ *                     Default behavior is to create a DRAFT so a human can review in Studio
+ *                     and click "Publish" when ready.
  *   --dry-run         Optional. Validate + look up references but do NOT write to Sanity.
  *
  * Env (from sbh-cms/.env.local):
@@ -18,8 +20,9 @@
  *   SANITY_WRITE_TOKEN   (must have write access)
  *
  * Idempotency:
- *   The Sanity document _id is derived from slug.fr.current → "post-<slug>".
- *   Re-running with the same slug updates the existing document (createOrReplace).
+ *   - Draft (default): _id = "drafts.post-<slug-fr>"
+ *   - Published (--publish): _id = "post-<slug-fr>"
+ *   Re-running with the same slug + same flag updates the same document (createOrReplace).
  */
 
 const fs = require('fs')
@@ -154,8 +157,11 @@ async function uploadImage(imagePath, altFields) {
 // ──────────────────────────────────────────────────────────────────────
 async function transformForSanity(post) {
     const slug = post.slug.fr.current
+    // Native Sanity workflow: published docs have plain _id, drafts use "drafts." prefix.
+    const _id = args.publish ? `post-${slug}` : `drafts.post-${slug}`
+
     const doc = {
-        _id: `post-${slug}`,
+        _id,
         _type: 'post',
         title: post.title,
         slug: post.slug,
@@ -174,7 +180,6 @@ async function transformForSanity(post) {
         author: post.author || 'Sun Beach House',
         publishedAt: post.publishedAt || new Date().toISOString(),
         updatedAt: post.updatedAt,
-        status: args.publish ? 'published' : post.status || 'draft',
         verificationNotes: post.verificationNotes || '',
     }
 
@@ -229,7 +234,7 @@ async function main() {
     console.log(`→ Transforming…`)
     const doc = await transformForSanity(post)
     console.log(`  ✓ document _id: ${doc._id}`)
-    console.log(`  ✓ status: ${doc.status}`)
+    console.log(`  ✓ mode: ${args.publish ? 'PUBLISHED (live immediately)' : 'DRAFT (requires manual Publish in Studio)'}`)
     console.log(`  ✓ languages: ${Object.keys(doc.body).filter((l) => doc.body[l]).join(', ')}`)
     console.log(`  ✓ sources: ${doc.sources.length}`)
     console.log(`  ✓ related villas: ${doc.relatedVillas?.length || 0}`)
