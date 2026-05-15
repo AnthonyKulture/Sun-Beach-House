@@ -1,0 +1,122 @@
+name: Import editorial posts to Sanity
+
+# Auto-runs after each push to main that adds or modifies an editorial post.
+# The cron routines (sbh-editorial-monday / sbh-editorial-thursday) push drafts
+# to editorial/posts/{slug}/post.json. This workflow imports each new draft
+# into Sanity (as a Sanity draft, NOT published — humans Publish manually).
+#
+# Required GitHub Secret:
+#   SANITY_WRITE_TOKEN — Editor role token from https://www.sanity.io/manage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'editorial/posts/**/post.json'
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Path to post.json (e.g. editorial/posts/my-slug/post.json)'
+        required: true
+        type: string
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # fetch-depth: 2 lets us diff HEAD vs HEAD~1 to find newly added post.json files
+          fetch-depth: 2
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install @sanity/client + dotenv (minimal, no full Studio install)
+        run: |
+          mkdir -p /tmp/sanity-import-deps
+          cd /tmp/sanity-import-deps
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund --silent @sanity/client@^7 dotenv@^17
+
+      - name: Detect changed post.json files
+        id: changed
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            FILES="${{ inputs.file }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.sha }}"
+            # First push to a branch sends 40 zeros as "before" — handle that case
+            if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+              FILES=$(git diff --name-only --diff-filter=AM \
+                $(git hash-object -t tree /dev/null) "$HEAD_SHA" -- 'editorial/posts/*/post.json' || true)
+            else
+              FILES=$(git diff --name-only --diff-filter=AM "$BASE_SHA" "$HEAD_SHA" -- 'editorial/posts/*/post.json' || true)
+            fi
+          fi
+          {
+            echo "files<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          if [ -z "$FILES" ]; then
+            echo "::notice::No post.json files added or modified."
+          else
+            echo "::notice::Files to import:"
+            echo "$FILES"
+          fi
+
+      - name: Import each changed post into Sanity (as draft)
+        if: steps.changed.outputs.files != ''
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: i6dkdu7j
+          NEXT_PUBLIC_SANITY_DATASET: production
+          NODE_PATH: /tmp/sanity-import-deps/node_modules
+        run: |
+          set -euo pipefail
+          if [ -z "${SANITY_WRITE_TOKEN:-}" ]; then
+            echo "::error::SANITY_WRITE_TOKEN secret is not set. Add it at https://github.com/AnthonyKulture/Sun-Beach-House/settings/secrets/actions"
+            exit 1
+          fi
+          FAILED=0
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            echo "::group::Importing $file"
+            if node sbh-cms/scripts/import-post.js --file="$file"; then
+              echo "::notice::Imported $file successfully"
+            else
+              echo "::error file=$file::Import failed for $file"
+              FAILED=$((FAILED + 1))
+            fi
+            echo "::endgroup::"
+          done <<< "${{ steps.changed.outputs.files }}"
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::$FAILED file(s) failed to import"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always() && steps.changed.outputs.files != ''
+        run: |
+          {
+            echo "## Editorial import summary"
+            echo ""
+            echo "Files processed:"
+            echo '```'
+            echo "${{ steps.changed.outputs.files }}"
+            echo '```'
+            echo ""
+            echo "Next manual steps (one per imported post):"
+            echo "1. Open https://i6dkdu7j.sanity.studio → Blog / Magazine → Tous les articles"
+            echo "2. Find the draft (slug below the orange 'Unpublished changes' banner)"
+            echo "3. Upload \`mainImage\`"
+            echo "4. Review \`verificationNotes\` field"
+            echo "5. Click **Publish**"
+          } >> "$GITHUB_STEP_SUMMARY"

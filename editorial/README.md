@@ -37,14 +37,36 @@ L'agent est défini dans `.claude/agents/sbh-editorial.md`.
 @sbh-editorial Recherche uniquement : 8 sources fiables sur la taxe de séjour à Saint-Barthélemy en 2026. Ne rédige pas.
 ```
 
-## Cadence cible
+## Cadence automatisée
 
-2 articles par semaine. Suggestion de planning :
+**2 articles par semaine, totalement automatisés**, via 2 routines Claude Code cloud :
 
-- **Lundi** : sujet "actualité / saisonnier" (événements à venir, saison qui s'ouvre).
-- **Jeudi** : sujet "evergreen" (guide pratique, quartier, service).
+- `sbh-editorial-monday` — Lundi 09:00 Europe/Paris (cron `0 7 * * 1` UTC)
+- `sbh-editorial-thursday` — Jeudi 09:00 Europe/Paris (cron `0 7 * * 4` UTC)
 
-Programmation possible avec `/schedule` ou `/loop` une fois la pipeline rodée.
+Pilotage : https://claude.ai/code/routines
+
+À chaque exécution :
+1. Le sandbox cloud clone le repo, lit `topics-backlog.md`, prend le sujet suivant du « Plan 2026-05 ».
+2. Recherche web + rédaction 4 langues + écriture des 5 fichiers `editorial/posts/{slug}/`.
+3. Marque le sujet en `[~]` dans le backlog, commit, push sur `main`.
+4. Le push déclenche le workflow GitHub Actions `import-editorial-post.yml` qui importe le `post.json` dans Sanity en brouillon.
+
+Aucune action utilisateur jusqu'à ce point.
+
+## Pré-requis : GitHub Secret
+
+Le workflow GHA a besoin du secret **`SANITY_WRITE_TOKEN`** (rôle Editor).
+
+Configuration unique :
+1. https://www.sanity.io/manage → projet `i6dkdu7j` → API → Tokens → créer un token role `Editor`
+2. https://github.com/AnthonyKulture/Sun-Beach-House/settings/secrets/actions → **New repository secret** → nom : `SANITY_WRITE_TOKEN`, valeur : le token Sanity.
+
+Sans ce secret, le workflow GHA échoue avec un message clair.
+
+## Cibles de ranking
+
+Voir `topics-backlog.md` section « Cibles de ranking primaires ».
 
 ## Quality gates avant import dans Sanity
 
@@ -115,15 +137,30 @@ Crée directement un document publié (`_id = post-<slug>`). À éviter tant que
 - Logue les `relatedVillaSlugs` introuvables dans Sanity (non bloquant — les références manquantes sont simplement omises).
 - N'écrit RIEN en mode `--dry-run`.
 
-### Workflow complet recommandé
+### Workflow complet (automatisé)
 
-1. Agent produit `editorial/posts/<slug>/post.json`
-2. Relire le `verificationNotes` et corriger si besoin
-3. `npm run import-post -- --file=... --dry-run` pour valider
-4. `npm run import-post -- --file=... --image=...` pour importer (en brouillon)
-5. Ouvrir le doc dans Studio (URL imprimée par le script)
-6. Vérification finale visuelle dans le studio
-7. Cliquer **Publish** dans Sanity Studio → l'article devient visible sur `/[lang]/blog` (ISR 5 min)
+**Côté agent / GHA (automatique)** :
+1. Routine cron exécute l'agent → produit `editorial/posts/<slug>/post.json` + 4 fichiers d'accompagnement
+2. Agent commit + push sur `main`
+3. GitHub Actions importe le post.json dans Sanity comme brouillon (`drafts.post-<slug>`)
+
+**Côté humain (3 actions, ~10 min par article)** :
+4. Ouvrir Sanity Studio → Blog / Magazine → trouver le brouillon
+5. Uploader une image principale + relire le `verificationNotes`
+6. Cliquer **Publish** → article visible sur `/[lang]/blog` (ISR 5 min après publish)
+
+### Mode manuel (si besoin de redéclencher)
+
+```bash
+# Lancer le workflow GHA manuellement sur un post.json donné
+gh workflow run import-editorial-post.yml -f file=editorial/posts/<slug>/post.json
+```
+
+Ou en local :
+```bash
+cd sbh-cms
+npm run import-post -- --file=../editorial/posts/<slug>/post.json
+```
 
 ## Garde-fous anti-hallucination
 
