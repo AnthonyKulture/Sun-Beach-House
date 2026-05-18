@@ -25,8 +25,8 @@ export default defineConfig({
 
   tools: (prev) => {
     return [
-      // Hide the built-in "Releases" tab from the top navigation
-      ...prev.filter((t) => t.name !== 'releases'),
+      // Hide the built-in "Releases" tab and the Mux Video configuration tab
+      ...prev.filter((t) => !['releases', 'mux-video', 'mux-video-tool', 'mux', 'mux-input'].includes(t.name)),
       {
         name: 'share-selection',
         title: 'Partager Sélection',
