@@ -526,8 +526,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                                         metadata={{ video_title: villa.name }}
                                         streamType="on-demand"
                                         className="w-full h-full object-contain relative z-20"
-                                        primaryColor="#FFFFFF"
-                                        secondaryColor="#000000"
+                                        style={{ 
+                                            '--primary-color': '#FFFFFF', 
+                                            '--secondary-color': '#1a1a1a', 
+                                            '--accent-color': '#FFFFFF',
+                                            '--progress-bar-color': '#FFFFFF',
+                                            '--progress-slider-thumb-color': '#FFFFFF',
+                                            '--progress-slider-hover-color': '#E8E6E1'
+                                        } as React.CSSProperties}
                                         poster={villa.mainImage}
                                     />
                                 ) : villa.videoFileUrl ? (
