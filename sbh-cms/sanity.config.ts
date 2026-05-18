@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { frFRLocale } from '@sanity/locale-fr-fr'
+import { muxInput } from 'sanity-plugin-mux-input'
 import { schemaTypes } from './schemaTypes'
 import { Logo } from './components/Logo'
 import { GeneratePDFAction } from './actions/generatePDFAction'
@@ -42,6 +43,7 @@ export default defineConfig({
 
   plugins: [
     frFRLocale(),
+    muxInput(),
     structureTool({
       structure: (S) =>
         S.list()

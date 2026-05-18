@@ -37,6 +37,8 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
+import MuxPlayer from '@mux/mux-player-react';
+
 export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initialVilla }) => {
     const router = useRouter();
     const { language, t } = useLanguage();
@@ -511,20 +513,32 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                     )}
 
                     {/* VIDEO SECTION */}
-                    {(villa.videoFileUrl || villa.videoUrl) && (
+                    {(villa.videoMuxPlaybackId || villa.videoFileUrl || villa.videoUrl) && (
                         <div className="mb-16 md:mb-24 w-full">
                             <h3 className="font-serif text-2xl italic text-sbh-charcoal mb-8 flex items-center gap-4 reveal-on-scroll">
                                 {t.villa.video} <span className="h-px flex-1 bg-sbh-charcoal/10"></span>
                             </h3>
 
-                            <div className="reveal-on-scroll rounded-sm overflow-hidden bg-sbh-cream aspect-video shadow-2xl">
-                                {villa.videoFileUrl ? (
+                            <div className="reveal-on-scroll rounded-sm overflow-hidden bg-black aspect-video shadow-2xl relative z-20">
+                                {villa.videoMuxPlaybackId ? (
+                                    <MuxPlayer
+                                        playbackId={villa.videoMuxPlaybackId}
+                                        metadata={{ video_title: villa.name }}
+                                        streamType="on-demand"
+                                        className="w-full h-full object-contain relative z-20"
+                                        primaryColor="#FFFFFF"
+                                        secondaryColor="#000000"
+                                        poster={villa.mainImage}
+                                    />
+                                ) : villa.videoFileUrl ? (
                                     <video
-                                        src={villa.videoFileUrl}
                                         controls
-                                        className="w-full h-full object-cover"
+                                        playsInline
+                                        className="w-full h-full object-contain"
                                         poster={villa.mainImage}
                                     >
+                                        <source src={villa.videoFileUrl} type={villa.videoFileUrl.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
+                                        <source src={villa.videoFileUrl} type="video/mp4" />
                                         Your browser does not support the video tag.
                                     </video>
                                 ) : villa.videoUrl ? (

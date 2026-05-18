@@ -534,11 +534,18 @@ const villa = defineType({
       description: 'Collez le lien de la vidéo (ex: YouTube, Vimeo)',
     }),
     defineField({
+      name: 'videoMux',
+      title: 'Vidéo Optimisée (Mux)',
+      type: 'mux.video',
+      group: 'media',
+      description: 'Uploadez une vidéo ici. Elle sera automatiquement convertie pour un affichage rapide et optimal sur tous les navigateurs (Remplace l\'ancien champ).',
+    }),
+    defineField({
       name: 'videoFile',
-      title: 'Ou télécharger une vidéo',
+      title: 'Ancienne vidéo (Désuet)',
       type: 'file',
       group: 'media',
-      description: 'Téléchargez directement un fichier vidéo (MP4 recommandé)',
+      description: 'Ancien champ. Utilisez "Vidéo Optimisée (Mux)" à la place.',
       options: {
         accept: 'video/*',
       },

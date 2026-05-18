@@ -114,6 +114,7 @@ const mapSanityVilla = (doc: SanityVillaDoc): Villa => {
     fullResGalleryImages,
     videoUrl: doc.videoUrl,
     videoFileUrl: doc.videoFileUrl,
+    videoMuxPlaybackId: doc.videoMuxPlaybackId,
     amenities,
     tags: doc.tags || [],
     seasonalPrices,
@@ -150,6 +151,7 @@ const villaFields = `
   galleryImages,
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
+  "videoMuxPlaybackId": videoMux.asset->playbackId,
   "brochurePdfUrl": brochurePdf.asset->url,
   amenities[]->{ _id, name, "name_en": name_en, icon },
   tags,
@@ -189,11 +191,15 @@ const similarVillaFields = `
 export const CmsService = {
   getAllVillas: async (includeDrafts = false): Promise<Villa[]> => {
     const draftFilter = includeDrafts ? '' : '&& !(_id in path("drafts.**"))';
-    // SEO Protection: Filter out suspected duplicates (slugs ending with " 1", " 2", etc.)
-    const query = `*[_type == "villa" ${draftFilter} && !(slug.current match "* 1") && !(slug.current match "* 2")] | order(name asc) { ${villaFields} }`;
+    const query = `*[_type == "villa" ${draftFilter}] | order(name asc) { ${villaFields} }`;
     try {
       const docs = await fetchSanity(query);
-      return docs.map(mapSanityVilla);
+      // SEO Protection: Filter out suspected duplicates (slugs ending with " 1", " 2", etc.)
+      const filteredDocs = docs.filter((doc: any) => {
+        if (!doc.slug) return true;
+        return !doc.slug.endsWith(' 1') && !doc.slug.endsWith(' 2');
+      });
+      return filteredDocs.map(mapSanityVilla);
     } catch (error) {
       console.error('Erreur CMS:', error);
       return [];
@@ -367,11 +373,15 @@ export const CmsService = {
   },
 
   getSitemapData: async (): Promise<{ id: string; slug?: string; updatedAt: string }[]> => {
-    // SEO Protection: Filter out suspected duplicates from sitemap as well
-    const query = `*[_type == "villa" && !(_id in path("drafts.**")) && !(slug.current match "* 1") && !(slug.current match "* 2")] | order(name asc) { "_id": _id, "slug": slug.current, "_updatedAt": _updatedAt }`;
+    const query = `*[_type == "villa" && !(_id in path("drafts.**"))] | order(name asc) { "_id": _id, "slug": slug.current, "_updatedAt": _updatedAt }`;
     try {
       const docs = await fetchSanity(query);
-      return docs.map((doc: any) => ({
+      // SEO Protection: Filter out suspected duplicates from sitemap as well
+      const filteredDocs = docs.filter((doc: any) => {
+        if (!doc.slug) return true;
+        return !doc.slug.endsWith(' 1') && !doc.slug.endsWith(' 2');
+      });
+      return filteredDocs.map((doc: any) => ({
         id: doc._id,
         slug: doc.slug,
         updatedAt: doc._updatedAt,

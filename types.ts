@@ -77,6 +77,7 @@ export interface Villa {
   fullResGalleryImages?: string[]; // Array of high-res image URLs (optimized for viewer)
   videoUrl?: string; // YouTube/Vimeo URL
   videoFileUrl?: string; // Sanity uploaded video URL
+  videoMuxPlaybackId?: string; // Mux video playback ID
   amenities: Equipment[]; // Array of Equipment references
   tags: string[];
   featuredOnHomepage?: boolean; // Whether to show on homepage

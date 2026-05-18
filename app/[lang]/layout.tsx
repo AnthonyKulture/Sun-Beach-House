@@ -122,17 +122,13 @@ export default function LocaleLayout({
                         })();
                     `
                 }} />
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-JY1FQ1MG2F"
-                    strategy="afterInteractive"
-                />
-                <Script id="google-analytics" strategy="afterInteractive">
+                <Script id="google-tag-manager" strategy="afterInteractive">
                     {`
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-
-                      gtag('config', 'G-JY1FQ1MG2F');
+                    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','GTM-NBCJJ2CV');
                     `}
                 </Script>
                 <script
@@ -179,7 +175,7 @@ export default function LocaleLayout({
                             },
                             sameAs: [
                                 'https://www.instagram.com/sun.beach.house',
-                                'https://share.google/Ho4uufMpWmqr2tUc8',
+                                'https://share.google/TdUK2DyiWTMX9FF2A',
                             ],
                             areaServed: 'Saint-Barthélemy',
                             priceRange: '$$$$',
@@ -209,6 +205,10 @@ export default function LocaleLayout({
                 />
             </head>
             <body className={`${playfair.className} font-sans text-sbh-charcoal bg-sbh-cream min-h-screen flex flex-col`}>
+                <noscript>
+                    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBCJJ2CV"
+                    height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe>
+                </noscript>
                 <Providers locale={locale}>
                     <ScrollReveal />
                     {/* 
