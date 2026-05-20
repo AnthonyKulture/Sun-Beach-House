@@ -533,7 +533,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                                             '--progress-bar-color': '#FFFFFF',
                                             '--progress-slider-thumb-color': '#FFFFFF',
                                             '--progress-slider-hover-color': '#E8E6E1'
-                                        } as React.CSSProperties}
+                                        } as any}
                                         poster={villa.mainImage}
                                     />
                                 ) : villa.videoFileUrl ? (
