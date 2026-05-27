@@ -66,7 +66,7 @@ L'agent doit toujours prendre le sujet `[ ]` suivant dans l'ordre ci-dessous (#1
 Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
 - [~] #1 Haute saison 2026-2027
-- [ ] #2 Bucket Regatta 2027
+- [x] #2 Bucket Regatta 2027
 - [ ] #3 Noël 6-12 mois à l'avance
 - [ ] #4 Gustavia guide
 - [ ] #5 Chef privé
