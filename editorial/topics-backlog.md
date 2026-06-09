@@ -129,4 +129,5 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 
 ## Archive — articles publiés
 
-(à remplir au fur et à mesure)
+- [x] St Barth Gourmet Festival 2026 : Le Guide Gastronomique (slug: st-barth-gourmet-festival-2026, juin 2026)
+
