@@ -15,17 +15,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { lang } = params;
 
     const titles: Record<string, { absolute: string }> = {
-        fr: { absolute: 'Villa de luxe à Saint-Barth - Sun Beach House' },
-        en: { absolute: 'Luxury Villas in St. Barth - Sun Beach House' },
-        es: { absolute: 'Villas de lujo en San Bartolomé - Sun Beach House' },
-        pt: { absolute: 'Villas de luxo em Saint-Barthélemy - Sun Beach House' },
+        fr: { absolute: 'Location de villa de luxe à Saint-Barth - Sun Beach House' },
+        en: { absolute: 'Luxury Villa Rental in St. Barth - Sun Beach House' },
+        es: { absolute: 'Alquiler de villas de lujo en St. Barth - Sun Beach House' },
+        pt: { absolute: 'Aluguel de villas de luxo em St. Barth - Sun Beach House' },
     };
 
     const descriptions: Record<string, string> = {
-        fr: 'Découvrez une collection exclusive de villas de luxe à Saint-Barthélemy. Location saisonnière, vente et conciergerie sur-mesure avec Sun Beach House.',
-        en: 'Discover an exclusive collection of luxury villas in Saint-Barthélemy. Seasonal rentals, sales, and bespoke concierge services with Sun Beach House.',
-        es: 'Descubra una colección exclusiva de villas de lujo en San Bartolomé. Alquileres vacacionales, ventas y servicios de conserjería a medida.',
-        pt: 'Descubra uma coleção exclusiva de villas de luxo em Saint-Barthélemy. Aluguéis de temporada, vendas e serviços de concierge personalizados.',
+        fr: "Découvrez une collection exclusive de villas de luxe à Saint-Barthélemy. Location saisonnière, vente et conciergerie sur-mesure avec l'équipe Sun Beach House.",
+        en: 'Discover an exclusive collection of luxury villas in Saint-Barthélemy. Seasonal rentals, sales, and bespoke concierge services with the Sun Beach House team.',
+        es: 'Descubra una colección exclusiva de villas de lujo en San Bartolomé. Alquileres vacacionales, ventas y servicios de conserjería a medida con Sun Beach House.',
+        pt: 'Descubra uma coleção exclusiva de villas de luxo em Saint-Barthélemy. Aluguéis de temporada, vendas e serviços de concierge personalizados com a Sun Beach House.',
     };
 
     return {
