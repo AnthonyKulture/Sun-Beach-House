@@ -89,7 +89,6 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] Les Voiles de Saint-Barth 2026 : ce qu'il faut savoir avant de venir
 - [ ] St Barth Music Festival 2026 : programme et logistique (concerts Gustavia / Lorient)
 - [ ] Saint-Barth en mai-juin : pourquoi c'est la meilleure période pour beaucoup
-- [ ] Thanksgiving à Saint-Barth : pourquoi l'île est si prisée à cette période
 - [ ] Taxe de séjour et droit de quai à Saint-Barthélemy : ce qu'il faut comprendre (pilier fiscal pour acquéreurs et locataires)
 - [ ] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
 
@@ -130,4 +129,5 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 ## Archive — articles publiés
 
 - [x] St Barth Gourmet Festival 2026 : Le Guide Gastronomique (slug: st-barth-gourmet-festival-2026, juin 2026)
+- [x] Thanksgiving à Saint-Barth : pourquoi l'île est si prisée à cette période (slug: thanksgiving-saint-barth-2026, juin 2026)
 
