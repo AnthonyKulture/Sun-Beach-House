@@ -351,6 +351,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, h
                             <select
                                 value={filters.location}
                                 onChange={(e) => onUpdateFilters({ ...filters, location: e.target.value })}
+                                aria-label={t.collections.location}
                                 className="w-full bg-transparent font-serif text-lg md:text-xs lg:text-lg text-sbh-charcoal outline-none cursor-pointer capitalize appearance-none text-ellipsis"
                             >
                                 <option value="all">{t.hero.allIsland}</option>

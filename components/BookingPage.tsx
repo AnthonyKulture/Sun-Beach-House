@@ -144,7 +144,7 @@ export const BookingPage: React.FC = () => {
                {t.booking.staffWillContact}
             </p>
             <button
-               onClick={() => window.location.href = "/"} // Force refresh to home or use navigation prop
+               onClick={() => window.location.href = `/${language}`}
                className="px-10 py-4 border border-sbh-charcoal text-sbh-charcoal font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white transition-all rounded-full animate-slide-up" style={{ animationDelay: '0.3s' }}
             >
                {t.booking.backToHome}

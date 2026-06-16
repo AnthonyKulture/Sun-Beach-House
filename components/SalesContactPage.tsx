@@ -8,10 +8,12 @@ import { HoneypotField } from './HoneypotField';
 import Image from 'next/image';
 
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const SalesContactPage: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { language } = useLanguage();
   const villaId = searchParams.get('villaId') || '';
 
   const onBack = () => router.back();
@@ -105,7 +107,7 @@ export const SalesContactPage: React.FC = () => {
           Valérie ou un de nos agents vous recontactera dans les plus brefs délais.
         </p>
         <button
-          onClick={() => window.location.href = "/"}
+          onClick={() => window.location.href = `/${language}`}
           className="px-10 py-4 border border-sbh-charcoal text-sbh-charcoal font-sans text-xs uppercase tracking-[0.25em] hover:bg-sbh-charcoal hover:text-white transition-all rounded-full animate-slide-up" style={{ animationDelay: '0.3s' }}
         >
           Retour à l&apos;accueil
