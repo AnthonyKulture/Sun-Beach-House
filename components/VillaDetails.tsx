@@ -4,7 +4,7 @@ import { Villa, HomeFeature } from '../types';
 import { useVilla, useSimilarVillas } from '../hooks/useCMS';
 import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home, Trees } from 'lucide-react';
 import { SunStamp } from './Decorations';
-import { VillaMap } from './VillaMap';
+import dynamic from 'next/dynamic';
 import { FullscreenGallery } from './FullscreenGallery';
 import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { FeatureAccordion } from './FeatureAccordion';
@@ -37,7 +37,9 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
-import MuxPlayer from '@mux/mux-player-react';
+// Heavy, below-the-fold / conditional libs — load on demand to cut villa-page JS.
+const VillaMap = dynamic(() => import('./VillaMap').then((m) => m.VillaMap), { ssr: false });
+const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), { ssr: false });
 
 export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initialVilla }) => {
     const router = useRouter();

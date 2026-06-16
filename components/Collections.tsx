@@ -6,12 +6,18 @@ import { useVillas } from '../hooks/useCMS';
 import { MapPin, Users, Euro, Search, SlidersHorizontal, Plus, Check, Map as MapIcon, Grid, BedDouble } from 'lucide-react';
 import { SunStamp } from './Decorations';
 import { FilterState } from '../types';
-import { VillasMapView } from './VillasMapView';
+import dynamic from 'next/dynamic';
 import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+
+// Map view (Google Maps) is heavy and only shown on toggle — load it on demand to cut initial JS.
+const VillasMapView = dynamic(() => import('./VillasMapView').then((m) => m.VillasMapView), {
+    ssr: false,
+    loading: () => <div className="h-[60vh] flex items-center justify-center text-sbh-charcoal/30 text-xs uppercase tracking-[0.3em]">…</div>,
+});
 
 interface CollectionsProps {
     mode: 'rent' | 'sale';
