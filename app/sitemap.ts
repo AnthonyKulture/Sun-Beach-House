@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { CmsService } from '../services/cms'
+import { NEIGHBORHOOD_SLUGS } from '../data/neighborhoods'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.sun-beach-house.com'
@@ -17,6 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/mentions-legales', priority: 0.3, changeFreq: 'monthly' as const },
     { path: '/politique-de-confidentialite', priority: 0.3, changeFreq: 'monthly' as const },
     { path: '/conditions-generales', priority: 0.3, changeFreq: 'monthly' as const },
+    // Neighborhood landing pages (/location-villa-{quartier})
+    ...NEIGHBORHOOD_SLUGS.map((slug) => ({
+      path: `/location-villa-${slug}`,
+      priority: 0.8,
+      changeFreq: 'weekly' as const,
+    })),
   ]
 
   // Dynamic villa routes

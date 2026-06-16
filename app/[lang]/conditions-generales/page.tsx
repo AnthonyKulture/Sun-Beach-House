@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -11,10 +11,13 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: 'Condiciones de Reserva',
         pt: 'Condições de Reserva',
     };
+    const title = titles[lang] || titles.fr;
+    const description = 'Conditions de réservation, d’annulation et informations générales pour votre séjour à Saint-Barthélemy avec Sun Beach House.';
     return {
-        title: titles[lang] || titles.fr,
-        description: 'Conditions de réservation, d’annulation et informations générales pour votre séjour à Saint-Barthélemy avec Sun Beach House.',
+        title,
+        description,
         alternates: getAlternates(lang, '/conditions-generales'),
+        ...getOpenGraph(lang, '/conditions-generales', { title, description }),
     }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -11,10 +11,13 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: 'Aviso Legal',
         pt: 'Aviso Legal',
     };
+    const title = titles[lang] || titles.fr;
+    const description = 'Informations légales concernant l\'entreprise Sun Beach House, agence immobilière à Saint-Barthélemy.';
     return {
-        title: titles[lang] || titles.fr,
-        description: 'Informations légales concernant l\'entreprise Sun Beach House, agence immobilière à Saint-Barthélemy.',
+        title,
+        description,
         alternates: getAlternates(lang, '/mentions-legales'),
+        ...getOpenGraph(lang, '/mentions-legales', { title, description }),
     }
 }
 

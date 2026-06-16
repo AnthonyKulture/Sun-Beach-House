@@ -22,57 +22,88 @@ export async function generateStaticParams() {
     return [{ lang: 'fr' }, { lang: 'en' }, { lang: 'es' }, { lang: 'pt' }]
 }
 
-export const metadata: Metadata = {
-    title: {
-        default: 'Location de villa de luxe à Saint-Barth - Sun Beach House',
-        template: '%s | St-Barth | Sun Beach House'
-    },
-    description: 'Sun Beach House - Votre agence immobilière de prestige à Saint-Barthélemy. Location et vente de villas de luxe, conciergerie privée et services sur mesure avec Valérie.',
-    keywords: ['villa luxe saint barth', 'location villa st barth', 'vente villa saint barthélemy', 'conciergerie privée st barth', 'Sun Beach House'],
-    authors: [{ name: 'Sun Beach House' }],
-    creator: 'Sun Beach House',
-    publisher: 'Sun Beach House',
-    metadataBase: new URL('https://www.sun-beach-house.com'),
-    alternates: {
-        canonical: 'https://www.sun-beach-house.com',
-    },
-    openGraph: {
-        type: 'website',
-        locale: 'fr_FR',
-        url: 'https://www.sun-beach-house.com',
-        siteName: 'Sun Beach House',
-        title: 'Sun Beach House | Villas de Luxe & Conciergerie à Saint-Barthélemy',
-        description: 'Explorez notre collection exclusive de villas de luxe à St. Barth. Location, vente et services de conciergerie haut de gamme.',
-        images: [
-            {
-                url: '/og-image.jpg',
-                width: 1200,
-                height: 630,
-                alt: 'Sun Beach House - Excellence Immobilière à St. Barth',
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Sun Beach House | Villas de Luxe St. Barth',
-        description: 'Location et vente de villas de luxe à Saint-Barthélemy',
-        images: ['/og-image.jpg'],
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
+const OG_LOCALES: Record<string, string> = { fr: 'fr_FR', en: 'en_US', es: 'es_ES', pt: 'pt_PT' };
+
+const DEFAULT_TITLE: Record<string, string> = {
+    fr: 'Location de villa de luxe à Saint-Barth - Sun Beach House',
+    en: 'Luxury Villa Rental in St. Barth - Sun Beach House',
+    es: 'Alquiler de villas de lujo en St. Barth - Sun Beach House',
+    pt: 'Aluguel de villas de luxo em St. Barth - Sun Beach House',
+};
+
+const DEFAULT_DESCRIPTION: Record<string, string> = {
+    fr: 'Sun Beach House - Votre agence immobilière de prestige à Saint-Barthélemy. Location et vente de villas de luxe, conciergerie privée et services sur mesure avec Valérie.',
+    en: 'Sun Beach House - Your prestige real estate agency in Saint-Barthélemy. Luxury villa rental and sales, private concierge and bespoke services with Valérie.',
+    es: 'Sun Beach House - Su agencia inmobiliaria de prestigio en San Bartolomé. Alquiler y venta de villas de lujo, conserjería privada y servicios a medida con Valérie.',
+    pt: 'Sun Beach House - Sua agência imobiliária de prestígio em Saint-Barthélemy. Aluguel e venda de villas de luxo, concierge privado e serviços sob medida com Valérie.',
+};
+
+const DEFAULT_OG_TITLE: Record<string, string> = {
+    fr: 'Sun Beach House | Villas de Luxe & Conciergerie à Saint-Barthélemy',
+    en: 'Sun Beach House | Luxury Villas & Concierge in Saint-Barthélemy',
+    es: 'Sun Beach House | Villas de Lujo y Conserjería en San Bartolomé',
+    pt: 'Sun Beach House | Villas de Luxo & Concierge em Saint-Barthélemy',
+};
+
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+    const { lang } = params;
+    const title = DEFAULT_TITLE[lang] || DEFAULT_TITLE.fr;
+    const description = DEFAULT_DESCRIPTION[lang] || DEFAULT_DESCRIPTION.fr;
+    const ogTitle = DEFAULT_OG_TITLE[lang] || DEFAULT_OG_TITLE.fr;
+    const url = `https://www.sun-beach-house.com/${lang}`;
+
+    return {
+        title: {
+            default: title,
+            template: '%s | St-Barth | Sun Beach House'
+        },
+        description,
+        keywords: ['villa luxe saint barth', 'location villa st barth', 'vente villa saint barthélemy', 'conciergerie privée st barth', 'Sun Beach House'],
+        authors: [{ name: 'Sun Beach House' }],
+        creator: 'Sun Beach House',
+        publisher: 'Sun Beach House',
+        metadataBase: new URL('https://www.sun-beach-house.com'),
+        alternates: {
+            canonical: url,
+        },
+        openGraph: {
+            type: 'website',
+            locale: OG_LOCALES[lang] || OG_LOCALES.fr,
+            url,
+            siteName: 'Sun Beach House',
+            title: ogTitle,
+            description,
+            images: [
+                {
+                    url: '/og-image.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: 'Sun Beach House - Excellence Immobilière à St. Barth',
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: ogTitle,
+            description,
+            images: ['/og-image.jpg'],
+        },
+        robots: {
             index: true,
             follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
         },
-    },
-    icons: {
-        icon: '/favicon.svg',
-        apple: '/favicon.svg',
-    },
+        icons: {
+            icon: '/favicon.svg',
+            apple: '/favicon.svg',
+        },
+    };
 }
 
 export default function LocaleLayout({
@@ -122,7 +153,7 @@ export default function LocaleLayout({
                         })();
                     `
                 }} />
-                <Script id="google-tag-manager" strategy="afterInteractive">
+                <Script id="google-tag-manager" strategy="lazyOnload">
                     {`
                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -150,7 +181,7 @@ export default function LocaleLayout({
                                 streetAddress: '65 RUE DE LA PAIX GUSTAVIA',
                                 addressLocality: 'Saint-Barthélemy',
                                 postalCode: '97133',
-                                addressCountry: 'FR',
+                                addressCountry: 'BL',
                             },
                             geo: {
                                 '@type': 'GeoCoordinates',

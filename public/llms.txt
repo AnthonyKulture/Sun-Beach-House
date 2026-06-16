@@ -26,6 +26,15 @@
 - [Villa rentals](https://www.sun-beach-house.com/fr/rentals): Seasonal rental collection
 - [Villas for sale](https://www.sun-beach-house.com/fr/sales): Properties for sale
 - [Contact](https://www.sun-beach-house.com/fr/contact): Direct contact with Valérie
+- [Magazine](https://www.sun-beach-house.com/fr/blog): Guides, seasons, lifestyle — fact-checked, sourced articles
+
+## Neighborhoods (luxury villa rental by area)
+
+Dedicated guides listing the available villas for each Saint-Barthélemy neighborhood. URL pattern: `/{lang}/location-villa-{slug}`, with slug one of: gustavia, saint-jean, flamands, colombier, lurin, vitet, marigot, corossol, petit-cul-de-sac, pointe-milou, lorient, grand-cul-de-sac, gouverneur, anse-des-cayes, saline.
+
+- Gustavia: https://www.sun-beach-house.com/fr/location-villa-gustavia
+- Saint-Jean: https://www.sun-beach-house.com/fr/location-villa-saint-jean
+- Flamands: https://www.sun-beach-house.com/fr/location-villa-flamands
 
 ## Localized versions
 

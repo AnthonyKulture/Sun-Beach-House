@@ -4,7 +4,7 @@ import { Villa, HomeFeature } from '../types';
 import { useVilla, useSimilarVillas } from '../hooks/useCMS';
 import { MapPin, Users, BedDouble, Bath, Square, ArrowLeft, Minus, Plus, Calendar, Star, Mail, Check, X, Home, Trees } from 'lucide-react';
 import { SunStamp } from './Decorations';
-import { VillaMap } from './VillaMap';
+import dynamic from 'next/dynamic';
 import { FullscreenGallery } from './FullscreenGallery';
 import { VillaImagePlaceholder } from './VillaImagePlaceholder';
 import { FeatureAccordion } from './FeatureAccordion';
@@ -37,7 +37,9 @@ const getSeasonTranslationKey = (rawName: string | undefined): keyof import('../
     return null;
 };
 
-import MuxPlayer from '@mux/mux-player-react';
+// Heavy, below-the-fold / conditional libs — load on demand to cut villa-page JS.
+const VillaMap = dynamic(() => import('./VillaMap').then((m) => m.VillaMap), { ssr: false });
+const MuxPlayer = dynamic(() => import('@mux/mux-player-react'), { ssr: false });
 
 export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initialVilla }) => {
     const router = useRouter();
@@ -162,7 +164,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                 departure: departureDate,
                 guests: guests.toString()
             });
-            router.push(`/booking?${params.toString()}`);
+            router.push(`/${language}/booking?${params.toString()}`);
         } else {
             // Focus the inputs if empty
             if (!arrivalDate && arrivalRef.current) {
@@ -187,14 +189,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                 departure: departureDate,
                 guests: guests.toString()
             });
-            router.push(`/booking?${params.toString()}`);
+            router.push(`/${language}/booking?${params.toString()}`);
         } else {
             setIsMobileBookingOpen(true);
         }
     };
 
     const handleContactClick = () => {
-        router.push(`/sales-contact?villaId=${villa.id}`);
+        router.push(`/${language}/sales-contact?villaId=${villa.id}`);
     };
 
 
@@ -854,7 +856,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {computedSimilarVillas.map((v, idx) => (
-                            <Link href={`/villas/${v.id}`} key={v.id} className="group cursor-pointer reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
+                            <Link href={`/${language}/villas/${v.slug || v.id}`} key={v.id} className="group cursor-pointer reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
                                 <div className="aspect-[4/3] overflow-hidden rounded-sm mb-4 relative">
                                     {v.mainImage ? (
                                         <Image src={v.mainImage} alt={v.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />

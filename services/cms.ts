@@ -9,7 +9,7 @@ const API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-03-01';
 const SANITY_API_URL = `https://${PROJECT_ID}.apicdn.sanity.io/v${API_VERSION}/data/query/${DATASET}`;
 
 // Fonction pour exécuter une requête GROQ
-const fetchSanity = async (query: string, params?: Record<string, string>) => {
+const fetchSanity = async (query: string, params?: Record<string, unknown>) => {
   const url = new URL(SANITY_API_URL);
   url.searchParams.set('query', query);
 
@@ -176,6 +176,7 @@ const villaFields = `
 const similarVillaFields = `
   _id,
   name,
+  "slug": slug.current,
   listingType,
   location->{ _id, name, order },
   guests,
@@ -202,6 +203,28 @@ export const CmsService = {
       return filteredDocs.map(mapSanityVilla);
     } catch (error) {
       console.error('Erreur CMS:', error);
+      return [];
+    }
+  },
+
+  /**
+   * Villas located in a given neighborhood (one or more Sanity `location` names).
+   * Powers the SSG neighborhood landing pages (/location-villa-{quartier}).
+   */
+  getVillasByLocation: async (locationNames: string[], listingType?: 'rent' | 'sale'): Promise<Villa[]> => {
+    const typeFilter = listingType ? '&& listingType == $listingType' : '';
+    const query = `*[_type == "villa" && !(_id in path("drafts.**")) && location->name in $names ${typeFilter}] | order(name asc) { ${villaFields} }`;
+    try {
+      const params: Record<string, unknown> = { names: locationNames };
+      if (listingType) params.listingType = listingType;
+      const docs = await fetchSanity(query, params);
+      const filteredDocs = docs.filter((doc: SanityVillaDoc) => {
+        if (!doc.slug) return true;
+        return !doc.slug.endsWith(' 1') && !doc.slug.endsWith(' 2');
+      });
+      return filteredDocs.map(mapSanityVilla);
+    } catch (error) {
+      console.error('Erreur getVillasByLocation:', error);
       return [];
     }
   },

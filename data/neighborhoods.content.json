@@ -1,0 +1,1389 @@
+{
+  "gustavia": {
+    "geo": {
+      "lat": 17.8962,
+      "lng": -62.8498
+    },
+    "intro": {
+      "fr": "Gustavia est le chef-lieu de Saint-Barthélemy, établi sur la côte ouest de l'île autour d'une anse naturelle que les Suédois ont aménagée en port franc dès 1784. La ville tient son nom du roi suédois Gustav III, à qui la France avait cédé l'île cette année-là. Le port de plaisance accueille jusqu'à 40 yachts dans le bassin intérieur et quelque 500 navires au mouillage en haute saison. Les quais sont longés par des boutiques détaxées — Hermès, Louis Vuitton, Bulgari figurent parmi les enseignes installées sur le Quai de la République — et par des restaurants aux terrasses ouvertes sur l'eau. Shell Beach, dont le rivage est composé de coquillages finement broyés plutôt que de sable, se trouve à cinq minutes à pied du centre. L'aéroport Rémy-de-Haenen, desservi par des vols intérieurs depuis Sint Maarten, est à environ 2 km. Séjourner dans une villa à Gustavia, c'est choisir la proximité immédiate de tous les services de l'île, avec les hauteurs environnantes pour préserver l'intimité.",
+      "en": "Gustavia is the administrative capital of Saint-Barthélemy, built on the island's western coast around a natural cove that Sweden developed as a free port in 1784 — the harbor town was renamed in honor of King Gustav III that same year. The inner harbor accommodates up to 40 yachts, while around 500 vessels anchor in the surrounding waters during peak season. The waterfront quays are lined with duty-free boutiques — Hermès, Louis Vuitton and Bulgari are among the names on Quai de la République — and restaurants with open-air terraces overlooking the water. Shell Beach, whose shoreline is composed of finely crushed seashells rather than sand, lies a five-minute walk from the town center. Rémy-de-Haenen Airport, served by inter-island flights from Sint Maarten, is approximately 2 km away. Renting a villa in Gustavia means being within immediate reach of every service on the island, while the surrounding hillsides ensure privacy and quiet.",
+      "es": "Gustavia es la capital administrativa de Saint-Barthélemy, construida en la costa occidental de la isla en torno a una cala natural que Suecia habilitó como puerto franco en 1784, año en que la ciudad recibió el nombre del rey Gustav III. El puerto interior acoge hasta 40 yates, mientras que cerca de 500 embarcaciones fondean en las aguas circundantes durante la temporada alta. Los muelles están bordeados de boutiques libres de impuestos — Hermès, Louis Vuitton y Bulgari figuran entre las marcas instaladas en el Quai de la République — y de restaurantes con terrazas abiertas sobre el agua. Shell Beach, cuya orilla está formada por conchas finamente trituradas en lugar de arena, se encuentra a cinco minutos a pie del centro. El aeropuerto Rémy-de-Haenen, con vuelos interinsulares desde Sint Maarten, está a unos 2 km. Alquilar una villa en Gustavia permite acceder de inmediato a todos los servicios de la isla, mientras que las colinas circundantes garantizan la intimidad del alojamiento.",
+      "pt": "Gustavia é a capital administrativa de Saint-Barthélemy, edificada na costa ocidental da ilha em torno de uma enseada natural que a Suécia transformou em porto franco em 1784, ano em que a cidade recebeu o nome do rei Gustav III. O porto interior acolhe até 40 iates, enquanto cerca de 500 embarcações fundeiam nas águas circundantes durante a alta temporada. Os cais são ladeados por boutiques isentas de impostos — Hermès, Louis Vuitton e Bulgari estão entre as marcas instaladas no Quai de la République — e por restaurantes com esplanadas abertas sobre a água. A Shell Beach, cuja orla é composta por conchas finamente trituradas em vez de areia, fica a cinco minutos a pé do centro. O aeroporto Rémy-de-Haenen, servido por voos inter-ilhas a partir de Sint Maarten, dista cerca de 2 km. Alugar uma villa em Gustavia significa ter acesso imediato a todos os serviços da ilha, enquanto as colinas envolventes preservam a privacidade do alojamento."
+    },
+    "highlights": {
+      "fr": [
+        "Port de plaisance en eau profonde à deux pas : jusqu'à 40 yachts à quai et 500 au mouillage en haute saison.",
+        "Shopping détaxé sur le Quai de la République (Hermès, Louis Vuitton, Bulgari, Cartier) — les grandes maisons françaises y sont moins chères qu'en France métropolitaine.",
+        "Shell Beach à cinq minutes à pied : eaux peu profondes, translucides, fréquentées par des tortues marines, restaurant Shellona directement sur la plage.",
+        "Accès rapide à l'aéroport Rémy-de-Haenen (~2 km) et aux ferries pour Sint Maarten.",
+        "Monuments historiques suédois à proximité immédiate : Fort Gustave (1787), Wall House Museum, campanile suédois."
+      ],
+      "en": [
+        "Deep-water marina steps away: up to 40 yachts berthed and 500 at anchor during high season.",
+        "Duty-free shopping on Quai de la République (Hermès, Louis Vuitton, Bulgari, Cartier) — major French brands at significantly lower prices than in mainland France.",
+        "Shell Beach a five-minute walk: shallow, clear water frequented by sea turtles, with Shellona restaurant directly on the beach.",
+        "Quick access to Rémy-de-Haenen Airport (~2 km) and ferries to Sint Maarten.",
+        "Swedish-era heritage sites nearby: Fort Gustave (1787), Wall House Museum, Swedish bell tower."
+      ],
+      "es": [
+        "Puerto deportivo de aguas profundas a pocos pasos: hasta 40 yates atracados y 500 fondeados durante la temporada alta.",
+        "Compras libres de impuestos en el Quai de la République (Hermès, Louis Vuitton, Bulgari, Cartier) — las grandes marcas francesas resultan notablemente más económicas que en Francia continental.",
+        "Shell Beach a cinco minutos a pie: aguas poco profundas y transparentes frecuentadas por tortugas marinas, con el restaurante Shellona directamente en la playa.",
+        "Acceso rápido al aeropuerto Rémy-de-Haenen (~2 km) y a los ferris hacia Sint Maarten.",
+        "Patrimonio histórico sueco en las inmediaciones: Fort Gustave (1787), Wall House Museum, campanario sueco."
+      ],
+      "pt": [
+        "Marina de águas profundas a poucos passos: até 40 iates atracados e 500 fundeados durante a alta temporada.",
+        "Compras isentas de impostos no Quai de la République (Hermès, Louis Vuitton, Bulgari, Cartier) — as grandes marcas francesas custam significativamente menos do que em França.",
+        "Shell Beach a cinco minutos a pé: águas rasas e transparentes frequentadas por tartarugas marinhas, com o restaurante Shellona diretamente na praia.",
+        "Acesso rápido ao aeroporto Rémy-de-Haenen (~2 km) e aos ferries para Sint Maarten.",
+        "Património histórico sueco nas imediações: Fort Gustave (1787), Wall House Museum, campanário sueco."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Pourquoi louer une villa à Gustavia plutôt que dans un autre quartier de Saint-Barth ?",
+          "en": "Why rent a villa in Gustavia rather than another neighborhood of Saint-Barthélemy?",
+          "es": "¿Por qué alquilar una villa en Gustavia y no en otro barrio de Saint-Barthélemy?",
+          "pt": "Por que alugar uma villa em Gustavia e não noutro bairro de Saint-Barthélemy?"
+        },
+        "a": {
+          "fr": "Gustavia est le seul quartier de Saint-Barth où l'on peut se passer de voiture au quotidien : restaurants, boutiques, pharmacie, port, supérette et Shell Beach sont tous accessibles à pied. Les villas situées sur les hauteurs offrent des vues dégagées sur le port tout en restant à l'écart de l'animation des quais.",
+          "en": "Gustavia is the only neighborhood in Saint-Barthélemy where a car is not strictly necessary day-to-day: restaurants, boutiques, pharmacy, harbor, grocery, and Shell Beach are all reachable on foot. Villas on the surrounding hillsides offer open views over the harbor while remaining removed from the bustle of the waterfront.",
+          "es": "Gustavia es el único barrio de Saint-Barthélemy donde no es estrictamente necesario disponer de coche a diario: restaurantes, boutiques, farmacia, puerto, supermercado y Shell Beach son todos accesibles a pie. Las villas situadas en las colinas circundantes ofrecen vistas despejadas sobre el puerto y, al mismo tiempo, están alejadas del ambiente animado de los muelles.",
+          "pt": "Gustavia é o único bairro de Saint-Barthélemy onde não é estritamente necessário ter carro no dia a dia: restaurantes, boutiques, farmácia, porto, mercearia e Shell Beach são todos acessíveis a pé. As villas nas colinas envolventes oferecem vistas desimpedidas sobre o porto, mantendo-se ao abrigo da animação dos cais."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelle est la plage la plus proche du centre de Gustavia ?",
+          "en": "What is the closest beach to central Gustavia?",
+          "es": "¿Cuál es la playa más cercana al centro de Gustavia?",
+          "pt": "Qual é a praia mais próxima do centro de Gustavia?"
+        },
+        "a": {
+          "fr": "Shell Beach se trouve à cinq minutes à pied du port. Son rivage est formé de milliers de petits coquillages plutôt que de sable, et ses eaux peu profondes et claires accueillent régulièrement des tortues marines. Le restaurant Shellona y est installé directement.",
+          "en": "Shell Beach is a five-minute walk from the harbor. Its shoreline is made up of thousands of small shells rather than sand, and its shallow, clear waters are regularly visited by sea turtles. The Shellona restaurant is located directly on the beach.",
+          "es": "Shell Beach está a cinco minutos a pie del puerto. Su orilla está formada por miles de pequeñas conchas en lugar de arena, y sus aguas poco profundas y cristalinas reciben regularmente la visita de tortugas marinas. El restaurante Shellona está ubicado directamente en la playa.",
+          "pt": "A Shell Beach fica a cinco minutos a pé do porto. A sua orla é composta por milhares de pequenas conchas em vez de areia, e as suas águas rasas e límpidas são regularmente visitadas por tartarugas marinhas. O restaurante Shellona está instalado diretamente na praia."
+        }
+      },
+      {
+        "q": {
+          "fr": "Comment se garer à Gustavia ?",
+          "en": "Where can you park in Gustavia?",
+          "es": "¿Dónde se puede aparcar en Gustavia?",
+          "pt": "Onde estacionar em Gustavia?"
+        },
+        "a": {
+          "fr": "Le stationnement en centre-ville est limité, notamment en haute saison (décembre-avril). Un parking se trouve à proximité de Shell Beach. La plupart des villas du quartier disposent de places privées ; si vous circulez en ville, préférez vous y rendre tôt le matin ou en soirée.",
+          "en": "Parking in central Gustavia is limited, especially during peak season (December-April). A public parking area is available near Shell Beach. Most villas in the neighborhood include private parking spaces; when heading into town, early morning or evening are the easier times to find a spot.",
+          "es": "El estacionamiento en el centro de Gustavia es limitado, especialmente durante la temporada alta (diciembre-abril). Hay un aparcamiento público cerca de Shell Beach. La mayoría de las villas del barrio disponen de plazas privadas; para ir al centro, es preferible hacerlo a primera hora de la mañana o por la tarde-noche.",
+          "pt": "O estacionamento no centro de Gustavia é limitado, especialmente durante a alta temporada (dezembro-abril). Existe um parque de estacionamento público perto da Shell Beach. A maioria das villas do bairro dispõe de lugares privativos; para se deslocar ao centro, os primeiros momentos da manhã ou o início da noite são as alturas mais fáceis para encontrar lugar."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Gustavia_(Saint-Barth%C3%A9lemy)",
+      "https://villanyx.com/port-de-gustavia-st-barts/",
+      "https://www.barnes-stbarth.com/en/blog/2025/shell-beach-in-st-barts-3054.html",
+      "https://www.lebarthvillas.com/en/blogs/gustavia-st-barts-capital",
+      "https://portdegustavia.fr/"
+    ]
+  },
+  "saint-jean": {
+    "geo": {
+      "lat": 17.9042,
+      "lng": -62.84
+    },
+    "intro": {
+      "fr": "Nichée sur la côte nord de Saint-Barthélemy, la baie de Saint-Jean est la plus connue de l'île : un croissant de sable blanc d'environ un kilomètre, partagé en deux anses par le promontoire rocheux sur lequel s'élève l'Eden Rock, premier hôtel ouvert sur l'île, bâti dans les années 1950 par l'aviateur et artiste Rémy de Haenen. À l'ouest, l'ambiance est animée — restaurants de plage, bar-clubs et la piste de l'aéroport Gustaf III qui s'achève à quelques mètres du rivage, offrant un spectacle d'atterrissages saisissants. À l'est, les eaux plus calmes conviennent à la baignade en famille et au snorkeling. Boutiques, épiceries fines et restaurants gastronomiques jalonnent l'arrière-plage, faisant de Saint-Jean le quartier le plus complet de l'île pour les villégiateurs. Louer une villa à Saint-Jean, c'est choisir l'épicentre de la vie balnéaire de Saint-Barth, sans renoncer à l'intimité et au calme des hauteurs environnantes.",
+      "en": "Nestled on the northern coast of Saint-Barthélemy, Saint-Jean Bay is the island's most celebrated stretch of coastline: a crescent of white sand roughly one mile long, divided into two distinct coves by the rocky promontory on which Eden Rock stands — the island's first hotel, built in the 1950s by aviator and artist Rémy de Haenen. To the west, the atmosphere is lively, with beachfront restaurants, beach clubs, and the short runway of Gustaf III Airport ending just metres from the shore, offering dramatic low-altitude arrivals. To the east, calmer, reef-protected waters are ideal for swimming and snorkeling. Boutiques, fine food shops, and acclaimed restaurants line the beach road, making Saint-Jean the most self-sufficient neighbourhood on the island for holidaymakers. Renting a villa in Saint-Jean means choosing the heart of St. Barth's beach life, while still having access to the quiet of the surrounding hillsides.",
+      "es": "Situada en la costa norte de Saint-Barthélemy, la bahía de Saint-Jean es la más célebre de la isla: un creciente de arena blanca de aproximadamente un kilómetro, dividido en dos calas por el promontorio rocoso sobre el que se alza el Eden Rock, el primer hotel construido en la isla, levantado en los años 1950 por el aviador y artista Rémy de Haenen. Al oeste, el ambiente es animado — restaurantes de playa, clubs y la corta pista del aeropuerto Gustaf III, que termina a pocos metros de la orilla, ofreciendo espectaculares aproximaciones a baja altitud. Al este, las aguas más tranquilas, protegidas por un arrecife, son ideales para el baño en familia y el snorkeling. Boutiques, tiendas de alimentación selecta y restaurantes de autor bordean el paseo, convirtiendo a Saint-Jean en el barrio más completo de la isla para quienes la visitan. Alquilar una villa en Saint-Jean significa elegir el epicentro de la vida costera de Saint-Barth, sin renunciar a la intimidad de las colinas circundantes.",
+      "pt": "Situada na costa norte de Saint-Barthélemy, a baía de Saint-Jean é a mais célebre da ilha: um crescente de areia branca de cerca de um quilómetro, dividido em duas enseadas pelo promontório rochoso onde se ergue o Eden Rock — o primeiro hotel da ilha, construído nos anos 1950 pelo aviador e artista Rémy de Haenen. A oeste, a animação é constante — restaurantes de praia, beach clubs e a curta pista do aeroporto Gustaf III, que termina a escassos metros da margem, proporcionando aterragens a baixa altitude de efeito cinematográfico. A leste, as águas mais calmas, protegidas por um recife, são ideais para banhos em família e snorkeling. Boutiques, mercearias finas e restaurantes de referência pontuam a estrada da praia, fazendo de Saint-Jean o bairro mais completo da ilha para os veraneantes. Arrendar uma villa em Saint-Jean é escolher o epicentro da vida balnear de Saint-Barth, sem abdicar da privacidade das colinas envolventes."
+    },
+    "highlights": {
+      "fr": [
+        "Plage en croissant d'environ un kilomètre, divisée en deux anses par l'Eden Rock",
+        "Eaux protégées par un récif corallien — baignade calme à l'est, sports nautiques à l'ouest",
+        "Spectacle unique des atterrissages sur la piste Gustaf III, en bordure de plage",
+        "Concentration de restaurants, boutiques et épiceries — le quartier le plus animé de l'île",
+        "Accès rapide à Gustavia (environ 10 minutes) et au reste de l'île"
+      ],
+      "en": [
+        "One-mile crescent beach divided into two coves by the iconic Eden Rock promontory",
+        "Reef-protected waters — calm swimming to the east, water sports to the west",
+        "Unique spectacle of low-altitude landings on Gustaf III Airport's beachside runway",
+        "Highest concentration of restaurants, boutiques, and food shops on the island",
+        "Quick access to Gustavia, approximately 10 minutes by road"
+      ],
+      "es": [
+        "Playa en forma de creciente de aproximadamente un kilómetro, dividida en dos calas por el promontorio Eden Rock",
+        "Aguas protegidas por un arrecife — baño tranquilo al este, deportes náuticos al oeste",
+        "Espectáculo único de los aterrizajes rasantes en la pista del aeropuerto Gustaf III",
+        "Mayor concentración de restaurantes, boutiques y tiendas gourmet de la isla",
+        "Acceso rápido a Gustavia, a unos 10 minutos en coche"
+      ],
+      "pt": [
+        "Praia em crescente de cerca de um quilómetro, dividida em duas enseadas pelo promontório Eden Rock",
+        "Águas protegidas por recife — banhos calmos a leste, desportos náuticos a oeste",
+        "Espetáculo único das aterragens rasantes na pista do aeroporto Gustaf III",
+        "Maior concentração de restaurantes, boutiques e lojas gourmet da ilha",
+        "Acesso rápido a Gustavia, a cerca de 10 minutos de carro"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage de Saint-Jean est-elle adaptée aux familles avec enfants ?",
+          "en": "Is Saint-Jean Beach suitable for families with children?",
+          "es": "¿La playa de Saint-Jean es adecuada para familias con niños?",
+          "pt": "A praia de Saint-Jean é adequada para famílias com crianças?"
+        },
+        "a": {
+          "fr": "Oui. La partie est de la baie, au-delà de l'Eden Rock, offre des eaux plus calmes, protégées par un récif corallien, convenant à la baignade des enfants et au snorkeling. La partie ouest est plus animée et appréciée des pratiquants de windsurf et de surf.",
+          "en": "Yes. The eastern section of the bay, beyond Eden Rock, offers calmer, reef-protected waters well suited to swimming and snorkeling with children. The western end, near the airport runway, is livelier and better suited to surfing and windsurfing.",
+          "es": "Sí. La parte este de la bahía, más allá del Eden Rock, ofrece aguas más tranquilas y protegidas por un arrecife, ideales para el baño y el snorkeling con niños. El extremo oeste, cerca de la pista del aeropuerto, es más animado y favorito de los practicantes de windsurf y surf.",
+          "pt": "Sim. A parte leste da baía, além do Eden Rock, oferece águas mais calmas e protegidas por um recife, adequadas para banhos e snorkeling com crianças. O extremo oeste, junto à pista do aeroporto, é mais animado e frequentado pelos praticantes de windsurf e surf."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelle est la distance entre Saint-Jean et l'aéroport de Saint-Barthélemy ?",
+          "en": "How far is Saint-Jean from Saint-Barthélemy's airport?",
+          "es": "¿A qué distancia está Saint-Jean del aeropuerto de Saint-Barthélemy?",
+          "pt": "A que distância fica Saint-Jean do aeroporto de Saint-Barthélemy?"
+        },
+        "a": {
+          "fr": "L'aéroport Gustaf III est littéralement adjacent à la plage de Saint-Jean : la piste d'atterrissage se termine à quelques mètres du rivage ouest de la baie. Le quartier de Saint-Jean est ainsi le plus proche de l'aéroport de toute l'île.",
+          "en": "Gustaf III Airport is literally adjacent to Saint-Jean Beach: the runway ends just metres from the western shore of the bay. Saint-Jean is the closest neighbourhood to the airport on the entire island.",
+          "es": "El aeropuerto Gustaf III está literalmente junto a la playa de Saint-Jean: la pista de aterrizaje termina a escasos metros de la orilla oeste de la bahía. Saint-Jean es el barrio más próximo al aeropuerto de toda la isla.",
+          "pt": "O aeroporto Gustaf III é literalmente adjacente à praia de Saint-Jean: a pista de aterragem termina a escassos metros da margem oeste da baía. Saint-Jean é o bairro mais próximo do aeroporto em toda a ilha."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelles activités nautiques sont disponibles à Saint-Jean ?",
+          "en": "What water sports are available at Saint-Jean?",
+          "es": "¿Qué deportes náuticos están disponibles en Saint-Jean?",
+          "pt": "Que desportos náuticos estão disponíveis em Saint-Jean?"
+        },
+        "a": {
+          "fr": "Saint-Jean est le principal pôle de sports nautiques de l'île. On y pratique le windsurf, le surf, le snorkeling, le kayak, le paddle, le jet ski et la plongée sous-marine. Des prestataires comme Carib Waterplay proposent location de matériel et cours sur place.",
+          "en": "Saint-Jean is the island's main water sports hub. Activities include windsurfing, surfing, snorkeling, kayaking, paddleboarding, jet skiing, and scuba diving. Local operators such as Carib Waterplay offer equipment rental and instruction directly on the beach.",
+          "es": "Saint-Jean es el principal centro de deportes náuticos de la isla. Se practican el windsurf, el surf, el snorkeling, el kayak, el paddle surf, el jet ski y el buceo. Operadores locales como Carib Waterplay ofrecen alquiler de material y clases en la playa.",
+          "pt": "Saint-Jean é o principal polo de desportos náuticos da ilha. Praticam-se windsurf, surf, snorkeling, caiaque, paddleboard, jet ski e mergulho. Operadores locais como o Carib Waterplay disponibilizam aluguer de equipamento e aulas na praia."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Saint-Jean_(Saint-Barth%C3%A9lemy)",
+      "https://www.saint-barths.com/en/places/beaches/st-jean-beach",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/st-jean-beach",
+      "https://capsurlesiles.fr/iles-francaises-outre-mer/la-baie-de-saint-jean-a-saint-barth/",
+      "https://www.oetkercollection.com/about/oetker-collection-history/the-history-of-the-eden-rock-st-barths/"
+    ]
+  },
+  "flamands": {
+    "geo": {
+      "lat": 17.9189,
+      "lng": -62.8581
+    },
+    "intro": {
+      "fr": "Niché à la pointe nord-ouest de Saint-Barthélemy, le quartier de Flamands s'étire autour de l'une des plus longues et des plus larges plages de l'île : une bande de sable blanc très fin baignée d'eaux turquoise aux reflets changeants. Son caractère résolument résidentiel lui confère une atmosphère de calme et de discrétion que les voyageurs les plus avertis recherchent. Les villas de standing et les deux hôtels de référence de l'anse — le Cheval Blanc St-Barth Isle de France (propriété LVMH) et le Baie des Anges — s'inscrivent naturellement dans ce paysage de collines plantées de latanier. L'accès à Gustavia, capitale et port de plaisance de l'île, se fait en une dizaine de minutes par la route côtière, tandis que l'aéroport de Saint-Jean reste à moins d'un quart d'heure. Louer une villa à Flamands, c'est choisir l'espace, la sérénité et la proximité d'un littoral d'exception.",
+      "en": "Nestled at the northwestern tip of Saint-Barthélemy, the Flamands neighborhood unfolds along one of the island's longest and widest beaches: a stretch of very fine white sand lapped by turquoise waters that shift from glassy calm to playful surf. Its distinctly residential character gives the area an atmosphere of quiet and discretion that seasoned travelers seek out. Luxury villas and the two landmark hotels of the bay — Cheval Blanc St-Barth Isle de France (an LVMH property) and the Hôtel Baie des Anges — sit naturally among hillsides planted with latania palms. Gustavia, the island's capital and yacht harbor, is roughly ten minutes away by the coastal road, and Saint-Jean Airport is less than fifteen minutes' drive. Renting a villa in Flamands means choosing space, serenity, and direct access to an exceptional stretch of coastline.",
+      "es": "Enclavado en la punta noroeste de Saint-Barthélemy, el barrio de Flamands se despliega a lo largo de una de las playas más largas y amplias de la isla: una franja de arena blanca muy fina bañada por aguas turquesas que oscilan entre la calma absoluta y una suave resaca. Su carácter marcadamente residencial confiere al lugar una atmósfera de tranquilidad y discreción que buscan los viajeros más exigentes. Las villas de lujo y los dos hoteles de referencia de la bahía — el Cheval Blanc St-Barth Isle de France (propiedad de LVMH) y el Hôtel Baie des Anges — se integran con naturalidad en las colinas plantadas de palmeras latania. Gustavia, la capital de la isla y su puerto de yates, se encuentra a unos diez minutos por la carretera costera, y el aeropuerto de Saint-Jean está a menos de un cuarto de hora en coche. Alquilar una villa en Flamands es elegir espacio, serenidad y acceso directo a un litoral excepcional.",
+      "pt": "Encravado na ponta noroeste de Saint-Barthélemy, o bairro de Flamands estende-se ao longo de uma das praias mais longas e largas da ilha: uma faixa de areia branca muito fina banhada por águas turquesas que variam entre a calma absoluta e uma suave ondulação. O seu carácter marcadamente residencial confere ao lugar uma atmosfera de sossego e discrição que os viajantes mais experientes procuram. As villas de luxo e os dois hotéis de referência da baía — o Cheval Blanc St-Barth Isle de France (propriedade da LVMH) e o Hôtel Baie des Anges — integram-se naturalmente nas encostas plantadas de palmeiras latânia. Gustavia, a capital da ilha e o seu porto de iates, fica a cerca de dez minutos pela estrada costeira, e o aeroporto de Saint-Jean está a menos de um quarto de hora de carro. Arrendar uma villa em Flamands é escolher espaço, serenidade e acesso direto a uma costa excecional."
+    },
+    "highlights": {
+      "fr": [
+        "Plage de sable blanc parmi les plus longues et les plus larges de Saint-Barthélemy, aux eaux turquoise et au cadre préservé.",
+        "Quartier résidentiel et calme, sans front commercial, idéal pour les séjours en famille ou en couple.",
+        "Présence du Cheval Blanc St-Barth Isle de France (LVMH) et du Hôtel Baie des Anges pour dîner et profiter des services plage.",
+        "À une dizaine de minutes en voiture de Gustavia et de ses boutiques, restaurants et mouillages de yachts.",
+        "Accès aisé aux criques de Colombier et de Corossol, et point de départ pour des randonnées côtières."
+      ],
+      "en": [
+        "One of Saint-Barthélemy's longest and widest white-sand beaches, set in a preserved, north-facing bay.",
+        "Quiet residential neighborhood with no commercial strip — ideal for families and couples seeking privacy.",
+        "Home to Cheval Blanc St-Barth Isle de France (LVMH) and Hôtel Baie des Anges for beachside dining and services.",
+        "Approximately ten minutes by car from Gustavia's boutiques, restaurants, and yacht harbor.",
+        "Easy access to the coves of Colombier and Corossol, and a natural starting point for coastal hikes."
+      ],
+      "es": [
+        "Una de las playas de arena blanca más largas y amplias de Saint-Barthélemy, en una bahía orientada al norte y bien preservada.",
+        "Barrio residencial y tranquilo, sin zona comercial, ideal para familias y parejas que buscan privacidad.",
+        "Sede del Cheval Blanc St-Barth Isle de France (LVMH) y del Hôtel Baie des Anges para cenar junto al mar y disfrutar de servicios de playa.",
+        "A unos diez minutos en coche de las boutiques, restaurantes y puerto de yates de Gustavia.",
+        "Acceso sencillo a las calas de Colombier y Corossol, y punto de partida natural para rutas costeras a pie."
+      ],
+      "pt": [
+        "Uma das praias de areia branca mais longas e largas de Saint-Barthélemy, numa baía voltada a norte e bem preservada.",
+        "Bairro residencial e tranquilo, sem zona comercial, ideal para famílias e casais que procuram privacidade.",
+        "Acolhe o Cheval Blanc St-Barth Isle de France (LVMH) e o Hôtel Baie des Anges para jantar à beira-mar e usufruir de serviços de praia.",
+        "A cerca de dez minutos de carro das boutiques, restaurantes e porto de iates de Gustavia.",
+        "Acesso fácil às enseadas de Colombier e Corossol, e ponto de partida natural para caminhadas costeiras."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Quelle est l'ambiance du quartier de Flamands par rapport à Saint-Jean ou Gustavia ?",
+          "en": "How does the Flamands neighborhood compare to Saint-Jean or Gustavia in terms of atmosphere?",
+          "es": "¿Cómo se diferencia el barrio de Flamands de Saint-Jean o Gustavia en cuanto a ambiente?",
+          "pt": "Como é que o bairro de Flamands se compara a Saint-Jean ou Gustavia em termos de ambiente?"
+        },
+        "a": {
+          "fr": "Flamands est le quartier le plus calme et le plus résidentiel de l'île. Contrairement à Saint-Jean, animé par ses boutiques de plage et son trafic de l'aéroport, ou à Gustavia, plus urbain et commercial, Flamands offre un front de mer préservé, sans ligne de boutiques ni clubs de plage bruyants. C'est le choix naturel pour ceux qui privilégient l'espace et la tranquillité.",
+          "en": "Flamands is the quietest and most residential neighborhood on the island. Unlike Saint-Jean, which is animated by beach shops and airport traffic, or Gustavia, which is more urban and commercial, Flamands offers a preserved waterfront with no boutique strip or noisy beach clubs. It is the natural choice for guests who prioritize space and tranquility.",
+          "es": "Flamands es el barrio más tranquilo y residencial de la isla. A diferencia de Saint-Jean, animado por tiendas de playa y el tráfico del aeropuerto, o de Gustavia, más urbano y comercial, Flamands ofrece un frente marítimo preservado sin zona de tiendas ni animados clubs de playa. Es la elección natural para quienes priorizan el espacio y la tranquilidad.",
+          "pt": "Flamands é o bairro mais tranquilo e residencial da ilha. Ao contrário de Saint-Jean, animado pelas lojas de praia e o tráfego do aeroporto, ou de Gustavia, mais urbano e comercial, Flamands oferece uma frente marítima preservada, sem zona de lojas nem clubes de praia ruidosos. É a escolha natural para quem privilegia o espaço e a tranquilidade."
+        }
+      },
+      {
+        "q": {
+          "fr": "La plage de Flamands est-elle adaptée à la baignade en famille ?",
+          "en": "Is Flamands Beach suitable for family swimming?",
+          "es": "¿La playa de Flamands es adecuada para el baño en familia?",
+          "pt": "A praia de Flamands é adequada para banho em família?"
+        },
+        "a": {
+          "fr": "La plage de Flamands est l'une des plus grandes de Saint-Barthélemy, avec un sable très fin et des eaux généralement turquoise. Les conditions peuvent varier selon la saison : plus calmes en été, les eaux peuvent présenter quelques vagues en hiver, appréciées des amateurs de bodysurf. Les familles avec de jeunes enfants veilleront à surveiller les conditions du jour avant de se baigner.",
+          "en": "Flamands Beach is one of the largest on Saint-Barthélemy, with very fine sand and generally turquoise waters. Conditions vary by season: calmer in summer, the water can develop some surf in winter, which bodysurfing enthusiasts enjoy. Families with young children should check daily conditions before swimming.",
+          "es": "La playa de Flamands es una de las más grandes de Saint-Barthélemy, con arena muy fina y aguas generalmente turquesas. Las condiciones varían según la temporada: más tranquilas en verano, el mar puede presentar algunas olas en invierno, apreciadas por los aficionados al bodysurf. Las familias con niños pequeños deben verificar las condiciones del día antes de bañarse.",
+          "pt": "A praia de Flamands é uma das maiores de Saint-Barthélemy, com areia muito fina e águas geralmente turquesas. As condições variam consoante a época: mais calmas no verão, a água pode apresentar alguma ondulação no inverno, apreciada pelos amantes de bodysurf. As famílias com crianças pequenas devem verificar as condições do dia antes de entrar na água."
+        }
+      },
+      {
+        "q": {
+          "fr": "À quelle distance Flamands se trouve-t-il de Gustavia et de l'aéroport ?",
+          "en": "How far is Flamands from Gustavia and the airport?",
+          "es": "¿A qué distancia está Flamands de Gustavia y del aeropuerto?",
+          "pt": "A que distância fica Flamands de Gustavia e do aeroporto?"
+        },
+        "a": {
+          "fr": "Le quartier de Flamands se situe à environ cinq kilomètres de Gustavia et de l'aéroport de Saint-Jean, soit une dizaine de minutes en voiture par la route côtière. La location d'un véhicule est recommandée pour explorer l'île à votre rythme.",
+          "en": "The Flamands neighborhood is approximately five kilometers from both Gustavia and Saint-Jean Airport, about ten minutes by car along the coastal road. Renting a vehicle is recommended to explore the island at your own pace.",
+          "es": "El barrio de Flamands se encuentra a unos cinco kilómetros de Gustavia y del aeropuerto de Saint-Jean, es decir, unos diez minutos en coche por la carretera costera. Se recomienda alquilar un vehículo para explorar la isla a su propio ritmo.",
+          "pt": "O bairro de Flamands situa-se a cerca de cinco quilómetros de Gustavia e do aeroporto de Saint-Jean, ou seja, uns dez minutos de carro pela estrada costeira. Recomenda-se alugar um veículo para explorar a ilha ao seu próprio ritmo."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Flamands_(Saint-Barth%C3%A9lemy)",
+      "https://en.wikipedia.org/wiki/Anse_des_Flamands",
+      "https://en.wikipedia.org/wiki/Cheval_Blanc,_St_Barths",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/flamands-beach-st-barts",
+      "https://www.antillesexception.com/en/Caribbean-destination/st-barts-holidays/st-barts-beaches/Flamands-Beach",
+      "https://www.bucketlistvilla.com/blog/fr/flamands-st-barth/"
+    ]
+  },
+  "colombier": {
+    "geo": {
+      "lat": 17.9231,
+      "lng": -62.8683
+    },
+    "intro": {
+      "fr": "Colombier occupe l'extrémité nord-ouest de Saint-Barthélemy, à environ 4 kilomètres de Gustavia. Son atout le plus rare est l'anse qui porte son nom : une plage de sable blanc en croissant, encadrée de falaises et de végétation, classée dans la réserve naturelle marine de l'île. Aucune route n'y mène — seul un sentier de randonnée côtier (20 à 45 minutes selon le point de départ) ou une arrivée en bateau permettent d'y accéder. Cette contrainte fait de Colombier l'une des plages les moins fréquentées de Saint-Barth, un privilège recherché par les locataires de villas qui souhaitent conjuguer isolement absolu et confort haut de gamme. Les villas du quartier bénéficient d'une exposition dominante sur la mer des Caraïbes, d'une grande discrétion vis-à-vis de la route principale, et d'une proximité raisonnable avec Gustavia (moins de dix minutes en voiture) et l'aéroport de Saint-Jean (une quinzaine de minutes).",
+      "en": "Colombier occupies the northwestern tip of Saint-Barthélemy, roughly 4 kilometers from Gustavia. Its defining feature is the cove that bears its name: a crescent of white sand framed by cliffs and lush vegetation, protected within the island's marine nature reserve. No road reaches the beach — access is exclusively on foot via a coastal hiking trail (20 to 45 minutes depending on the trailhead) or by boat. That very inaccessibility makes Colombier one of the least crowded beaches on St. Barth, a quality prized by villa guests who seek complete seclusion without sacrificing comfort. Properties in the neighborhood command broad views over the Caribbean Sea, sit well away from the main road, and remain within a short distance of Gustavia (under ten minutes by car) and Gustaf III Airport in Saint-Jean (approximately fifteen minutes).",
+      "es": "Colombier ocupa el extremo noroeste de Saint-Barthélemy, a unos 4 kilómetros de Gustavia. Su rasgo más singular es la cala que lleva su nombre: una playa de arena blanca en forma de medialuna, enmarcada por acantilados y vegetación exuberante, protegida dentro de la reserva natural marina de la isla. Ninguna carretera conduce hasta ella — el acceso es exclusivamente a pie por un sendero costero (entre 20 y 45 minutos según el punto de partida) o en embarcación. Esa inaccesibilidad convierte Colombier en una de las playas menos concurridas de Saint-Barth, una cualidad muy apreciada por los huéspedes de villas que buscan un aislamiento absoluto sin renunciar al confort. Las propiedades del barrio gozan de amplias vistas sobre el mar Caribe, se sitúan lejos de la carretera principal y permanecen a poca distancia de Gustavia (menos de diez minutos en coche) y del aeropuerto Gustaf III de Saint-Jean (unos quince minutos).",
+      "pt": "Colombier ocupa a ponta noroeste de Saint-Barthélemy, a cerca de 4 quilómetros de Gustavia. O seu elemento mais singular é a enseada que lhe dá o nome: uma praia de areia branca em forma de crescente, enquadrada por falésias e vegetação densa, protegida pela reserva natural marinha da ilha. Nenhuma estrada chega até ela — o acesso faz-se exclusivamente a pé por um trilho costeiro (20 a 45 minutos consoante o ponto de partida) ou de barco. Essa inacessibilidade torna Colombier uma das praias menos frequentadas de Saint-Barth, uma qualidade muito valorizada pelos hóspedes de vilas que procuram isolamento total sem abdicar do conforto. As propriedades do bairro beneficiam de amplas vistas sobre o mar das Caraíbas, estão bem afastadas da estrada principal e ficam a curta distância de Gustavia (menos de dez minutos de carro) e do aeroporto Gustaf III em Saint-Jean (aproximadamente quinze minutos)."
+    },
+    "highlights": {
+      "fr": [
+        "Plage de Colombier protégée en réserve naturelle marine, accessible uniquement à pied ou en bateau — intimité garantie.",
+        "Eaux turquoise réputées pour le snorkeling : tortues marines vertes, coraux et fonds marins préservés.",
+        "Villas en position dominante avec vues panoramiques sur la mer des Caraïbes et les îles voisines.",
+        "Accès à Gustavia en moins de 10 minutes et à l'aéroport de Saint-Jean en 15 minutes.",
+        "Quartier préservé et peu dense, idéal pour les séjours recherchant discrétion et nature intacte."
+      ],
+      "en": [
+        "Colombier beach is protected within a marine nature reserve, reachable only on foot or by boat — privacy is inherent.",
+        "Crystal-clear turquoise waters renowned for snorkeling: green sea turtles, coral reefs, and pristine seabeds.",
+        "Hilltop villas with sweeping panoramic views over the Caribbean Sea and neighboring islands.",
+        "Under 10 minutes from Gustavia by car; approximately 15 minutes from Gustaf III Airport.",
+        "A low-density, unspoiled neighborhood ideal for guests seeking seclusion and intact natural surroundings."
+      ],
+      "es": [
+        "La playa de Colombier está protegida en una reserva natural marina, accesible solo a pie o en barca — privacidad garantizada.",
+        "Aguas turquesas de gran claridad, reputadas por el esnórquel: tortugas marinas verdes, arrecifes de coral y fondos marinos intactos.",
+        "Villas en posición elevada con amplias vistas panorámicas sobre el mar Caribe y las islas vecinas.",
+        "A menos de 10 minutos en coche de Gustavia y a unos 15 minutos del aeropuerto Gustaf III.",
+        "Un barrio poco urbanizado y preservado, ideal para estancias que buscan discreción y naturaleza virgen."
+      ],
+      "pt": [
+        "A praia de Colombier está protegida numa reserva natural marinha, acessível apenas a pé ou de barco — privacidade assegurada.",
+        "Águas turquesas de grande limpidez, conhecidas pelo snorkeling: tartarugas marinhas verdes, recifes de coral e fundos marinhos intocados.",
+        "Vilas em posição elevada com vistas panorâmicas sobre o mar das Caraíbas e as ilhas vizinhas.",
+        "A menos de 10 minutos de Gustavia de carro; aproximadamente 15 minutos do aeroporto Gustaf III.",
+        "Um bairro pouco denso e preservado, ideal para estadias que privilegiam o isolamento e a natureza intacta."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Comment accède-t-on à la plage de Colombier depuis une villa du quartier ?",
+          "en": "How do you reach Colombier beach from a villa in the neighborhood?",
+          "es": "¿Cómo se llega a la playa de Colombier desde una villa del barrio?",
+          "pt": "Como se chega à praia de Colombier a partir de uma vila do bairro?"
+        },
+        "a": {
+          "fr": "La plage est accessible par deux sentiers de randonnée balisés (départ depuis Flamands ou depuis la route de Colombier) en 20 à 45 minutes à pied, ou en quelques minutes en bateau depuis le mouillage de l'anse. Aucune route ne dessert directement la plage.",
+          "en": "The beach is accessible via two marked hiking trails (starting from Flamands or from the Colombier road end) in 20 to 45 minutes on foot, or within minutes by boat from the cove's mooring area. No road leads directly to the beach.",
+          "es": "La playa es accesible mediante dos senderos señalizados (desde Flamands o desde el final de la carretera de Colombier) en 20 a 45 minutos a pie, o en pocos minutos en embarcación desde el fondeadero de la cala. Ninguna carretera llega directamente a la playa.",
+          "pt": "A praia é acessível por dois trilhos sinalizados (a partir de Flamands ou do fim da estrada de Colombier) em 20 a 45 minutos a pé, ou em poucos minutos de barco a partir da zona de fundeadouro da enseada. Nenhuma estrada dá acesso direto à praia."
+        }
+      },
+      {
+        "q": {
+          "fr": "La plage de Colombier est-elle protégée ?",
+          "en": "Is Colombier beach protected?",
+          "es": "¿Está protegida la playa de Colombier?",
+          "pt": "A praia de Colombier está protegida?"
+        },
+        "a": {
+          "fr": "Oui. L'anse de Colombier fait partie de la réserve naturelle marine de Saint-Barthélemy. Ses herbiers de posidonie, ses récifs coralliens et ses espèces marines — dont les tortues vertes — bénéficient d'une protection réglementaire qui interdit tout développement immobilier sur le littoral.",
+          "en": "Yes. Colombier cove is part of Saint-Barthélemy's marine nature reserve. Its seagrass beds, coral reefs, and marine species — including green sea turtles — are protected by regulations that prohibit any coastal development.",
+          "es": "Sí. La cala de Colombier forma parte de la reserva natural marina de Saint-Barthélemy. Sus praderas de posidonia, sus arrecifes de coral y sus especies marinas — incluidas las tortugas verdes — están protegidos por una normativa que prohíbe cualquier desarrollo inmobiliario en el litoral.",
+          "pt": "Sim. A enseada de Colombier integra a reserva natural marinha de Saint-Barthélemy. Os seus prados de posidónia, recifes de coral e espécies marinhas — incluindo tartarugas verdes — estão protegidos por regulamentação que proíbe qualquer desenvolvimento imobiliário na orla costeira."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelle est la distance entre le quartier de Colombier et Gustavia ?",
+          "en": "How far is the Colombier neighborhood from Gustavia?",
+          "es": "¿A qué distancia está el barrio de Colombier de Gustavia?",
+          "pt": "Qual é a distância entre o bairro de Colombier e Gustavia?"
+        },
+        "a": {
+          "fr": "Le quartier de Colombier se situe à environ 4 kilomètres de Gustavia, soit moins de 10 minutes en voiture par la route de Flamands. L'aéroport de Saint-Jean est accessible en une quinzaine de minutes.",
+          "en": "The Colombier neighborhood is approximately 4 kilometers from Gustavia, less than 10 minutes by car via the Flamands road. Gustaf III Airport in Saint-Jean is reachable in about 15 minutes.",
+          "es": "El barrio de Colombier se encuentra a unos 4 kilómetros de Gustavia, a menos de 10 minutos en coche por la carretera de Flamands. El aeropuerto Gustaf III de Saint-Jean es accesible en unos 15 minutos.",
+          "pt": "O bairro de Colombier fica a cerca de 4 quilómetros de Gustavia, a menos de 10 minutos de carro pela estrada de Flamands. O aeroporto Gustaf III em Saint-Jean é acessível em aproximadamente 15 minutos."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Colombier_(Saint-Barth%C3%A9lemy)",
+      "https://www.saint-barths.com/fr/lieux/plages/plage-de-colombier",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/colombier-beach",
+      "https://www.wimco.com/travel-blog/hike-to-anse-de-colombier"
+    ]
+  },
+  "lurin": {
+    "geo": {
+      "lat": 17.8925,
+      "lng": -62.8397
+    },
+    "intro": {
+      "fr": "Posé sur les hauteurs du sud de Saint-Barthélemy, Lurin est l'un des quartiers résidentiels les plus préservés de l'île. Ses villas s'étagent sur un relief vallonné — le Morne Lurin culmine à 162 mètres — offrant des panoramas dégagés sur la mer des Caraïbes et, pour les propriétés orientées à l'ouest, des couchers de soleil sur le port de Gustavia. La plage de l'Anse du Gouverneur, l'une des plus tranquilles de Saint-Barth, est accessible en quelques minutes par la route. Gustavia, cœur gastronomique et commercial de l'île, se trouve à environ cinq minutes en voiture, tandis que l'aéroport Rémy-de-Haenen, situé à Saint-Jean, est accessible en une dizaine de minutes. Lurin conjugue ainsi une situation géographique centrale, une altitude propice à la brise et une densité bâtie volontairement faible — autant d'atouts qui en font l'un des secteurs les plus recherchés pour une location de villa de standing à Saint-Barthélemy.",
+      "en": "Perched on the southern hills of Saint-Barthélemy, Lurin is one of the island's most unspoiled residential neighborhoods. Its villas cascade down a rolling landscape — Morne Lurin peaks at 162 meters — affording open views over the Caribbean Sea and, for west-facing properties, spectacular sunsets above Gustavia's harbor. Anse du Gouverneur beach, one of the quietest on Saint-Barth, is just a few minutes away by car. Gustavia, the island's gastronomic and commercial center, lies roughly five minutes' drive from Lurin, while Rémy-de-Haenen Airport in Saint-Jean is reachable in about ten minutes. Lurin's central location, reliable trade winds, and deliberately low building density combine to make it one of the most sought-after areas for a luxury villa stay on Saint-Barthélemy.",
+      "es": "Situado en las colinas del sur de Saint-Barthélemy, Lurin es uno de los barrios residenciales más tranquilos de la isla. Sus villas se distribuyen sobre un relieve ondulado — el Morne Lurin alcanza los 162 metros de altitud — ofreciendo amplias vistas sobre el mar Caribe y, en las propiedades orientadas al oeste, puestas de sol sobre el puerto de Gustavia. La playa de Anse du Gouverneur, una de las más serenas de Saint-Barth, se encuentra a pocos minutos en coche. Gustavia, centro gastronómico y comercial de la isla, está a unos cinco minutos en automóvil, mientras que el aeropuerto Rémy-de-Haenen, en Saint-Jean, se alcanza en aproximadamente diez minutos. La combinación de posición central, brisa constante y baja densidad edificatoria convierte a Lurin en uno de los sectores más apreciados para el alquiler de villas de lujo en Saint-Barthélemy.",
+      "pt": "Situado nas colinas do sul de Saint-Barthélemy, Lurin é um dos bairros residenciais mais preservados da ilha. As suas villas distribuem-se por um relevo suavemente ondulado — o Morne Lurin atinge 162 metros de altitude — proporcionando vistas abertas sobre o mar das Caraíbas e, nas propriedades voltadas a oeste, pores do sol sobre o porto de Gustavia. A praia de Anse du Gouverneur, uma das mais tranquilas de Saint-Barth, fica a apenas alguns minutos de carro. Gustavia, o centro gastronómico e comercial da ilha, encontra-se a cerca de cinco minutos de automóvel, enquanto o aeroporto Rémy-de-Haenen, em Saint-Jean, é acessível em aproximadamente dez minutos. A conjugação de posição central, brisa constante e densidade construtiva voluntariamente reduzida faz de Lurin uma das zonas mais procuradas para o arrendamento de villas de luxo em Saint-Barthélemy."
+    },
+    "highlights": {
+      "fr": [
+        "Panoramas ouverts sur la mer des Caraïbes depuis les hauteurs du Morne Lurin (162 m)",
+        "Couchers de soleil sur le port de Gustavia depuis les propriétés exposées à l'ouest",
+        "Accès direct à l'Anse du Gouverneur, l'une des plages les plus préservées de Saint-Barth",
+        "Cinq minutes en voiture de Gustavia, dix minutes de l'aéroport de Saint-Jean",
+        "Quartier résidentiel calme, faible densité, grandes parcelles arborées"
+      ],
+      "en": [
+        "Open Caribbean Sea views from the heights of Morne Lurin (162 m elevation)",
+        "Sunset vistas over Gustavia harbor from west-facing properties",
+        "Direct access to Anse du Gouverneur, one of Saint-Barth's most unspoiled beaches",
+        "Five minutes by car to Gustavia, ten minutes to Saint-Jean airport",
+        "Quiet residential neighborhood, low density, generous wooded lots"
+      ],
+      "es": [
+        "Vistas abiertas al mar Caribe desde las alturas del Morne Lurin (162 m de altitud)",
+        "Puestas de sol sobre el puerto de Gustavia desde las propiedades orientadas al oeste",
+        "Acceso directo a Anse du Gouverneur, una de las playas más vírgenes de Saint-Barth",
+        "Cinco minutos en coche hasta Gustavia, diez minutos hasta el aeropuerto de Saint-Jean",
+        "Barrio residencial tranquilo, baja densidad, amplias parcelas arboladas"
+      ],
+      "pt": [
+        "Vistas abertas para o mar das Caraíbas a partir das alturas do Morne Lurin (162 m)",
+        "Pores do sol sobre o porto de Gustavia nas propriedades expostas a oeste",
+        "Acesso direto à Anse du Gouverneur, uma das praias mais preservadas de Saint-Barth",
+        "Cinco minutos de carro até Gustavia, dez minutos até ao aeroporto de Saint-Jean",
+        "Bairro residencial tranquilo, baixa densidade construtiva, grandes lotes arborizados"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Quelle est la plage la plus proche de Lurin ?",
+          "en": "What is the nearest beach to Lurin?",
+          "es": "¿Cuál es la playa más cercana a Lurin?",
+          "pt": "Qual é a praia mais próxima de Lurin?"
+        },
+        "a": {
+          "fr": "L'Anse du Gouverneur est la plage la plus proche du quartier Lurin. Elle est réputée pour son calme, son eau claire et sa baie protégée, accessible en quelques minutes par la route.",
+          "en": "Anse du Gouverneur is the beach closest to the Lurin neighborhood. It is known for its calm waters, clear sea, and sheltered bay, reachable in just a few minutes by car.",
+          "es": "Anse du Gouverneur es la playa más cercana al barrio de Lurin. Es conocida por su tranquilidad, aguas cristalinas y bahía protegida, accesible en pocos minutos en coche.",
+          "pt": "Anse du Gouverneur é a praia mais próxima do bairro de Lurin. É conhecida pela sua tranquilidade, água límpida e baía protegida, acessível em poucos minutos de carro."
+        }
+      },
+      {
+        "q": {
+          "fr": "Lurin est-il bien situé par rapport à Gustavia et à l'aéroport ?",
+          "en": "Is Lurin conveniently located relative to Gustavia and the airport?",
+          "es": "¿Lurin tiene buena ubicación respecto a Gustavia y al aeropuerto?",
+          "pt": "Lurin fica bem localizado em relação a Gustavia e ao aeroporto?"
+        },
+        "a": {
+          "fr": "Oui. Gustavia, avec ses restaurants et ses boutiques, est à environ cinq minutes en voiture. L'aéroport Rémy-de-Haenen de Saint-Jean, unique aéroport de l'île, se trouve à environ dix minutes — une situation centrale qui facilite l'arrivée comme les sorties en soirée.",
+          "en": "Yes. Gustavia, with its restaurants and boutiques, is about five minutes by car. Rémy-de-Haenen Airport in Saint-Jean, the island's only airport, is approximately ten minutes away — a central position that makes arrivals easy and evening outings effortless.",
+          "es": "Sí. Gustavia, con sus restaurantes y boutiques, está a unos cinco minutos en coche. El aeropuerto Rémy-de-Haenen de Saint-Jean, único aeropuerto de la isla, se encuentra a unos diez minutos — una posición central que facilita tanto la llegada como las salidas nocturnas.",
+          "pt": "Sim. Gustavia, com os seus restaurantes e boutiques, fica a cerca de cinco minutos de carro. O aeroporto Rémy-de-Haenen de Saint-Jean, único aeroporto da ilha, está a aproximadamente dez minutos — uma posição central que facilita tanto a chegada como os passeios noturnos."
+        }
+      },
+      {
+        "q": {
+          "fr": "Pourquoi les villas de Lurin offrent-elles des vues aussi dégagées ?",
+          "en": "Why do Lurin villas offer such unobstructed views?",
+          "es": "¿Por qué las villas de Lurin ofrecen vistas tan despejadas?",
+          "pt": "Por que as villas de Lurin oferecem vistas tão abertas?"
+        },
+        "a": {
+          "fr": "Le quartier est établi sur les versants du Morne Lurin, point culminant à 162 mètres dans le sud de l'île. Cette position en hauteur, combinée à une faible densité de construction et à de grandes parcelles, permet à de nombreuses villas de jouir de panoramas ouverts sur la mer des Caraïbes sans obstruction.",
+          "en": "The neighborhood is built on the slopes of Morne Lurin, which peaks at 162 meters in the island's south. This elevated position, combined with low building density and large lots, allows many villas to enjoy unobstructed panoramic views of the Caribbean Sea.",
+          "es": "El barrio se extiende por las laderas del Morne Lurin, que alcanza 162 metros en el sur de la isla. Esta posición elevada, combinada con una baja densidad de edificación y amplias parcelas, permite que muchas villas disfruten de vistas panorámicas despejadas sobre el mar Caribe.",
+          "pt": "O bairro estende-se pelas encostas do Morne Lurin, com cume a 162 metros no sul da ilha. Esta posição elevada, aliada à baixa densidade construtiva e a grandes lotes, permite que muitas villas desfrutem de vistas panorâmicas abertas sobre o mar das Caraíbas."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Lurin_(Saint-Barth%C3%A9lemy)",
+      "https://en.wikipedia.org/wiki/Anse_du_Gouverneur",
+      "https://www.bucketlistvilla.com/blog/fr/quartier-de-lurin-saint-barth/",
+      "https://wimcorealestate.com/en/blog/a-buyers-guide-to-st-barts-neighborhoods",
+      "https://www.jarniascyril.com/expatriation/settling-in-st-barthelemy-as-an-expat-complete-guide/geography-saint-barthelemy-relief-climate-coastline/"
+    ]
+  },
+  "vitet": {
+    "geo": {
+      "lat": 17.9033,
+      "lng": -62.8069
+    },
+    "intro": {
+      "fr": "Vitet occupe la partie centre-est de Saint-Barthélemy, adossé aux flancs du Morne de Vitet, point culminant de l'île à 286 mètres d'altitude. Ce quartier résidentiel perché sur les hauteurs offre un cadre d'une sérénité rare : les brises constantes y tempèrent agréablement les journées, et les villas profitent de panoramas dégagés sur la lagune de Grand Cul-de-Sac, l'anse de Toiny et les îles voisines — Saint-Martin, Anguilla et l'île de la Tortue. À quelques minutes en voiture, la plage protégée de Grand Cul-de-Sac ouvre ses eaux turquoise aux baigneurs et aux amateurs de planche à voile. Gustavia et le port franc sont accessibles en une vingtaine de minutes, tandis que l'aéroport Gustaf III se rejoint en quinze minutes environ. Vitet conjugue ainsi l'intimité des collines tropicales et la facilité d'accès aux plages et aux commerces de l'île, un équilibre recherché par les voyageurs qui privilégient la discrétion au cœur de Saint-Barth.",
+      "en": "Vitet occupies the center-east of Saint-Barthélemy, rising along the slopes of Morne de Vitet — the island's highest point at 286 meters above sea level. This elevated residential neighborhood is defined by a rare sense of calm: constant trade winds keep temperatures comfortable, and villas command unobstructed panoramas over the Grand Cul-de-Sac lagoon, the Toiny coastline, and neighboring islands including Saint-Martin, Anguilla, and Île de la Tortue. The protected beach at Grand Cul-de-Sac, popular with windsurfers and families, is just a short drive away. Gustavia and its duty-free harbor are reachable in roughly twenty minutes, while Gustaf III Airport is approximately fifteen minutes by car. Vitet offers a balance that discerning travelers prize: the seclusion of a hillside tropical setting combined with easy access to the island's beaches, restaurants, and boutiques.",
+      "es": "Vitet ocupa la parte centro-este de Saint-Barthélemy, en las laderas del Morne de Vitet, punto más alto de la isla con 286 metros de altitud. Este barrio residencial en las alturas se distingue por una serenidad poco común: las brisas constantes refrescan el ambiente, y las villas disfrutan de vistas despejadas sobre la laguna de Grand Cul-de-Sac, la costa de Toiny y las islas vecinas — Saint-Martin, Anguilla e Île de la Tortue. La playa protegida de Grand Cul-de-Sac, apreciada por los amantes del windsurf y las familias, se encuentra a pocos minutos en coche. Gustavia y su puerto franco se alcanzan en unos veinte minutos, mientras que el aeropuerto Gustaf III está a aproximadamente quince minutos. Vitet ofrece un equilibrio muy valorado: la intimidad de un entorno tropical en las colinas y la comodidad de acceso a las playas, restaurantes y boutiques de la isla.",
+      "pt": "Vitet situa-se na parte centro-leste de Saint-Barthélemy, nas encostas do Morne de Vitet — o ponto mais alto da ilha, com 286 metros de altitude. Este bairro residencial elevado distingue-se por uma serenidade pouco comum: as brisas constantes amenizam o clima, e as villas dispõem de vistas desimpedidas sobre a lagoa de Grand Cul-de-Sac, a costa de Toiny e as ilhas vizinhas — Saint-Martin, Anguilla e Ilha da Tartaruga. A praia protegida de Grand Cul-de-Sac, apreciada por velejadores e famílias, fica a poucos minutos de carro. Gustavia e o seu porto franco são acessíveis em cerca de vinte minutos, e o aeroporto Gustaf III dista aproximadamente quinze minutos. Vitet oferece um equilíbrio muito procurado: o isolamento de um ambiente tropical nas colinas e a facilidade de acesso às praias, restaurantes e boutiques da ilha."
+    },
+    "highlights": {
+      "fr": [
+        "Point culminant de Saint-Barth à 286 m : vues panoramiques sur Grand Cul-de-Sac, Toiny et les îles voisines",
+        "Quartier résidentiel calme de la paroisse Au Vent, peu densifié, propice à la vie privée",
+        "Brises marines permanentes grâce à l'altitude — fraîcheur naturelle en toute saison",
+        "Accès rapide à Grand Cul-de-Sac (eaux turquoise, lagon protégé, planche à voile)",
+        "À 15 min de l'aéroport et à 20 min de Gustavia et de ses boutiques hors taxe"
+      ],
+      "en": [
+        "Island's highest point at 286 m: panoramic views over Grand Cul-de-Sac, Toiny, and neighboring islands",
+        "Quiet residential neighborhood in the Au Vent parish, lightly developed and highly private",
+        "Steady trade winds at altitude provide natural cooling year-round",
+        "Quick access to Grand Cul-de-Sac's sheltered turquoise lagoon and windsurfing beach",
+        "15 minutes from the airport; 20 minutes from Gustavia's duty-free shopping and restaurants"
+      ],
+      "es": [
+        "Punto más alto de la isla a 286 m: vistas panorámicas sobre Grand Cul-de-Sac, Toiny y las islas vecinas",
+        "Barrio residencial tranquilo en la parroquia Au Vent, con baja densidad de construcción y gran privacidad",
+        "Brisas marinas constantes en altura que garantizan frescor natural durante todo el año",
+        "Acceso rápido a la laguna protegida y turquesa de Grand Cul-de-Sac, ideal para el windsurf",
+        "A 15 minutos del aeropuerto y a 20 minutos de Gustavia y sus tiendas libres de impuestos"
+      ],
+      "pt": [
+        "Ponto mais alto da ilha a 286 m: vistas panorâmicas sobre Grand Cul-de-Sac, Toiny e as ilhas vizinhas",
+        "Bairro residencial tranquilo na paróquia Au Vent, pouco urbanizado e com elevada privacidade",
+        "Brisas marinhas constantes em altitude que proporcionam frescura natural ao longo do ano",
+        "Acesso rápido à lagoa protegida e turquesa de Grand Cul-de-Sac, ideal para a vela e o windsurf",
+        "A 15 minutos do aeroporto e a 20 minutos de Gustavia e das suas lojas duty-free"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Vitet est-il adapté à un séjour en famille avec enfants ?",
+          "en": "Is Vitet suitable for a family vacation with children?",
+          "es": "¿Es Vitet adecuado para unas vacaciones en familia con niños?",
+          "pt": "Vitet é adequado para umas férias em família com crianças?"
+        },
+        "a": {
+          "fr": "Oui. La proximité de Grand Cul-de-Sac — lagon protégé aux eaux calmes, idéal pour la baignade et les activités nautiques douces — en fait un quartier bien adapté aux familles. La tranquillité des hauteurs de Vitet offre en outre un cadre serein loin de l'agitation des zones plus fréquentées.",
+          "en": "Yes. The proximity to Grand Cul-de-Sac — a sheltered lagoon with calm, shallow waters ideal for swimming and gentle water sports — makes Vitet well suited to families. The quiet hillside setting also offers a relaxed environment away from busier parts of the island.",
+          "es": "Sí. La cercanía de Grand Cul-de-Sac — una laguna protegida de aguas tranquilas y poco profundas, ideal para el baño y los deportes acuáticos suaves — hace de Vitet un barrio muy adecuado para las familias. El entorno tranquilo en las colinas ofrece además un ambiente sereno, lejos de las zonas más concurridas.",
+          "pt": "Sim. A proximidade de Grand Cul-de-Sac — uma lagoa protegida de águas calmas e pouco profundas, ideal para banhos e desportos náuticos suaves — torna Vitet muito adequado para famílias. O ambiente tranquilo nas colinas proporciona ainda um espaço sereno, longe das zonas mais movimentadas da ilha."
+        }
+      },
+      {
+        "q": {
+          "fr": "Comment rejoindre Gustavia et l'aéroport depuis Vitet ?",
+          "en": "How do you get from Vitet to Gustavia and the airport?",
+          "es": "¿Cómo se llega desde Vitet a Gustavia y al aeropuerto?",
+          "pt": "Como se chega de Vitet a Gustavia e ao aeroporto?"
+        },
+        "a": {
+          "fr": "Vitet se rejoint exclusivement en voiture ou en taxi. L'aéroport Gustaf III est à environ 15 minutes de route, et Gustavia à une vingtaine de minutes. La location d'un véhicule est vivement recommandée pour profiter pleinement du quartier et de l'île.",
+          "en": "Vitet is accessible by car or taxi only. Gustaf III Airport is approximately 15 minutes away, and Gustavia is roughly 20 minutes by road. Renting a vehicle is strongly recommended to make the most of the neighborhood and the island.",
+          "es": "Vitet solo es accesible en coche o taxi. El aeropuerto Gustaf III se encuentra a unos 15 minutos, y Gustavia a unos 20 minutos por carretera. Se recomienda encarecidamente alquilar un vehículo para aprovechar al máximo el barrio y la isla.",
+          "pt": "Vitet é acessível apenas de carro ou táxi. O aeroporto Gustaf III fica a aproximadamente 15 minutos, e Gustavia a cerca de 20 minutos de carro. Recomenda-se vivamente o aluguer de um veículo para tirar o máximo partido do bairro e da ilha."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelles plages sont accessibles à proximité de Vitet ?",
+          "en": "Which beaches are easily accessible from Vitet?",
+          "es": "¿Qué playas son accesibles desde Vitet?",
+          "pt": "Que praias são acessíveis a partir de Vitet?"
+        },
+        "a": {
+          "fr": "Grand Cul-de-Sac, lagon turquoise protégé par une barrière de corail, est la plage la plus proche. Lorient et sa longue plage venteuse sont également à portée. Au sud-est, l'Anse de Toiny offre un littoral sauvage apprécié des surfeurs, bien que la baignade y soit déconseillée en raison des courants.",
+          "en": "Grand Cul-de-Sac, a turquoise lagoon sheltered by a coral reef, is the closest beach. Lorient and its long, breezy stretch of sand are also within easy reach. To the southeast, Anse de Toiny offers a wild, unspoiled coastline favored by surfers, though swimming is not recommended due to strong currents.",
+          "es": "Grand Cul-de-Sac, una laguna turquesa protegida por un arrecife de coral, es la playa más cercana. Lorient y su larga y ventosa franja de arena también están al alcance. Al sureste, el Anse de Toiny ofrece un litoral salvaje y virgen, muy apreciado por los surfistas, aunque no se recomienda bañarse debido a las fuertes corrientes.",
+          "pt": "Grand Cul-de-Sac, uma lagoa turquesa protegida por um recife de coral, é a praia mais próxima. Lorient e a sua longa faixa de areia ventosa também ficam a pouca distância. A sudeste, o Anse de Toiny oferece um litoral selvagem e intocado, apreciado pelos surfistas, embora o banho não seja recomendado devido às correntes fortes."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Vitet_(Saint-Barth%C3%A9lemy)",
+      "https://en.wikipedia.org/wiki/Vitet",
+      "https://blog.corcoranstbarth.com/the-neighbourhoods-of-st-barth",
+      "https://letoinyexclusive.com/explore/villa-rentals-vitet-st-barth/"
+    ]
+  },
+  "marigot": {
+    "geo": {
+      "lat": 17.9131,
+      "lng": -62.8092
+    },
+    "intro": {
+      "fr": "Niché à l'extrémité nord-est de Saint-Barthélemy, entre Pointe Milou et l'anse de Grand Cul-de-Sac, le quartier de Marigot cultive une discrétion rare sur l'île. Sa plage de sable gris — la seule de Saint-Barth — s'étire en arc de cercle dans une baie protégée, réserve marine naturelle où la pêche est interdite et les eaux sont d'une transparence remarquable. À l'abri du vent, bordée de cocotiers, l'anse de Marigot est fréquentée avant tout par les résidents : pas de bar de plage, pas de restaurant en bord de mer, seulement le calme et la lumière de l'aube sur la côte. L'aéroport Gustaf III de Saint-Jean est accessible en une quinzaine de minutes, tout comme Gustavia, la capitale commerçante de l'île. Pour les amateurs d'activités nautiques, Grand Cul-de-Sac — haut lieu du kite-surf et du paddle — se trouve à quelques minutes à l'est. Louer une villa à Marigot, c'est choisir l'intimité sans renoncer à l'accessibilité.",
+      "en": "Tucked into the northeastern tip of Saint-Barthélemy, between Pointe Milou and the bay of Grand Cul-de-Sac, the Marigot quarter offers a rare sense of seclusion on an island known for its exclusive appeal. Its grey-sand beach — the only one of its kind on St. Barths — curves gently around a protected cove that doubles as a marine nature reserve: no fishing, no motorized watercraft, and water of exceptional clarity. Fringed by coconut palms and sheltered from the trade winds, Marigot Beach draws islanders rather than crowds. There are no beach bars or waterfront restaurants, only calm waters and a sunrise that rewards early risers. Gustaf III Airport at Saint-Jean is roughly fifteen minutes away by car, as is the capital Gustavia with its boutiques and restaurants. Grand Cul-de-Sac, the island's premier spot for kitesurfing and paddleboarding, lies just to the east. Renting a villa in Marigot means choosing genuine privacy without sacrificing convenience.",
+      "es": "Situado en el extremo noreste de Saint-Barthélemy, entre Pointe Milou y la bahía de Grand Cul-de-Sac, el barrio de Marigot ofrece una discreción poco común en la isla. Su playa de arena gris — la única de este tipo en Saint-Barth — describe una curva suave alrededor de una cala protegida que también es reserva marina natural: la pesca está prohibida, las embarcaciones a motor no tienen acceso y las aguas son de una claridad excepcional. Bordeada de palmeras cocotera y resguardada de los vientos alisios, la playa de Marigot es frecuentada principalmente por los habitantes de la isla. No hay bares de playa ni restaurantes frente al mar, solo aguas tranquilas y una luz de amanecer privilegiada gracias a la orientación noreste. El aeropuerto Gustaf III de Saint-Jean se encuentra a unos quince minutos en coche, al igual que Gustavia, la capital con sus boutiques y restaurantes. Grand Cul-de-Sac, el principal enclave de kitesurf y paddleboard de la isla, está a pocos minutos al este. Alquilar una villa en Marigot es elegir una intimidad auténtica sin renunciar a la accesibilidad.",
+      "pt": "Situado na ponta nordeste de Saint-Barthélemy, entre Pointe Milou e a baía de Grand Cul-de-Sac, o bairro de Marigot cultiva uma discrição rara na ilha. A sua praia de areia cinzenta — a única deste tipo em Saint-Barth — forma um arco suave em torno de uma enseada protegida que é também reserva marinha natural: a pesca é proibida, as embarcações motorizadas não têm acesso e as águas são de uma limpidez excecional. Ladeada de coqueiros e abrigada dos alísios, a praia de Marigot é frequentada sobretudo pelos residentes da ilha. Não há bares de praia nem restaurantes à beira-mar, apenas águas calmas e uma luz de amanhecer privilegiada graças à orientação a nordeste. O aeroporto Gustaf III de Saint-Jean encontra-se a cerca de quinze minutos de carro, tal como Gustavia, a capital com as suas boutiques e restaurantes. Grand Cul-de-Sac, o principal local de kitesurf e paddleboard da ilha, fica a poucos minutos a leste. Arrendar uma villa em Marigot é escolher uma intimidade genuína sem abdicar da acessibilidade."
+    },
+    "highlights": {
+      "fr": [
+        "Plage de sable gris unique à Saint-Barth, en réserve marine naturelle protégée",
+        "Baie abritée du vent, eaux calmes et cristallines, idéales pour la plongée en masque",
+        "Quartier résidentiel discret, peu fréquenté par les touristes : intimité garantie",
+        "À environ 15 minutes de Gustavia et de l'aéroport de Saint-Jean",
+        "Grand Cul-de-Sac (kite-surf, paddle, snorkeling de récif) à quelques minutes à l'est"
+      ],
+      "en": [
+        "Grey-sand beach, unique on St. Barths, within a protected marine nature reserve",
+        "Wind-sheltered bay with calm, crystal-clear water ideal for snorkeling",
+        "Quiet residential quarter, rarely crowded — genuine privacy for villa guests",
+        "Approximately 15 minutes by car from Gustavia and Saint-Jean Airport",
+        "Grand Cul-de-Sac (kitesurfing, paddleboarding, reef snorkeling) just minutes to the east"
+      ],
+      "es": [
+        "Playa de arena gris, única en Saint-Barth, dentro de una reserva marina natural protegida",
+        "Bahía resguardada del viento con aguas calmas y cristalinas, ideal para el snorkel",
+        "Barrio residencial tranquilo, escasamente concurrido por turistas: privacidad garantizada",
+        "A unos 15 minutos en coche de Gustavia y del aeropuerto de Saint-Jean",
+        "Grand Cul-de-Sac (kitesurf, paddleboard, snorkel de arrecife) a pocos minutos al este"
+      ],
+      "pt": [
+        "Praia de areia cinzenta, única em Saint-Barth, integrada numa reserva marinha natural protegida",
+        "Baía abrigada dos ventos com águas calmas e cristalinas, ideal para snorkel",
+        "Bairro residencial tranquilo, pouco frequentado por turistas: privacidade garantida",
+        "A cerca de 15 minutos de carro de Gustavia e do aeroporto de Saint-Jean",
+        "Grand Cul-de-Sac (kitesurf, paddleboard, snorkel de recife) a poucos minutos a leste"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage de Marigot est-elle adaptée à la baignade en famille ?",
+          "en": "Is Marigot Beach suitable for families with children?",
+          "es": "¿La playa de Marigot es adecuada para familias con niños?",
+          "pt": "A praia de Marigot é adequada para famílias com crianças?"
+        },
+        "a": {
+          "fr": "Oui. La baie de Marigot est abritée du vent et ses eaux sont calmes, peu profondes à l'entrée et d'une grande clarté. L'absence d'embarcations à moteur (réserve marine) en fait un cadre particulièrement sûr pour nager et faire du snorkeling.",
+          "en": "Yes. Marigot Bay is sheltered from the trade winds and its waters are calm, shallow near the shoreline, and exceptionally clear. The marine reserve prohibits motorized watercraft, making it a particularly safe environment for swimming and snorkeling.",
+          "es": "Sí. La bahía de Marigot está resguardada de los vientos alisios y sus aguas son tranquilas, poco profundas junto a la orilla y excepcionalmente claras. La reserva marina prohíbe las embarcaciones motorizadas, lo que la convierte en un entorno especialmente seguro para nadar y hacer snorkel.",
+          "pt": "Sim. A baía de Marigot está abrigada dos alísios e as suas águas são calmas, pouco profundas junto à margem e excepcionalmente límpidas. A reserva marinha proíbe embarcações motorizadas, tornando-a um ambiente particularmente seguro para nadar e fazer snorkel."
+        }
+      },
+      {
+        "q": {
+          "fr": "Y a-t-il des restaurants ou des services directement sur la plage de Marigot ?",
+          "en": "Are there restaurants or services directly on Marigot Beach?",
+          "es": "¿Hay restaurantes o servicios directamente en la playa de Marigot?",
+          "pt": "Existem restaurantes ou serviços diretamente na praia de Marigot?"
+        },
+        "a": {
+          "fr": "Non. La plage de Marigot ne compte ni restaurant, ni bar de plage, ni commerce sur place. C'est précisément ce qui en fait un lieu d'exception, préservé et peu fréquenté. Les villas du quartier disposent en général de leur propre cuisine équipée ; les restaurants de Lorient et de Saint-Jean sont accessibles en quelques minutes.",
+          "en": "No. Marigot Beach has no restaurants, beach bars, or on-site facilities, which is precisely what keeps it uncrowded and preserved. Villas in the area are typically equipped with full kitchens; the restaurants of Lorient and Saint-Jean are just a few minutes away by car.",
+          "es": "No. La playa de Marigot no cuenta con restaurantes, bares de playa ni instalaciones en el lugar, lo que la mantiene tranquila y preservada. Las villas de la zona disponen habitualmente de cocina totalmente equipada; los restaurantes de Lorient y Saint-Jean se encuentran a pocos minutos en coche.",
+          "pt": "Não. A praia de Marigot não tem restaurantes, bares de praia nem instalações no local, o que a mantém sossegada e preservada. As villas da zona dispõem habitualmente de cozinha totalmente equipada; os restaurantes de Lorient e Saint-Jean ficam a poucos minutos de carro."
+        }
+      },
+      {
+        "q": {
+          "fr": "Marigot est-il proche des activités nautiques de l'île ?",
+          "en": "Is Marigot close to the island's water sports activities?",
+          "es": "¿Está Marigot cerca de las actividades acuáticas de la isla?",
+          "pt": "Marigot fica perto das atividades náuticas da ilha?"
+        },
+        "a": {
+          "fr": "Oui. L'anse de Grand Cul-de-Sac, principal site de kite-surf, de paddle et de plongée en apnée sur récif de Saint-Barth, borde le quartier de Marigot à l'est. Les eaux de la baie de Marigot elle-même conviennent au masque et tuba grâce à leur faune marine protégée.",
+          "en": "Yes. The bay of Grand Cul-de-Sac, St. Barths' premier spot for kitesurfing, paddleboarding, and reef snorkeling, borders Marigot to the east. Marigot Bay itself is also well suited for snorkeling, thanks to its protected marine fauna.",
+          "es": "Sí. La bahía de Grand Cul-de-Sac, el principal lugar de kitesurf, paddleboard y snorkel de arrecife en Saint-Barth, limita con Marigot al este. La propia bahía de Marigot también es apta para el snorkel gracias a su fauna marina protegida.",
+          "pt": "Sim. A baía de Grand Cul-de-Sac, o principal local de kitesurf, paddleboard e snorkel de recife em Saint-Barth, faz fronteira com Marigot a leste. A própria baía de Marigot é também adequada para snorkel, graças à sua fauna marinha protegida."
+        }
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Marigot,_Saint_Barth%C3%A9lemy",
+      "https://fr.wikipedia.org/wiki/Marigot_(Saint-Barth%C3%A9lemy)",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/marigot-beach",
+      "https://ilovecaraibes.com/plage-de-marigot/",
+      "https://www.saint-barths.com/fr/lieux/plages/plage-de-marigot"
+    ]
+  },
+  "corossol": {
+    "geo": {
+      "lat": 17.9081,
+      "lng": -62.8561
+    },
+    "intro": {
+      "fr": "Niché à l'extrémité nord-ouest de Saint-Barthélemy, à environ 1,5 km de Gustavia, le quartier de Corossol est l'un des plus anciens villages de l'île. Sa plage de sable brun — couleur rare à Saint-Barth — borde une baie tranquille où les doris des pêcheurs locaux voisinent avec de discrets embarcadères. L'eau y est calme, propice à la baignade et au snorkeling. Le village a conservé ses maisons à volets de bois, ses traditions d'artisanat de paille tressée et un art de vivre insulaire loin de l'agitation des plages les plus fréquentées. Pour un séjour en villa, Corossol réunit deux atouts rares : une authenticité préservée et une accessibilité immédiate — cinq minutes de voiture séparent le quartier du port de Gustavia et des commerces, restaurants gastronomiques et boutiques de luxe qui l'entourent. L'aéroport Gustaf III, situé à Saint-Jean, est accessible en une quinzaine de minutes.",
+      "en": "Nestled at the northwestern tip of Saint-Barthélemy, roughly one mile north of Gustavia, Corossol is one of the island's oldest and most authentic villages. Its beach is distinguished by brown sand — a rarity on St. Barts — lining a sheltered bay where traditional fishing boats called doris rest between tides. The calm, clear waters make the beach ideal for swimming and snorkeling. Along the waterfront, wooden-shuttered houses and hand-woven straw crafts reflect a Norman heritage that has been quietly preserved across generations. For villa guests, Corossol offers an unusual combination: genuine island character within five minutes' drive of Gustavia's fine-dining restaurants, luxury boutiques, and deep-water harbor. Gustaf III Airport in St. Jean is approximately fifteen minutes away by car, making arrivals and departures straightforward.",
+      "es": "Enclavado en el extremo noroccidental de Saint-Barthélemy, a poco más de un kilómetro al norte de Gustavia, Corossol es uno de los pueblos más antiguos y auténticos de la isla. Su playa se distingue por una arena de tonalidad parda, poco habitual en St. Barts, que bordea una bahía protegida donde los tradicionales botes de pesca — los doris — reposan entre mareas. Las aguas tranquilas y cristalinas resultan idóneas para nadar y hacer snorkel. A lo largo del paseo marítimo, casas con contraventanas de madera y artesanía de paja trenzada reflejan una herencia normanda transmitida de generación en generación. Para quienes se alojan en villa, Corossol ofrece una combinación singular: carácter insular genuino a cinco minutos en coche de los restaurantes gastronómicos, las boutiques de lujo y el puerto de Gustavia. El aeropuerto Gustaf III, en Saint-Jean, se encuentra a aproximadamente quince minutos en automóvil.",
+      "pt": "Situado na extremidade noroeste de Saint-Barthélemy, a cerca de 1,5 km a norte de Gustavia, Corossol é uma das aldeias mais antigas e autênticas da ilha. A sua praia distingue-se pela areia de tom acastanhado — uma raridade em St. Barts — que margeia uma baía abrigada onde os tradicionais barcos de pesca, os doris, repousam entre marés. As águas calmas e cristalinas tornam este local ideal para banhos e snorkel. Ao longo da orla marítima, casas com portadas de madeira e artesanato em palha trançada refletem uma herança normanda preservada ao longo de gerações. Para quem se hospeda numa villa, Corossol oferece uma combinação invulgar: autenticidade insular genuína a cinco minutos de carro dos restaurantes gastronómicos, das boutiques de luxo e do porto de Gustavia. O aeroporto Gustaf III, em Saint-Jean, fica a aproximadamente quinze minutos de carro."
+    },
+    "highlights": {
+      "fr": [
+        "Plage de sable brun en eau calme — idéale pour la baignade et le snorkeling, à l'écart des plages les plus fréquentées.",
+        "Village de pêcheurs authentique : doris traditionnels, artisanat de paille tressée, architecture normande à volets de bois.",
+        "À 1,5 km de Gustavia : accès immédiat aux restaurants, boutiques de luxe et services de l'île.",
+        "Musée Inter Océans : collection de plus de 9 000 coquillages, attraction culturelle unique sur l'île.",
+        "Calme et discrétion : ambiance résidentielle préservée, à l'opposé des zones touristiques les plus animées."
+      ],
+      "en": [
+        "Brown-sand beach on calm waters — ideal for swimming and snorkeling, away from the island's busier shores.",
+        "Authentic fishing village: traditional doris boats, hand-woven straw crafts, Norman-heritage wooden-shuttered houses.",
+        "One mile from Gustavia: immediate access to fine dining, luxury shopping, and the island's main services.",
+        "Inter Oceans Museum: over 9,000 shells from around the world, a unique cultural landmark on St. Barts.",
+        "Quiet residential character: a preserved, low-key atmosphere distinct from the island's more visited areas."
+      ],
+      "es": [
+        "Playa de arena parda en aguas tranquilas — ideal para nadar y hacer snorkel, lejos de las playas más concurridas.",
+        "Pueblo de pescadores auténtico: botes doris tradicionales, artesanía de paja trenzada, casas con herencia normanda.",
+        "A 1,5 km de Gustavia: acceso inmediato a restaurantes, boutiques de lujo y los principales servicios de la isla.",
+        "Museo Inter Océanos: más de 9 000 conchas de todo el mundo, un hito cultural único en St. Barts.",
+        "Ambiente residencial y tranquilo: carácter preservado, muy distinto de las zonas turísticas más animadas."
+      ],
+      "pt": [
+        "Praia de areia acastanhada em águas calmas — ideal para banhos e snorkel, longe das praias mais movimentadas.",
+        "Aldeia piscatória autêntica: barcos doris tradicionais, artesanato em palha trançada, casas com herança normanda.",
+        "A 1,5 km de Gustavia: acesso imediato a restaurantes gastronómicos, boutiques de luxo e serviços da ilha.",
+        "Museu Inter Oceanos: mais de 9 000 conchas de todo o mundo, um ponto cultural único em St. Barts.",
+        "Ambiente residencial e discreto: carácter preservado, bem diferente das zonas turísticas mais movimentadas."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage de Corossol est-elle adaptée à la baignade ?",
+          "en": "Is Corossol beach suitable for swimming?",
+          "es": "¿Es la playa de Corossol apta para el baño?",
+          "pt": "A praia de Corossol é adequada para banhos?"
+        },
+        "a": {
+          "fr": "Oui. La baie de Corossol est protégée, avec des eaux calmes et peu profondes particulièrement adaptées à la baignade et au snorkeling. Elle convient aussi bien aux adultes qu'aux familles avec enfants.",
+          "en": "Yes. Corossol Bay is sheltered, with calm and relatively shallow waters well suited to swimming and snorkeling — a good option for both adults and families with children.",
+          "es": "Sí. La bahía de Corossol está protegida, con aguas tranquilas y poco profundas muy adecuadas para nadar y hacer snorkel, tanto para adultos como para familias con niños.",
+          "pt": "Sim. A baía de Corossol é abrigada, com águas calmas e pouco profundas, muito adequadas para banhos e snorkel, tanto para adultos como para famílias com crianças."
+        }
+      },
+      {
+        "q": {
+          "fr": "Combien de temps faut-il pour rejoindre Gustavia depuis Corossol ?",
+          "en": "How long does it take to reach Gustavia from Corossol?",
+          "es": "¿Cuánto tiempo se tarda en llegar a Gustavia desde Corossol?",
+          "pt": "Quanto tempo demora a chegar a Gustavia a partir de Corossol?"
+        },
+        "a": {
+          "fr": "Corossol est situé à environ 1,5 km au nord de Gustavia, soit cinq minutes en voiture. C'est l'un des quartiers les mieux placés de l'île pour combiner tranquillité résidentielle et accès rapide au centre.",
+          "en": "Corossol sits approximately one mile north of Gustavia, a five-minute drive. It is one of the island's best-positioned neighborhoods for combining residential tranquility with quick access to the capital.",
+          "es": "Corossol se encuentra a unos 1,5 km al norte de Gustavia, a cinco minutos en coche. Es uno de los barrios mejor situados de la isla para combinar tranquilidad residencial con rápido acceso al centro.",
+          "pt": "Corossol fica a cerca de 1,5 km a norte de Gustavia, a cinco minutos de carro. É um dos bairros mais bem localizados da ilha para conjugar tranquilidade residencial com acesso rápido ao centro."
+        }
+      },
+      {
+        "q": {
+          "fr": "Qu'est-ce qui rend le sable de Corossol différent des autres plages de Saint-Barth ?",
+          "en": "What makes Corossol's sand different from other St. Barts beaches?",
+          "es": "¿Qué diferencia la arena de Corossol de las demás playas de St. Barts?",
+          "pt": "O que torna a areia de Corossol diferente das outras praias de St. Barts?"
+        },
+        "a": {
+          "fr": "La plage de Corossol se distingue par son sable brun, une teinte rare sur l'île où la majorité des plages affichent un sable blanc ou beige clair. Cette particularité contribue au caractère authentique et singulier du site.",
+          "en": "Corossol beach stands out for its brown sand — an unusual shade on an island where most beaches display white or pale beige sand. This characteristic reinforces the site's distinctive, unhurried character.",
+          "es": "La playa de Corossol destaca por su arena de color pardo, un tono poco habitual en una isla donde la mayoría de las playas presentan arena blanca o beige claro. Esta particularidad refuerza el carácter singular y auténtico del lugar.",
+          "pt": "A praia de Corossol distingue-se pela sua areia de tom acastanhado, uma tonalidade invulgar numa ilha onde a maioria das praias exibe areia branca ou bege claro. Esta característica reforça o carácter singular e autêntico do local."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Corossol_(Saint-Barth%C3%A9lemy)",
+      "https://www.saint-barths.com/fr/lieux/plages/plage-de-corossol",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/corossol-beach",
+      "https://gustaviaharbor.com/sites/village-of-corossol/"
+    ]
+  },
+  "petit-cul-de-sac": {
+    "geo": {
+      "lat": 17.905,
+      "lng": -62.7906
+    },
+    "intro": {
+      "fr": "Niché à l'extrémité nord-est de Saint-Barthélemy, entre l'Anse de Grand Cul-de-Sac et la pointe de Toiny, le quartier de Petit Cul-de-Sac offre l'un des rivages les plus préservés de l'île. Sa plage de sable fin, protégée par deux avancées rocheuses, baigne dans des eaux d'un calme remarquable aux teintes allant du turquoise profond à l'azur pâle. Le lagon de Petit Étang, situé au sud-ouest, ajoute une dimension naturelle rare dans les Caraïbes. L'accès à la plage se fait par une route en impasse suivie d'un chemin pédestre, ce qui maintient le site à l'écart des flux touristiques. Ce caractère résidentiel discret en fait un emplacement prisé pour les villas de prestige : à une vingtaine de minutes en voiture de Gustavia et à environ dix minutes de l'aéroport Gustaf III, il conjugue isolement choisi et praticité insulaire.",
+      "en": "Nestled at the northeastern tip of Saint-Barthélemy, between Anse de Grand Cul-de-Sac and the Toiny headland, Petit Cul-de-Sac is home to one of the island's most unspoiled stretches of coastline. Its fine-sand beach, sheltered by two rocky peninsulas, enjoys remarkably calm waters ranging from deep turquoise to pale azure. The Petit Étang lagoon, located to the southwest, adds a rare natural dimension seldom found elsewhere in the Caribbean. Access is via a dead-end road and a short footpath, which keeps the area pleasantly free of crowds. This quiet, residential character makes it a sought-after address for luxury villas: approximately twenty minutes by car from Gustavia and around ten minutes from Gustaf III Airport, Petit Cul-de-Sac balances true seclusion with practical island connectivity.",
+      "es": "Enclavado en el extremo noreste de Saint-Barthélemy, entre el Anse de Grand Cul-de-Sac y la punta de Toiny, Petit Cul-de-Sac alberga uno de los tramos costeros más vírgenes de la isla. Su playa de arena fina, resguardada por dos penínsulas rocosas, goza de aguas notablemente tranquilas, con tonalidades que van del turquesa profundo al azul pálido. La laguna de Petit Étang, situada al suroeste, añade una dimensión natural poco frecuente en el Caribe. El acceso se realiza por una carretera sin salida y un sendero peatonal, lo que preserva el lugar de la afluencia turística masiva. Este carácter residencial y discreto lo convierte en una dirección codiciada para villas de lujo: a unos veinte minutos en automóvil de Gustavia y a aproximadamente diez minutos del aeropuerto Gustaf III, Petit Cul-de-Sac combina un aislamiento elegido con una conectividad práctica.",
+      "pt": "Encravado na ponta nordeste de Saint-Barthélemy, entre a Anse de Grand Cul-de-Sac e a ponta de Toiny, Petit Cul-de-Sac acolhe um dos troços costeiros mais preservados da ilha. A sua praia de areia fina, abrigada por duas penínsulas rochosas, beneficia de águas de uma calma notável, com tonalidades que vão do turquesa profundo ao azul pálido. A lagoa de Petit Étang, situada a sudoeste, acrescenta uma dimensão natural raramente encontrada nas Caraíbas. O acesso faz-se por uma estrada sem saída seguida de um percurso pedestre, o que mantém o local afastado dos fluxos turísticos. Este carácter residencial discreto torna-o num endereço apreciado para villas de prestígio: a cerca de vinte minutos de carro de Gustavia e a aproximadamente dez minutos do aeroporto Gustaf III, Petit Cul-de-Sac alia um isolamento escolhido a uma conectividade prática."
+    },
+    "highlights": {
+      "fr": [
+        "Plage de sable fin protégée par deux avancées rocheuses, eaux d'un calme exceptionnel idéales pour la baignade et le snorkeling",
+        "Piscines naturelles formées dans les roches par le mouvement des vagues, inaccessibles à la foule",
+        "Lagon de Petit Étang à proximité immédiate, écrin de nature préservée",
+        "Quartier résidentiel peu densifié, sans commerce de plage, garantissant une tranquillité permanente",
+        "Accès limité par une route en impasse : intimité naturelle pour les locataires de villas"
+      ],
+      "en": [
+        "Fine-sand beach sheltered by two rocky headlands, with exceptionally calm waters perfect for swimming and snorkeling",
+        "Natural tidal pools formed in the rocks by wave action, reachable only on foot and little-known even to locals",
+        "Petit Étang lagoon nearby, a preserved natural setting of rare beauty",
+        "Low-density residential neighborhood with no beach vendors, ensuring constant quiet",
+        "Dead-end road access limits visitor flow, providing inherent privacy for villa guests"
+      ],
+      "es": [
+        "Playa de arena fina resguardada por dos cabos rocosos, con aguas excepcionalmente tranquilas, ideales para nadar y hacer snorkel",
+        "Piscinas naturales formadas en las rocas por el oleaje, accesibles solo a pie y poco conocidas incluso por los lugareños",
+        "Laguna de Petit Étang en las proximidades, un entorno natural preservado de rara belleza",
+        "Barrio residencial de baja densidad, sin vendedores en la playa, que garantiza una tranquilidad constante",
+        "El acceso por carretera sin salida limita la afluencia de visitantes, ofreciendo una privacidad inherente a los huéspedes de villas"
+      ],
+      "pt": [
+        "Praia de areia fina abrigada por duas pontas rochosas, com águas de uma calma excecional, ideais para nadar e fazer snorkeling",
+        "Piscinas naturais formadas nas rochas pelo movimento das ondas, acessíveis apenas a pé e pouco conhecidas até pelos locais",
+        "Lagoa de Petit Étang nas proximidades, um ambiente natural preservado de rara beleza",
+        "Bairro residencial de baixa densidade, sem vendedores na praia, que garante uma tranquilidade permanente",
+        "O acesso por estrada sem saída limita o fluxo de visitantes, proporcionando uma privacidade natural aos hóspedes das villas"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage de Petit Cul-de-Sac est-elle accessible au public ?",
+          "en": "Is Petit Cul-de-Sac beach open to the public?",
+          "es": "¿Es accesible al público la playa de Petit Cul-de-Sac?",
+          "pt": "A praia de Petit Cul-de-Sac é acessível ao público?"
+        },
+        "a": {
+          "fr": "La plage est techniquement publique, mais l'accès direct en véhicule est privé, ce qui la rend l'une des moins fréquentées de Saint-Barthélemy. On y accède par un chemin pédestre depuis une route en impasse.",
+          "en": "The beach is technically public, but direct vehicle access is private, making it one of the least crowded on the island. It is reached via a footpath from a dead-end road.",
+          "es": "La playa es técnicamente pública, pero el acceso directo en vehículo es privado, lo que la convierte en una de las menos concurridas de la isla. Se accede a ella por un sendero desde una carretera sin salida.",
+          "pt": "A praia é tecnicamente pública, mas o acesso direto de veículo é privado, o que a torna uma das menos frequentadas da ilha. Acede-se por um percurso pedestre a partir de uma estrada sem saída."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelles sont les piscines naturelles de Petit Cul-de-Sac ?",
+          "en": "What are the natural pools at Petit Cul-de-Sac?",
+          "es": "¿Qué son las piscinas naturales de Petit Cul-de-Sac?",
+          "pt": "O que são as piscinas naturais de Petit Cul-de-Sac?"
+        },
+        "a": {
+          "fr": "Ce sont des cavités rocheuses naturellement alimentées par la houle, formant des bassins d'eau de mer aux eaux calmes et cristallines. Elles se situent au-delà de la plage de sable et nécessitent un court trek sur des rochers.",
+          "en": "They are natural rock cavities fed by the swell, forming seawater pools with calm, clear water. They are located beyond the sandy beach and require a short trek over rocks to reach.",
+          "es": "Son cavidades rocosas naturales alimentadas por el oleaje, que forman piscinas de agua de mar con aguas tranquilas y cristalinas. Se encuentran más allá de la playa de arena y requieren un corto recorrido sobre las rocas para llegar a ellas.",
+          "pt": "São cavidades rochosas naturais alimentadas pelo mar, formando piscinas de água salgada com água calma e cristalina. Situam-se além da praia de areia e requerem um curto percurso sobre rochas para serem alcançadas."
+        }
+      },
+      {
+        "q": {
+          "fr": "Petit Cul-de-Sac est-il bien situé pour explorer le reste de l'île ?",
+          "en": "Is Petit Cul-de-Sac well placed for exploring the rest of the island?",
+          "es": "¿Está bien situado Petit Cul-de-Sac para explorar el resto de la isla?",
+          "pt": "Petit Cul-de-Sac está bem localizado para explorar o resto da ilha?"
+        },
+        "a": {
+          "fr": "Oui. Malgré son caractère reculé, le quartier est à environ dix minutes en voiture de l'aéroport Gustaf III (Saint-Jean) et à une vingtaine de minutes de Gustavia. Saint-Barthélemy étant une île de faible superficie, l'ensemble des plages et restaurants restent accessibles en moins de trente minutes.",
+          "en": "Yes. Despite its secluded feel, the neighborhood is approximately ten minutes by car from Gustaf III Airport (Saint-Jean) and around twenty minutes from Gustavia. Given the island's compact size, all beaches and restaurants remain reachable within thirty minutes.",
+          "es": "Sí. A pesar de su carácter apartado, el barrio se encuentra a unos diez minutos en coche del aeropuerto Gustaf III (Saint-Jean) y a unos veinte minutos de Gustavia. Dado el tamaño reducido de la isla, todas las playas y restaurantes son accesibles en menos de treinta minutos.",
+          "pt": "Sim. Apesar do seu carácter recuado, o bairro fica a cerca de dez minutos de carro do aeroporto Gustaf III (Saint-Jean) e a cerca de vinte minutos de Gustavia. Dado o tamanho reduzido da ilha, todas as praias e restaurantes ficam acessíveis em menos de trinta minutos."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Petit_Cul-de-Sac_(Saint-Barth%C3%A9lemy)",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/petit-cul-de-sac-beach",
+      "https://www.saint-barths.com/en/places/beaches/petit-cul-de-sac",
+      "https://www.lebarthvillas.com/en/blogs/discover-the-wonderful-petit-cul-de-sac-natural-pools"
+    ]
+  },
+  "pointe-milou": {
+    "geo": {
+      "lat": 17.9158,
+      "lng": -62.8156
+    },
+    "intro": {
+      "fr": "Perchée sur la côte nord de Saint-Barthélemy, à 4,8 kilomètres de Gustavia et à moins de dix minutes de l'aéroport de Saint-Jean, Pointe Milou est l'un des quartiers résidentiels les plus exclusifs de l'île. Le terrain surélevé — jusqu'à 31 mètres d'altitude — offre des vues dégagées sur la mer des Caraïbes et des couchers de soleil d'une rare intensité lumineuse. Les villas s'accrochent aux flancs de la colline, entourées de végétation tropicale dense et de falaises rocheuses. Sans plage propre, le quartier cultive une intimité totale : la plage de Lorient, longue de 800 mètres, est accessible en cinq minutes en voiture. Le restaurant-cabaret Le Ti St-Barth, fondé en 1995, et l'Hôtel Christopher, établissement cinq étoiles, animent les soirées sans rompre la quiétude du secteur. Pointe Milou s'adresse à ceux qui recherchent la discrétion, les panoramas et la proximité des commodités de Saint-Jean.",
+      "en": "Perched on the northern coast of Saint-Barthélemy, 4.8 kilometers from Gustavia and less than ten minutes from Saint-Jean Airport, Pointe Milou is one of the island's most exclusive residential enclaves. Its elevated terrain — reaching up to 31 meters — provides unobstructed views of the Caribbean Sea and sunsets of exceptional clarity. Villas cling to the hillside amid dense tropical vegetation and rocky cliffs. The neighborhood has no beach of its own, which preserves its complete privacy: Lorient Beach, 800 meters of white sand, is a five-minute drive away. The Le Ti St-Barth cabaret-restaurant, founded in 1995, and the five-star Hôtel Christopher animate evenings without disturbing the area's quiet character. Pointe Milou suits guests seeking discretion, panoramic sea views, and easy access to the amenities of Saint-Jean.",
+      "es": "Encaramado en la costa norte de Saint-Barthélemy, a 4,8 kilómetros de Gustavia y a menos de diez minutos del aeropuerto de Saint-Jean, Pointe Milou es uno de los enclaves residenciales más exclusivos de la isla. Su terreno elevado —hasta 31 metros de altitud— ofrece vistas despejadas del mar Caribe y puestas de sol de una claridad excepcional. Las villas se asientan en la ladera entre densa vegetación tropical y acantilados rocosos. El barrio no cuenta con playa propia, lo que preserva su intimidad absoluta: la playa de Lorient, de 800 metros de arena blanca, se encuentra a cinco minutos en coche. El restaurante-cabaré Le Ti St-Barth, fundado en 1995, y el Hôtel Christopher, establecimiento de cinco estrellas, animan las veladas sin alterar la tranquilidad del sector. Pointe Milou es ideal para quienes buscan discreción, panorámicas del mar y proximidad a los servicios de Saint-Jean.",
+      "pt": "Instalado na costa norte de Saint-Barthélemy, a 4,8 quilómetros de Gustavia e a menos de dez minutos do aeroporto de Saint-Jean, Pointe Milou é um dos bairros residenciais mais exclusivos da ilha. O terreno elevado — até 31 metros de altitude — proporciona vistas desimpedidas sobre o mar das Caraíbas e pores do sol de rara intensidade luminosa. As villas agarram-se à encosta entre vegetação tropical densa e falésias rochosas. O bairro não tem praia própria, o que garante uma privacidade total: a praia de Lorient, com 800 metros de areia branca, fica a cinco minutos de carro. O restaurante-cabaré Le Ti St-Barth, fundado em 1995, e o Hôtel Christopher, estabelecimento de cinco estrelas, animam as noites sem perturbar a quietude do sector. Pointe Milou destina-se a quem procura discrição, panorâmicas sobre o mar e proximidade das comodidades de Saint-Jean."
+    },
+    "highlights": {
+      "fr": [
+        "Vues panoramiques dégagées sur la mer des Caraïbes depuis les terrasses et piscines à débordement des villas perchées.",
+        "Couchers de soleil remarquables côté nord, depuis les hauteurs du quartier.",
+        "Plage de Lorient (800 m, sable blanc) à 5 minutes en voiture ; Saint-Jean et ses boutiques à 10 minutes.",
+        "Hôtel Christopher 5★ et cabaret-restaurant Le Ti St-Barth (fondé 1995) à proximité immédiate.",
+        "Aéroport de Saint-Jean accessible en moins de 10 minutes ; Gustavia à 4,8 km."
+      ],
+      "en": [
+        "Unobstructed panoramic views of the Caribbean Sea from villa terraces and infinity pools.",
+        "Exceptional sunset light on the northern hillside, facing open water.",
+        "Lorient Beach (800 m, white sand) five minutes by car; Saint-Jean shops and restaurants ten minutes away.",
+        "Five-star Hôtel Christopher and the Le Ti St-Barth cabaret-restaurant (est. 1995) within the neighborhood.",
+        "Saint-Jean Airport reachable in under ten minutes; Gustavia 4.8 km away."
+      ],
+      "es": [
+        "Vistas panorámicas despejadas del mar Caribe desde las terrazas y piscinas infinitas de las villas.",
+        "Puestas de sol excepcionales en la ladera norte, orientada hacia el océano abierto.",
+        "Playa de Lorient (800 m, arena blanca) a cinco minutos en coche; tiendas y restaurantes de Saint-Jean a diez minutos.",
+        "Hôtel Christopher de cinco estrellas y el restaurante-cabaré Le Ti St-Barth (desde 1995) en el propio barrio.",
+        "Aeropuerto de Saint-Jean a menos de diez minutos; Gustavia a 4,8 km."
+      ],
+      "pt": [
+        "Vistas panorâmicas desimpedidas sobre o mar das Caraíbas a partir das esplanadas e piscinas infinitas das villas.",
+        "Pores do sol excepcionais na encosta norte, voltada para o oceano aberto.",
+        "Praia de Lorient (800 m, areia branca) a cinco minutos de carro; lojas e restaurantes de Saint-Jean a dez minutos.",
+        "Hôtel Christopher cinco estrelas e o restaurante-cabaré Le Ti St-Barth (desde 1995) no próprio bairro.",
+        "Aeroporto de Saint-Jean a menos de dez minutos; Gustavia a 4,8 km."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Y a-t-il une plage à Pointe Milou ?",
+          "en": "Is there a beach at Pointe Milou?",
+          "es": "¿Hay playa en Pointe Milou?",
+          "pt": "Há praia em Pointe Milou?"
+        },
+        "a": {
+          "fr": "Pointe Milou ne dispose pas de plage propre : le quartier est bâti sur des falaises et des collines surplombant la mer. La plage de Lorient, longue de 800 mètres, se trouve à environ cinq minutes en voiture.",
+          "en": "Pointe Milou has no beach of its own: the neighborhood is built on cliffs and hills above the sea. Lorient Beach, 800 meters long, is approximately five minutes away by car.",
+          "es": "Pointe Milou no cuenta con playa propia: el barrio está construido sobre acantilados y colinas que dominan el mar. La playa de Lorient, de 800 metros de longitud, se encuentra a unos cinco minutos en coche.",
+          "pt": "Pointe Milou não tem praia própria: o bairro é edificado sobre falésias e colinas que dominam o mar. A praia de Lorient, com 800 metros de comprimento, fica a cerca de cinco minutos de carro."
+        }
+      },
+      {
+        "q": {
+          "fr": "Combien de temps faut-il pour rejoindre Gustavia depuis Pointe Milou ?",
+          "en": "How long does it take to reach Gustavia from Pointe Milou?",
+          "es": "¿Cuánto tiempo se tarda en llegar a Gustavia desde Pointe Milou?",
+          "pt": "Quanto tempo demora a chegar a Gustavia a partir de Pointe Milou?"
+        },
+        "a": {
+          "fr": "Gustavia est à 4,8 kilomètres de Pointe Milou, soit environ dix à quinze minutes en voiture selon la circulation. L'aéroport de Saint-Jean est accessible en moins de dix minutes.",
+          "en": "Gustavia is 4.8 kilometers from Pointe Milou, roughly ten to fifteen minutes by car depending on traffic. Saint-Jean Airport is reachable in under ten minutes.",
+          "es": "Gustavia se encuentra a 4,8 kilómetros de Pointe Milou, lo que equivale a unos diez o quince minutos en coche según el tráfico. El aeropuerto de Saint-Jean es accesible en menos de diez minutos.",
+          "pt": "Gustavia fica a 4,8 quilómetros de Pointe Milou, cerca de dez a quinze minutos de carro consoante o tráfego. O aeroporto de Saint-Jean é acessível em menos de dez minutos."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quels établissements notables se trouvent à Pointe Milou ?",
+          "en": "What notable establishments are located in Pointe Milou?",
+          "es": "¿Qué establecimientos destacados se encuentran en Pointe Milou?",
+          "pt": "Que estabelecimentos notáveis existem em Pointe Milou?"
+        },
+        "a": {
+          "fr": "Le quartier abrite l'Hôtel Christopher, établissement cinq étoiles avec vue sur l'océan, et Le Ti St-Barth, restaurant-cabaret fondé le 25 décembre 1995 par Carole Gruson, réputé pour ses dîners-spectacles et ses soirées jusqu'à l'aube.",
+          "en": "The neighborhood is home to Hôtel Christopher, a five-star property with ocean views, and Le Ti St-Barth, a cabaret-restaurant founded on 25 December 1995 by Carole Gruson, known for its dinner shows and late-night entertainment.",
+          "es": "El barrio alberga el Hôtel Christopher, un establecimiento de cinco estrellas con vistas al océano, y Le Ti St-Barth, un restaurante-cabaré fundado el 25 de diciembre de 1995 por Carole Gruson, conocido por sus cenas-espectáculo y sus veladas hasta el amanecer.",
+          "pt": "O bairro alberga o Hôtel Christopher, um estabelecimento de cinco estrelas com vista para o oceano, e Le Ti St-Barth, um restaurante-cabaré fundado a 25 de dezembro de 1995 por Carole Gruson, conhecido pelos seus jantares-espetáculo e pelas suas noites até ao amanhecer."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Pointe_Milou_(Saint-Barth%C3%A9lemy)",
+      "https://www.bucketlistvilla.com/blog/fr/pointe-milou-st-barth/",
+      "https://www.barnes-stbarth.com/en/blog/2026/le-ti-st-barth-restaurant-cabaret-and-nightclub-since-1995-3137.html",
+      "https://www.hotelchristopher.com/en/2024/01/18/admire-the-sunset-in-saint-barth-the-magic-spots/"
+    ]
+  },
+  "lorient": {
+    "geo": {
+      "lat": 17.9067,
+      "lng": -62.8244
+    },
+    "intro": {
+      "fr": "Lorient occupe la côte nord de Saint-Barthélemy, à environ quatre kilomètres à l'est de Gustavia et à une dizaine de minutes en voiture de l'aéroport Gustave-III de Saint-Jean. Fondé par des colons bretons, c'est l'un des quartiers les plus anciens de l'île : son église Notre-Dame-de-l'Assomption, dont les origines remontent à 1724 et qui est classée monument historique depuis 1995, témoigne de cette longue présence. La plage de Lorient, protégée par un récif, conjugue eaux translucides propices à la baignade en famille et vague de surf appréciée des initiés. Deux boulangeries, un supermarché, des boutiques locales et la maison Ligne St Barth confèrent au village une vie quotidienne authentique que les grandes stations balnéaires n'offrent pas. Séjourner en villa à Lorient, c'est accéder à la fois à la sérénité de la côte nord et à la proximité immédiate de Gustavia, de ses restaurants gastronomiques et de ses galeries d'art.",
+      "en": "Lorient sits on the north shore of Saint-Barthélemy, roughly four kilometers east of Gustavia and about ten minutes by car from Gustaf III Airport at Saint-Jean. Founded by Breton settlers, it is one of the island's oldest villages: the Church of Notre-Dame-de-l'Assomption, whose origins date to 1724 and which has held historic monument status since 1995, attests to that heritage. Lorient Beach, sheltered by a reef, combines clear, calm waters ideal for family swimming with a well-regarded surf break on its western end. Two bakeries, a supermarket, local boutiques, and the Ligne St Barth house give the village a genuine daily rhythm rarely found in resort destinations. Staying in a villa in Lorient means enjoying the quiet of the north coast while remaining within easy reach of Gustavia's gastronomic restaurants and art galleries.",
+      "es": "Lorient se encuentra en la costa norte de Saint-Barthélemy, a unos cuatro kilómetros al este de Gustavia y a aproximadamente diez minutos en coche del aeropuerto Gustaf III de Saint-Jean. Fundado por colonos bretones, es uno de los barrios más antiguos de la isla: la iglesia de Notre-Dame-de-l'Assomption, cuyos orígenes se remontan a 1724 y que ostenta la categoría de monumento histórico desde 1995, da fe de ese legado. La playa de Lorient, resguardada por un arrecife, combina aguas transparentes y tranquilas para el baño en familia con una reconocida ola para el surf en su extremo occidental. Dos panaderías, un supermercado, tiendas locales y la casa Ligne St Barth otorgan al pueblo un ritmo cotidiano auténtico difícil de encontrar en destinos turísticos. Alojarse en una villa en Lorient significa disfrutar de la calma de la costa norte manteniéndose a poca distancia de los restaurantes gastronómicos y las galerías de arte de Gustavia.",
+      "pt": "Lorient situa-se na costa norte de Saint-Barthélemy, a cerca de quatro quilómetros a leste de Gustavia e a aproximadamente dez minutos de carro do aeroporto Gustaf III de Saint-Jean. Fundado por colonos bretões, é um dos bairros mais antigos da ilha: a Igreja de Notre-Dame-de-l'Assomption, com origens que remontam a 1724 e classificada monumento histórico desde 1995, atesta esse património. A praia de Lorient, protegida por um recife, conjuga águas transparentes e calmas propícias ao banho em família com uma reconhecida ondulação para a prática de surf na extremidade ocidental. Duas padarias, um supermercado, lojas locais e a casa Ligne St Barth conferem à aldeia um ritmo quotidiano autêntico raramente encontrado em destinos turísticos. Ficar numa villa em Lorient significa desfrutar da serenidade da costa norte mantendo-se a curta distância dos restaurantes gastronómicos e das galerias de arte de Gustavia."
+    },
+    "highlights": {
+      "fr": [
+        "Plage familiale protégée par un récif, avec des zones peu profondes adaptées aux enfants et des eaux transparentes pour le snorkeling",
+        "Spot de surf reconnu sur la côte nord, avec club de surf et moniteurs disponibles sur place",
+        "Village vivant et accessible à pied : deux boulangeries, supermarché, boutiques locales et Ligne St Barth",
+        "Patrimoine historique exceptionnel : église Notre-Dame-de-l'Assomption (1724) classée monument historique, cimetière paroissial",
+        "À quatre kilomètres de Gustavia et à dix minutes de l'aéroport, idéal pour explorer toute l'île"
+      ],
+      "en": [
+        "Reef-sheltered family beach with shallow pools for children and clear waters for snorkeling",
+        "Recognized surf break on the north coast, with a surf club and instructors on site",
+        "Walkable, authentic village life: two bakeries, a supermarket, local boutiques, and Ligne St Barth",
+        "Exceptional historic heritage: the Church of Notre-Dame-de-l'Assomption (1724), a listed historic monument, and the parish cemetery",
+        "Four kilometers from Gustavia and ten minutes from the airport — ideal base for exploring the whole island"
+      ],
+      "es": [
+        "Playa familiar protegida por un arrecife, con zonas poco profundas para niños y aguas claras para el snorkel",
+        "Reconocida ola de surf en la costa norte, con club de surf e instructores disponibles",
+        "Pueblo auténtico y transitable a pie: dos panaderías, supermercado, tiendas locales y Ligne St Barth",
+        "Patrimonio histórico excepcional: iglesia de Notre-Dame-de-l'Assomption (1724), monumento histórico clasificado, y cementerio parroquial",
+        "A cuatro kilómetros de Gustavia y a diez minutos del aeropuerto — base ideal para recorrer toda la isla"
+      ],
+      "pt": [
+        "Praia familiar protegida por um recife, com zonas pouco fundas para crianças e águas claras para snorkeling",
+        "Reconhecida onda de surf na costa norte, com clube de surf e monitores disponíveis no local",
+        "Aldeia autêntica percorrível a pé: duas padarias, supermercado, lojas locais e a casa Ligne St Barth",
+        "Património histórico excecional: Igreja de Notre-Dame-de-l'Assomption (1724), monumento histórico classificado, e cemitério paroquial",
+        "A quatro quilómetros de Gustavia e a dez minutos do aeroporto — base ideal para explorar toda a ilha"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage de Lorient est-elle adaptée aux familles avec enfants ?",
+          "en": "Is Lorient Beach suitable for families with children?",
+          "es": "¿La playa de Lorient es adecuada para familias con niños?",
+          "pt": "A praia de Lorient é adequada para famílias com crianças?"
+        },
+        "a": {
+          "fr": "Oui. La plage dispose de zones peu profondes et de piscines naturelles particulièrement adaptées aux jeunes enfants, tandis que l'extrémité orientale offre des eaux calmes pour le snorkeling. La partie occidentale, en revanche, est fréquentée par les surfeurs.",
+          "en": "Yes. The beach has shallow natural pools well suited to young children, while the eastern end offers calm waters for snorkeling. The western section is frequented by surfers and is better suited to older swimmers.",
+          "es": "Sí. La playa cuenta con zonas poco profundas y pozas naturales especialmente adecuadas para los niños pequeños, mientras que el extremo oriental ofrece aguas tranquilas para el snorkel. La parte occidental está frecuentada por surfistas.",
+          "pt": "Sim. A praia dispõe de zonas pouco fundas e piscinas naturais especialmente adequadas para crianças pequenas, enquanto a extremidade oriental oferece águas calmas para snorkeling. A parte ocidental é frequentada por surfistas."
+        }
+      },
+      {
+        "q": {
+          "fr": "À quelle distance Lorient se trouve-t-il de Gustavia et de l'aéroport ?",
+          "en": "How far is Lorient from Gustavia and the airport?",
+          "es": "¿A qué distancia está Lorient de Gustavia y del aeropuerto?",
+          "pt": "A que distância fica Lorient de Gustavia e do aeroporto?"
+        },
+        "a": {
+          "fr": "Lorient est situé à environ quatre kilomètres à l'est de Gustavia, soit une dizaine de minutes en voiture. L'aéroport Gustave-III de Saint-Jean est accessible en un temps de trajet similaire.",
+          "en": "Lorient is located approximately four kilometers east of Gustavia, roughly a ten-minute drive. Gustaf III Airport at Saint-Jean is accessible in a similar travel time.",
+          "es": "Lorient se encuentra a unos cuatro kilómetros al este de Gustavia, aproximadamente diez minutos en coche. El aeropuerto Gustaf III de Saint-Jean es accesible en un tiempo de trayecto similar.",
+          "pt": "Lorient situa-se a cerca de quatro quilómetros a leste de Gustavia, ou seja, aproximadamente dez minutos de carro. O aeroporto Gustaf III de Saint-Jean é acessível num tempo de percurso semelhante."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelles commodités trouve-t-on à Lorient sans avoir à prendre la voiture ?",
+          "en": "What amenities can be found in Lorient without needing a car?",
+          "es": "¿Qué servicios se encuentran en Lorient sin necesidad de coche?",
+          "pt": "Que serviços se encontram em Lorient sem necessidade de carro?"
+        },
+        "a": {
+          "fr": "Le quartier dispose de deux boulangeries, d'un supermarché, de boutiques locales et de la maison Ligne St Barth. Plusieurs restaurants, dont Jo Jo Burger et Le Bouchon, sont accessibles à pied depuis la plage.",
+          "en": "The neighborhood has two bakeries, a supermarket, local boutiques, and the Ligne St Barth house. Several restaurants, including Jo Jo Burger and Le Bouchon, are within walking distance of the beach.",
+          "es": "El barrio cuenta con dos panaderías, un supermercado, tiendas locales y la casa Ligne St Barth. Varios restaurantes, entre ellos Jo Jo Burger y Le Bouchon, se encuentran a poca distancia a pie de la playa.",
+          "pt": "O bairro dispõe de duas padarias, um supermercado, lojas locais e a casa Ligne St Barth. Vários restaurantes, incluindo Jo Jo Burger e Le Bouchon, estão a poucos minutos a pé da praia."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Lorient_(Saint-Barth%C3%A9lemy)",
+      "https://fr.wikipedia.org/wiki/%C3%89glise_de_Lorient_de_Saint-Barth%C3%A9lemy",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/lorient-beach",
+      "https://www.access.sb/en/st-barts/leisure/beaches/plage-de-lorient/"
+    ]
+  },
+  "grand-cul-de-sac": {
+    "geo": {
+      "lat": 17.910278,
+      "lng": -62.805
+    },
+    "intro": {
+      "fr": "Niché à l'extrémité nord-est de Saint-Barthélemy, à environ cinq kilomètres de Gustavia et à une dizaine de minutes de l'aéroport Gustaf III, le quartier de Grand Cul-de-Sac s'articule autour d'un lagon naturel aux eaux turquoise peu profondes, abritées par un récif corallien. La plage de sable blanc en forme de croissant est bordée par trois hôtels de standing — Rosewood Le Guanahani, Le Sereno et Le Barthélemy Hotel & Spa — ainsi que par plusieurs restaurants en bord de mer. Les eaux calmes et translucides, peuplées de poissons multicolores et visitées régulièrement par des pélicans, en font l'une des baies les plus prisées de l'île pour les familles comme pour les amateurs de sports nautiques. Accessible en quelques minutes depuis l'aéroport Gustaf III, Grand Cul-de-Sac conjugue la douceur d'un lagon protégé avec la discrétion et le raffinement propres à Saint-Barthélemy.",
+      "en": "Nestled on the northeastern tip of Saint-Barthélemy, roughly five kilometers from Gustavia and minutes from Gustaf III Airport, Grand Cul-de-Sac is defined by a natural lagoon of shallow, turquoise water sheltered by a coral reef. The crescent-shaped white-sand beach is framed by three leading hotels — Rosewood Le Guanahani, Le Sereno, and Le Barthélemy Hotel & Spa — and several beachfront restaurants. Crystal-clear waters teeming with colorful fish and frequented by diving pelicans make this bay a favorite for families and water sports enthusiasts alike. Consistently gentle trade winds funnel across the lagoon, creating textbook conditions for kitesurfing and windsurfing, while the shallows remain calm enough for young children to wade safely. Grand Cul-de-Sac offers the rare balance of an active waterfront and the understated refinement that defines St. Barths.",
+      "es": "Situado en el extremo noreste de Saint-Barthélemy, a unos cinco kilómetros de Gustavia y a pocos minutos del aeropuerto Gustaf III, el barrio de Grand Cul-de-Sac se organiza en torno a una laguna natural de aguas turquesas poco profundas, resguardada por un arrecife de coral. La playa de arena blanca, en forma de media luna, está flanqueada por tres hoteles de lujo — Rosewood Le Guanahani, Le Sereno y Le Barthélemy Hotel & Spa — y varios restaurantes frente al mar. Las aguas cristalinas, habitadas por peces multicolores y frecuentadas por pelícanos, convierten esta bahía en una de las más apreciadas de la isla tanto para familias como para aficionados a los deportes acuáticos. Grand Cul-de-Sac combina la serenidad de una laguna protegida con la discreción y el refinamiento propios de Saint-Barthélemy.",
+      "pt": "Situado na ponta nordeste de Saint-Barthélemy, a cerca de cinco quilómetros de Gustavia e a poucos minutos do aeroporto Gustaf III, o bairro de Grand Cul-de-Sac organiza-se em torno de uma lagoa natural de águas turquesa pouco profundas, abrigada por um recife de coral. A praia de areia branca em forma de crescente é ladeada por três hotéis de prestígio — Rosewood Le Guanahani, Le Sereno e Le Barthélemy Hotel & Spa — e vários restaurantes à beira-mar. As águas cristalinas, habitadas por peixes multicoloridos e frequentadas por pelicanos em mergulho, tornam esta baía uma das mais apreciadas da ilha por famílias e praticantes de desportos náuticos. Grand Cul-de-Sac conjuga a serenidade de uma lagoa protegida com a discrição e o requinte característicos de Saint-Barthélemy."
+    },
+    "highlights": {
+      "fr": [
+        "Lagon naturel protégé par un récif corallien, eaux peu profondes et calmes idéales pour la baignade en famille.",
+        "Spot de kitesurf et de windsurf reconnu, avec école de sports nautiques directement sur la plage.",
+        "Trois hôtels de luxe en bord de lagon (Rosewood Le Guanahani, Le Sereno, Le Barthélemy Hotel & Spa) et restaurants de plage.",
+        "Faune marine variée visible depuis le rivage : poissons multicolores, pélicans, tortues marines signalées.",
+        "Accès rapide à l'aéroport Gustaf III et à Gustavia (environ 5 km), idéal pour une arrivée sans délai."
+      ],
+      "en": [
+        "Natural lagoon sheltered by a coral reef, with shallow, calm waters perfect for swimming and families with children.",
+        "Premier kitesurfing and windsurfing spot on the island, with an on-beach school for all levels.",
+        "Three luxury hotels on the lagoon (Rosewood Le Guanahani, Le Sereno, Le Barthélemy Hotel & Spa) and beachfront dining.",
+        "Rich marine life visible from shore: colorful fish, diving pelicans, and sea turtles reported in the area.",
+        "Quick access to Gustaf III Airport and Gustavia (approx. 5 km), minimizing transfer time on arrival."
+      ],
+      "es": [
+        "Laguna natural resguardada por un arrecife de coral, con aguas poco profundas y tranquilas ideales para el baño en familia.",
+        "Lugar de referencia para el kitesurf y el windsurf en la isla, con escuela de deportes náuticos directamente en la playa.",
+        "Tres hoteles de lujo frente a la laguna (Rosewood Le Guanahani, Le Sereno, Le Barthélemy Hotel & Spa) y restaurantes de playa.",
+        "Rica vida marina visible desde la orilla: peces multicolores, pelícanos en picado y tortugas marinas avistadas en la zona.",
+        "Acceso rápido al aeropuerto Gustaf III y a Gustavia (aprox. 5 km), minimizando los traslados a la llegada."
+      ],
+      "pt": [
+        "Lagoa natural abrigada por um recife de coral, com águas pouco profundas e calmas ideais para banho em família.",
+        "Principal spot de kitesurf e windsurf da ilha, com escola de desportos náuticos diretamente na praia.",
+        "Três hotéis de luxo à beira da lagoa (Rosewood Le Guanahani, Le Sereno, Le Barthélemy Hotel & Spa) e restaurantes de praia.",
+        "Rica vida marinha visível a partir da margem: peixes multicoloridos, pelicanos em mergulho e tartarugas marinhas avistadas na zona.",
+        "Acesso rápido ao aeroporto Gustaf III e a Gustavia (aprox. 5 km), minimizando o tempo de transferência na chegada."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Le lagon de Grand Cul-de-Sac est-il adapté aux enfants en bas âge ?",
+          "en": "Is the Grand Cul-de-Sac lagoon safe for young children?",
+          "es": "¿Es la laguna de Grand Cul-de-Sac adecuada para niños pequeños?",
+          "pt": "A lagoa de Grand Cul-de-Sac é adequada para crianças pequenas?"
+        },
+        "a": {
+          "fr": "Oui. Le lagon est protégé par un récif corallien qui maintient les eaux peu profondes et calmes, loin de la houle atlantique. Les familles avec jeunes enfants y sont particulièrement à l'aise, même si la présence de véliplanchistes et de kitesurfeurs dans la zone sportive invite à rester vigilant.",
+          "en": "Yes. The coral reef shelters the lagoon from Atlantic swells, keeping the water shallow and calm throughout the day. Families with young children are well catered for, though parents should remain attentive to windsurfers and kitesurfers active in the outer section of the bay.",
+          "es": "Sí. El arrecife de coral protege la laguna de las olas atlánticas, manteniendo el agua poco profunda y tranquila durante todo el día. Las familias con niños pequeños se sienten especialmente cómodas aquí, aunque conviene vigilar la zona donde practican windsurf y kitesurf.",
+          "pt": "Sim. O recife de coral protege a lagoa das ondas do Atlântico, mantendo a água pouco profunda e calma ao longo do dia. As famílias com crianças pequenas sentem-se particularmente à vontade, embora seja aconselhável manter atenção à zona frequentada por praticantes de windsurf e kitesurf."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelle est la meilleure saison pour pratiquer le kitesurf à Grand Cul-de-Sac ?",
+          "en": "What is the best season for kitesurfing at Grand Cul-de-Sac?",
+          "es": "¿Cuál es la mejor temporada para practicar kitesurf en Grand Cul-de-Sac?",
+          "pt": "Qual é a melhor época para a prática de kitesurf em Grand Cul-de-Sac?"
+        },
+        "a": {
+          "fr": "La saison optimale s'étend de décembre à avril, période durant laquelle les alizés sont les plus réguliers et soutenus. Grand Cul-de-Sac est le principal — et souvent l'unique — spot de kitesurf de l'île, et une école est établie directement sur la plage.",
+          "en": "The best conditions run from December through April, when trade winds are most consistent and sustained. Grand Cul-de-Sac is the island's primary kitesurfing spot, with an on-site school offering lessons for all skill levels.",
+          "es": "Las mejores condiciones se dan de diciembre a abril, cuando los vientos alisios son más regulares y constantes. Grand Cul-de-Sac es el principal spot de kitesurf de la isla, con una escuela instalada directamente en la playa.",
+          "pt": "As melhores condições ocorrem de dezembro a abril, quando os alísios são mais regulares e sustentados. Grand Cul-de-Sac é o principal spot de kitesurf da ilha, com uma escola instalada diretamente na praia."
+        }
+      },
+      {
+        "q": {
+          "fr": "À quelle distance Grand Cul-de-Sac se trouve-t-il de Gustavia et de l'aéroport ?",
+          "en": "How far is Grand Cul-de-Sac from Gustavia and the airport?",
+          "es": "¿A qué distancia está Grand Cul-de-Sac de Gustavia y del aeropuerto?",
+          "pt": "A que distância fica Grand Cul-de-Sac de Gustavia e do aeroporto?"
+        },
+        "a": {
+          "fr": "Le quartier se trouve à environ 5 kilomètres de Gustavia par la route. L'aéroport Gustaf III, situé à Saint-Jean, est lui aussi accessible en quelques minutes depuis Grand Cul-de-Sac, ce qui en fait l'une des zones les mieux desservies de l'île.",
+          "en": "The neighborhood is approximately 5 kilometers from Gustavia by road. Gustaf III Airport in Saint-Jean is also reachable within a few minutes from Grand Cul-de-Sac, making it one of the most conveniently located areas on the island.",
+          "es": "El barrio se encuentra a unos 5 kilómetros de Gustavia por carretera. El aeropuerto Gustaf III, situado en Saint-Jean, también es accesible en pocos minutos desde Grand Cul-de-Sac, lo que lo convierte en una de las zonas mejor comunicadas de la isla.",
+          "pt": "O bairro fica a cerca de 5 quilómetros de Gustavia por estrada. O aeroporto Gustaf III, em Saint-Jean, também é acessível em poucos minutos a partir de Grand Cul-de-Sac, tornando-o numa das zonas mais bem servidas da ilha."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Grand_Cul-de-Sac_(Saint-Barth%C3%A9lemy)",
+      "https://www.saint-barths.com/fr/lieux/plages/plage-de-grand-cul-de-sac",
+      "https://www.access.sb/en/st-barts/leisure/beaches/plage-de-grand-cul-de-sac/"
+    ]
+  },
+  "gouverneur": {
+    "geo": {
+      "lat": 17.8842,
+      "lng": -62.8339
+    },
+    "intro": {
+      "fr": "Nichée à l'extrémité sud de Saint-Barthélemy, à environ deux kilomètres de Gustavia par la Route de Lurin, l'anse de Gouverneur est l'un des quartiers les plus préservés de l'île. La plage — longue bande de sable blanc bordée de rochers et de falaises couvertes de liseron — s'inscrit dans une baie en forme de fer à cheval protégée du vent, aux eaux d'un turquoise exceptionnellement limpide. Aucun établissement commercial ne vient troubler le site : ni bar de plage, ni boutique, ni promenade aménagée. Seuls quelques sentiers relient le petit parking au rivage. Le quartier résidentiel qui surplombe la baie offre des villas avec vues panoramiques sur l'anse et sur les îlets environnants. Gustavia, ses restaurants et ses boutiques de luxe sont accessibles en moins de dix minutes en voiture. L'aéroport Gustaf III se trouve à environ douze minutes. Gouverneur conjugue ainsi une intimité rare et une situation géographique commode, deux atouts très recherchés pour un séjour en villa de prestige à Saint-Barth.",
+      "en": "Tucked into the southern tip of Saint-Barthélemy, approximately two kilometers from Gustavia via the Route de Lurin, Gouverneur is one of the island's most unspoiled neighborhoods. The beach — a wide sweep of white sand framed by rocks and morning-glory-draped cliffs — sits within a horseshoe-shaped bay that is naturally sheltered from the trade winds, its waters exceptionally clear and turquoise. There are no beach clubs, no shops, no built-up promenade: only a few paths connect the small parking area to the shoreline. The residential hillside above the bay is home to villas commanding panoramic views over the cove and the surrounding islets. Gustavia, with its restaurants and luxury boutiques, is less than ten minutes away by car. The Gustaf III Airport is roughly twelve minutes from the neighborhood. Gouverneur thus combines rare seclusion with convenient proximity — two qualities that make it particularly sought-after for a luxury villa stay in Saint-Barth.",
+      "es": "Ubicado en el extremo sur de Saint-Barthélemy, a unos dos kilómetros de Gustavia por la Route de Lurin, Gouverneur es uno de los barrios más preservados de la isla. La playa — una amplia franja de arena blanca enmarcada por rocas y acantilados cubiertos de campanilla marina — se abre en una bahía en herradura naturalmente protegida de los vientos alisios, con aguas de un turquesa excepcional. No existe ningún establecimiento comercial en el lugar: ni bar de playa, ni tiendas, ni paseo acondicionado. Solo algunos senderos comunican el pequeño aparcamiento con la orilla. El barrio residencial que domina la bahía alberga villas con vistas panorámicas sobre la cala y los islotes circundantes. Gustavia, con sus restaurantes y boutiques de lujo, se encuentra a menos de diez minutos en coche. El aeropuerto Gustaf III está a unos doce minutos del barrio. Gouverneur combina así una intimidad poco común con una situación geográfica conveniente, dos cualidades muy valoradas para una estancia en villa de prestigio en Saint-Barth.",
+      "pt": "Situada na ponta sul de Saint-Barthélemy, a cerca de dois quilómetros de Gustavia pela Route de Lurin, Gouverneur é um dos bairros mais preservados da ilha. A praia — uma longa faixa de areia branca emoldurada por rochas e falésias cobertas de corriola — inscreve-se numa baía em forma de ferradura naturalmente protegida dos ventos alísios, com águas de um turquesa excepcionalmente límpido. Não existe qualquer estabelecimento comercial no local: nem bar de praia, nem lojas, nem passeio estruturado. Apenas alguns trilhos ligam o pequeno parque de estacionamento à orla. O bairro residencial que domina a baía acolhe villas com vistas panorâmicas sobre a enseada e os ilhéus vizinhos. Gustavia, com os seus restaurantes e boutiques de luxo, fica a menos de dez minutos de carro. O aeroporto Gustaf III encontra-se a cerca de doze minutos do bairro. Gouverneur conjuga assim uma intimidade rara com uma localização geográfica conveniente — duas qualidades muito procuradas para uma estadia em villa de prestígio em Saint-Barth."
+    },
+    "highlights": {
+      "fr": [
+        "Plage de l'anse de Gouverneur : sable blanc, eaux turquoise calmes et claires, idéales pour la baignade et le snorkeling, sans infrastructure commerciale.",
+        "Site protégé du vent grâce à la configuration en baie fermée, offrant des conditions de mer stables même en période de alizés.",
+        "Quartier résidentiel perché en colline, avec des villas bénéficiant de vues dégagées sur la baie et les îlets voisins.",
+        "Accès rapide à Gustavia (environ 10 min) et à l'aéroport Gustaf III (environ 12 min) via la Route de Lurin.",
+        "Cadre historique : David Rockefeller y acquit 28 acres en 1957 ; aujourd'hui quartier prisé de l'élite internationale."
+      ],
+      "en": [
+        "Anse de Gouverneur beach: white sand, calm and clear turquoise waters ideal for swimming and snorkeling, with no commercial amenities.",
+        "Naturally wind-sheltered thanks to the enclosed bay, offering stable sea conditions even during trade-wind season.",
+        "Hillside residential neighborhood with villas enjoying open views over the cove and neighboring islets.",
+        "Quick access to Gustavia (approx. 10 min) and Gustaf III Airport (approx. 12 min) via the Route de Lurin.",
+        "Historic pedigree: David Rockefeller purchased 28 acres here in 1957; today a neighborhood favored by an international elite."
+      ],
+      "es": [
+        "Playa de Anse de Gouverneur: arena blanca, aguas turquesas tranquilas e ideales para nadar y hacer esnórquel, sin ninguna infraestructura comercial.",
+        "Zona naturalmente protegida del viento gracias a la configuración en bahía cerrada, con condiciones marítimas estables incluso en temporada de alisios.",
+        "Barrio residencial en ladera con villas que disfrutan de vistas despejadas sobre la cala y los islotes vecinos.",
+        "Acceso rápido a Gustavia (aprox. 10 min) y al aeropuerto Gustaf III (aprox. 12 min) por la Route de Lurin.",
+        "Entorno histórico: David Rockefeller adquirió aquí 28 acres en 1957; hoy es un barrio predilecto de la élite internacional."
+      ],
+      "pt": [
+        "Praia da Anse de Gouverneur: areia branca, águas turquesas calmas e límpidas, ideais para natação e snorkeling, sem qualquer infraestrutura comercial.",
+        "Local naturalmente protegido do vento graças à configuração em baía fechada, com condições do mar estáveis mesmo na época dos alísios.",
+        "Bairro residencial em encosta com villas que gozam de vistas abertas sobre a enseada e os ilhéus vizinhos.",
+        "Acesso rápido a Gustavia (aprox. 10 min) e ao aeroporto Gustaf III (aprox. 12 min) pela Route de Lurin.",
+        "Contexto histórico: David Rockefeller adquiriu aqui 28 acres em 1957; hoje é um bairro privilegiado pela elite internacional."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "Comment accéder à la plage de Gouverneur depuis Gustavia ?",
+          "en": "How do you get to Gouverneur Beach from Gustavia?",
+          "es": "¿Cómo se llega a la playa de Gouverneur desde Gustavia?",
+          "pt": "Como chegar à praia de Gouverneur a partir de Gustavia?"
+        },
+        "a": {
+          "fr": "On rejoint l'anse de Gouverneur par la Route de Lurin, en direction du sud-est depuis Gustavia. Le trajet en voiture dure environ dix minutes. Un petit parking est disponible en haut de la colline ; un sentier descend ensuite vers la plage, qui ne dispose d'aucun service ni équipement sur place.",
+          "en": "Gouverneur Beach is reached via the Route de Lurin, heading southeast from Gustavia. The drive takes approximately ten minutes. A small parking area sits at the top of the hill, and a path leads down to the beach, which has no services or facilities on-site.",
+          "es": "La playa de Gouverneur se alcanza por la Route de Lurin, en dirección sureste desde Gustavia. El trayecto en coche dura aproximadamente diez minutos. Un pequeño aparcamiento se encuentra en lo alto de la colina y un sendero desciende hasta la playa, que no cuenta con ningún servicio ni instalación.",
+          "pt": "A praia de Gouverneur é acessível pela Route de Lurin, em direção a sudeste a partir de Gustavia. A viagem de carro demora cerca de dez minutos. Um pequeno parque de estacionamento situa-se no topo da colina, e um trilho desce até à praia, que não dispõe de quaisquer serviços ou infraestruturas."
+        }
+      },
+      {
+        "q": {
+          "fr": "Y a-t-il des restaurants ou des commerces à Gouverneur ?",
+          "en": "Are there restaurants or shops at Gouverneur?",
+          "es": "¿Hay restaurantes o comercios en Gouverneur?",
+          "pt": "Existem restaurantes ou comércio em Gouverneur?"
+        },
+        "a": {
+          "fr": "Non. L'anse de Gouverneur est volontairement préservée de toute infrastructure commerciale : aucun restaurant, aucune boutique, aucun bar de plage sur le site. Les villas du quartier sont toutes équipées de cuisines complètes, et Gustavia — à environ dix minutes en voiture — concentre l'essentiel des restaurants gastronomiques et des boutiques de l'île.",
+          "en": "No. Gouverneur is deliberately kept free of commercial infrastructure: no restaurants, no shops, no beach bars on site. Villas in the neighborhood are fully equipped with kitchens, and Gustavia — about ten minutes away by car — is where the island's main dining and shopping options are concentrated.",
+          "es": "No. Gouverneur se mantiene deliberadamente libre de infraestructura comercial: no hay restaurantes, tiendas ni bares de playa en el lugar. Las villas del barrio están totalmente equipadas con cocinas, y Gustavia —a unos diez minutos en coche— concentra la mayoría de los restaurantes gastronómicos y las boutiques de la isla.",
+          "pt": "Não. Gouverneur é mantido deliberadamente livre de infraestruturas comerciais: sem restaurantes, lojas ou bares de praia no local. As villas do bairro estão completamente equipadas com cozinhas, e Gustavia — a cerca de dez minutos de carro — concentra os principais restaurantes e boutiques da ilha."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelle est l'origine de la légende du trésor de pirate à Gouverneur ?",
+          "en": "What is the origin of the pirate treasure legend at Gouverneur?",
+          "es": "¿Cuál es el origen de la leyenda del tesoro pirata en Gouverneur?",
+          "pt": "Qual é a origem da lenda do tesouro pirata em Gouverneur?"
+        },
+        "a": {
+          "fr": "La tradition orale attribue à Daniel Montbars, flibustier du XVIIe siècle surnommé « l'Exterminateur », l'enfouissement d'un trésor à l'anse de Gouverneur ou sur la plage de Grande Saline. Cette légende, non confirmée par des sources historiques documentées, confère au site une part de mystère qui s'est transmise de génération en génération.",
+          "en": "Local oral tradition attributes the burial of a treasure at Gouverneur — or at Grande Saline beach — to Daniel Montbars, a 17th-century buccaneer known as 'The Exterminator.' This legend has no confirmed documentary historical basis, but it has been passed down through generations and adds a layer of mystery to the site.",
+          "es": "La tradición oral atribuye el enterramiento de un tesoro en Gouverneur —o en la playa de Grande Saline— a Daniel Montbars, bucanero del siglo XVII conocido como 'el Exterminador'. Esta leyenda carece de base histórica documental confirmada, pero se ha transmitido de generación en generación y añade un halo de misterio al lugar.",
+          "pt": "A tradição oral atribui o enterro de um tesouro em Gouverneur — ou na praia de Grande Saline — a Daniel Montbars, bucaneiro do século XVII conhecido como 'o Exterminador'. Esta lenda não tem base histórica documental confirmada, mas foi transmitida de geração em geração e confere um toque de mistério ao local."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Gouverneur_(Saint-Barth%C3%A9lemy)",
+      "https://www.saint-barths.com/en/places/beaches/gouverneur-beach",
+      "https://www.barnes-stbarth.com/en/blog/2024/gouverneur-beach-in-st-barts-305.html",
+      "https://inside-stbarts.com/explore/gouverneur-beach/",
+      "https://www.saintbarth-tourisme.com/en/destination-item/gouverneur-2/"
+    ]
+  },
+  "anse-des-cayes": {
+    "geo": {
+      "lat": 17.9128,
+      "lng": -62.8461
+    },
+    "intro": {
+      "fr": "Anse des Cayes occupe la côte nord-ouest de Saint-Barthélemy, nichée entre l'Anse des Lézards et le Quartier du Roi, au sein de la paroisse historique Sous le Vent. Son rivage de 300 mètres se compose de sable blanc grossier, de galets et d'affleurements rocheux que les vagues de l'Atlantique façonnent en rouleaux puissants — une signature qui en fait l'un des rares spots de surf de l'île. L'arrière-plage est encadrée de collines basses, de rochers imposants et d'une végétation dense qui préservent au quartier un caractère sauvage et préservé. Les villas de prestige qui dominent ces hauteurs bénéficient d'une double qualité rare : l'intimité d'un secteur résidentiel discret et une accessibilité immédiate, Gustavia et l'aéroport Rémy-de-Haenen étant à quelques minutes seulement en voiture. La plage de Flamands, l'une des plus longues de l'île, se trouve à moins d'un mile vers l'ouest. Anse des Cayes réunit ainsi cadre naturel intact et commodités insulaires à portée immédiate.",
+      "en": "Anse des Cayes sits on the northwest coast of Saint-Barthélemy, between Anse des Lézards and Quartier du Roi, within the historic Leeward Parish. Its 300-metre shoreline is composed of coarse white sand, pebbles, and rocky outcrops shaped by Atlantic swells into powerful waves — making it one of the island's rare surf spots. The back beach is framed by low hills, large boulders, and dense vegetation that give the neighbourhood a wild, untouched character. Prestige villas perched on these heights enjoy a rare combination: the privacy of a discreet residential enclave and immediate access to the rest of the island, with Gustavia and Rémy-de-Haenen Airport just a few minutes away by car. Flamands Beach, one of the island's longest stretches of sand, lies less than a mile to the west. Anse des Cayes brings together an intact natural setting and the immediate convenience of island amenities.",
+      "es": "Anse des Cayes se encuentra en la costa noroeste de Saint-Barthélemy, entre Anse des Lézards y el Quartier du Roi, dentro de la histórica parroquia de Sotavento. Su costa de 300 metros está formada por arena blanca gruesa, guijarros y afloramientos rocosos que las olas del Atlántico convierten en potentes rompientes, lo que la convierte en uno de los escasos puntos de surf de la isla. El entorno de la playa está enmarcado por colinas bajas, grandes rocas y vegetación densa que confieren al barrio un carácter salvaje y preservado. Las villas de lujo que coronan estas alturas disfrutan de una combinación poco común: la privacidad de un enclave residencial discreto y un acceso inmediato al resto de la isla, con Gustavia y el aeropuerto Rémy-de-Haenen a pocos minutos en automóvil. La playa de Flamands, una de las más largas de la isla, se encuentra a menos de un kilómetro y medio hacia el oeste. Anse des Cayes reúne un entorno natural intacto y la comodidad inmediata de los servicios insulares.",
+      "pt": "Anse des Cayes situa-se na costa noroeste de Saint-Barthélemy, entre Anse des Lézards e o Quartier du Roi, dentro da histórica paróquia de Sotavento. A sua orla de 300 metros é composta por areia branca grossa, seixos e afloramentos rochosos que as ondas do Atlântico transformam em poderosas vagas — tornando-a um dos raros spots de surf da ilha. A retaguarda da praia é emoldurada por colinas baixas, grandes rochas e vegetação densa que preservam ao bairro um carácter selvagem e intacto. As vilas de prestígio instaladas nestas alturas beneficiam de uma combinação rara: a privacidade de um enclave residencial discreto e um acesso imediato ao resto da ilha, com Gustavia e o aeroporto Rémy-de-Haenen a apenas alguns minutos de carro. A praia de Flamands, uma das mais extensas da ilha, fica a menos de um quilómetro e meio para oeste. Anse des Cayes conjuga um quadro natural preservado com a comodidade imediata dos serviços insulares."
+    },
+    "highlights": {
+      "fr": [
+        "Côte nord-ouest préservée, à l'écart des zones touristiques les plus fréquentées de l'île",
+        "Spot de surf reconnu grâce aux rouleaux formés par les houles atlantiques exposées",
+        "Riche vie marine : coraux, tortues marines, iguanes et pélicans à proximité immédiate",
+        "Accès rapide à Gustavia et à l'aéroport Rémy-de-Haenen, à quelques minutes en voiture",
+        "Plage de Flamands et baie de Saint-Jean accessibles en moins de 2 km"
+      ],
+      "en": [
+        "Preserved northwest coast, away from the island's most frequented tourist areas",
+        "Recognised surf spot driven by exposed Atlantic swells and reef break waves",
+        "Rich marine life: corals, sea turtles, iguanas, and pelicans in the immediate vicinity",
+        "Quick access to Gustavia and Rémy-de-Haenen Airport, just minutes away by car",
+        "Flamands Beach and St. Jean Bay reachable within less than 2 km"
+      ],
+      "es": [
+        "Costa noroeste preservada, alejada de las zonas turísticas más concurridas de la isla",
+        "Reconocido spot de surf gracias a las olas del Atlántico sobre el arrecife expuesto",
+        "Rica vida marina: corales, tortugas marinas, iguanas y pelícanos en las inmediaciones",
+        "Acceso rápido a Gustavia y al aeropuerto Rémy-de-Haenen, a pocos minutos en coche",
+        "Playa de Flamands y bahía de Saint-Jean a menos de 2 km"
+      ],
+      "pt": [
+        "Costa noroeste preservada, afastada das zonas turísticas mais frequentadas da ilha",
+        "Spot de surf reconhecido, alimentado pelas ondas do Atlântico sobre o recife exposto",
+        "Rica vida marinha: corais, tartarugas marinhas, iguanas e pelicanos nas imediações",
+        "Acesso rápido a Gustavia e ao aeroporto Rémy-de-Haenen, a apenas alguns minutos de carro",
+        "Praia de Flamands e baía de Saint-Jean a menos de 2 km"
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage d'Anse des Cayes est-elle adaptée à la baignade ?",
+          "en": "Is Anse des Cayes beach suitable for swimming?",
+          "es": "¿Es la playa de Anse des Cayes adecuada para el baño?",
+          "pt": "A praia de Anse des Cayes é adequada para nadar?"
+        },
+        "a": {
+          "fr": "La plage convient aux nageurs expérimentés et aux surfeurs : son fond est composé de coraux, de rochers calcaires et d'oursins, et les vagues peuvent être puissantes. Pour une baignade familiale plus calme, la plage de Flamands, à moins d'un mile, offre des conditions plus douces.",
+          "en": "The beach suits experienced swimmers and surfers: the seabed features corals, limestone rocks, and sea urchins, and waves can be powerful. For calmer family swimming, Flamands Beach, less than a mile away, offers gentler conditions.",
+          "es": "La playa es adecuada para nadadores expertos y surfistas: el fondo marino contiene corales, rocas calizas y erizos de mar, y las olas pueden ser potentes. Para un baño familiar más tranquilo, la playa de Flamands, a menos de un kilómetro y medio, ofrece condiciones más suaves.",
+          "pt": "A praia é adequada para nadadores experientes e surfistas: o fundo marinho tem corais, rochas calcárias e ouriços-do-mar, e as ondas podem ser intensas. Para um banho familiar mais tranquilo, a praia de Flamands, a menos de um quilómetro e meio, oferece condições mais calmas."
+        }
+      },
+      {
+        "q": {
+          "fr": "Quelle est la proximité d'Anse des Cayes avec Gustavia et l'aéroport ?",
+          "en": "How close is Anse des Cayes to Gustavia and the airport?",
+          "es": "¿Qué tan cerca está Anse des Cayes de Gustavia y del aeropuerto?",
+          "pt": "Qual é a proximidade de Anse des Cayes com Gustavia e o aeroporto?"
+        },
+        "a": {
+          "fr": "Anse des Cayes est situé à proximité immédiate de Gustavia, la capitale de l'île, accessible en quelques minutes en voiture. L'aéroport Rémy-de-Haenen, à Saint-Jean, est également à courte distance, ce qui facilite les arrivées et les départs sans contrainte logistique.",
+          "en": "Anse des Cayes is located in close proximity to Gustavia, the island's capital, reachable in just a few minutes by car. Rémy-de-Haenen Airport at Saint-Jean is equally close, making arrivals and departures straightforward.",
+          "es": "Anse des Cayes está situado muy cerca de Gustavia, la capital de la isla, a la que se llega en pocos minutos en coche. El aeropuerto Rémy-de-Haenen, en Saint-Jean, también queda a corta distancia, lo que facilita las llegadas y salidas sin complicaciones logísticas.",
+          "pt": "Anse des Cayes está situado muito perto de Gustavia, a capital da ilha, acessível em apenas alguns minutos de carro. O aeroporto Rémy-de-Haenen, em Saint-Jean, fica igualmente próximo, tornando as chegadas e partidas simples e sem constrangimentos logísticos."
+        }
+      },
+      {
+        "q": {
+          "fr": "Anse des Cayes est-il un bon secteur pour louer une villa de luxe à Saint-Barth ?",
+          "en": "Is Anse des Cayes a good area to rent a luxury villa in Saint-Barth?",
+          "es": "¿Es Anse des Cayes una buena zona para alquilar una villa de lujo en Saint-Barth?",
+          "pt": "Anse des Cayes é uma boa zona para alugar uma villa de luxo em Saint-Barth?"
+        },
+        "a": {
+          "fr": "Oui : le quartier offre une combinaison recherchée entre intimité résidentielle, vues sur l'océan Atlantique et accès aisé aux restaurants et services de Gustavia. Il convient particulièrement aux voyageurs qui privilégient un cadre naturel authentique sans s'éloigner des commodités de l'île.",
+          "en": "Yes: the neighbourhood offers a sought-after combination of residential privacy, Atlantic Ocean views, and easy access to Gustavia's restaurants and services. It suits travellers who value an authentic natural setting without being far from the island's amenities.",
+          "es": "Sí: el barrio ofrece una combinación muy apreciada de privacidad residencial, vistas al océano Atlántico y fácil acceso a los restaurantes y servicios de Gustavia. Es especialmente adecuado para viajeros que prefieren un entorno natural auténtico sin alejarse de los servicios de la isla.",
+          "pt": "Sim: o bairro oferece uma combinação muito procurada de privacidade residencial, vistas para o oceano Atlântico e fácil acesso aos restaurantes e serviços de Gustavia. É especialmente indicado para viajantes que valorizam um quadro natural autêntico sem se afastarem das comodidades da ilha."
+        }
+      }
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/Anse_des_Cayes_(Saint-Barth%C3%A9lemy)",
+      "https://sandee.com/saint-barthelemy/saint-barthelemy/gustavia/anse-des-cayes",
+      "https://www.saint-barths.com/en/places/beaches/anse-des-cayes",
+      "https://www.myvillainstbarth.com/en/location/anse-des-cayes-a-contrasting-geography"
+    ]
+  },
+  "saline": {
+    "geo": {
+      "lat": 17.8972,
+      "lng": -62.815
+    },
+    "intro": {
+      "fr": "Grande Saline occupe le flanc sud de Saint-Barthélemy, à environ quinze minutes de Gustavia et à une distance comparable de l'aéroport Gustave-III. Le quartier doit son nom aux anciens marais salants aménagés dès 1820 : des ingénieurs y firent construire digues et canaux pour canaliser l'eau de mer dans des bassins de cristallisation. L'exploitation du sel s'y poursuivit, avec quelques interruptions, jusqu'en 1971, date à laquelle la réfrigération rendit ce commerce obsolète. Aujourd'hui, ces étendues d'eau rosée constituent un refuge ornithologique discret, en contraste saisissant avec la plage qui les borde. L'Anse de Grande Saline est en effet la deuxième plus grande plage de l'île — après celle des Flamands — et l'une des rares à n'être bordée d'aucune construction. On y accède après quelques minutes de marche sur un sentier dunaire, ce qui lui confère une atmosphère résolument préservée, propice au calme et à l'intimité recherchés par les villégiateurs qui choisissent de louer une villa dans ce quartier.",
+      "en": "Grande Saline lies on the southern side of Saint-Barthélemy, roughly fifteen minutes by car from Gustavia and a comparable distance from Gustave III Airport. The neighborhood takes its name from salt marshes developed in 1820, when engineers built dikes and channels to direct seawater into crystallization basins. Salt production continued — with several interruptions — until 1971, when refrigeration made the industry redundant. Today those pink-tinged ponds form a quiet bird sanctuary, in striking contrast to the beach that borders them. Anse de Grande Saline is the island's second-largest beach, after Flamands, and one of the few entirely free of construction. A short walk along a dune path is all that separates the parking area from the shore, lending the spot an air of genuine seclusion that appeals to guests choosing a private villa rental in this part of the island.",
+      "es": "Grande Saline se encuentra en el lado sur de Saint-Barthélemy, a unos quince minutos en coche de Gustavia y a una distancia similar del aeropuerto Gustave III. El barrio debe su nombre a las antiguas salinas creadas en 1820, cuando ingenieros construyeron diques y canales para conducir el agua del mar a estanques de cristalización. La producción de sal continuó, con algunas interrupciones, hasta 1971, año en que la refrigeración volvió obsoleto el comercio. Hoy, esos estanques de tonos rosados constituyen un tranquilo refugio ornitológico, en marcado contraste con la playa que los bordea. La Anse de Grande Saline es la segunda playa más extensa de la isla —después de Flamands— y una de las pocas completamente libres de construcciones. Un breve sendero entre las dunas separa el aparcamiento de la orilla, lo que confiere al lugar una intimidad genuina, ideal para quienes eligen alquilar una villa privada en esta parte de la isla.",
+      "pt": "Grande Saline situa-se na costa sul de Saint-Barthélemy, a cerca de quinze minutos de carro de Gustavia e a distância semelhante do aeroporto Gustave III. O bairro deve o seu nome às antigas salinas desenvolvidas em 1820, quando engenheiros construíram diques e canais para conduzir a água do mar a bacias de cristalização. A produção de sal prosseguiu, com algumas interrupções, até 1971, ano em que a refrigeração tornou o comércio obsoleto. Hoje, esses espelhos de água de tonalidades rosadas constituem um discreto refúgio ornitológico, em contraste marcante com a praia que os bordeja. A Anse de Grande Saline é a segunda maior praia da ilha — a seguir à de Flamands — e uma das raras completamente desprovida de construções. Um breve percurso por um trilho entre dunas separa o parque de estacionamento da areia, conferindo ao local uma intimidade genuína, muito apreciada por quem opta por alugar uma villa privada nesta zona da ilha."
+    },
+    "highlights": {
+      "fr": [
+        "Plage sauvage classée parmi les plus belles des Antilles : sable blanc, eaux turquoise, aucune construction en bordure.",
+        "Accès privilégié à pied depuis les villas du quartier, après un court sentier dunaire qui préserve l'atmosphère naturelle du site.",
+        "Anciens marais salants (exploitation 1820–1971) reconvertis en zone humide protégée : cadre paysager unique sur l'île.",
+        "À environ quinze minutes de Gustavia et de ses boutiques, restaurants et marina, sans la fréquentation touristique du centre.",
+        "Environnement calme et résidentiel, idéal pour des séjours en villa cherchant à allier intimité et accès rapide aux commodités de l'île."
+      ],
+      "en": [
+        "Wild beach ranked among the finest in the Caribbean: white sand, turquoise water, and no buildings along the shoreline.",
+        "Walking access directly from neighborhood villas via a short dune path that preserves the site's natural feel.",
+        "Former salt marshes (operated 1820–1971) now a protected wetland, offering a landscape found nowhere else on the island.",
+        "Roughly fifteen minutes from Gustavia's boutiques, restaurants, and marina, without the crowds of the town center.",
+        "Quiet, residential setting ideal for villa stays that combine seclusion with easy access to the island's amenities."
+      ],
+      "es": [
+        "Playa salvaje considerada una de las más bellas del Caribe: arena blanca, aguas turquesas y ninguna construcción en el litoral.",
+        "Acceso a pie desde las villas del barrio a través de un corto sendero entre dunas que preserva el entorno natural.",
+        "Antiguas salinas (en funcionamiento de 1820 a 1971) reconvertidas en humedal protegido: paisaje único en la isla.",
+        "A unos quince minutos de Gustavia y sus tiendas, restaurantes y marina, sin la afluencia turística del centro.",
+        "Entorno tranquilo y residencial, ideal para estancias en villa que combinan privacidad con fácil acceso a los servicios de la isla."
+      ],
+      "pt": [
+        "Praia selvagem classificada entre as mais belas das Caraíbas: areia branca, águas turquesa e nenhuma construção na orla.",
+        "Acesso pedonal direto a partir das villas do bairro, através de um curto trilho entre dunas que preserva o caráter natural do lugar.",
+        "Antigas salinas (em exploração de 1820 a 1971) reconvertidas em zona húmida protegida: paisagem única na ilha.",
+        "A cerca de quinze minutos de Gustavia, das suas boutiques, restaurantes e marina, sem a afluência turística do centro.",
+        "Ambiente calmo e residencial, ideal para estadias em villa que conjugam privacidade com acesso fácil às comodidades da ilha."
+      ]
+    },
+    "faq": [
+      {
+        "q": {
+          "fr": "La plage de Grande Saline est-elle accessible depuis les villas du quartier ?",
+          "en": "Is Grande Saline beach accessible on foot from neighborhood villas?",
+          "es": "¿Se puede acceder a pie a la playa de Grande Saline desde las villas del barrio?",
+          "pt": "A praia de Grande Saline é acessível a pé a partir das villas do bairro?"
+        },
+        "a": {
+          "fr": "Oui. La plage est accessible après quelques minutes de marche sur un sentier dunaire depuis le parking le plus proche. Certaines villas du quartier permettent de s'y rendre entièrement à pied.",
+          "en": "Yes. The beach is reached after a short walk along a dune path from the nearest parking area. Some neighborhood villas allow guests to walk there entirely on foot.",
+          "es": "Sí. La playa se alcanza tras un breve paseo por un sendero entre dunas desde el aparcamiento más cercano. Algunas villas del barrio permiten llegar andando sin necesidad de coche.",
+          "pt": "Sim. A praia é alcançada após uma breve caminhada por um trilho entre dunas a partir do parque de estacionamento mais próximo. Algumas villas do bairro permitem chegar a pé sem necessidade de carro."
+        }
+      },
+      {
+        "q": {
+          "fr": "Le naturisme est-il autorisé à la plage de Saline ?",
+          "en": "Is nudism permitted at Saline beach?",
+          "es": "¿Está permitido el nudismo en la playa de Saline?",
+          "pt": "O naturismo é permitido na praia de Saline?"
+        },
+        "a": {
+          "fr": "Le naturisme n'est pas officiellement autorisé à Saint-Barthélemy, mais la plage de Saline est reconnue pour sa tolérance à cette pratique, notamment à son extrémité. La discrétion reste de mise.",
+          "en": "Nudism is not officially authorized in Saint-Barthélemy, but Saline beach is widely known for tolerating the practice, particularly at its far end. Discretion is expected.",
+          "es": "El nudismo no está oficialmente autorizado en Saint-Barthélemy, pero la playa de Saline es conocida por tolerar esta práctica, especialmente en su extremo. Se espera discreción.",
+          "pt": "O naturismo não é oficialmente autorizado em Saint-Barthélemy, mas a praia de Saline é reconhecida pela sua tolerância a esta prática, sobretudo na sua extremidade. Espera-se discrição."
+        }
+      },
+      {
+        "q": {
+          "fr": "À quelle distance Grande Saline se trouve-t-il de Gustavia et de l'aéroport ?",
+          "en": "How far is Grande Saline from Gustavia and the airport?",
+          "es": "¿A qué distancia está Grande Saline de Gustavia y del aeropuerto?",
+          "pt": "A que distância fica Grande Saline de Gustavia e do aeroporto?"
+        },
+        "a": {
+          "fr": "Le quartier est à environ quinze minutes de Gustavia en voiture. L'aéroport Gustave-III, situé à Saint-Jean, est également accessible en une durée comparable.",
+          "en": "The neighborhood is approximately fifteen minutes from Gustavia by car. Gustave III Airport, located in Saint-Jean, is reachable in a similar travel time.",
+          "es": "El barrio está a unos quince minutos de Gustavia en coche. El aeropuerto Gustave III, en Saint-Jean, es accesible en un tiempo similar.",
+          "pt": "O bairro fica a cerca de quinze minutos de Gustavia de carro. O aeroporto Gustave III, situado em Saint-Jean, é acessível em tempo semelhante."
+        }
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Grande_Saline,_Saint_Barth%C3%A9lemy",
+      "https://www.saint-barths.com/en/places/beaches/saline-beach",
+      "https://maisonscreoles.net/patrimoine/salines-de-st-barth",
+      "https://www.wimco.com/villa-rentals/caribbean/st-barthelemy/saline-beach",
+      "https://pyratzsxm.com/anse-de-grande-saline/"
+    ]
+  }
+}

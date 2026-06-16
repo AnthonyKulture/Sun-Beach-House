@@ -5,20 +5,21 @@ import { NorthStar, SunStamp, OrganicLine, PalmLeaf } from './Decorations';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface DestinationsProps { }
 
 export const Destinations: React.FC<DestinationsProps> = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const router = useRouter();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    // Helper for navigation
+    // Helper for navigation (locale-prefixed)
     const handleNavigate = (path: string) => {
-        router.push(path);
+        router.push(`/${language}${path}`);
     };
 
     return (
@@ -185,9 +186,9 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                             <p className="text-sm font-serif italic text-sbh-charcoal/80">
                                 {t.destinations.gustaviaQuote}
                             </p>
-                            <button onClick={() => handleNavigate('/rentals')} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-green transition-colors">
+                            <Link href={`/${language}/location-villa-gustavia`} className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-green transition-colors">
                                 {t.destinations.gustaviaButton} <ArrowRight size={14} />
-                            </button>
+                            </Link>
                         </div>
                         <div className="order-1 md:order-2 relative aspect-[4/5] overflow-hidden rounded-t-[100px] border border-sbh-charcoal/5 reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
                             <img
@@ -213,9 +214,9 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                             <p className="font-sans text-gray-600 leading-relaxed mb-8">
                                 {t.destinations.saintJeanDescription}
                             </p>
-                            <button onClick={() => handleNavigate('/rentals')} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-blue transition-colors">
+                            <Link href={`/${language}/location-villa-saint-jean`} className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-blue transition-colors">
                                 {t.destinations.saintJeanButton} <ArrowRight size={14} />
-                            </button>
+                            </Link>
                         </div>
                     </div>
 
@@ -230,9 +231,9 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                             <p className="text-sm font-serif italic text-sbh-charcoal/80">
                                 {t.destinations.corossolQuote}
                             </p>
-                            <button onClick={() => handleNavigate('/rentals')} className="mt-8 flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-terracotta transition-colors">
+                            <Link href={`/${language}/location-villa-corossol`} className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest hover:text-sbh-terracotta transition-colors">
                                 {t.destinations.corossolButton} <ArrowRight size={14} />
-                            </button>
+                            </Link>
                         </div>
                         <div className="order-1 md:order-2 relative aspect-[16/9] md:aspect-[4/5] overflow-hidden rounded-sm reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
                             <img

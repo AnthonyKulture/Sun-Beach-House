@@ -5,7 +5,7 @@ import { About } from '@/components/About';
 import { Villas } from '@/components/Villas';
 import { Services } from '@/components/Services';
 import { Experience } from '@/components/Experience';
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 type Props = {
     params: { lang: string };
@@ -28,10 +28,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         pt: 'Descubra uma coleção exclusiva de villas de luxo em Saint-Barthélemy. Aluguéis de temporada, vendas e serviços de concierge personalizados com a Sun Beach House.',
     };
 
+    const description = descriptions[lang] || descriptions.fr;
+    const ogTitle = (titles[lang] || titles.fr).absolute;
+
     return {
         title: titles[lang] || titles.fr,
-        description: descriptions[lang] || descriptions.fr,
+        description,
         alternates: getAlternates(lang, ''),
+        ...getOpenGraph(lang, '', { title: ogTitle, description }),
     };
 }
 

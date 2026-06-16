@@ -9,13 +9,13 @@ import Link from 'next/link';
 const serviceKeys = ['chef', 'spa', 'transfer', 'reservations', 'nautical', 'travel', 'vip'] as const;
 
 const serviceImages: Record<string, string> = {
-    chef: "https://images.unsplash.com/photo-1559339352-11d035aa65de",
-    spa: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874",
-    transfer: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d",
-    reservations: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
-    nautical: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a",
-    travel: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e",
-    vip: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05"
+    chef: '/images/optimized-conciergerie-chef.jpg',
+    spa: 'https://storage.googleapis.com/images-sbh/spa-welness-sun-beach-house-saint-barth-villa-rental-02.JPG',
+    transfer: 'https://storage.googleapis.com/images-sbh/sun-beach-house-chauffeur.jpg',
+    reservations: '/images/optimized-conciergerie-reservations.jpg',
+    nautical: '/images/optimized-conciergerie-nautique.jpg',
+    travel: '/images/optimized-conciergerie-travel.jpg',
+    vip: '/images/optimized-conciergerie-vip.jpg'
 };
 
 export const Services: React.FC = () => {
@@ -84,7 +84,7 @@ export const Services: React.FC = () => {
                         return (
                             <Link
                                 key={key}
-                                href={`/conciergerie#${key}`}
+                                href={`/${language}/conciergerie#${key}`}
                                 className="group flex flex-col md:flex-row items-start md:items-center justify-between border-b border-sbh-charcoal/10 pb-8 md:pb-6 transition-all duration-300 relative cursor-pointer block"
                                 onMouseEnter={() => setHoveredIndex(index)}
                             >

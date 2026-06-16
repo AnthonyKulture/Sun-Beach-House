@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -11,10 +11,13 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: 'Política de Privacidad',
         pt: 'Política de Privacidade',
     };
+    const title = titles[lang] || titles.fr;
+    const description = 'Politique de confidentialité et protection des données personnelles de Sun Beach House.';
     return {
-        title: titles[lang] || titles.fr,
-        description: 'Politique de confidentialité et protection des données personnelles de Sun Beach House.',
+        title,
+        description,
         alternates: getAlternates(lang, '/politique-de-confidentialite'),
+        ...getOpenGraph(lang, '/politique-de-confidentialite', { title, description }),
     }
 }
 

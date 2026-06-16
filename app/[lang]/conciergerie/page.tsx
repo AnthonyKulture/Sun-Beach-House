@@ -1,7 +1,7 @@
 import { ConciergerieContent } from '@/components/ConciergerieContent';
 import { Metadata } from 'next';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -17,29 +17,15 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: 'Servicios de conserjería premium en San Bartolomé: chefs privados, spa, traslados VIP, yates, reservas de restaurantes, servicios aeroportuarios.',
         pt: 'Serviços de concierge premium em Saint-Barthélemy: chefs privados, spa, traslados VIP, iatismo, reservas em restaurantes, serviços de aeroporto.',
     };
+    const title = `${titles[lang] || titles.fr} | St-Barth`;
+    const description = descriptions[lang] || descriptions.fr;
 
     return {
         title: titles[lang] || titles.fr,
-        description: descriptions[lang] || descriptions.fr,
+        description,
         keywords: 'conciergerie luxe saint barth, chef privé st barth, spa villa saint barthélemy, transfert vip sbh, service aéroport premium, yacht charter caribbean, concierge service st barts',
-        openGraph: {
-            title: `${titles[lang] || titles.fr} | St-Barth`,
-            description: descriptions[lang] || descriptions.fr,
-            images: [{
-                url: '/images/optimized-conciergerie-hero.jpg',
-                width: 1200,
-                height: 630,
-                alt: 'Conciergerie Services Sun Beach House'
-            }],
-            type: 'website',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${titles[lang] || titles.fr} | St-Barth`,
-            description: descriptions[lang] || descriptions.fr,
-            images: ['/images/optimized-conciergerie-hero.jpg'],
-        },
-        alternates: getAlternates(lang, '/conciergerie')
+        alternates: getAlternates(lang, '/conciergerie'),
+        ...getOpenGraph(lang, '/conciergerie', { title, description, image: '/images/optimized-conciergerie-hero.jpg' }),
     };
 }
 
