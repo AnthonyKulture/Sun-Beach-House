@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Collections } from '@/components/Collections';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -17,13 +17,18 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: 'Reserve su estancia excepcional en San Bartolomé. Una colección exclusiva de villas de lujo con servicios de conserjería personalizados.',
         pt: 'Reserve sua estadia excepcional em Saint-Barthélemy. Uma coleção exclusiva de villas de luxo com serviços de concierge personalizados.',
     };
+    const title = titles[lang] || titles.fr;
+    const description = descriptions[lang] || descriptions.fr;
 
     return {
-        title: titles[lang] || titles.fr,
-        description: descriptions[lang] || descriptions.fr,
+        title,
+        description,
         alternates: getAlternates(lang, '/rentals'),
+        ...getOpenGraph(lang, '/rentals', { title, description }),
     }
 }
+
+export const revalidate = 300;
 
 import { CmsService } from '@/services/cms'
 import { Suspense } from 'react';

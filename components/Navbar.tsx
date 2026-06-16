@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceDark = false }) => {
   // Determine text color based on state and pathname
   // We default to DARK text (for white/cream pages like 404, contact, legals)
   // unless we are on a known HERO page (home, villas, rentals, etc.)
-  const isHeroPage = ['/', '/rentals', '/sales', '/villas', '/destinations', '/conciergerie', '/about'].some(p => {
+  const isHeroPage = ['/', '/rentals', '/sales', '/villas', '/destinations', '/conciergerie', '/about', '/location-villa'].some(p => {
     const localizedPath = `/${language}${p === '/' ? '' : p}`;
     if (p === '/') return pathname === localizedPath || pathname === `/${language}`;
     return pathname?.startsWith(localizedPath);

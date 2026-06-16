@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { VillaDetails } from '@/components/VillaDetails';
 import { CmsService } from '@/services/cms';
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 import { redirect, notFound } from 'next/navigation';
+
+export const revalidate = 300;
 
 type Props = {
     params: { id: string, lang: string }
@@ -50,12 +52,11 @@ export async function generateMetadata(
         title: mainTitle,
         description: description,
         alternates: getAlternates(lang, `/villas/${preferredId}`),
-        openGraph: {
+        ...getOpenGraph(lang, `/villas/${preferredId}`, {
             title: `${villa.name} | St-Barth`,
-            description: description,
-            images: villa.mainImage ? [villa.mainImage] : [],
-            url: `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
-        },
+            description,
+            ...(villa.mainImage ? { image: villa.mainImage } : {}),
+        }),
     };
 }
 

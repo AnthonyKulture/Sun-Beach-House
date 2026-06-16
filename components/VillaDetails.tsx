@@ -854,7 +854,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {computedSimilarVillas.map((v, idx) => (
-                            <Link href={`/villas/${v.id}`} key={v.id} className="group cursor-pointer reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
+                            <Link href={`/${language}/villas/${v.slug || v.id}`} key={v.id} className="group cursor-pointer reveal-on-scroll" style={{ transitionDelay: `${idx * 100}ms` }}>
                                 <div className="aspect-[4/3] overflow-hidden rounded-sm mb-4 relative">
                                     {v.mainImage ? (
                                         <Image src={v.mainImage} alt={v.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />

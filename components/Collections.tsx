@@ -16,9 +16,13 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 interface CollectionsProps {
     mode: 'rent' | 'sale';
     initialVillas?: import('../types').Villa[];
+    /** Hide the full-bleed hero banner (e.g. when embedded under a neighborhood hero). */
+    hideHero?: boolean;
+    /** Hide the location filter (e.g. on neighborhood pages already scoped to one area). */
+    hideLocationFilter?: boolean;
 }
 
-export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas }) => {
+export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, hideHero, hideLocationFilter }) => {
     const { villas: fetchedVillas, loading: fetchedLoading } = useVillas(!!initialVillas);
     const villas = initialVillas || fetchedVillas;
     const loading = initialVillas ? false : fetchedLoading;
@@ -289,6 +293,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas })
         <div className="bg-sbh-cream min-h-screen animate-fade-in pb-24">
 
             {/* HERO BANNER - With next/image for LCP */}
+            {!hideHero && (
             <div className="relative h-[60vh] xl:h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
                 <Image
                     src={mode === 'rent' ? '/images/optimized-rentals-hero.jpg' : '/images/optimized-sales-hero.jpg'}
@@ -308,9 +313,10 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas })
                     <p className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] opacity-90">{heroSubtitle}</p>
                 </div>
             </div>
+            )}
 
             {/* FILTERS BAR - Adjusted z-index to stay below navbar if scrolled, but above hero */}
-            <div className="relative z-30 -mt-8 max-w-[1400px] mx-auto px-4 md:px-8">
+            <div className={`relative z-30 ${hideHero ? 'mt-8' : '-mt-8'} max-w-[1400px] mx-auto px-4 md:px-8`}>
                 <div className="bg-white shadow-xl rounded-lg md:rounded-full p-6 md:py-3 md:px-4 lg:p-3 flex flex-col md:flex-row items-center gap-6 md:gap-0 border border-gray-100 relative">
 
                     {/* Mobile Toggle Title */}
@@ -337,6 +343,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas })
                         </div>
 
                         {/* Location */}
+                        {!hideLocationFilter && (
                         <div className="flex-1 w-full md:px-3 lg:px-6 flex flex-col justify-center border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
                             <label className="text-[9px] md:text-[8px] lg:text-[9px] uppercase tracking-widest text-gray-500 mb-1 flex items-center gap-2 whitespace-nowrap font-medium">
                                 <MapPin size={10} /> {t.collections.location}
@@ -352,6 +359,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas })
                                 ))}
                             </select>
                         </div>
+                        )}
 
                         {/* Property Type Filter (Only for Sales) */}
                         {mode === 'sale' && (

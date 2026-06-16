@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Collections } from '@/components/Collections';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -17,13 +17,18 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: 'Invierta en lo excepcional en San Bartolomé. Descubra nuestra exclusiva selección de villas y propiedades de prestigio.',
         pt: 'Invista no excepcional em Saint-Barthélemy. Descubra nossa seleção exclusiva de moradias e propriedades de prestígio.',
     };
+    const title = titles[lang] || titles.fr;
+    const description = descriptions[lang] || descriptions.fr;
 
     return {
-        title: titles[lang] || titles.fr,
-        description: descriptions[lang] || descriptions.fr,
+        title,
+        description,
         alternates: getAlternates(lang, '/sales'),
+        ...getOpenGraph(lang, '/sales', { title, description }),
     }
 }
+
+export const revalidate = 300;
 
 import { CmsService } from '@/services/cms'
 import { Suspense } from 'react';

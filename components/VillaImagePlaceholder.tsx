@@ -14,7 +14,7 @@ export const VillaImagePlaceholder: React.FC<VillaImagePlaceholderProps> = ({
         <div className={`relative overflow-hidden ${className}`}>
             {/* Blurred St Barth background */}
             <Image
-                src="https://images.unsplash.com/photo-1559827260-dc66d52bef19"
+                src="/images/optimized-villa-placeholder.jpg"
                 alt=""
                 fill
                 className="object-cover blur-md scale-110"

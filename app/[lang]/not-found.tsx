@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Logo } from '@/components/Logo';
 
 export default function NotFound() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-sbh-cream text-sbh-charcoal font-serif selection:bg-sbh-green/20 selection:text-sbh-green">
@@ -22,7 +22,7 @@ export default function NotFound() {
           
           {/* Logo Section */}
           <div className="hover:opacity-80 transition-opacity duration-500">
-            <Link href="/">
+            <Link href={`/${language}`}>
               <Logo variant="darkgreen" className="w-52 md:w-72 h-auto" />
             </Link>
           </div>
@@ -47,28 +47,28 @@ export default function NotFound() {
 
           {/* Navigation Links */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl pt-4">
-            <Link 
-              href="/rentals" 
+            <Link
+              href={`/${language}/rentals`}
               className="px-6 py-4 bg-sbh-darkgreen text-sbh-cream text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-charcoal transition-all duration-500 shadow-sm"
             >
               {t.nav.rentals}
             </Link>
-            <Link 
-              href="/sales" 
+            <Link
+              href={`/${language}/sales`}
               className="px-6 py-4 border border-sbh-darkgreen/30 text-sbh-darkgreen text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-darkgreen hover:text-sbh-cream transition-all duration-500"
             >
               {t.nav.sales}
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href={`/${language}/contact`}
               className="px-6 py-4 border border-sbh-darkgreen/30 text-sbh-darkgreen text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-sbh-darkgreen hover:text-sbh-cream transition-all duration-500"
             >
               {t.nav.contact}
             </Link>
           </div>
 
-          <Link 
-            href="/" 
+          <Link
+            href={`/${language}`}
             className="text-[10px] uppercase tracking-[0.4em] text-sbh-green hover:text-sbh-charcoal transition-colors duration-300 border-b border-transparent hover:border-sbh-green pb-1 font-semibold"
           >
             {t.common.notFound.backToHome}

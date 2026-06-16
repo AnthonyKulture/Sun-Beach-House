@@ -8,9 +8,18 @@ import { useLanguage } from '../contexts/LanguageContext';
 import Link from 'next/link';
 import { HoneypotField } from './HoneypotField';
 import { EncryptedLink } from './EncryptedLink';
+import { NEIGHBORHOODS } from '../data/neighborhoods';
+
+const NEIGHBORHOODS_LABEL: Record<string, string> = {
+    fr: 'Villas par quartier',
+    en: 'Villas by neighborhood',
+    es: 'Villas por barrio',
+    pt: 'Villas por bairro',
+};
 
 export const Footer: React.FC = () => {
     const { language, t } = useLanguage();
+    const neighborhoodsLabel = NEIGHBORHOODS_LABEL[language] || NEIGHBORHOODS_LABEL.fr;
 
     return (
         <footer className="bg-sbh-darkgreen text-sbh-cream relative overflow-hidden pt-24 pb-12">
@@ -22,8 +31,8 @@ export const Footer: React.FC = () => {
 
             <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
 
-                {/* Main Grid: Mobile (1 col), Tablet (2 cols), Desktop (3 cols) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-24">
+                {/* Main Grid: Mobile (1 col), Tablet (2 cols), Desktop (4 cols) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-24">
 
                     {/* Column 1: Brand Identity - Centered on Mobile */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-8 reveal-on-scroll">
@@ -81,7 +90,23 @@ export const Footer: React.FC = () => {
                         </nav>
                     </div>
 
-                    {/* Column 3: Contact Info */}
+                    {/* Column 3: Neighborhoods */}
+                    <div className="reveal-on-scroll" style={{ transitionDelay: '150ms' }}>
+                        <h4 className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-sbh-sand mb-8 text-center md:text-left">{neighborhoodsLabel}</h4>
+                        <nav>
+                            <ul className="grid grid-cols-2 gap-x-6 gap-y-3 font-serif text-sm md:text-base text-sbh-cream/90 text-center md:text-left">
+                                {Object.values(NEIGHBORHOODS).map((n) => (
+                                    <li key={n.slug}>
+                                        <Link href={`/${language}/location-villa-${n.slug}`} className="hover:text-sbh-blue transition-colors duration-300 whitespace-nowrap">
+                                            {n.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    </div>
+
+                    {/* Column 4: Contact Info */}
                     <div className="reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
                         <h4 className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-sbh-sand mb-8 text-center md:text-left">{t.footer.findUs}</h4>
                         <ul className="space-y-6 font-sans text-base font-light text-sbh-green/80 flex flex-col items-center md:items-start">

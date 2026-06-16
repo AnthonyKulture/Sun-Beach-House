@@ -213,7 +213,7 @@ export function VillasMapView({ villas: propVillas }: VillasMapViewProps) {
                                                     </p>
                                                 )}
                                                 <Link
-                                                    href={`/villas/${villa.id}`}
+                                                    href={`/${language}/villas/${villa.slug || villa.id}`}
                                                     className="text-xs bg-sbh-green text-white px-3 py-1 rounded hover:bg-sbh-blue transition-colors"
                                                 >
                                                     Voir
