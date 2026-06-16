@@ -181,7 +181,7 @@ export default function LocaleLayout({
                                 streetAddress: '65 RUE DE LA PAIX GUSTAVIA',
                                 addressLocality: 'Saint-Barthélemy',
                                 postalCode: '97133',
-                                addressCountry: 'FR',
+                                addressCountry: 'BL',
                             },
                             geo: {
                                 '@type': 'GeoCoordinates',

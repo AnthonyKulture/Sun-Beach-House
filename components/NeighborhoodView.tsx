@@ -46,14 +46,14 @@ export function neighborhoodMetadata(slug: string, langRaw: string): Metadata {
     if (!n) return { title: 'Saint-Barthélemy | Sun Beach House' };
 
     const title = pageTitle(n.name, lang);
-    const description = (n.intro[lang] || fallbackIntro(n.name, 0, lang)).slice(0, 300);
+    const description = (n.intro[lang] || fallbackIntro(n.name, 0, lang)).slice(0, 160);
     const path = `/location-villa-${n.slug}`;
 
     return {
         title,
         description,
         alternates: getAlternates(lang, path),
-        ...getOpenGraph(lang, path, { title, description }),
+        ...getOpenGraph(lang, path, { title, description, ...(n.heroImage ? { image: n.heroImage } : {}) }),
     };
 }
 
@@ -80,6 +80,7 @@ export async function NeighborhoodView({ slug, lang: langRaw }: { slug: string; 
         '@type': 'Place',
         name: `${n.name}, Saint-Barthélemy`,
         description: intro,
+        image: heroImage,
         geo: { '@type': 'GeoCoordinates', latitude: n.geo.lat, longitude: n.geo.lng },
         containedInPlace: { '@type': 'Place', name: 'Saint-Barthélemy' },
         url,

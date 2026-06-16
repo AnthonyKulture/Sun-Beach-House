@@ -162,7 +162,7 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                 departure: departureDate,
                 guests: guests.toString()
             });
-            router.push(`/booking?${params.toString()}`);
+            router.push(`/${language}/booking?${params.toString()}`);
         } else {
             // Focus the inputs if empty
             if (!arrivalDate && arrivalRef.current) {
@@ -187,14 +187,14 @@ export const VillaDetails: React.FC<VillaDetailsProps> = ({ villaId, slug, initi
                 departure: departureDate,
                 guests: guests.toString()
             });
-            router.push(`/booking?${params.toString()}`);
+            router.push(`/${language}/booking?${params.toString()}`);
         } else {
             setIsMobileBookingOpen(true);
         }
     };
 
     const handleContactClick = () => {
-        router.push(`/sales-contact?villaId=${villa.id}`);
+        router.push(`/${language}/sales-contact?villaId=${villa.id}`);
     };
 
 

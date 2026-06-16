@@ -2,7 +2,7 @@ import React from 'react';
 import { ContactPage } from '@/components/ContactPage';
 import { Metadata } from 'next';
 
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
@@ -18,11 +18,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         es: '¿Tiene alguna pregunta sobre un proyecto de alquiler o venta? Póngase en contacto con Valérie y el equipo de Sun Beach House para obtener un servicio a medida.',
         pt: 'Tem alguma dúvida sobre um projeto de aluguel ou venda? Entre em contato com a Valérie e a equipe da Sun Beach House para um serviço personalizado.',
     };
+    const title = titles[lang] || titles.fr;
+    const description = descriptions[lang] || descriptions.fr;
 
     return {
-        title: titles[lang] || titles.fr,
-        description: descriptions[lang] || descriptions.fr,
+        title,
+        description,
         alternates: getAlternates(lang, '/contact'),
+        ...getOpenGraph(lang, '/contact', { title, description }),
     }
 }
 

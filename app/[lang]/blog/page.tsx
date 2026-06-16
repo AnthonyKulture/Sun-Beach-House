@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { CmsService } from '@/services/cms';
 import { BlogIndex } from '@/components/BlogIndex';
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 type Props = { params: { lang: string } };
 
@@ -20,16 +20,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         pt: 'Guias, temporadas, serviços e arte de viver em Saint-Barthélemy pela Sun Beach House. Artigos verificados, com fontes, atualizados regularmente.',
     };
 
+    const title = titles[lang] || titles.fr;
+    const description = descriptions[lang] || descriptions.fr;
+
     return {
-        title: titles[lang] || titles.fr,
-        description: descriptions[lang] || descriptions.fr,
+        title,
+        description,
         alternates: getAlternates(lang, '/blog'),
-        openGraph: {
-            title: titles[lang] || titles.fr,
-            description: descriptions[lang] || descriptions.fr,
-            type: 'website',
-            url: `https://www.sun-beach-house.com/${lang}/blog`,
-        },
+        ...getOpenGraph(lang, '/blog', { title, description }),
     };
 }
 

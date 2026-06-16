@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 import { CmsService } from '@/services/cms';
 import { BlogPost } from '@/components/BlogPost';
 import { renderMarkdown } from '@/utils/renderMarkdown';
-import { getAlternates } from '@/utils/seo';
+import { getAlternates, OG_LOCALES } from '@/utils/seo';
 import type { Lang } from '@/types';
 
 type Props = { params: { lang: string; slug: string } };
@@ -41,6 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         alternates: { canonical, languages },
         openGraph: {
             type: 'article',
+            locale: OG_LOCALES[lang] || OG_LOCALES.fr,
             title,
             description,
             url: canonical,

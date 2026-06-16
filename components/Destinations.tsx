@@ -17,9 +17,9 @@ export const Destinations: React.FC<DestinationsProps> = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    // Helper for navigation
+    // Helper for navigation (locale-prefixed)
     const handleNavigate = (path: string) => {
-        router.push(path);
+        router.push(`/${language}${path}`);
     };
 
     return (

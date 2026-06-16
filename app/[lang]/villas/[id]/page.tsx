@@ -107,13 +107,13 @@ export default async function VillaPage({ params }: Props) {
         },
         'agentOfProperty': { '@id': 'https://www.sun-beach-house.com/#org' },
         'broker': { '@id': 'https://www.sun-beach-house.com/#org' },
-        'offers': {
+        'offers': (isRental ? (villa.pricePerWeek || villa.pricePerNight) : villa.salePrice) ? {
             '@type': 'Offer',
             'priceCurrency': isRental ? (villa.currency || 'USD') : 'EUR',
             'price': isRental ? (villa.pricePerWeek || villa.pricePerNight) : villa.salePrice,
             'url': `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
             'availability': 'https://schema.org/InStock'
-        },
+        } : undefined,
         'amenityFeature': villa.amenities?.map(a => ({
             '@type': 'LocationFeatureSpecification',
             'name': a.name,

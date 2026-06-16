@@ -1,6 +1,6 @@
 const BASE_URL = 'https://www.sun-beach-house.com';
 
-const OG_LOCALES: Record<string, string> = {
+export const OG_LOCALES: Record<string, string> = {
     fr: 'fr_FR',
     en: 'en_US',
     es: 'es_ES',
