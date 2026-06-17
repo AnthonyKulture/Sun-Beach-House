@@ -9,9 +9,15 @@ lerna-debug.log*
 
 # Dependencies
 node_modules
+node_modules_old
 dist
 dist-ssr
 *.local
+
+# Local env files (never commit secrets) — keep .env.example only
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
