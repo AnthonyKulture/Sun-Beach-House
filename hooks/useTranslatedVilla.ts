@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Villa } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translateWithCache, translateManyWithCache } from '../utils/translationService';
+import { translateWithCache } from '../utils/translationService';
 
 // Helper to extract text from both formats (string or {fr, en} object)
 const extractText = (field: string | { fr: string; en: string } | undefined | null, lang: string): string => {
@@ -69,23 +69,18 @@ export function useTranslatedVilla(villa: Villa | null): Villa | null {
                     ...(villa.amenities?.map(a => a.name) || [])
                 ] : [];
 
-                // Single batched request for everything (seasonal + native) to avoid
-                // Google per-user rate-limit bursts (was ~40 parallel calls per render).
-                const seasonalCount = seasonalTextsToTranslate.length;
-                const combined = [...seasonalTextsToTranslate, ...nativeTextsToTranslate];
-                const translatedCombined = await translateManyWithCache(combined, language);
-
-                // Keep "Bucket"/"Regatta" season terms untranslated.
-                const translatedSeasonalTexts = translatedCombined
-                    .slice(0, seasonalCount)
-                    .map((t, i) => {
-                        const original = seasonalTextsToTranslate[i];
-                        if (original && (original.toLowerCase().includes('bucket') || original.toLowerCase().includes('regatta'))) {
-                            return original;
+                // Combine all promises
+                const [translatedSeasonalTexts, translatedNativeTexts] = await Promise.all([
+                    Promise.all(seasonalTextsToTranslate.map(t => {
+                        if (!t) return '';
+                        // Do not translate "Bucket Regatta" or "Bucket" related terms
+                        if (t.toLowerCase().includes('bucket') || t.toLowerCase().includes('regatta')) {
+                            return t;
                         }
-                        return t;
-                    });
-                const translatedNativeTexts = translatedCombined.slice(seasonalCount);
+                        return translateWithCache(t, language);
+                    })),
+                    needsNativeTranslation ? Promise.all(nativeTextsToTranslate.map(t => t ? translateWithCache(t, language) : '')) : Promise.resolve([])
+                ]);
 
                 // Reconstruct Seasonal Prices (Always translated)
                 const seasonCount = villa.seasonalPrices?.length || 0;

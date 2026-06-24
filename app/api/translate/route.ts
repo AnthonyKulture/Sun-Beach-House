@@ -1,20 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { translateServerSide, translateManyServerSide } from '../../../utils/translateServerSide';
+import { translateServerSide } from '../../../utils/translateServerSide';
 
 export async function POST(request: NextRequest) {
     try {
-        const { text, texts, targetLang, sourceLang } = await request.json();
+        const { text, targetLang, sourceLang } = await request.json();
 
-        if (!targetLang || (!text && !Array.isArray(texts))) {
+        if (!text || !targetLang) {
             return NextResponse.json(
-                { error: 'Missing text/texts or targetLang' },
+                { error: 'Missing text or targetLang' },
                 { status: 400 }
             );
-        }
-
-        if (Array.isArray(texts)) {
-            const translatedTexts = await translateManyServerSide(texts, targetLang, sourceLang);
-            return NextResponse.json({ translatedTexts });
         }
 
         const translatedText = await translateServerSide({ text, targetLang, sourceLang });
