@@ -1,7 +1,7 @@
 // Translation Service — canonical public entrypoint for client-side translation.
 // Components should import from here, not directly from googleTranslation.ts.
 
-import { translateWithGoogle, translateManyWithGoogle } from './googleTranslation';
+import { translateWithGoogle } from './googleTranslation';
 
 /**
  * Manual overrides to fix specific translation errors across the site.
@@ -61,28 +61,7 @@ export async function translateWithCache(
 }
 
 /**
- * Batch translate multiple texts in a SINGLE request.
- * Manual overrides / empty strings are resolved server-side; on any failure
- * the original texts are returned (graceful fallback) so the page still renders.
- * @param texts - Array of source texts
- * @param targetLang - Target language code
- * @returns Array of translated texts (same order as input)
- */
-export async function translateManyWithCache(
-    texts: string[],
-    targetLang: 'en' | 'pt' | 'es' | 'fr'
-): Promise<string[]> {
-    if (texts.length === 0) return texts;
-    try {
-        return await translateManyWithGoogle(texts, { targetLang });
-    } catch (error) {
-        console.error('[Translation] Batch error:', error);
-        return texts; // Graceful fallback: return originals
-    }
-}
-
-/**
- * Batch translate multiple texts.
+ * Batch translate multiple texts in parallel.
  * @param texts - Array of source texts
  * @param targetLang - Target language code
  * @returns Array of translated texts (same order as input)
@@ -91,5 +70,5 @@ export async function batchTranslate(
     texts: string[],
     targetLang: 'en' | 'pt' | 'es' | 'fr'
 ): Promise<string[]> {
-    return translateManyWithCache(texts, targetLang);
+    return Promise.all(texts.map(text => translateWithCache(text, targetLang)));
 }
