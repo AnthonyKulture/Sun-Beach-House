@@ -67,7 +67,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
 - [~] #1 Haute saison 2026-2027
 - [x] #2 Bucket Regatta 2027
-- [ ] #3 Noël 6-12 mois à l'avance
+- [~] #3 Noël 6-12 mois à l'avance
 - [ ] #4 Gustavia guide
 - [ ] #5 Chef privé
 - [ ] #6 Pointe Milou
@@ -90,7 +90,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] St Barth Music Festival 2026 : programme et logistique (concerts Gustavia / Lorient)
 - [ ] Saint-Barth en mai-juin : pourquoi c'est la meilleure période pour beaucoup
 - [ ] Taxe de séjour et droit de quai à Saint-Barthélemy : ce qu'il faut comprendre (pilier fiscal pour acquéreurs et locataires)
-- [ ] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
+- [~] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
 
 ### Quartiers / Destinations
 - [ ] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4)
