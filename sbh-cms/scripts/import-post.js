@@ -172,9 +172,13 @@ async function transformForSanity(post) {
         targetKeywords: post.targetKeywords,
         seoTitle: post.seoTitle,
         seoDescription: post.seoDescription,
+        // NOTE: inline (anonymous) object members of an array must NOT carry a
+        // bogus `_type: 'object'` — Sanity can't resolve it to the array's field
+        // definitions and the Studio form crashes with
+        // "getAttribute only applies to plain objects" when applying realtime patches.
+        // Single anonymous member type → omit `_type` (matches native Studio behavior).
         sources: (post.sources || []).map((s, i) => ({
             _key: `source-${i}`,
-            _type: 'object',
             ...s,
         })),
         author: post.author || 'Sun Beach House',
