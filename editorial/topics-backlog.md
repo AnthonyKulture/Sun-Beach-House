@@ -68,7 +68,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [x] #1 Haute saison 2026-2027
 - [x] #2 Bucket Regatta 2027
 - [x] #3 Noël 6-12 mois à l'avance
-- [ ] #4 Gustavia guide
+- [~] #4 Gustavia guide
 - [ ] #5 Chef privé
 - [ ] #6 Pointe Milou
 - [ ] #7 5 questions avant de louer
@@ -93,7 +93,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
 
 ### Quartiers / Destinations
-- [ ] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4)
+- [~] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4)
 - [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques
 - [ ] Corossol : authenticité préservée, ce qu'on y trouve
 - [ ] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6)
