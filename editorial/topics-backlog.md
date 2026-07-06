@@ -69,7 +69,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [x] #2 Bucket Regatta 2027
 - [x] #3 Noël 6-12 mois à l'avance
 - [~] #4 Gustavia guide
-- [ ] #5 Chef privé
+- [~] #5 Chef privé
 - [ ] #6 Pointe Milou
 - [ ] #7 5 questions avant de louer
 - [ ] #8 Mariage Saint-Barthélemy
@@ -101,7 +101,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] Flamands : la plus grande plage de l'île
 
 ### Services & Conciergerie
-- [ ] Chef privé à Saint-Barth : comment ça marche, à quoi s'attendre (→ Plan 2026-05 #5)
+- [~] Chef privé à Saint-Barth : comment ça marche, à quoi s'attendre (→ Plan 2026-05 #5)
 - [ ] Mariage à Saint-Barthélemy : organiser un événement privé (→ Plan 2026-05 #8)
 - [ ] Service VIP aéroport : guide complet SBH / SXM / SJU / ANU
 - [ ] Charter yacht à la journée depuis Saint-Barth : destinations possibles
