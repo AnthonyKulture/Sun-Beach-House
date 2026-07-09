@@ -70,7 +70,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [x] #3 Noël 6-12 mois à l'avance
 - [~] #4 Gustavia guide
 - [~] #5 Chef privé
-- [ ] #6 Pointe Milou
+- [~] #6 Pointe Milou
 - [ ] #7 5 questions avant de louer
 - [ ] #8 Mariage Saint-Barthélemy
 - [ ] #9 Saint-Barth sous la pluie
@@ -96,7 +96,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [~] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4)
 - [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques
 - [ ] Corossol : authenticité préservée, ce qu'on y trouve
-- [ ] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6)
+- [~] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6)
 - [ ] Lurin : retraite confidentielle, biens d'exception
 - [ ] Flamands : la plus grande plage de l'île
 
