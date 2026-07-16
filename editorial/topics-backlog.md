@@ -72,7 +72,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [~] #5 Chef privé
 - [~] #6 Pointe Milou
 - [~] #7 5 questions avant de louer
-- [ ] #8 Mariage Saint-Barthélemy
+- [~] #8 Mariage Saint-Barthélemy
 - [ ] #9 Saint-Barth sous la pluie
 - [ ] #10 Une journée par Valérie
 
@@ -102,7 +102,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 
 ### Services & Conciergerie
 - [~] Chef privé à Saint-Barth : comment ça marche, à quoi s'attendre (→ Plan 2026-05 #5)
-- [ ] Mariage à Saint-Barthélemy : organiser un événement privé (→ Plan 2026-05 #8)
+- [~] Mariage à Saint-Barthélemy : organiser un événement privé (→ Plan 2026-05 #8)
 - [ ] Service VIP aéroport : guide complet SBH / SXM / SJU / ANU
 - [ ] Charter yacht à la journée depuis Saint-Barth : destinations possibles
 - [ ] Transferts privés : comment arriver à Saint-Barth confortablement
