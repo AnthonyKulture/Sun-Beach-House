@@ -89,7 +89,7 @@ jobs:
           while IFS= read -r file; do
             [ -z "$file" ] && continue
             echo "::group::Importing $file"
-            if node sbh-cms/scripts/import-post.js --file="$file"; then
+            if node sbh-cms/scripts/import-post.js --file="$file" --force-with-flags; then
               echo "::notice::Imported $file successfully"
             else
               echo "::error file=$file::Import failed for $file"

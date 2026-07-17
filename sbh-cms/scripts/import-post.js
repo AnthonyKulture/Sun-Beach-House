@@ -38,6 +38,7 @@ const args = process.argv.slice(2).reduce((acc, arg) => {
     else if (arg.startsWith('--image=')) acc.image = arg.slice(8)
     else if (arg === '--publish') acc.publish = true
     else if (arg === '--dry-run') acc.dryRun = true
+    else if (arg === '--force-with-flags') acc.forceWithFlags = true
     return acc
 }, {})
 
@@ -100,10 +101,16 @@ function validatePost(post) {
         .join('\n')
     const verifMatches = bodyAll.match(/\[À VÉRIFIER\]/g)
     if (verifMatches && verifMatches.length > 0) {
-        errors.push(
-            `Found ${verifMatches.length} "[À VÉRIFIER]" marker(s) in body. ` +
-            `Resolve them before importing, or pass --force-with-flags (not implemented).`,
-        )
+        if (args.forceWithFlags) {
+            console.warn(
+                `  ⚠  ${verifMatches.length} "[À VÉRIFIER]" marker(s) kept in draft — review in Studio before publishing.`,
+            )
+        } else {
+            errors.push(
+                `Found ${verifMatches.length} "[À VÉRIFIER]" marker(s) in body. ` +
+                `Resolve them before importing, or pass --force-with-flags to import as draft anyway.`,
+            )
+        }
     }
     return errors
 }
