@@ -7,7 +7,7 @@ name: Import editorial posts to Sanity
 #
 # Required GitHub Secrets:
 #   SANITY_WRITE_TOKEN — Editor role token from https://www.sanity.io/manage
-#   GEMINI_API_KEY     — Google AI Studio key for Imagen 3 image generation (optional;
+#   GEMINI_API_KEY     — Google AI Studio key ("AIza…") for Gemini image generation (optional;
 #                        posts import without mainImage if the secret is absent or generation fails)
 
 on:
@@ -97,7 +97,7 @@ jobs:
             IMAGE_FLAG=""
             IMAGE_PATH=""
             if [ -n "${GEMINI_API_KEY:-}" ]; then
-              echo "  Generating main image with Gemini Imagen 3…"
+              echo "  Generating main image with Gemini…"
               if IMAGE_PATH=$(node sbh-cms/scripts/generate-image.js --file="$file" 2>/tmp/img-gen.log); then
                 IMAGE_FLAG="--image=${IMAGE_PATH}"
                 echo "::notice::Image generated: ${IMAGE_PATH}"

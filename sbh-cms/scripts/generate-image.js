@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Generate a main image for a post using Gemini Imagen 3.
+ * Generate a main image for a post using the Gemini image models
+ * (gemini-2.5-flash-image "nano banana", with fallbacks).
  *
  * Usage:
  *   node scripts/generate-image.js --file=<path-to-post.json> [--output=<path>]
@@ -28,8 +29,13 @@ const args = process.argv.slice(2).reduce((acc, arg) => {
 
 if (!args.file) { console.error('Error: --file=<path> required'); process.exit(1) }
 
-const apiKey = process.env.GEMINI_API_KEY
+// .trim() matters: a trailing newline pasted into the GitHub secret turns into
+// %0A in the request and Google rejects the credential entirely (401 UNAUTHENTICATED).
+const apiKey = (process.env.GEMINI_API_KEY || '').trim()
 if (!apiKey) { console.error('Error: GEMINI_API_KEY not set'); process.exit(1) }
+if (!apiKey.startsWith('AIza')) {
+    console.error(`  ⚠  key does not look like a Google AI Studio key (starts with "${apiKey.slice(0, 4)}", length ${apiKey.length}) — expected an "AIza…" key from https://aistudio.google.com/apikey`)
+}
 
 const postPath = path.resolve(process.cwd(), args.file)
 if (!fs.existsSync(postPath)) { console.error(`Error: not found: ${postPath}`); process.exit(1) }
@@ -94,49 +100,71 @@ async function main() {
     console.error(`→ Generating image for "${post.title?.fr || slug}"`)
     console.error(`  Prompt (excerpt): ${prompt.slice(0, 120)}…`)
 
-    const payload = JSON.stringify({
-        instances: [{ prompt }],
-        parameters: {
-            sampleCount:      1,
-            aspectRatio:      '16:9',
-            safetySetting:    'block_some',
-            personGeneration: 'dont_allow',
-        },
-    })
+    // Image-capable models, most recent first. gemini-2.5-flash-image is the GA
+    // "nano banana" model; the 2.0 preview is kept as a last resort in case the
+    // account still has access to it. Auth via x-goog-api-key header (Google AI
+    // Studio keys only — Vertex AI models like imagen-3.0 need OAuth2 instead).
+    const MODELS = [
+        'gemini-2.5-flash-image',
+        'gemini-2.5-flash-image-preview',
+        'gemini-2.0-flash-preview-image-generation',
+    ]
+    const CONFIGS = [
+        { responseModalities: ['IMAGE'], imageConfig: { aspectRatio: '16:9' } },
+        { responseModalities: ['TEXT', 'IMAGE'] },
+        undefined, // model defaults
+    ]
 
-    // gemini-2.0-flash-preview-image-generation works with Google AI Studio API keys
-    // (imagen-3.0-generate-002 requires Vertex AI / OAuth2, not a simple API key)
-    const apiUrl = new URL('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent')
-    apiUrl.searchParams.set('key', apiKey)
+    let b64 = null
+    let lastError = 'no attempt made'
 
-    const geminiPayload = JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-            responseModalities: ['IMAGE'],
-            responseMimeType:   'image/jpeg',
-        },
-    })
+    outer:
+    for (const model of MODELS) {
+        for (const generationConfig of CONFIGS) {
+            const geminiPayload = JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                ...(generationConfig ? { generationConfig } : {}),
+            })
 
-    const { status, body } = await request(
-        {
-            hostname: apiUrl.hostname,
-            path:     apiUrl.pathname + apiUrl.search,
-            method:   'POST',
-            headers:  {
-                'Content-Type':   'application/json',
-                'Content-Length': Buffer.byteLength(geminiPayload),
-            },
-        },
-        geminiPayload,
-    )
+            const { status, body } = await request(
+                {
+                    hostname: 'generativelanguage.googleapis.com',
+                    path:     `/v1beta/models/${model}:generateContent`,
+                    method:   'POST',
+                    headers:  {
+                        'Content-Type':   'application/json',
+                        'Content-Length': Buffer.byteLength(geminiPayload),
+                        'x-goog-api-key': apiKey,
+                    },
+                },
+                geminiPayload,
+            )
 
-    if (status !== 200) {
-        const detail = typeof body === 'object' ? JSON.stringify(body).slice(0, 300) : String(body).slice(0, 300)
-        throw new Error(`Gemini API ${status}: ${detail}`)
+            if (status === 200) {
+                const parts = body?.candidates?.[0]?.content?.parts || []
+                b64 = parts.find((p) => p.inlineData?.data)?.inlineData?.data || null
+                if (b64) {
+                    console.error(`  ✓ model: ${model}`)
+                    break outer
+                }
+                lastError = `${model}: 200 but no image part (finishReason: ${body?.candidates?.[0]?.finishReason}, ${JSON.stringify(body).slice(0, 200)})`
+                console.error(`  ✗ ${lastError}`)
+                continue
+            }
+
+            const detail = typeof body === 'object' ? JSON.stringify(body).slice(0, 250) : String(body).slice(0, 250)
+            lastError = `${model} → HTTP ${status}: ${detail}`
+            console.error(`  ✗ ${lastError}`)
+
+            // Bad key (401/403, or Google's 400 API_KEY_INVALID): retrying is pointless
+            if (status === 401 || status === 403 || detail.includes('API_KEY_INVALID')) break outer
+            // 404 = model unknown: skip remaining configs for this model
+            if (status === 404) continue outer
+            // 400 = payload shape rejected: try next config
+        }
     }
 
-    const b64 = body?.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data
-    if (!b64) throw new Error(`No image data in response: ${JSON.stringify(body).slice(0, 200)}`)
+    if (!b64) throw new Error(`Gemini image generation exhausted all attempts. Last error: ${lastError}`)
 
     fs.writeFileSync(outPath, Buffer.from(b64, 'base64'))
     console.error(`  ✓ Saved to ${outPath}`)
