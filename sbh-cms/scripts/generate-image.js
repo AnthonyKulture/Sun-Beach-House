@@ -104,10 +104,13 @@ async function main() {
         },
     })
 
+    const apiUrl = new URL('https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict')
+    apiUrl.searchParams.set('key', apiKey)
+
     const { status, body } = await request(
         {
-            hostname: 'generativelanguage.googleapis.com',
-            path:     `/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`,
+            hostname: apiUrl.hostname,
+            path:     apiUrl.pathname + apiUrl.search,
             method:   'POST',
             headers:  {
                 'Content-Type':   'application/json',
