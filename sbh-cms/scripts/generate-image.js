@@ -104,8 +104,18 @@ async function main() {
         },
     })
 
-    const apiUrl = new URL('https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict')
+    // gemini-2.0-flash-preview-image-generation works with Google AI Studio API keys
+    // (imagen-3.0-generate-002 requires Vertex AI / OAuth2, not a simple API key)
+    const apiUrl = new URL('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent')
     apiUrl.searchParams.set('key', apiKey)
+
+    const geminiPayload = JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+            responseModalities: ['IMAGE'],
+            responseMimeType:   'image/jpeg',
+        },
+    })
 
     const { status, body } = await request(
         {
@@ -114,10 +124,10 @@ async function main() {
             method:   'POST',
             headers:  {
                 'Content-Type':   'application/json',
-                'Content-Length': Buffer.byteLength(payload),
+                'Content-Length': Buffer.byteLength(geminiPayload),
             },
         },
-        payload,
+        geminiPayload,
     )
 
     if (status !== 200) {
@@ -125,7 +135,7 @@ async function main() {
         throw new Error(`Gemini API ${status}: ${detail}`)
     }
 
-    const b64 = body?.predictions?.[0]?.bytesBase64Encoded
+    const b64 = body?.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data
     if (!b64) throw new Error(`No image data in response: ${JSON.stringify(body).slice(0, 200)}`)
 
     fs.writeFileSync(outPath, Buffer.from(b64, 'base64'))
