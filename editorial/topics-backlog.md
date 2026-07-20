@@ -73,7 +73,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [~] #6 Pointe Milou
 - [~] #7 5 questions avant de louer
 - [~] #8 Mariage Saint-Barthélemy
-- [ ] #9 Saint-Barth sous la pluie
+- [~] #9 Saint-Barth sous la pluie
 - [ ] #10 Une journée par Valérie
 
 ---
@@ -116,7 +116,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 
 ### Guides pratiques
 - [~] Louer une villa à Saint-Barth : 5 questions à se poser avant de réserver (→ Plan 2026-05 #7)
-- [ ] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9)
+- [~] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9)
 - [ ] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10)
 - [ ] Comment venir à Saint-Barth : vols, bateaux, options
 - [ ] Que mettre dans sa valise pour Saint-Barth
