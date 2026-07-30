@@ -545,4 +545,132 @@ export interface Translations {
             save: string;
         }
     };
+
+    // Legal pages
+    legalPage: {
+        title: string;
+        metaDescription: string;
+        companyIdentity: {
+            title: string;
+            companyName: { label: string; value: string };
+            legalForm: { label: string; value: string };
+            shareCapital: { label: string; value: string };
+            manager: { label: string; value: string };
+        };
+        contactRegistration: {
+            title: string;
+            headOffice: { label: string; value: string };
+            registration: { label: string; value: string; date: string };
+            siren: { label: string; value: string };
+            mainActivity: { label: string; value: string };
+        };
+        hosting: {
+            title: string;
+            host: { label: string; name: string; address: string };
+            realization: { label: string; name: string };
+        };
+        intellectualProperty: {
+            title: string;
+            p1: string;
+            p2: string;
+        };
+    };
+
+    privacyPage: {
+        title: string;
+        metaDescription: string;
+        intro: string;
+        dataCollection: {
+            title: string;
+            intro: string;
+            items: string[];
+            details: string;
+        };
+        dataUsage: {
+            title: string;
+            intro: string;
+            items: string[];
+        };
+        protectionSharing: {
+            title: string;
+            text: string;
+        };
+        cookies: {
+            title: string;
+            p1: string;
+            p2: string;
+        };
+        rights: {
+            title: string;
+            p1: string;
+            p2: string;
+        };
+        dpo: {
+            title: string;
+            text: string;
+        };
+    };
+
+    conditionsPage: {
+        title: string;
+        metaDescription: string;
+        booking: {
+            title: string;
+            intro: string;
+            nonHoliday: {
+                title: string;
+                over60: { label: string; desc: string };
+                under60: { label: string; desc: string };
+            };
+            holiday: {
+                title: string;
+                over120: { label: string; desc: string };
+                under90: { label: string; desc: string };
+            };
+            warning: string;
+        };
+        cancellation: {
+            title: string;
+            intro: string;
+            nonHoliday: {
+                title: string;
+                items: string[];
+            };
+            holiday: {
+                title: string;
+                items: string[];
+            };
+        };
+        insurance: {
+            title: string;
+            p1: string;
+            p2: string;
+            p3: string;
+        };
+        touristTax: {
+            title: string;
+            p1: string;
+            p2: string;
+        };
+        visa: {
+            title: string;
+            p1: string;
+            p2: string;
+        };
+        pricing: {
+            title: string;
+            priceInfo: string;
+            taxInfo: string;
+            priceNote: string;
+            minStay: {
+                title: string;
+                items: string[];
+            };
+        };
+        checkInOut: {
+            title: string;
+            checkIn: { label: string; value: string };
+            checkOut: { label: string; value: string };
+        };
+    };
 }

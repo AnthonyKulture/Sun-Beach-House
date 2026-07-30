@@ -647,4 +647,141 @@ export const es: Translations = {
             save: "Guardar mis opciones"
         }
     },
+    legalPage: {
+        title: 'Aviso Legal',
+        metaDescription: 'Información legal de Sun Beach House, agencia inmobiliaria en San Bartolomé.',
+        companyIdentity: {
+            title: 'Identidad de la Empresa',
+            companyName: { label: 'Nombre de la empresa', value: 'SUN BEACH HOUSE' },
+            legalForm: { label: 'Forma jurídica', value: 'SARL con un capital de 1000€' },
+            shareCapital: { label: 'Capital social', value: '1000€' },
+            manager: { label: 'Gerente', value: 'Valérie KERCKHOFS' },
+        },
+        contactRegistration: {
+            title: 'Contacto y Registro',
+            headOffice: { label: 'Sede social', value: '65 RUE DE LA PAIX GUSTAVIA 97133 SAINT BARTHELEMY' },
+            registration: { label: 'Registro', value: 'RCS Basse-terre', date: '29/03/2022' },
+            siren: { label: 'SIREN', value: '911 920 205' },
+            mainActivity: { label: 'Actividad principal', value: 'Agencia inmobiliaria' },
+        },
+        hosting: {
+            title: 'Alojamiento',
+            host: { label: 'Alojamiento', name: 'OVH SAS', address: '2 rue Kellermann - 59100 Roubaix - France' },
+            realization: { label: 'Realización', name: 'Kulture Com by Anthony PROFIT' },
+        },
+        intellectualProperty: {
+            title: 'Propiedad Intelectual',
+            p1: 'Todo el contenido de este sitio (textos, imágenes, videos, diseño, logotipos) es propiedad exclusiva de Sun Beach House o de sus socios y está protegido por las leyes internacionales de derechos de autor.',
+            p2: 'Cualquier reproducción, distribución, modificación o uso sin el consentimiento previo por escrito de Sun Beach House está estrictamente prohibido y puede dar lugar a acciones legales.',
+        },
+    },
+
+    privacyPage: {
+        title: 'Política de Privacidad',
+        metaDescription: 'Política de privacidad y protección de datos de Sun Beach House.',
+        intro: 'En Sun Beach House, valoramos su privacidad y nos comprometemos a proteger sus datos personales.',
+        dataCollection: {
+            title: 'Recopilación de Datos',
+            intro: 'Recopilamos la siguiente información:',
+            items: ['Nombre y apellidos', 'Dirección de correo electrónico', 'Número de teléfono', 'Información de pago', 'Preferencias de estancia'],
+            details: 'Los datos se recopilan a través de nuestros formularios de contacto, reservas y suscripción al boletín.',
+        },
+        dataUsage: {
+            title: 'Uso de Datos',
+            intro: 'Utilizamos sus datos para:',
+            items: ['Procesar sus reservas y solicitudes', 'Personalizar su experiencia', 'Mejorar nuestros servicios', 'Enviar comunicaciones importantes'],
+        },
+        protectionSharing: {
+            title: 'Protección y Uso Compartido',
+            text: 'Tus datos se almacenan de forma segura y no se venden a terceros. Solo se comparten con socios de confianza necesarios para la prestación de nuestros servicios (por ejemplo, pasarelas de pago, servicios de conserjería).',
+        },
+        cookies: {
+            title: 'Cookies',
+            p1: 'Utilizamos cookies para mejorar su experiencia en nuestro sitio web.',
+            p2: 'Puede configurar su navegador para rechazar las cookies, pero esto puede limitar algunas funciones de nuestro sitio.',
+        },
+        rights: {
+            title: 'Derechos RGPD',
+            p1: 'De acuerdo con el Reglamento General de Protección de Datos (RGPD), tiene derecho a acceder, rectificar, eliminar y oponerse al tratamiento de sus datos personales.',
+            p2: 'Para ejercer estos derechos, póngase en contacto con nuestro Delegado de Protección de Datos.',
+        },
+        dpo: {
+            title: 'Contacto DPO',
+            text: 'DPO: Valérie Kerckhofs\nEmail: valerie@sun-beach-house.com\nDirección: SUN BEACH HOUSE - 65 RUE DE LA PAIX GUSTAVIA 97133 SAINT BARTHELEMY',
+        },
+    },
+
+    conditionsPage: {
+        title: 'Condiciones de reserva, cancelación e información general',
+        metaDescription: 'Condiciones de reserva, cancelación e información general para el alquiler de villas con Sun Beach House.',
+        booking: {
+            title: 'Condiciones de Reserva',
+            intro: 'Las siguientes condiciones se aplican a todas las reservas:',
+            nonHoliday: {
+                title: 'Período no vacacional',
+                over60: { label: 'Más de 60 días antes de la llegada', desc: 'Se requiere un depósito del 30% para confirmar la reserva. El saldo restante debe pagarse 60 días antes de la llegada.' },
+                under60: { label: 'Menos de 60 días antes de la llegada', desc: 'Se requiere el pago del 100% al momento de la reserva.' },
+            },
+            holiday: {
+                title: 'Vacaciones (Navidad y Año Nuevo)',
+                over120: { label: 'Más de 90 días antes de la llegada', desc: 'Se requiere un depósito del 30% para confirmar la reserva. El saldo restante debe pagarse 90 días antes de la llegada.' },
+                under90: { label: 'Menos de 90 días antes de la llegada', desc: 'Se requiere el pago del 100% al momento de la reserva.' },
+            },
+            warning: 'Las reservas no se consideran confirmadas hasta la recepción del depósito.',
+        },
+        cancellation: {
+            title: 'Condiciones de Cancelación',
+            intro: 'En caso de cancelación, se aplicarán las siguientes penalizaciones:',
+            nonHoliday: {
+                title: 'Período no vacacional',
+                items: [
+                    'Más de 61 días antes de la llegada: el depósito del 30% no es reembolsable.',
+                    'Entre 60 y 31 días antes de la llegada: el 50% del monto total no es reembolsable.',
+                    'Menos de 30 días antes de la llegada: el 100% del monto total no es reembolsable.'
+                ],
+            },
+            holiday: {
+                title: 'Vacaciones (Navidad y Año Nuevo)',
+                items: [
+                    'Más de 91 días antes de la llegada: el depósito del 30% no es reembolsable.',
+                    'Entre 90 y 61 días antes de la llegada: el 50% del monto total no es reembolsable.',
+                    'Menos de 60 días antes de la llegada: el 100% del monto total no es reembolsable.'
+                ],
+            },
+        },
+        insurance: {
+            title: 'Seguro de Viaje',
+            p1: 'Recomendamos encarecidamente contratar un seguro de viaje que cubra cancelaciones, interrupciones, emergencias médicas y repatriación.',
+            p2: 'Sun Beach House no se hace responsable de eventos fuera de su control, como desastres naturales, pandemias o restricciones de viaje.',
+            p3: 'La falta de seguro no eximirá de los gastos de cancelación.',
+        },
+        touristTax: {
+            title: 'Tasa Turística',
+            p1: 'El gobierno de San Bartolomé aplica una tasa turística del 5% a todas las estancias en villas y hoteles.',
+            p2: 'Esta tasa no está incluida en los precios indicados y se añadirá al monto total de su factura.',
+        },
+        visa: {
+            title: 'Requisitos de Visa y Pasaporte',
+            p1: 'Es responsabilidad del viajero asegurarse de tener un pasaporte válido y los visados necesarios para ingresar a San Bartolomé.',
+            p2: 'Sun Beach House no se hace responsable de la denegación de entrada debido a documentos de viaje incorrectos o faltantes.',
+        },
+        pricing: {
+            title: 'Precios y Estancia Mínima',
+            priceInfo: 'Los precios de alquiler se indican en Dólares Estadounidenses (USD) por semana.',
+            taxInfo: 'Añadir 10% de cargo por servicio y 5% de tasa turística al precio del alquiler.',
+            priceNote: 'Los precios están sujetos a cambios sin previo aviso hasta la confirmación de la reserva.',
+            minStay: {
+                title: 'Estancia mínima:',
+                items: [
+                    '7 noches para todos los períodos, excepto:',
+                    '14 noches durante el período de Navidad y Año Nuevo.'
+                ],
+            },
+        },
+        checkInOut: {
+            title: 'Llegada y Salida',
+            checkIn: { label: 'Hora de llegada', value: '3:00 PM' },
+            checkOut: { label: 'Hora de salida', value: '12:00 PM (Mediodía)' },
+        },
+    },
 };

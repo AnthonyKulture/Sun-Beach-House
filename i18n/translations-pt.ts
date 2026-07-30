@@ -647,4 +647,151 @@ export const pt: Translations = {
             save: "Guardar as minhas escolhas"
         }
     },
+
+    legalPage: {
+        title: 'Aviso Legal',
+        metaDescription: 'Informações legais sobre a Sun Beach House, agência imobiliária e de aluguel de vilas em Saint-Barthélemy.',
+        companyIdentity: {
+            title: 'Identidade da Empresa',
+            companyName: { label: 'Nome da empresa', value: 'SUN BEACH HOUSE' },
+            legalForm: { label: 'Forma jurídica', value: 'SARL' },
+            shareCapital: { label: 'Capital social', value: '1000€' },
+            manager: { label: 'Gerente', value: 'Valérie KERCKHOFS' },
+        },
+        contactRegistration: {
+            title: 'Contato e Registro',
+            headOffice: { label: 'Sede social', value: '65 RUE DE LA PAIX GUSTAVIA 97133 SAINT BARTHELEMY' },
+            registration: { label: 'Inscrita no RCS de', value: 'Basse-terre', date: 'em 29/03/2022' },
+            siren: { label: 'Número SIREN', value: '911 920 205' },
+            mainActivity: { label: 'Atividade principal', value: 'Agência imobiliária' },
+        },
+        hosting: {
+            title: 'Hospedagem e Design',
+            host: { label: 'Hospedagem', name: 'OVH SAS', address: '2 rue Kellermann - 59100 Roubaix - França' },
+            realization: { label: 'Design e desenvolvimento', name: 'Kulture Com - Anthony PROFIT' },
+        },
+        intellectualProperty: {
+            title: 'Propriedade Intelectual',
+            p1: 'Todo o conteúdo deste site (textos, imagens, gráficos, logotipo, ícones, etc.) é propriedade exclusiva da SUN BEACH HOUSE, exceto marcas, logotipos ou conteúdos pertencentes a outras empresas parceiras ou autores.',
+            p2: 'Qualquer reprodução, distribuição, modificação, adaptação, retransmissão ou publicação, mesmo parcial, destes elementos é estritamente proibida sem o consentimento expresso por escrito da SUN BEACH HOUSE e constitui uma infração punível por lei.',
+        },
+    },
+
+    privacyPage: {
+        title: 'Política de Privacidade',
+        metaDescription: 'A política de privacidade da Sun Beach House descreve como coletamos, usamos, protegemos e compartilhamos seus dados pessoais em Saint-Barthélemy.',
+        intro: 'A Sun Beach House atribui grande importância à proteção da sua privacidade e aos seus dados pessoais. Esta política detalha como coletamos, usamos, protegemos e compartilhamos suas informações ao usar nosso site e nossos serviços.',
+        dataCollection: {
+            title: '1. Coleta de Dados',
+            intro: 'Coletamos as seguintes informações quando você utiliza nossos serviços:',
+            items: [
+                'Informações de identidade (nome, sobrenome)',
+                'Informações de contato (endereço de e-mail, número de telefone)',
+                'Informações de reserva e preferências de estadia'
+            ],
+            details: 'Esses dados são coletados exclusivamente através dos nossos formulários de contato e de solicitação de reserva, quando você nos fornece essas informações de forma voluntária.'
+        },
+        dataUsage: {
+            title: '2. Uso dos Dados',
+            intro: 'As informações que coletamos são usadas para as seguintes finalidades:',
+            items: [
+                'Processar e confirmar suas solicitações de reserva',
+                'Comunicar com você em relação a sua estadia ou sua solicitação',
+                'Organizar serviços de concierge personalizados',
+                'Melhorar nosso atendimento ao cliente e nosso site'
+            ]
+        },
+        protectionSharing: {
+            title: '3. Proteção e Compartilhamento de Dados',
+            text: 'Implementamos medidas de segurança adequadas para proteger seus dados pessoais contra acesso, modificação, divulgação ou destruição não autorizados. Não vendemos, não comercializamos nem alugamos suas informações pessoais a terceiros. Seus dados só são compartilhados com nossos parceiros locais (proprietários de vilas, prestadores de serviços de concierge) na estrita medida necessária para organizar sua estadia em Saint-Barthélemy.'
+        },
+        cookies: {
+            title: '4. Uso de Cookies',
+            p1: 'Nosso site utiliza cookies para melhorar a experiência do usuário e analisar o tráfego. Você pode configurar seu navegador para recusar todos os cookies ou ser avisado quando um cookie for enviado.',
+            p2: 'Para mais detalhes sobre como usamos os cookies, consulte a nossa janela de gerenciamento de consentimento.'
+        },
+        rights: {
+            title: '5. Seus Direitos (RGPD)',
+            p1: 'Em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD), você tem o direito de acesso, retificação, exclusão e oposição ao processamento dos seus dados pessoais.',
+            p2: 'Para exercer esses direitos, por favor, entre em contato com nosso Encarregado de Proteção de Dados (DPO).'
+        },
+        dpo: {
+            title: '6. Contato DPO',
+            text: 'Para qualquer solicitação relativa aos seus dados pessoais, você pode contatar Valérie Kerckhofs em valerie@sun-beach-house.com, ou pelo correio no seguinte endereço: SUN BEACH HOUSE - 65 RUE DE LA PAIX GUSTAVIA 97133 SAINT BARTHELEMY.'
+        }
+    },
+
+    conditionsPage: {
+        title: 'Condições de reserva, cancelamento e informações gerais',
+        metaDescription: 'Consulte as condições de reserva, as políticas de cancelamento e as informações práticas (seguro, vistos, taxas) para a sua estadia em Saint-Barthélemy com a Sun Beach House.',
+        booking: {
+            title: '1. Condições de Reserva',
+            intro: 'Para confirmar a sua reserva, aplicam-se as seguintes condições de pagamento, consoante a época:',
+            nonHoliday: {
+                title: 'Período fora das festas (Temporada Alta e Baixa)',
+                over60: { label: 'Mais de 60 dias antes da chegada', desc: 'é exigido um depósito de 30% do valor total do aluguel para confirmar a reserva. O saldo deve ser pago, o mais tardar, 60 dias antes da chegada.' },
+                under60: { label: 'Menos de 60 dias antes da chegada', desc: '100% do valor total do aluguel é exigido no momento da reserva.' }
+            },
+            holiday: {
+                title: 'Período de festas (Natal e Ano Novo) e Eventos Especiais',
+                over120: { label: 'Mais de 90 dias antes da chegada', desc: 'é exigido um depósito de 30% para confirmar a reserva. O saldo é exigido 90 dias antes da chegada.' },
+                under90: { label: 'Menos de 90 dias antes da chegada', desc: '100% do valor total do aluguel é exigido no momento da reserva.' }
+            },
+            warning: 'Atenção: Se o saldo não for recebido nos prazos estipulados, a agência reserva-se o direito de cancelar a reserva e aplicar as condições de cancelamento correspondentes.'
+        },
+        cancellation: {
+            title: '2. Condições de Cancelamento',
+            intro: 'Qualquer cancelamento deve ser notificado por escrito (e-mail) à Sun Beach House. O valor dos custos de cancelamento é calculado em função da data de notificação:',
+            nonHoliday: {
+                title: 'Período fora das festas',
+                items: [
+                    'Mais de 61 dias antes da chegada: 30% do valor do aluguel (depósito).',
+                    'Entre 60 e 31 dias antes da chegada: 50% do valor do aluguel.',
+                    'A 30 dias ou menos da chegada: 100% do valor do aluguel (nenhum reembolso).'
+                ]
+            },
+            holiday: {
+                title: 'Período de festas (Natal e Ano Novo)',
+                items: [
+                    'Mais de 91 dias antes da chegada: 30% do valor do aluguel (depósito).',
+                    'Entre 90 e 61 dias antes da chegada: 50% do valor do aluguel.',
+                    'A 60 dias ou menos da chegada: 100% do valor do aluguel (nenhum reembolso).'
+                ]
+            }
+        },
+        insurance: {
+            title: '3. Seguro de Viagem e Cancelamento',
+            p1: 'Recomendamos vivamente aos nossos clientes que subscrevam um seguro de viagem com cobertura de cancelamento, interrupção de estadia e repatriação.',
+            p2: 'Em caso de cancelamento por motivo de força maior (doença, anulação de voo, restrições fronteiriças, fenómenos meteorológicos como furacões), a agência não poderá ser responsabilizada e não procederá a qualquer reembolso. Um seguro de viagem adaptado é, portanto, essencial para a sua tranquilidade.',
+            p3: 'A agência não é responsável por atrasos na chegada ou partidas antecipadas, que não darão direito a qualquer reembolso.'
+        },
+        touristTax: {
+            title: '4. Taxa de Turismo',
+            p1: 'Em conformidade com a regulamentação em vigor na Coletividade de Saint-Barthélemy, aplica-se uma taxa de turismo de 5% sobre o valor do aluguel.',
+            p2: 'Esta taxa deve ser paga no momento do pagamento do saldo.'
+        },
+        visa: {
+            title: '5. Passaporte e Visto',
+            p1: 'Saint-Barthélemy é uma Coletividade Francesa no Ultramar. É da responsabilidade de cada viajante certificar-se de que dispõe dos documentos de identidade necessários (passaporte em curso de validade).',
+            p2: 'Para determinadas nacionalidades, poderá ser exigido um visto específico para Saint-Barthélemy (um visto Schengen clássico não é necessariamente suficiente). Aconselhamo-lo a contactar a embaixada de França no seu país para confirmar as formalidades de entrada.'
+        },
+        pricing: {
+            title: '6. Tarifas e Estadia Mínima',
+            priceInfo: 'Todas as nossas tarifas são apresentadas em dólares americanos (USD) por semana.',
+            taxInfo: 'As tarifas de aluguel indicadas não incluem a taxa de serviço da agência (10%) nem a taxa de turismo local (5%).',
+            priceNote: 'As tarifas estão sujeitas a alterações sem aviso prévio. No entanto, o preço confirmado no momento da sua reserva é garantido.',
+            minStay: {
+                title: 'Duração mínima da estadia:',
+                items: [
+                    'Baixa e Alta Temporada: um mínimo de 7 noites pode ser exigido dependendo da vila.',
+                    'Período de festas (Natal/Ano Novo): a estadia mínima requerida é geralmente de 14 noites.'
+                ]
+            }
+        },
+        checkInOut: {
+            title: '7. Horários de Chegada e Partida (Check-in / Check-out)',
+            checkIn: { label: 'Check-in', value: 'A partir das 15:00. O nosso concierge irá recebê-lo à chegada para o acompanhar à sua vila.' },
+            checkOut: { label: 'Check-out', value: 'As vilas devem ser desocupadas até às 12:00 (meio-dia) no dia da partida.' }
+        }
+    },
 };

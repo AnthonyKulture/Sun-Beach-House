@@ -654,6 +654,154 @@ const fr: Translations = {
             save: "Enregistrer mes choix"
         }
     },
+
+    legalPage: {
+        title: 'Mentions Légales',
+        metaDescription: "Informations légales concernant l'entreprise Sun Beach House, agence immobilière à Saint-Barthélemy.",
+        companyIdentity: {
+            title: "1. Identité de l'entreprise",
+            companyName: { label: 'Dénomination sociale', value: 'SUN BEACH HOUSE' },
+            legalForm: { label: 'Forme Juridique', value: 'Société à responsabilité limitée (SARL)' },
+            shareCapital: { label: 'Capital Social', value: '1 000,00 Euros' },
+            manager: { label: 'Gérante', value: 'Valérie KERCKHOFS' },
+        },
+        contactRegistration: {
+            title: '2. Coordonnées & Immatriculation',
+            headOffice: { label: 'Siège Social', value: '65 RUE DE LA PAIX GUSTAVIA<br />97133 SAINT BARTHELEMY' },
+            registration: { label: 'Immatriculation', value: 'RCS Basse-terre 911 920 205', date: "Date d'immatriculation : 29/03/2022" },
+            siren: { label: 'SIREN', value: '911 920 205' },
+            mainActivity: { label: 'Activité Principale', value: "Agence immobilière ; toutes activités se rapportant directement ou indirectement à l'objet social." },
+        },
+        hosting: {
+            title: '3. Hébergement & Réalisation',
+            host: { label: 'Hébergeur / Registrar', name: 'OVH SAS', address: '2 rue Kellermann - 59100 Roubaix - France' },
+            realization: { label: 'Réalisation du site', name: 'Kulture Com (Anthony PROFIT)' },
+        },
+        intellectualProperty: {
+            title: '4. Propriété Intellectuelle',
+            p1: "L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.",
+            p2: "La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite sauf autorisation expresse du directeur de la publication.",
+        },
+    },
+
+    privacyPage: {
+        title: 'Politique de Confidentialité',
+        metaDescription: 'Politique de confidentialité et protection des données personnelles de Sun Beach House.',
+        intro: 'Chez Sun Beach House, nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité détaille la manière dont nous collectons, utilisons et protégeons vos informations.',
+        dataCollection: {
+            title: '1. Collecte des données',
+            intro: 'Nous collectons les informations que vous nous fournissez directement, notamment lorsque vous :',
+            items: [
+                'Remplissez un formulaire de contact ou de réservation.',
+                'Vous inscrivez à notre newsletter.',
+                'Nous contactez par email ou téléphone.',
+            ],
+            details: 'Les données collectées peuvent inclure : votre nom, prénom, adresse email, numéro de téléphone, et toute autre information pertinente pour votre projet immobilier ou de location.',
+        },
+        dataUsage: {
+            title: '2. Utilisation des données',
+            intro: 'Vos données sont utilisées pour :',
+            items: [
+                'Répondre à vos demandes de renseignements et de réservations.',
+                'Vous envoyer des informations sur nos services et propriétés (si vous avez accepté de recevoir notre newsletter).',
+                'Améliorer nos services et votre expérience sur notre site.',
+                'Respecter nos obligations légales et réglementaires.',
+            ],
+        },
+        protectionSharing: {
+            title: '3. Protection et Partage',
+            text: "Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données contre tout accès, modification, divulgation ou destruction non autorisés. Vos données ne sont jamais vendues à des tiers. Elles peuvent être partagées avec des prestataires de confiance uniquement dans le cadre de l'exécution de nos services (ex: gestionnaire de mailing, partenaires de services conciergerie avec votre accord), qui sont tenus de respecter la confidentialité de vos données.",
+        },
+        cookies: {
+            title: '4. Cookies',
+            p1: 'Notre site utilise des cookies pour améliorer votre expérience de navigation et analyser le trafic. Nous utilisons la solution Tarteaucitron pour la gestion de votre consentement aux cookies.',
+            p2: 'Vous pouvez à tout moment modifier vos préférences en matière de cookies via le panneau de gestion accessible en bas de page.',
+        },
+        rights: {
+            title: '5. Vos Droits',
+            p1: "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement, et de portabilité de vos données. Vous pouvez également vous opposer au traitement de vos données ou en demander la limitation.",
+            p2: 'Pour exercer ces droits, veuillez nous contacter à l\'adresse suivante : valerie@sun-beach-house.com',
+        },
+        dpo: {
+            title: 'Contact DPO',
+            text: 'Pour toute question concernant notre politique de confidentialité, vous pouvez nous écrire à : SUN BEACH HOUSE - 65 RUE DE LA PAIX GUSTAVIA 97133 SAINT BARTHELEMY',
+        },
+    },
+
+    conditionsPage: {
+        title: "Conditions de réservation, d'annulation et informations générales",
+        metaDescription: "Conditions de réservation, d'annulation et informations générales pour votre séjour à Saint-Barthélemy avec Sun Beach House.",
+        booking: {
+            title: '1. Conditions de réservation',
+            intro: "Un acompte correspondant à 30 % du montant total du séjour (incluant le loyer, les taxes et les frais de dossier) est requis pour confirmer toute réservation. La villa ne pourra être garantie tant que cet acompte n'aura pas été reçu. La réservation sera considérée comme ferme et définitive uniquement après réception du paiement (preuve de virement requise) et signature du contrat de location.",
+            nonHoliday: {
+                title: 'Réservations hors périodes de fêtes (Noël et Nouvel An)',
+                over60: { label: "Réservation effectuée à plus de 60 jours de la date d'arrivée :", desc: "acompte de 30 % à la réservation, solde payable au plus tard 60 jours avant l'arrivée." },
+                under60: { label: "Réservation effectuée à 60 jours ou moins de la date d'arrivée :", desc: 'règlement de 100 % du montant total du séjour au moment de la réservation.' },
+            },
+            holiday: {
+                title: 'Réservations pendant les périodes de fêtes (Noël et Nouvel An)',
+                over120: { label: "Réservation effectuée à plus de 120 jours de la date d'arrivée :", desc: "acompte de 30 % à la réservation, solde payable au plus tard 90 jours avant l'arrivée." },
+                under90: { label: "Réservation effectuée à 90 jours ou moins de la date d'arrivée :", desc: 'règlement de 100 % du montant total du séjour au moment de la réservation.' },
+            },
+            warning: "En cas de non-paiement du solde dans les délais indiqués, la réservation sera automatiquement annulée et les acomptes versés resteront acquis à l'Agence.",
+        },
+        cancellation: {
+            title: "2. Conditions d'annulation",
+            intro: "Toute demande d'annulation doit impérativement être adressée par écrit (email ou courrier).",
+            nonHoliday: {
+                title: 'Réservations hors périodes de fêtes (Noël et Nouvel An)',
+                items: [
+                    "Annulation à 61 jours ou plus avant la date d'arrivée : frais équivalents à 30 % du montant total du séjour.",
+                    "Annulation entre 60 jours et 31 jours avant la date d'arrivée : frais équivalents à 50 % du montant total du séjour.",
+                    "Annulation à 30 jours ou moins avant la date d'arrivée : frais équivalents à 100 % du montant total du séjour.",
+                ],
+            },
+            holiday: {
+                title: 'Réservations pendant les périodes de fêtes (Noël et Nouvel An)',
+                items: [
+                    "Annulation à 91 jours ou plus avant la date d'arrivée : frais équivalents à 30 % du montant total du séjour.",
+                    "Annulation entre 90 jours et 61 jours avant la date d'arrivée : frais équivalents à 50 % du montant total du séjour.",
+                    "Annulation à 60 jours ou moins avant la date d'arrivée : frais équivalents à 100 % du montant total du séjour.",
+                ],
+            },
+        },
+        insurance: {
+            title: '3. Assurance voyage',
+            p1: "Le Client est vivement encouragé à souscrire une assurance voyage couvrant l'ensemble des risques liés à son séjour : annulation, interruption de voyage, retard de transport, perte ou vol de bagages, ainsi que toute dépense imprévue.",
+            p2: "Sun Beach House ne pourra être tenue responsable des aléas liés au transport ou au voyage, incluant notamment les annulations ou retards de vols, pertes de bagages ou tout événement indépendant de sa volonté pouvant impacter le séjour.",
+            p3: "Conformément à la réglementation en vigueur, les transferts éventuellement assurés par le personnel sont limités au trajet entre l'aéroport et la villa. Pour tout autre déplacement, des services de taxi ou de location de véhicule pourront être organisés sur demande.",
+        },
+        touristTax: {
+            title: '4. Taxe de séjour',
+            p1: 'Une taxe de séjour de 5 % du montant total de la location est applicable.',
+            p2: "Cette taxe est collectée pour le compte de la collectivité locale et est payable à l'arrivée.",
+        },
+        visa: {
+            title: "5. Visa et formalités d'entrée",
+            p1: "Il appartient au Client de vérifier auprès de son ambassade ou des autorités compétentes les conditions d'entrée à Saint-Barthélemy, notamment en matière de visa, de validité du passeport ou de toute autre formalité administrative.",
+            p2: "Sun Beach House décline toute responsabilité en cas de refus d'entrée sur le territoire dû à des documents de voyage non conformes ou incomplets.",
+        },
+        pricing: {
+            title: '6. Tarifs et conditions de séjour',
+            priceInfo: 'Les tarifs sont indiqués par semaine et en dollars américains (USD).',
+            taxInfo: "Les prix n'incluent pas la taxe de séjour (+5 %) ni les frais de service (+10 %), sauf mention contraire.",
+            priceNote: 'Les tarifs peuvent être modifiés sans préavis, conformément aux présentes conditions de réservation.',
+            minStay: {
+                title: 'Durée minimale de séjour',
+                items: [
+                    "Séjour minimum : 7 nuits (séjours plus courts possibles sur demande, sous réserve d'acceptation)",
+                    'Périodes Thanksgiving et Bucket Regatta : séjour minimum de 7 nuits.',
+                    "Saison festive (Noël & Nouvel An) : séjour minimum de 14 nuits (séjours plus courts sur demande, sous réserve d'acceptation).",
+                ],
+            },
+        },
+        checkInOut: {
+            title: "7. Horaires d'arrivée et de départ",
+            checkIn: { label: 'Check-in', value: 'à partir de 15h' },
+            checkOut: { label: 'Check-out', value: 'avant 12h (midi)' },
+        },
+    },
 };
 
 const en: Translations = {
@@ -1302,6 +1450,154 @@ const en: Translations = {
             },
             save: "Save my choices"
         }
+    },
+
+    legalPage: {
+        title: 'Legal Notice',
+        metaDescription: 'Legal information regarding Sun Beach House, real estate agency in Saint-Barthélemy.',
+        companyIdentity: {
+            title: '1. Company Identity',
+            companyName: { label: 'Company Name', value: 'SUN BEACH HOUSE' },
+            legalForm: { label: 'Legal Form', value: 'Limited Liability Company (SARL)' },
+            shareCapital: { label: 'Share Capital', value: '1,000.00 Euros' },
+            manager: { label: 'Manager', value: 'Valérie KERCKHOFS' },
+        },
+        contactRegistration: {
+            title: '2. Contact & Registration',
+            headOffice: { label: 'Head Office', value: '65 RUE DE LA PAIX GUSTAVIA<br />97133 SAINT BARTHELEMY' },
+            registration: { label: 'Registration', value: 'RCS Basse-terre 911 920 205', date: 'Registration date: 03/29/2022' },
+            siren: { label: 'SIREN', value: '911 920 205' },
+            mainActivity: { label: 'Main Activity', value: 'Real estate agency; all activities directly or indirectly related to the corporate purpose.' },
+        },
+        hosting: {
+            title: '3. Hosting & Development',
+            host: { label: 'Web Host / Registrar', name: 'OVH SAS', address: '2 rue Kellermann - 59100 Roubaix - France' },
+            realization: { label: 'Website Development', name: 'Kulture Com (Anthony PROFIT)' },
+        },
+        intellectualProperty: {
+            title: '4. Intellectual Property',
+            p1: 'This entire site is subject to French and international legislation on copyright and intellectual property. All reproduction rights are reserved, including for downloadable documents and iconographic and photographic representations.',
+            p2: 'The reproduction of all or part of this site on any electronic medium whatsoever is strictly prohibited without the express permission of the publication director.',
+        },
+    },
+
+    privacyPage: {
+        title: 'Privacy Policy',
+        metaDescription: 'Privacy policy and personal data protection of Sun Beach House.',
+        intro: 'At Sun Beach House, we attach great importance to the protection of your personal data. This privacy policy details how we collect, use, and protect your information.',
+        dataCollection: {
+            title: '1. Data Collection',
+            intro: 'We collect information you provide directly to us, particularly when you:',
+            items: [
+                'Fill out a contact or booking form.',
+                'Subscribe to our newsletter.',
+                'Contact us by email or phone.',
+            ],
+            details: 'The data collected may include: your first name, last name, email address, phone number, and any other information relevant to your real estate or rental project.',
+        },
+        dataUsage: {
+            title: '2. Data Usage',
+            intro: 'Your data is used to:',
+            items: [
+                'Respond to your enquiries and booking requests.',
+                'Send you information about our services and properties (if you have agreed to receive our newsletter).',
+                'Improve our services and your experience on our site.',
+                'Comply with our legal and regulatory obligations.',
+            ],
+        },
+        protectionSharing: {
+            title: '3. Protection and Sharing',
+            text: 'We implement appropriate security measures to protect your data against unauthorized access, modification, disclosure or destruction. Your data is never sold to third parties. It may be shared with trusted service providers solely for the performance of our services (e.g., mailing manager, concierge service partners with your consent), who are required to maintain the confidentiality of your data.',
+        },
+        cookies: {
+            title: '4. Cookies',
+            p1: 'Our site uses cookies to improve your browsing experience and analyze traffic. We use the Tarteaucitron solution for managing your cookie consent.',
+            p2: 'You can change your cookie preferences at any time via the management panel accessible at the bottom of the page.',
+        },
+        rights: {
+            title: '5. Your Rights',
+            p1: 'In accordance with the General Data Protection Regulation (GDPR), you have the right to access, rectify, delete, and request portability of your data. You may also object to the processing of your data or request its limitation.',
+            p2: 'To exercise these rights, please contact us at: valerie@sun-beach-house.com',
+        },
+        dpo: {
+            title: 'DPO Contact',
+            text: 'For any questions regarding our privacy policy, you can write to us at: SUN BEACH HOUSE - 65 RUE DE LA PAIX GUSTAVIA 97133 SAINT BARTHELEMY',
+        },
+    },
+
+    conditionsPage: {
+        title: 'Booking, Cancellation and General Conditions',
+        metaDescription: 'Booking conditions, cancellation policy and general information for your stay in Saint-Barthélemy with Sun Beach House.',
+        booking: {
+            title: '1. Booking Conditions',
+            intro: 'A deposit of 30% of the total stay amount (including rent, taxes and administrative fees) is required to confirm any booking. The villa cannot be guaranteed until this deposit has been received. The booking will only be considered firm and final upon receipt of payment (proof of transfer required) and signature of the rental contract.',
+            nonHoliday: {
+                title: 'Bookings outside holiday periods (Christmas and New Year)',
+                over60: { label: 'Booking made more than 60 days before arrival:', desc: '30% deposit at booking, balance payable no later than 60 days before arrival.' },
+                under60: { label: 'Booking made 60 days or less before arrival:', desc: '100% of the total stay amount due at the time of booking.' },
+            },
+            holiday: {
+                title: 'Bookings during holiday periods (Christmas and New Year)',
+                over120: { label: 'Booking made more than 120 days before arrival:', desc: '30% deposit at booking, balance payable no later than 90 days before arrival.' },
+                under90: { label: 'Booking made 90 days or less before arrival:', desc: '100% of the total stay amount due at the time of booking.' },
+            },
+            warning: 'In case of non-payment of the balance within the indicated deadlines, the booking will be automatically cancelled and deposits paid will be retained by the Agency.',
+        },
+        cancellation: {
+            title: '2. Cancellation Policy',
+            intro: 'All cancellation requests must be submitted in writing (email or letter).',
+            nonHoliday: {
+                title: 'Bookings outside holiday periods (Christmas and New Year)',
+                items: [
+                    'Cancellation 61 days or more before arrival: fees equivalent to 30% of the total stay amount.',
+                    'Cancellation between 60 and 31 days before arrival: fees equivalent to 50% of the total stay amount.',
+                    'Cancellation 30 days or less before arrival: fees equivalent to 100% of the total stay amount.',
+                ],
+            },
+            holiday: {
+                title: 'Bookings during holiday periods (Christmas and New Year)',
+                items: [
+                    'Cancellation 91 days or more before arrival: fees equivalent to 30% of the total stay amount.',
+                    'Cancellation between 90 and 61 days before arrival: fees equivalent to 50% of the total stay amount.',
+                    'Cancellation 60 days or less before arrival: fees equivalent to 100% of the total stay amount.',
+                ],
+            },
+        },
+        insurance: {
+            title: '3. Travel Insurance',
+            p1: 'The Client is strongly encouraged to take out travel insurance covering all risks related to their stay: cancellation, trip interruption, transport delays, loss or theft of luggage, and any unforeseen expenses.',
+            p2: 'Sun Beach House cannot be held responsible for travel-related incidents, including flight cancellations or delays, lost luggage, or any event beyond its control that may impact the stay.',
+            p3: 'In accordance with current regulations, any transfers provided by staff are limited to the airport-to-villa route. For any other travel, taxi or vehicle rental services can be arranged upon request.',
+        },
+        touristTax: {
+            title: '4. Tourist Tax',
+            p1: 'A tourist tax of 5% of the total rental amount is applicable.',
+            p2: 'This tax is collected on behalf of the local authority and is payable upon arrival.',
+        },
+        visa: {
+            title: '5. Visa and Entry Requirements',
+            p1: 'It is the Client\'s responsibility to check with their embassy or the relevant authorities regarding entry requirements for Saint-Barthélemy, including visa requirements, passport validity, or any other administrative formalities.',
+            p2: 'Sun Beach House declines all responsibility in case of entry refusal to the territory due to non-compliant or incomplete travel documents.',
+        },
+        pricing: {
+            title: '6. Rates and Stay Conditions',
+            priceInfo: 'Rates are quoted per week in US dollars (USD).',
+            taxInfo: 'Prices do not include tourist tax (+5%) or service fees (+10%), unless otherwise stated.',
+            priceNote: 'Rates may be modified without prior notice, in accordance with these booking conditions.',
+            minStay: {
+                title: 'Minimum Stay',
+                items: [
+                    'Minimum stay: 7 nights (shorter stays possible on request, subject to acceptance)',
+                    'Thanksgiving and Bucket Regatta periods: minimum stay of 7 nights.',
+                    'Festive season (Christmas & New Year): minimum stay of 14 nights (shorter stays on request, subject to acceptance).',
+                ],
+            },
+        },
+        checkInOut: {
+            title: '7. Check-in and Check-out Times',
+            checkIn: { label: 'Check-in', value: 'from 3:00 PM' },
+            checkOut: { label: 'Check-out', value: 'before 12:00 PM (noon)' },
+        },
     },
 };
 
