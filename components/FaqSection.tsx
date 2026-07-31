@@ -68,7 +68,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ title, items, emitSchema
                                 }`}
                             >
                                 <div className="overflow-hidden">
-                                    <p className="font-sans font-light text-base text-sbh-charcoal/75 leading-relaxed pr-8">
+                                    <p className="font-sans font-light text-base text-sbh-charcoal/75 leading-relaxed pr-8 whitespace-pre-line">
                                         {item.a}
                                     </p>
                                 </div>
