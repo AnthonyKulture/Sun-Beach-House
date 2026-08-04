@@ -105,7 +105,7 @@ Maillage interne prévu : #1/#10 (fêtes, carnaval) → article Gustavia + `/des
 
 Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
-- [~] #1 Fêtes patronales août
+- [x] #1 Fêtes patronales août
 - [ ] #2 Comment venir à Saint-Barth
 - [ ] #3 Acheter une villa
 - [ ] #4 St Barth Cata Cup 2026
@@ -126,7 +126,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Location villa luxe à Saint-Barth en 2026 : calendrier, tarifs et démarches (slug: louer-villa-luxe-saint-barth-2026, mai 2026)
 - [ ] Guide complet de la haute saison à Saint-Barth : dates, événements, météo, taxes (→ Plan 2026-05 #1)
 - [ ] Bucket Regatta 2027 : dates 17-21 mars, parcours, comment réserver une villa à temps (→ Plan 2026-05 #2)
-- [~] Fête de Saint-Barthélemy (24 août) et Saint-Louis à Corossol (25 août) : traditions vivantes (→ Plan 2026-08 #1)
+- [x] Fête de Saint-Barthélemy (24 août) et Saint-Louis à Corossol (25 août) : traditions vivantes (→ Plan 2026-08 #1, août 2026)
 - [ ] St Barth Cata Cup 2026 : régate Formule 18 à Saint-Jean, 16-23 novembre (→ Plan 2026-08 #4)
 - [ ] Réveillon du Nouvel An à Saint-Barth : yachts, dîners, feux d'artifice (→ Plan 2026-08 #6)
 - [ ] Carnaval de Saint-Barth 2027 : Mardi gras à Gustavia (→ Plan 2026-08 #10)

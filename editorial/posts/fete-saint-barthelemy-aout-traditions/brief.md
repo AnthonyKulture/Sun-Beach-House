@@ -1,87 +1,39 @@
-# Brief éditorial — Fête de Saint-Barthélemy & Saint-Louis
-# Plan 2026-08 #1 | Slug: fete-saint-barthelemy-aout-traditions
-# Rédigé le 04/08/2026
+# Brief — Fête de Saint-Barthélemy et Saint-Louis : deux jours de traditions (24-25 août)
 
----
-
-## Sujet
-
-Les deux fêtes patronales consécutives de Saint-Barthélemy :
-- **24 août** : Fête de Saint-Barthélemy (saint patron + journée nationale de la Collectivité), cérémonies à Gustavia
-- **25 août** : Fête de Saint-Louis à Corossol, village de pêcheurs le plus traditionnel de l'île
-
-## Keyword principal
-
-`fête saint barthélemy août`
-
-## Keywords secondaires / LSI
-
-- saint-louis corossol 25 août
-- fête patronale saint barth
-- traditions locales saint-barthélemy
-- festivités île saint barth août
-- agenda saint barth août
-- traditions saint-barth culture locale
-- corossol village pêcheurs saint-barth
-
-## Intention de recherche
-
-Informationnel + commercial-investigation. Lecteurs qui planifient un voyage en août et cherchent à comprendre ce que l'île offre en dehors de la haute saison, potentiellement intéressés par la location de villas à tarifs basse saison.
-
-## Audience cible
-
-- Voyageurs haut de gamme ayant déjà entendu parler de Saint-Barth et cherchant un séjour hors des sentiers battus
-- Clients potentiels de Sun Beach House intéressés par un séjour culture + authenticité en août (tarifs plus accessibles)
-- Personnes cherchant "saint barth août que faire" ou "événements saint barth août"
+## Contexte
+Article #1 du Plan éditorial 2026-08 (« Préparer la saison 2026-2027 »), premier des articles « Jeudi = événement culturel réel de la saison ». Publié en tête de plan et positionné pour sortir avant le 24 août 2026, date de la fête. Slug fixé par le plan : `fete-saint-barthelemy-aout-traditions`.
 
 ## Pourquoi ce sujet maintenant
+- Le week-end du 24-25 août est un événement récurrent, documenté chaque année par la presse locale, mais peu couvert par les contenus destinés aux visiteurs anglophones/hispanophones/lusophones.
+- Fin août correspond à la basse saison touristique à Saint-Barthélemy — un angle utile pour Sun Beach House afin de valoriser une période creuse sans décrédibiliser l'offre haute saison déjà couverte par d'autres articles du site (`haute-saison-saint-barth-2026-2027`, `louer-villa-saint-barth-noel-reservation`).
+- Complète le maillage interne avec l'article `gustavia-guide-saint-barth` déjà publié et prépare le terrain pour l'article #10 du même plan (Carnaval de Saint-Barth 2027), qui réutilisera vraisemblablement les mêmes quartiers et références historiques.
 
-- L'article doit être en ligne AVANT le 24 août 2026 (urgence éditoriale Plan 2026-08 #1)
-- Fenêtre de publication idéale : lundi 10 août 2026
-- Contenu evergreen (fêtes annuelles récurrentes) avec angle saisonnier
-- Cible le keyword `fête saint barthélemy août` non encore couvert par le blog Sun Beach House
-- Renforce le positionnement E-E-A-T sur la connaissance intime de l'île
-- Maille avec l'article Gustavia déjà publié et prépare l'article Saint-Jean (#5 du Plan 2026-08)
+## Mots-clés
+- **Primaire** : fête saint barthélemy août
+- **Secondaires / LSI** : fête de la Saint-Barthélemy Gustavia, fête Saint-Louis Corossol, traditions Saint-Barthélemy, 24 août Saint-Barth, basse saison villa Saint-Barth
 
-## Gap de contenu analysé
+## Intention de recherche
+Principalement informationnelle (comprendre ce que sont ces deux fêtes, leur déroulé, leur histoire), avec une composante commercial-investigation pour les lecteurs qui envisagent un séjour en villa fin août et cherchent à savoir si la période vaut le déplacement.
 
-Aucun article de blog Sun Beach House ne couvrait jusqu'ici les fêtes patronales de l'île. Compétiteurs (Haute Retreats, Luxe St Barts) mentionnent les dates en 1-2 lignes dans leurs calendriers d'événements — pas de contenu long format, pas d'immersion dans les traditions de Corossol. Opportunité claire de se positionner sur les requêtes informationnelles avec un article unique.
+## Audience cible
+Visiteurs internationaux (FR/EN/ES/PT) envisageant un séjour à Saint-Barthélemy en basse saison, en particulier autour du 24-25 août ; lecteurs francophones curieux du patrimoine culturel de l'île ; voyageurs cherchant une expérience plus authentique que la haute saison.
 
-## Liens internes choisis
+## Analyse du vide de contenu (content gap)
+La couverture existante de cet événement (Le Journal de Saint-Barth, Routard, Petit Futé) est en français et orientée « agenda local », sans mise en perspective pour un visiteur international envisageant un séjour en villa. Sun Beach House peut combler ce vide avec un contenu multilingue qui relie la fête à une réflexion pratique sur le choix de la période de séjour, tout en respectant scrupuleusement les faits publiés par la presse et l'office de tourisme.
 
-1. `/fr/rentals` — "notre sélection de villas disponibles en août" (transactionnel)
-2. `/fr/destinations` — "le village de Corossol et ses quartiers" (contextuel)
-3. `/fr/conciergerie` — "service de conciergerie" (service)
-4. `/fr/blog/gustavia-guide-saint-barth` — "le guide complet de Gustavia" (maillage interne blog)
-5. `/fr/blog/haute-saison-saint-barth-2026-2027` — "la haute saison à Saint-Barth" (maillage interne blog)
+## Liens internes choisis (5)
+1. « notre guide de Gustavia » → `/{lang}/blog/gustavia-guide-saint-barth(-elemy|-guia-saint-barthelemy)` — approfondissement du quartier hôte de la fête du 24 août.
+2. « le quartier de Corossol » → `/{lang}/location-villa-corossol` — page quartier existante (confirmée dans `data/neighborhoods.ts`).
+3. page « destinations » → `/{lang}/destinations` — vue d'ensemble des quartiers.
+4. « notre sélection de villas » → `/{lang}/rentals` — CTA principal.
+5. « notre service de conciergerie » → `/{lang}/conciergerie` — CTA secondaire (organisation logistique autour des festivités).
 
-## Catégorie Sanity
+## Décisions éditoriales notables
+- Aucune invention de programme 2026 : le déroulé s'appuie explicitement sur les éditions 2019, 2024 et 2025, avec une phrase de transparence dans le corps de l'article et dans la FAQ précisant que le programme 2026 n'est pas encore publié à la date de rédaction.
+- Le tournoi de dominos et la petite régate du 24 août sont présentés comme des traditions documentées mais non garanties chaque année (absentes du programme 2025 selon la source [^1]) — formulation volontairement prudente pour éviter toute promesse non vérifiable.
+- Le nom du président de la Collectivité, cité dans un article source de 2019, a été volontairement omis (information non vérifiable pour 2026).
+- Les détails biographiques trouvés sur l'introduction du latanier à Corossol (nom d'un prêtre, dates précises 1890/1925) provenaient uniquement de sources non trusted et ont été écartés ; seul le fait générique confirmé par l'office de tourisme officiel a été conservé.
+- Aucun `[À VÉRIFIER]` dans le texte final (objectif atteint).
 
-`saison` (Saison & Évènements)
-
-## Tags
-
-fête patronale, traditions, corossol, gustavia, août, saint-barth, culture locale, événements
-
-## Nombre de sources retenues
-
-12 sources (seuil minimum 3 — quality gate passé)
-- Presse locale : 4 (Le Journal de Saint-Barth × 4)
-- Presse nationale/officielle : 2 (La 1ère/France Info, Innovant.fr)
-- Guides de voyage : 2 (Le Routard × 2)
-- Agences/médias spécialisés : 4 (Outremer Tourisme, Air Caraïbes, Saint Barth Latitudes, Magazine Maisons Créoles)
-- Encyclopédie : 1 (Britannica)
-- Biographie hagiographique : 1 (Réflexion Chrétienne)
-
-## Marqueurs [À VÉRIFIER] dans l'article : 4
-
-1. Nom amérindien Ouanalao (orthographe et langue exacte)
-2. Spectacle de drones reconduit en 2025/2026 (programme 2026 non encore publié)
-3. Identité exacte des Gongonnes (groupe folklorique nommé ou terme générique ?)
-4. Programme officiel 2026 — détails précis à confirmer avant publication
-
-## Prochains articles du Plan 2026-08 à maillage potentiel
-
-- #2 Comment venir à Saint-Barth → lien depuis la section pratique de cet article
-- #5 Saint-Jean guide → maillage avec Corossol/Gustavia
-- #6 Réveillon Nouvel An → article événementiel du même type
+## Contrainte technique rencontrée
+WebFetch a été indisponible pendant toute la session (HTTP 403 systématique sur tous les domaines testés, y compris Wikipédia) — panne d'outil confirmée via les journaux du proxy agent (`connect_rejected` sur `journaldesaintbarth.com` notamment), et non un blocage propre à ces sources. La recherche a donc reposé sur l'extraction côté serveur de WebSearch, qui a fourni un contenu substantiel et attribuable. Recommandation : si WebFetch redevient fonctionnel avant publication, revérifier en lecture directe les sources [^1], [^2] et [^5], qui portent le programme détaillé des deux fêtes.

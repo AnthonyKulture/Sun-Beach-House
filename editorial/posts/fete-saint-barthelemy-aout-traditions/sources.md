@@ -1,109 +1,104 @@
-# Bibliographie — Fête de Saint-Barthélemy & Saint-Louis
-# Plan 2026-08 #1 | Slug: fete-saint-barthelemy-aout-traditions
-# Date de consultation : 04/08/2026
+# Bibliographie — fete-saint-barthelemy-aout-traditions
+**Compilée le 04/08/2026**
+
+Note méthodologique : WebFetch a été indisponible pendant toute la session de recherche (HTTP 403 systématique, y compris sur Wikipédia — panne d'outil confirmée via les journaux du proxy agent, pas un blocage ciblé sur ces sources précises). La recherche s'est donc appuyée sur l'extraction côté serveur de WebSearch, qui a renvoyé un contenu factuel substantiel et attribuable pour chacune des sources ci-dessous.
 
 ---
 
-## Sources citées dans l'article (footnotes [^1] à [^12])
-
-### [^1] — Barnes St Barth, "The History of Saint Barthélemy" (2025)
-- **URL** : https://www.barnes-stbarth.com/en/blog/2025/the-history-of-saint-barthelemy-from-christopher-columbus-discovery-to-a-celebrity-hotspot-334.html
-- **Éditeur** : Barnes St Barth (agence immobilière reconnue, blog documenté)
-- **Date de publication** : 2025
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : Christophe Colomb, second voyage 1493, baptise l'île "San Bartolomeo" en hommage à son frère Bartolomeo ; Arawaks puis Caraïbes avant les Européens
-
-### [^2] — Encyclopaedia Britannica, "Saint Barthélemy"
-- **URL** : https://www.britannica.com/place/Saint-Barthelemy
-- **Éditeur** : Encyclopaedia Britannica
-- **Date de publication** : article encyclopédique mis à jour en continu
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : 1648 colonisation française, 1784 cession à la Suède, retour France 1877/1878, 2007 Collectivité d'Outre-Mer
-
-### [^3] — Le Journal de Saint-Barth, "La fête de la Saint-Louis à Corossol" (22/08/2024)
-- **URL** : https://www.journaldesaintbarth.com/actualites/vie-locale/la-fete-de-la-saint-louis-a-corossol-202408221853.html
-- **Éditeur** : Le Journal de Saint-Barth (presse locale officielle)
-- **Date de publication** : 22/08/2024
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : programme complet fête Saint-Louis 2024 — pêche aux orphies 6h (10€/bateau), messe au rocher Saint-Louis 8h, belote 9h30, baby-foot 10h, repas 12h, orchestre 13h-15h, palets 13h30, fléchettes/cornhole 14h, remise des prix pêche 18h, danseurs ALC + Gongonnes 19h, loterie 20h, bal
-
-### [^4] — Le Routard, "Fête de la Saint-Barthélemy à Gustavia"
-- **URL** : https://www.routard.com/guide_agenda_detail/5886/fete_de_la_saint_barthelemy_a_gustavia.htm
-- **Éditeur** : Le Routard
-- **Date de publication** : page annuelle non datée
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : festivités Quai du Général-de-Gaulle, régates, bal public, jeux, concours de pêche, pétanque, belote, concerts
-
-### [^5] — Le Journal de Saint-Barth, "Fête de la Saint-Barthélemy : entre cérémonies officielles et festivités" (14/08/2025)
+### [^1] Le Journal de Saint-Barth — « Fête de la Saint-Barthélemy : entre cérémonies officielles et festivités »
 - **URL** : https://www.journaldesaintbarth.com/actualites/culture-loisirs/fete-de-la-saint-barthelemy-entre-ceremonies-officielles-et-festivites-202508141504.html
+- **Éditeur** : Le Journal de Saint-Barth (presse locale de référence — liste trusted sbh-editorial)
+- **Date de publication** : 14 août 2025
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓
+- **Faits utilisés** : programme de l'édition 2025 (messe des marins 8h30, procession, tournoi de belote 9h, dépôt de gerbes 10h30, discours, jeux/animations Island Vibes 14h-18h, feu d'artifice annoncé) ; absence du tournoi de dominos et de la régate dans cette édition, malgré leur présence lors d'éditions précédentes.
+
+### [^2] Le Journal de Saint-Barth — « La fête de la Saint-Louis à Corossol »
+- **URL** : https://www.journaldesaintbarth.com/actualites/vie-locale/la-fete-de-la-saint-louis-a-corossol-202408221853.html
 - **Éditeur** : Le Journal de Saint-Barth
-- **Date de publication** : 14/08/2025
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : programme 2025 confirmé (messe des marins 8h30, dépôt de gerbes 10h30, régates, bal, remise de distinctions par la Collectivité) ; église Notre-Dame de l'Assomption (rotonde dédiée aux marins, achevée 1829, style espagnol)
+- **Date de publication** : 22 août 2024
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓
+- **Faits utilisés** : programme détaillé de la fête de Corossol (concours de pêche 6h, messe 8h au pied du rocher de Saint-Louis, procession, belote 9h30, baby-foot 10h, jeux enfants 10h30-11h30, vente de repas dès midi, palets 13h30, fléchettes/cornhole 14h, remise des prix 18h, danseurs ALC 19h).
 
-### [^6] — La 1ère / France Info, "Spectacle de drones lumineux : Saint-Barthélemy joue la carte de l'innovation technologique" (fin août 2024)
-- **URL** : https://la1ere.franceinfo.fr/guadeloupe/saint-barthelemy/spectacle-de-drones-lumineux-saint-barthelemy-joue-la-carte-de-l-innovation-technologique-pour-sa-fete-annuelle-1516130.html
-- **Éditeur** : La 1ère / France Info (audiovisuel public)
-- **Date de publication** : fin août 2024
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : 500 drones lumineux, baie de Saint-Jean, 20h, première fois dans l'histoire de la fête, choix écologique, tableaux illustrant histoire et culture de l'île
-
-### [^7] — Innovant.fr, "Spectacle de drones lumineux : cette île française innove pour sa fête annuelle" (30/08/2024)
-- **URL** : https://www.innovant.fr/2024/08/30/spectacle-de-drones-lumineux-cette-ile-francaise-innove-pour-sa-fete-annuelle-avec-une-technologie-eblouissante/
-- **Éditeur** : Innovant.fr
-- **Date de publication** : 30/08/2024
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : confirmation du spectacle de drones 2024 (recoupement source [^6])
-
-### [^8] — Le Journal de Saint-Barth, "Saint-Barthélemy et Saint-Louis, les immanquables" (15/08/2019)
+### [^3] Le Journal de Saint-Barth — « Saint-Barthélemy et Saint-Louis, les immanquables »
 - **URL** : https://www.journaldesaintbarth.com/actualites/culture-loisirs/saint-barthelemy-et-saint-louis-les-immanquables-201908151429.html
 - **Éditeur** : Le Journal de Saint-Barth
-- **Date de publication** : 15/08/2019
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : qualifications des deux fêtes d'"incontournables" ; tradition attestée depuis 2019 au minimum
+- **Date de publication** : 15 août 2019
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓
+- **Faits utilisés** : confirmation du week-end du 24-25 août combinant les deux fêtes ; mention du tournoi de dominos et d'une petite régate lors de cette édition (utilisés pour la mention historique, présentés comme non garantis chaque année).
+- **Note** : l'article nomme le président de la Collectivité en fonction en 2019 — information volontairement omise de l'article (non vérifiable pour 2026).
 
-### [^9] — Le Journal de Saint-Barth, "La fête de la Saint-Louis à Corossol" (22/08/2024)
-*Voir [^3] — même article, référencé en doublon pour la section distincte de l'outline*
+### [^4] Le Journal de Saint-Barth — « Et si Saint-Barth était restée suédoise ? »
+- **URL** : https://www.journaldesaintbarth.com/actualites/culture-loisirs/et-si-saint-barth-etait-restee-suedoise--201811011328.html
+- **Éditeur** : Le Journal de Saint-Barth
+- **Date de publication** : 1er novembre 2018
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓
+- **Faits utilisés** : la Suède, pays luthérien, respectait le culte catholique déjà pratiqué à Saint-Barth pendant la période suédoise — utilisé pour expliquer la continuité des cérémonies religieuses actuelles.
 
-### [^10] — Saint Barth Latitudes, "Corossol, a fishing village at the heart of luxury Saint-Barth"
-- **URL** : https://saintbarthlatitudes.com/articles/corossol-fishing-village-luxury
-- **Éditeur** : Saint Barth Latitudes (magazine local spécialisé)
+### [^5] Saint Barth Tourisme — « Feast of Saint-Barthelemy »
+- **URL** : https://www.saintbarth-tourisme.com/en/feast-of-saint-barthelemy/
+- **Éditeur** : Office de tourisme officiel de Saint-Barthélemy (liste trusted sbh-editorial)
+- **Date de publication** : non datée (page institutionnelle)
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓ (source officielle)
+- **Faits utilisés** : confirmation croisée du programme (messe 8h30, procession, dépôt de gerbes 10h30, jeux/animations association Island Vibes 14h-18h, initiation tir à l'arc association Les Flêches de Saint-Barth, danse traditionnelle et musique live 18h, feu d'artifice 20h).
+
+### [^6] Saint Barth Tourisme — page destination « Corossol »
+- **URL** : https://www.saintbarth-tourisme.com/en/destination-item/corossol-2/
+- **Éditeur** : Office de tourisme officiel de Saint-Barthélemy
 - **Date de publication** : non datée
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : saintoises (3-4m, bois coloré, équipage de 2, lancées depuis la plage) ; héritage breton et normand
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓ (source officielle)
+- **Faits utilisés** : Corossol village de pêcheurs traditionnel ; tissage du latanier en chapeaux et objets, transmis de génération en génération ; plage de sable brun ; barques traditionnelles (« dories ») ; Fête de la Saint-Louis perpétuée depuis plus de 55 ans, saint patron des pêcheurs.
 
-### [^11] — Réflexion Chrétienne, "Saint Barthélemy, Nathanaël, apôtre et martyr"
-- **URL** : https://www.reflexionchretienne.fr/pages/vie-des-saints/aout/saint-barthelemy-nathanael-apotre-et-martyr-vers-l-an-71-fete-le-24-aout.html
-- **Éditeur** : Réflexion Chrétienne (hagiographie catholique)
-- **Date de publication** : non datée (calendrier liturgique annuel)
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : saint Barthélemy = Nathanaël, apôtre, évangélisation Arménie, mort écorché vif ~71 ap. J.-C., iconographie (couteau + peau), fête le 24 août
-
-### [^12] — Outremer Tourisme, "Corossol, l'essence pittoresque de l'outre-mer"
-- **URL** : https://outremertourisme.fr/corossol-saint-barth-lessence-pittoresque-de-loutre-mer/
-- **Éditeur** : Outremer Tourisme (portail officiel outre-mer)
+### [^7] Tropicalement Vôtre — « Quand partir à Saint-Barthélemy ? »
+- **URL** : https://www.tropicalement-votre.com/destinations/quand-partir-a-saint-barthelemy.php
+- **Éditeur** : Tropicalement Vôtre (agence de voyages spécialisée Antilles)
 - **Date de publication** : non datée
-- **Date de consultation** : 04/08/2026
-- **Faits utilisés** : Dames de Corossol (tressage latanier, chapeaux/sacs/napperons/paniers, transmission mère-fille, art en voie de disparition) ; saintoises ; fête Saint-Louis (pêche aux orphies + messe au rocher)
+- **Date de consultation** : 4 août 2026
+- **Statut** : source secondaire (agence de voyages, non officielle) — déjà utilisée en concordance avec la Préfecture dans l'article `haute-saison-saint-barth-2026-2027` publié précédemment sur le site
+- **Faits utilisés** : basse saison touristique mai-octobre, fermetures partielles de restaurants/établissements juillet-octobre.
+
+### [^8] Préfecture de Saint-Barthélemy et Saint-Martin — « Risque Cyclonique »
+- **URL** : https://www.saint-barth-saint-martin.gouv.fr/Actions-de-l-Etat/Environnement-risques-naturels-et-technologiques/Risques-Naturels/Risque-Cyclonique
+- **Éditeur** : Préfecture de Saint-Barthélemy et Saint-Martin (source gouvernementale officielle — liste trusted sbh-editorial)
+- **Date de publication** : non datée (page institutionnelle permanente)
+- **Date de consultation** : 4 août 2026
+- **Statut** : trusted ✓ (source officielle gouvernementale)
+- **Faits utilisés** : saison cyclonique officielle de juin à novembre.
+
+### [^9] Wikipédia (français) — « Saint-Barthélemy (Antilles françaises) »
+- **URL** : https://fr.wikipedia.org/wiki/Saint-Barth%C3%A9lemy_(Antilles_fran%C3%A7aises)
+- **Éditeur** : Wikipédia / contributeurs
+- **Date de consultation** : 4 août 2026
+- **Statut** : cross-référence uniquement (règle sbh-editorial — jamais source unique), utilisée en concordance avec [^4] et [^10]
+- **Faits utilisés** : colonisation normande/bretonne à partir de 1763 ; cession à la Suède du roi Gustave III en 1784 ; traité de rétrocession signé à Paris le 10 août 1877, ratifié en 1878.
+
+### [^10] Digithèque de matériaux juridiques et politiques, Université de Perpignan — « Référendum 1877, Saint-Barthélémy, France »
+- **URL** : https://mjp.univ-perp.fr/france/reft1877barth.htm
+- **Éditeur** : Université de Perpignan (source académique/institutionnelle)
+- **Date de consultation** : 4 août 2026
+- **Statut** : source secondaire académique — non présente dans la liste trusted sbh-editorial, utilisée uniquement en corroboration de [^9] pour la date du traité de rétrocession (jamais comme source unique, conformément à la pratique déjà établie dans l'article `gustavia-guide-saint-barth`)
+- **Faits utilisés** : traité de rétrocession du 10 août 1877, ratification et rattachement à la Guadeloupe en 1878.
 
 ---
 
-## Sources consultées non citées en footnote (contexte et recoupement)
+## Récapitulatif confiance
 
-- Le Routard — Traditions à Saint-Barthélemy : https://www.routard.com/fr/guide/a/traditions/ameriques/saint-barthelemy (quichenotte, calèche, latanier)
-- Magazine Maisons Créoles — Coiffe traditionnelle de Saint-Barth : https://maisonscreoles.net/patrimoine/patrimoine-guadeloupe/coiffe-traditionnelle-de-saint-barth-2 (quichenotte "Kiss Me Not" [À VÉRIFIER], calèche 1769)
-- Air Caraïbes — Corossol : https://www.aircaraibes.com/nos-destinations/guide-saint-barthelemy/a-voir-a-faire/corossol (port traditionnel, doris)
-- Haute Retreats — St Barts Events 2025-2026 : https://hauteretreats.com/st-barts-events-2025/ (24 août = National Day confirmé)
-- Miss Konfidentielle — Histoire de Saint-Barthélemy : https://www.misskonfidentielle.com (recoupement découverte Colomb 1493)
-- Seluxia — Coutumes Corossol 2025 : https://www.seluxia.com/articles/connaitre-coutumes-locales-corossol-immersion-vie-quotidienne-saint-barthelemy (langue normande/patois)
-- Encyclopédie catholique de France (eglise.catholique.fr) — fête saint Barthélemy 24 août (recoupement liturgique)
+| # | Source | Type | Trusted (liste sbh-editorial) |
+|---|--------|------|-------------------------------|
+| 1 | journaldesaintbarth.com — Fête Saint-Barthélemy 2025 | Presse locale | Oui ✓ |
+| 2 | journaldesaintbarth.com — Fête Saint-Louis Corossol 2024 | Presse locale | Oui ✓ |
+| 3 | journaldesaintbarth.com — Les immanquables 2019 | Presse locale | Oui ✓ |
+| 4 | journaldesaintbarth.com — Et si Saint-Barth était restée suédoise | Presse locale | Oui ✓ |
+| 5 | saintbarth-tourisme.com — Feast of Saint-Barthelemy | Officiel tourisme | Oui ✓ |
+| 6 | saintbarth-tourisme.com — Corossol | Officiel tourisme | Oui ✓ |
+| 7 | tropicalement-votre.com | Agence de voyages | Non (secondaire, concordance) |
+| 8 | saint-barth-saint-martin.gouv.fr | Officiel gouvernemental | Oui ✓ |
+| 9 | Wikipédia FR | Cross-référence | Non (cross-ref seul) |
+| 10 | mjp.univ-perp.fr | Académique | Non (secondaire, concordance) |
 
----
-
-## Statut quality gate
-
-- Sources fiables retenues : **12**
-- Seuil minimum : 3
-- **Quality gate : PASSÉ**
-- Marqueurs [À VÉRIFIER] dans l'article : **4**
-- Objectif [À VÉRIFIER] : 0 (à résoudre avant publication)
+**Sources trusted utilisées : 7 sur 10 — seuil des 3 minimum largement dépassé.**
