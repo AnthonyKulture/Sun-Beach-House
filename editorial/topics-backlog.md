@@ -44,7 +44,7 @@ Mots-clés que les articles doivent attaquer, par langue :
 
 ---
 
-## Plan 2026-05 (10 articles — en cours d'exécution)
+## Plan 2026-05 (10 articles — TERMINÉ, publié le 04/08/2026)
 
 Plan stratégique pillar-and-spoke. Cadence 2/semaine (Lun + Jeu 09:00 Europe/Paris). Pillar en tête. Référence complète : `~/.claude/plans/detemine-les-10-prochains-glowing-lemur.md`.
 
@@ -68,13 +68,49 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [x] #1 Haute saison 2026-2027
 - [x] #2 Bucket Regatta 2027
 - [x] #3 Noël 6-12 mois à l'avance
-- [~] #4 Gustavia guide
-- [~] #5 Chef privé
-- [~] #6 Pointe Milou
-- [~] #7 5 questions avant de louer
-- [~] #8 Mariage Saint-Barthélemy
-- [~] #9 Saint-Barth sous la pluie
-- [~] #10 Une journée par Valérie
+- [x] #4 Gustavia guide
+- [x] #5 Chef privé
+- [x] #6 Pointe Milou
+- [x] #7 5 questions avant de louer
+- [x] #8 Mariage Saint-Barthélemy
+- [x] #9 Saint-Barth sous la pluie
+- [x] #10 Une journée par Valérie
+
+---
+
+## Plan 2026-08 (10 articles — en cours d'exécution)
+
+Plan stratégique « Préparer la saison 2026-2027 » : trois clusters pillar-and-spoke — Accès (comment arriver + services aéroport), Quartiers (Saint-Jean, Flamands, Corossol — complètent Gustavia et Pointe Milou déjà en ligne), Immobilier (pilier achat + fiscalité + investissement locatif, attaque du mot-clé primaire « vente villa saint barthélemy » encore jamais traité). Cadence 2/semaine (Lun + Jeu 09:00 Europe/Paris), démarrage semaine du 10 août 2026.
+
+L'agent doit toujours prendre le sujet `[ ]` suivant dans l'ordre ci-dessous (#1 → #10) avant tout autre sujet du backlog général.
+
+| # | Sem | Jour | Titre | Slug FR | Primary keyword |
+|---|-----|------|-------|---------|-----------------|
+| 1 | S1 | Lun | Comment venir à Saint-Barth : vols, ferries, jet privé | `comment-venir-saint-barth` | comment venir à saint barth |
+| 2 | S1 | Jeu | Saint-Jean : la plage, l'aéroport, les villas iconiques | `saint-jean-saint-barth-guide` | villa saint jean saint barth |
+| 3 | S2 | Lun | Acheter une villa à Saint-Barthélemy : démarches, notaire, financement | `acheter-villa-saint-barthelemy` | acheter villa saint barthélemy |
+| 4 | S2 | Jeu | Service VIP aéroport : guide complet SBH / SXM / SJU / ANU | `service-vip-aeroport-saint-barth` | transfert aéroport saint barth |
+| 5 | S3 | Lun | Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur | `statut-fiscal-saint-barthelemy` | fiscalité saint barthélemy |
+| 6 | S3 | Jeu | Flamands : la plus grande plage de l'île | `flamands-plage-saint-barth` | plage flamands saint barth |
+| 7 | S4 | Lun | Investissement locatif saisonnier à Saint-Barth : rendements, gestion | `investissement-locatif-saint-barth` | investissement locatif saint barth |
+| 8 | S4 | Jeu | Spa en villa à Saint-Barth : soins et bien-être à domicile | `spa-massage-villa-saint-barth` | spa villa saint barth |
+| 9 | S5 | Lun | Corossol : authenticité préservée, ce qu'on y trouve | `corossol-saint-barth-village` | corossol saint barth |
+| 10 | S5 | Jeu | Restaurants de Saint-Barth : les tables de la saison 2026-2027 | `restaurants-saint-barth-guide` | restaurant saint barth |
+
+Maillage interne prévu : #2/#6/#9 (quartiers) → pilier immobilier #3 + `/rentals` ; #4 (VIP aéroport) → pilier accès #1 + `/conciergerie` ; #5/#7 (fiscal, investissement) → pilier #3 + `/sales` ; #8/#10 → `/conciergerie` et articles chef privé / Gustavia déjà en ligne.
+
+Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
+
+- [ ] #1 Comment venir à Saint-Barth
+- [ ] #2 Saint-Jean guide
+- [ ] #3 Acheter une villa
+- [ ] #4 Service VIP aéroport
+- [ ] #5 Statut fiscal
+- [ ] #6 Flamands
+- [ ] #7 Investissement locatif
+- [ ] #8 Spa en villa
+- [ ] #9 Corossol
+- [ ] #10 Restaurants saison 2026-2027
 
 ---
 
@@ -93,34 +129,34 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
 
 ### Quartiers / Destinations
-- [~] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4)
-- [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques
-- [ ] Corossol : authenticité préservée, ce qu'on y trouve
-- [~] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6)
+- [x] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4, août 2026)
+- [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #2)
+- [ ] Corossol : authenticité préservée, ce qu'on y trouve (→ Plan 2026-08 #9)
+- [x] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6, août 2026)
 - [ ] Lurin : retraite confidentielle, biens d'exception
-- [ ] Flamands : la plus grande plage de l'île
+- [ ] Flamands : la plus grande plage de l'île (→ Plan 2026-08 #6)
 
 ### Services & Conciergerie
-- [~] Chef privé à Saint-Barth : comment ça marche, à quoi s'attendre (→ Plan 2026-05 #5)
-- [~] Mariage à Saint-Barthélemy : organiser un événement privé (→ Plan 2026-05 #8)
-- [ ] Service VIP aéroport : guide complet SBH / SXM / SJU / ANU
+- [x] Chef privé à Saint-Barth : comment ça marche, à quoi s'attendre (→ Plan 2026-05 #5, août 2026)
+- [x] Mariage à Saint-Barthélemy : organiser un événement privé (→ Plan 2026-05 #8, août 2026)
+- [ ] Service VIP aéroport : guide complet SBH / SXM / SJU / ANU (→ Plan 2026-08 #4)
 - [ ] Charter yacht à la journée depuis Saint-Barth : destinations possibles
 - [ ] Transferts privés : comment arriver à Saint-Barth confortablement
-- [ ] Spa en villa à Saint-Barth : prestations disponibles
+- [ ] Spa en villa à Saint-Barth : prestations disponibles (→ Plan 2026-08 #8)
 
 ### Immobilier & Investissement
-- [ ] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat
-- [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur
-- [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion
+- [ ] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3)
+- [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #5)
+- [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion (→ Plan 2026-08 #7)
 - [ ] Rénovation à Saint-Barth : contraintes d'urbanisme et artisans locaux
 
 ### Guides pratiques
-- [~] Louer une villa à Saint-Barth : 5 questions à se poser avant de réserver (→ Plan 2026-05 #7)
-- [~] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9)
-- [~] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10)
-- [ ] Comment venir à Saint-Barth : vols, bateaux, options
+- [x] Louer une villa à Saint-Barth : 5 questions à se poser avant de réserver (→ Plan 2026-05 #7, août 2026)
+- [x] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9, août 2026)
+- [x] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10, août 2026)
+- [ ] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #1)
 - [ ] Que mettre dans sa valise pour Saint-Barth
-- [ ] Restaurants étoilés et incontournables de Saint-Barth
+- [ ] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #10)
 - [ ] Plages secrètes de Saint-Barth
 - [ ] Activités nautiques à Saint-Barth : surf, kite, plongée, paddle
 
