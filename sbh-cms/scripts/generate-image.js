@@ -60,13 +60,14 @@ function buildPrompt(post) {
     const context  = CATEGORY_CONTEXT[category] || 'luxury travel in Saint-Barthélemy'
 
     const parts = [
-        `Editorial luxury travel photography for the article: "${title}".`,
-        `Visual context: ${context}.`,
-        excerpt ? `Mood: ${excerpt}.` : '',
-        'Style: cinematic wide shot, warm Caribbean golden-hour light, luxury travel magazine.',
-        'Technical: 16:9 aspect ratio, sharp focus, high resolution.',
-        'Constraints: no text overlays, no logos, no visible human faces.',
-        'Location cues: Saint-Barthélemy, French West Indies — turquoise water, white sand, lush tropical vegetation or elegant white architecture.',
+        `Travel editorial photograph for the article: "${title}".`,
+        `Scene: ${context}.`,
+        excerpt ? `Atmosphere: ${excerpt}.` : '',
+        'Camera: full-frame mirrorless, 35mm prime lens, f/2.2 aperture, natural available light, slight film grain — real documentary photograph, not an illustration.',
+        'Lighting: soft tropical afternoon light or golden hour, realistic shadows, no studio lighting.',
+        'Framing: wide environmental shot, off-center composition, authentic sense of place.',
+        'Constraints: no text, no logos, no watermarks, no visible human faces, no AI-generated aesthetic, not a painting, not digital art, not CGI.',
+        'Location: Saint-Barthélemy, French West Indies — real Caribbean turquoise water, real white coral sand, real lush tropical vegetation, real white Creole architecture.',
     ]
 
     return parts.filter(Boolean).join(' ')
@@ -100,13 +101,16 @@ async function main() {
     console.error(`→ Generating image for "${post.title?.fr || slug}"`)
     console.error(`  Prompt (excerpt): ${prompt.slice(0, 120)}…`)
 
-    // Image-capable models, most recent first. gemini-2.5-flash-image is the GA
-    // "nano banana" model; the 2.0 preview is kept as a last resort in case the
-    // account still has access to it. Auth via x-goog-api-key header (Google AI
-    // Studio keys only — Vertex AI models like imagen-3.0 need OAuth2 instead).
+    // Image-capable models, most recent first.
+    // gemini-3.1-flash-image (Nano Banana 2) is the current recommended default (Aug 2026).
+    // gemini-3-pro-image is highest quality but slower and pricier.
+    // gemini-2.5-flash-image is kept as legacy fallback.
+    // Auth via x-goog-api-key header (Google AI Studio keys — Vertex AI needs OAuth2).
     const MODELS = [
+        'gemini-3.1-flash-image',
+        'gemini-3.1-flash-image-preview',
+        'gemini-3-pro-image',
         'gemini-2.5-flash-image',
-        'gemini-2.5-flash-image-preview',
         'gemini-2.0-flash-preview-image-generation',
     ]
     const CONFIGS = [
