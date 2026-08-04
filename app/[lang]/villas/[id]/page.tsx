@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { VillaDetails } from '@/components/VillaDetails';
 import { CmsService } from '@/services/cms';
 import { getAlternates, getOpenGraph } from '@/utils/seo';
+import { getNeighborhoodBySanityLocation } from '@/data/neighborhoods';
 import { redirect, notFound } from 'next/navigation';
 
 export const revalidate = 300;
@@ -171,29 +173,59 @@ export default async function VillaPage({ params }: Props) {
         fr: 'Accueil', en: 'Home', es: 'Inicio', pt: 'Início',
     };
 
+    const neighborhood = villa.location?.name ? getNeighborhoodBySanityLocation(villa.location.name) : undefined;
+
+    const breadcrumbItems = [
+        {
+            name: homeLabel[lang] || homeLabel.fr,
+            item: `https://www.sun-beach-house.com/${lang}`,
+        },
+        {
+            name: collectionLabel[lang] || collectionLabel.fr,
+            item: `https://www.sun-beach-house.com/${lang}/${collectionSegment}`,
+        },
+        ...(neighborhood && isRental ? [{
+            name: neighborhood.name,
+            item: `https://www.sun-beach-house.com/${lang}/location-villa-${neighborhood.slug}`,
+        }] : []),
+        {
+            name: villa.name,
+            item: `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
+        },
+    ];
+
     const breadcrumbLd = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        'itemListElement': [
-            {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': homeLabel[lang] || homeLabel.fr,
-                'item': `https://www.sun-beach-house.com/${lang}`,
-            },
-            {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': collectionLabel[lang] || collectionLabel.fr,
-                'item': `https://www.sun-beach-house.com/${lang}/${collectionSegment}`,
-            },
-            {
-                '@type': 'ListItem',
-                'position': 3,
-                'name': villa.name,
-                'item': `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
-            },
-        ],
+        'itemListElement': breadcrumbItems.map((b, i) => ({
+            '@type': 'ListItem',
+            'position': i + 1,
+            'name': b.name,
+            'item': b.item,
+        })),
+    };
+
+    const siblings = neighborhood
+        ? (await CmsService.getAllVillas())
+            .filter((v) => v.listingType === villa.listingType
+                && v.id !== villa.id
+                && v.location?.name
+                && neighborhood.sanityLocations.includes(v.location.name))
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .slice(0, 8)
+        : [];
+
+    const siblingsTitle: Record<string, string> = {
+        fr: `Autres villas à ${neighborhood?.name}`,
+        en: `More villas in ${neighborhood?.name}`,
+        es: `Otras villas en ${neighborhood?.name}`,
+        pt: `Outras villas em ${neighborhood?.name}`,
+    };
+    const hubLabel: Record<string, string> = {
+        fr: `Toutes les locations de villas à ${neighborhood?.name}`,
+        en: `All villa rentals in ${neighborhood?.name}`,
+        es: `Todos los alquileres de villas en ${neighborhood?.name}`,
+        pt: `Todos os aluguéis de villas em ${neighborhood?.name}`,
     };
 
     return (
@@ -207,6 +239,37 @@ export default async function VillaPage({ params }: Props) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
             <VillaDetails villaId={villa.id} slug={villa.slug} initialVilla={villa} />
+            {neighborhood && (siblings.length > 0 || isRental) && (
+                <nav aria-label={siblingsTitle[lang] || siblingsTitle.fr} className="bg-sbh-cream pb-20 text-sbh-charcoal">
+                    <div className="max-w-[900px] mx-auto px-6 md:px-12">
+                        {siblings.length > 0 && (
+                            <>
+                                <h2 className="font-serif text-2xl md:text-3xl italic mb-6">{siblingsTitle[lang] || siblingsTitle.fr}</h2>
+                                <ul className="columns-2 sm:columns-3 gap-8 space-y-2 mb-8">
+                                    {siblings.map((v) => (
+                                        <li key={v.id} className="break-inside-avoid">
+                                            <Link
+                                                href={`/${lang}/villas/${v.slug || v.id}`}
+                                                className="font-sans font-light text-sm text-sbh-charcoal/80 hover:text-sbh-green transition-colors"
+                                            >
+                                                {v.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
+                        {isRental && (
+                            <Link
+                                href={`/${lang}/location-villa-${neighborhood.slug}`}
+                                className="font-sans uppercase text-xs tracking-widest text-sbh-green border-b border-sbh-green pb-1 hover:text-sbh-charcoal hover:border-sbh-charcoal transition-colors"
+                            >
+                                {hubLabel[lang] || hubLabel.fr}
+                            </Link>
+                        )}
+                    </div>
+                </nav>
+            )}
         </>
     );
 }

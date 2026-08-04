@@ -12,10 +12,10 @@ const serviceImages: Record<string, string> = {
     chef: '/images/optimized-conciergerie-chef.jpg',
     spa: 'https://storage.googleapis.com/images-sbh/spa-welness-sun-beach-house-saint-barth-villa-rental-02.JPG',
     transfer: 'https://storage.googleapis.com/images-sbh/sun-beach-house-chauffeur.jpg',
-    reservations: '/images/optimized-conciergerie-reservations.jpg',
+    reservations: '/images/optimized-conciergerie-reservations.webp',
     nautical: '/images/optimized-conciergerie-nautique.jpg',
     travel: '/images/optimized-conciergerie-travel.jpg',
-    vip: '/images/optimized-conciergerie-vip.jpg'
+    vip: '/images/optimized-conciergerie-vip.webp'
 };
 
 export const Services: React.FC = () => {

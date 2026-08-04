@@ -11,10 +11,10 @@ const serviceImages = {
     chef: '/images/optimized-conciergerie-chef.jpg',
     spa: 'https://storage.googleapis.com/images-sbh/spa-welness-sun-beach-house-saint-barth-villa-rental-02.JPG',
     transfer: 'https://storage.googleapis.com/images-sbh/sun-beach-house-chauffeur.jpg',
-    reservations: '/images/optimized-conciergerie-reservations.jpg',
+    reservations: '/images/optimized-conciergerie-reservations.webp',
     nautical: '/images/optimized-conciergerie-nautique.jpg',
     travel: '/images/optimized-conciergerie-travel.jpg',
-    vip: '/images/optimized-conciergerie-vip.jpg'
+    vip: '/images/optimized-conciergerie-vip.webp'
 };
 
 export const ConciergerieContent: React.FC = () => {
@@ -93,7 +93,7 @@ export const ConciergerieContent: React.FC = () => {
             {/* HERO SECTION */}
             <div className="relative h-[80vh] xl:h-[70vh] w-full overflow-hidden mb-16">
                 <Image
-                    src="/images/optimized-conciergerie-hero.jpg"
+                    src="/images/optimized-conciergerie-hero.webp"
                     alt="Conciergerie Service"
                     fill
                     sizes="100vw"

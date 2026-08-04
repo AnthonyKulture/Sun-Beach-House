@@ -8,7 +8,8 @@ const nextConfig = {
 
     // Optimize images
     images: {
-        unoptimized: true,
+        loader: 'custom',
+        loaderFile: './utils/imageLoader.ts',
         remotePatterns: [
             {
                 protocol: 'https',

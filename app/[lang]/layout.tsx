@@ -219,6 +219,20 @@ export default function LocaleLayout({
                         })
                     }}
                 />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'WebSite',
+                            '@id': 'https://www.sun-beach-house.com/#website',
+                            url: 'https://www.sun-beach-house.com',
+                            name: 'Sun Beach House',
+                            inLanguage: ['fr', 'en', 'es', 'pt'],
+                            publisher: { '@id': 'https://www.sun-beach-house.com/#org' },
+                        })
+                    }}
+                />
                 {/* 
                     LCP Preload Strategy:
                     - Preload 800px version for mobile to minimize bandwidth and CPU

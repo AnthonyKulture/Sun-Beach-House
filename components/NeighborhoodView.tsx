@@ -67,7 +67,7 @@ export async function NeighborhoodView({ slug, lang: langRaw }: { slug: string; 
     const url = `${BASE_URL}/${lang}/location-villa-${n.slug}`;
     const intro = n.intro[lang] || fallbackIntro(n.name, villas.length, lang);
     const highlights = n.highlights[lang] || [];
-    const heroImage = n.heroImage || villas[0]?.mainImage || '/images/optimized-destination-hero.jpg';
+    const heroImage = n.heroImage || villas[0]?.mainImage || '/images/optimized-destination-hero.webp';
     const heroSubtitle = {
         fr: `${villas.length} villas d'exception`,
         en: `${villas.length} exceptional villas`,

@@ -32,16 +32,16 @@ const content = contentJson as Record<string, NeighborhoodContent>;
 
 /** Routing config; editorial content lives in neighborhoods.content.json (sbh-editorial, sourced). */
 const CONFIG: Pick<Neighborhood, 'slug' | 'name' | 'sanityLocations' | 'heroImage'>[] = [
-    { slug: 'gustavia', name: 'Gustavia', sanityLocations: ['Gustavia'], heroImage: '/images/optimized-dest-gustavia.jpg' },
-    { slug: 'saint-jean', name: 'Saint-Jean', sanityLocations: ['St Jean', 'Saint-Jean Beach'], heroImage: '/images/optimized-dest-stjean.jpg' },
+    { slug: 'gustavia', name: 'Gustavia', sanityLocations: ['Gustavia'], heroImage: '/images/optimized-dest-gustavia.webp' },
+    { slug: 'saint-jean', name: 'Saint-Jean', sanityLocations: ['St Jean', 'Saint-Jean Beach'], heroImage: '/images/optimized-dest-stjean.webp' },
     { slug: 'flamands', name: 'Flamands', sanityLocations: ['Flamands', 'Flamands Beach'] },
     { slug: 'colombier', name: 'Colombier', sanityLocations: ['Colombier'] },
     { slug: 'lurin', name: 'Lurin', sanityLocations: ['Lurin'] },
     { slug: 'vitet', name: 'Vitet', sanityLocations: ['Vitet'] },
     { slug: 'marigot', name: 'Marigot', sanityLocations: ['Marigot'] },
-    { slug: 'corossol', name: 'Corossol', sanityLocations: ['Corossol'], heroImage: '/images/optimized-dest-corossol.jpg' },
+    { slug: 'corossol', name: 'Corossol', sanityLocations: ['Corossol'], heroImage: '/images/optimized-dest-corossol.webp' },
     { slug: 'petit-cul-de-sac', name: 'Petit Cul-de-Sac', sanityLocations: ['Petit Cul de Sac'] },
-    { slug: 'pointe-milou', name: 'Pointe Milou', sanityLocations: ['Pointe Milou'], heroImage: '/images/optimized-dest-pointe-milou.jpg' },
+    { slug: 'pointe-milou', name: 'Pointe Milou', sanityLocations: ['Pointe Milou'], heroImage: '/images/optimized-dest-pointe-milou.webp' },
     { slug: 'lorient', name: 'Lorient', sanityLocations: ['Lorient'] },
     { slug: 'grand-cul-de-sac', name: 'Grand Cul-de-Sac', sanityLocations: ['Grand Cul de Sac'] },
     { slug: 'gouverneur', name: 'Gouverneur', sanityLocations: ['Gouverneur'] },
@@ -56,3 +56,6 @@ export const NEIGHBORHOODS: Record<string, Neighborhood> = Object.fromEntries(
 export const NEIGHBORHOOD_SLUGS = CONFIG.map((c) => c.slug);
 
 export const getNeighborhood = (slug: string): Neighborhood | undefined => NEIGHBORHOODS[slug];
+
+export const getNeighborhoodBySanityLocation = (locationName: string): Neighborhood | undefined =>
+    Object.values(NEIGHBORHOODS).find((n) => n.sanityLocations.includes(locationName));

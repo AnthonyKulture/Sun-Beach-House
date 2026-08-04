@@ -31,7 +31,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
             <div className="relative h-[85vh] xl:h-[80vh] w-full overflow-hidden mb-24">
                 <div
                     className="absolute inset-0 bg-cover bg-center animate-scale-slow"
-                    style={{ backgroundImage: "url('/images/optimized-destination-hero.jpg')" }}
+                    style={{ backgroundImage: "url('/images/optimized-destination-hero.webp')" }}
                 ></div>
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-sbh-cream/90"></div>
@@ -96,7 +96,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                     <div className="md:col-span-6 md:col-start-7 order-1 md:order-2 md:-mt-20">
                         <div className="relative aspect-[3/4] overflow-hidden rounded-sm shadow-2xl reveal-on-scroll group" style={{ transitionDelay: '200ms' }}>
                             <img
-                                src="/images/optimized-dest-gustavia.jpg"
+                                src="/images/optimized-dest-gustavia.webp"
                                 alt="Gustavia Harbor Architecture"
                                 className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
                             />
@@ -128,7 +128,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                     <div className="md:col-span-7">
                         <div className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-xl reveal-on-scroll">
                             <img
-                                src="/images/optimized-dest-culture.jpg"
+                                src="/images/optimized-dest-culture.webp"
                                 alt="Gastronomy and Culture"
                                 className="w-full h-full object-cover"
                             />
@@ -203,7 +203,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center group">
                         <div className="order-1 relative aspect-[4/5] overflow-hidden rounded-b-[100px] border border-sbh-charcoal/5 reveal-on-scroll">
                             <img
-                                src="/images/optimized-dest-stjean.jpg"
+                                src="/images/optimized-dest-stjean.webp"
                                 alt="Saint-Jean"
                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s]"
                             />
@@ -237,7 +237,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                         </div>
                         <div className="order-1 md:order-2 relative aspect-[16/9] md:aspect-[4/5] overflow-hidden rounded-sm reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
                             <img
-                                src="/images/optimized-dest-corossol.jpg"
+                                src="/images/optimized-dest-corossol.webp"
                                 alt="Corossol Boats"
                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s]"
                             />
@@ -247,7 +247,7 @@ export const Destinations: React.FC<DestinationsProps> = () => {
                     {/* 4. Pointe Milou (Full Width Break) */}
                     <div className="relative h-[60vh] rounded-sm overflow-hidden group reveal-on-scroll">
                         <img
-                            src="/images/optimized-dest-pointe-milou.jpg"
+                            src="/images/optimized-dest-pointe-milou.webp"
                             alt="Sunset Pointe Milou"
                             className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                         />

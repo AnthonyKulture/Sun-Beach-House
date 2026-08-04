@@ -306,7 +306,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, h
             {!hideHero && (
             <div className="relative h-[60vh] xl:h-[50vh] min-h-[400px] w-full overflow-hidden flex items-center justify-center">
                 <Image
-                    src={mode === 'rent' ? '/images/optimized-rentals-hero.jpg' : '/images/optimized-sales-hero.jpg'}
+                    src={mode === 'rent' ? '/images/optimized-rentals-hero.webp' : '/images/optimized-sales-hero.webp'}
                     alt={mode === 'rent' ? 'Villas de location à Saint-Barthélemy' : 'Villas à vendre à Saint-Barthélemy'}
                     fill
                     priority

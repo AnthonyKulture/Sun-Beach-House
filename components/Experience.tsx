@@ -15,7 +15,7 @@ export const Experience: React.FC = () => {
       title: t.experience.morning.title,
       subtitle: t.experience.morning.subtitle,
       description: t.experience.morning.description,
-      img: "/images/optimized-morning-st-barth.jpg",
+      img: "/images/optimized-morning-st-barth.webp",
       alt: t.alts.experienceMorning,
       color: "bg-sbh-cream"
     },
@@ -33,7 +33,7 @@ export const Experience: React.FC = () => {
       title: t.experience.goldenHour.title,
       subtitle: t.experience.goldenHour.subtitle,
       description: t.experience.goldenHour.description,
-      img: "/images/optimized-golden-hour-st-barth.jpg",
+      img: "/images/optimized-golden-hour-st-barth.webp",
       alt: t.alts.experienceGolden,
       color: "bg-sbh-cream"
     }

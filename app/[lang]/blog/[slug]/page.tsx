@@ -104,9 +104,9 @@ export default async function BlogPostPage({ params }: Props) {
         description,
         image: post.mainImage ? [post.mainImage] : undefined,
         author: {
-            '@type': 'Organization',
-            name: post.author || 'Sun Beach House',
-            '@id': 'https://www.sun-beach-house.com/#org',
+            '@type': 'Person',
+            '@id': 'https://www.sun-beach-house.com/#valerie',
+            name: 'Valérie Kerckhofs',
         },
         publisher: { '@id': 'https://www.sun-beach-house.com/#org' },
         datePublished: post.publishedAt,

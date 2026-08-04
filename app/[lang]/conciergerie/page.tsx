@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
         description,
         keywords: 'conciergerie luxe saint barth, chef privé st barth, spa villa saint barthélemy, transfert vip sbh, service aéroport premium, yacht charter caribbean, concierge service st barts',
         alternates: getAlternates(lang, '/conciergerie'),
-        ...getOpenGraph(lang, '/conciergerie', { title, description, image: '/images/optimized-conciergerie-hero.jpg' }),
+        ...getOpenGraph(lang, '/conciergerie', { title, description, image: '/images/optimized-conciergerie-hero.webp' }),
     };
 }
 
