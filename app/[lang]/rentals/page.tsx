@@ -1,21 +1,22 @@
 import type { Metadata } from 'next'
 import { Collections } from '@/components/Collections';
+import { CollectionsHero, CollectionsIntro, VillaLinkIndex } from '@/components/CollectionsServerSections';
 
 import { getAlternates, getOpenGraph } from '@/utils/seo';
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
     const { lang } = params;
     const titles: Record<string, string> = {
-        fr: 'Location de Villas de Luxe',
-        en: 'Luxury Villa Rentals',
-        es: 'Alquiler de Villas de Lujo',
-        pt: 'Aluguel de Villas de Luxo',
+        fr: 'Location de Villas de Luxe à Saint-Barth',
+        en: 'St Barts Luxury Villa Rentals & Vacation Villas',
+        es: 'Alquiler de Villas de Lujo en St. Barth',
+        pt: 'Aluguel de Villas de Luxo em St. Barth',
     };
     const descriptions: Record<string, string> = {
-        fr: 'Réservez votre séjour d\'exception à Saint-Barthélemy. Une collection exclusive de villas de luxe avec services de conciergerie personnalisés.',
-        en: 'Book your exceptional stay in Saint-Barthélemy. An exclusive collection of luxury villas with personalized concierge services.',
-        es: 'Reserve su estancia excepcional en San Bartolomé. Una colección exclusiva de villas de lujo con servicios de conserjería personalizados.',
-        pt: 'Reserve sua estadia excepcional em Saint-Barthélemy. Uma coleção exclusiva de villas de luxo com serviços de concierge personalizados.',
+        fr: 'Plus de 150 villas de luxe à louer à Saint-Barth, sélectionnées à la main : bord de mer, vue mer, familiales. Conciergerie personnalisée incluse.',
+        en: '150+ hand-picked luxury villas for rent in St Barts: beachfront, ocean view and family villas, with personalized concierge service included.',
+        es: 'Más de 150 villas de lujo en alquiler en St. Barth, seleccionadas a mano: frente al mar, vista al mar y familiares. Conserjería personalizada incluida.',
+        pt: 'Mais de 150 villas de luxo para alugar em St. Barth, selecionadas a dedo: beira-mar, vista para o mar e familiares. Concierge personalizado incluído.',
     };
     const title = titles[lang] || titles.fr;
     const description = descriptions[lang] || descriptions.fr;
@@ -33,12 +34,17 @@ export const revalidate = 300;
 import { CmsService } from '@/services/cms'
 import { Suspense } from 'react';
 
-export default async function RentalsPage() {
+export default async function RentalsPage({ params }: { params: { lang: string } }) {
     const villas = await CmsService.getAllVillas();
-    
+
     return (
-        <Suspense>
-            <Collections mode="rent" initialVillas={villas} />
-        </Suspense>
+        <>
+            <CollectionsHero mode="rent" lang={params.lang} />
+            <Suspense>
+                <Collections mode="rent" initialVillas={villas} hideHero overlapHero hideIntro />
+            </Suspense>
+            <CollectionsIntro mode="rent" lang={params.lang} />
+            <VillaLinkIndex mode="rent" lang={params.lang} villas={villas} />
+        </>
     );
 }

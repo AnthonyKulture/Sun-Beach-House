@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import { Playfair_Display } from 'next/font/google'
 import '../globals.css'
@@ -55,7 +56,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     return {
         title: {
             default: title,
-            template: '%s | St-Barth | Sun Beach House'
+            template: '%s | Sun Beach House'
         },
         description,
         keywords: ['villa luxe saint barth', 'location villa st barth', 'vente villa saint barthélemy', 'conciergerie privée st barth', 'Sun Beach House'],
@@ -106,6 +107,8 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     };
 }
 
+const SUPPORTED_LOCALES = ['fr', 'en', 'es', 'pt'];
+
 export default function LocaleLayout({
     children,
     params,
@@ -113,6 +116,9 @@ export default function LocaleLayout({
     children: React.ReactNode
     params: { lang: string }
 }) {
+    if (!SUPPORTED_LOCALES.includes(params.lang)) {
+        notFound();
+    }
     const locale = params.lang as Language;
 
     return (

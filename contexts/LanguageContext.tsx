@@ -27,7 +27,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode; initialLanguage: 
     const value: LanguageContextType = {
         language,
         setLanguage,
-        t: translations[language],
+        t: translations[language] || translations.fr,
     };
 
     return (

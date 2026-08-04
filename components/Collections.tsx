@@ -26,9 +26,13 @@ interface CollectionsProps {
     hideHero?: boolean;
     /** Hide the location filter (e.g. on neighborhood pages already scoped to one area). */
     hideLocationFilter?: boolean;
+    /** Keep the filter bar overlapping upward when the hero is server-rendered above this component. */
+    overlapHero?: boolean;
+    /** Hide the long-form intro (e.g. when it is server-rendered below this component). */
+    hideIntro?: boolean;
 }
 
-export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, hideHero, hideLocationFilter }) => {
+export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, hideHero, hideLocationFilter, overlapHero, hideIntro }) => {
     const { villas: fetchedVillas, loading: fetchedLoading } = useVillas(!!initialVillas);
     const villas = initialVillas || fetchedVillas;
     const loading = initialVillas ? false : fetchedLoading;
@@ -322,7 +326,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, h
             )}
 
             {/* FILTERS BAR - Adjusted z-index to stay below navbar if scrolled, but above hero */}
-            <div className={`relative z-30 ${hideHero ? 'mt-8' : '-mt-8'} max-w-[1400px] mx-auto px-4 md:px-8`}>
+            <div className={`relative z-30 ${hideHero && !overlapHero ? 'mt-8' : '-mt-8'} max-w-[1400px] mx-auto px-4 md:px-8`}>
                 <div className="bg-white shadow-xl rounded-lg md:rounded-full p-6 md:py-3 md:px-4 lg:p-3 flex flex-col md:flex-row items-center gap-6 md:gap-0 border border-gray-100 relative">
 
                     {/* Mobile Toggle Title */}
@@ -576,6 +580,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, h
             </div>
 
             {/* LONG-FORM INTRO BELOW GRID (SEO depth + buyer/renter context) */}
+            {!hideIntro && (
             <section className="max-w-[900px] mx-auto px-6 md:px-12 mt-32 md:mt-40 text-sbh-charcoal">
                 {mode === 'rent' ? (
                     <>
@@ -636,6 +641,7 @@ export const Collections: React.FC<CollectionsProps> = ({ mode, initialVillas, h
                     </>
                 )}
             </section>
+            )}
 
         </div>
     );

@@ -114,21 +114,50 @@ export default async function VillaPage({ params }: Props) {
             'url': `https://www.sun-beach-house.com/${lang}/villas/${preferredId}`,
             'availability': 'https://schema.org/InStock'
         } : undefined,
-        'amenityFeature': villa.amenities?.map(a => ({
-            '@type': 'LocationFeatureSpecification',
-            'name': a.name,
-            'value': true
-        })),
-        'floorSize': villa.surface ? {
-            '@type': 'QuantitativeValue',
-            'value': villa.surface,
-            'unitCode': 'MTK'
-        } : undefined,
-        'numberOfRooms': villa.bedrooms,
-        'occupancy': {
-            '@type': 'QuantitativeValue',
-            'value': villa.guests
-        }
+        ...(isRental ? {
+            'identifier': preferredId,
+            ...(villa.geopoint ? {
+                'latitude': villa.geopoint.lat,
+                'longitude': villa.geopoint.lng,
+            } : {}),
+            'containsPlace': {
+                '@type': 'Accommodation',
+                'additionalType': 'EntirePlace',
+                'occupancy': {
+                    '@type': 'QuantitativeValue',
+                    'value': villa.guests
+                },
+                'numberOfRooms': villa.bedrooms,
+                'numberOfBedrooms': villa.bedrooms,
+                'numberOfBathroomsTotal': villa.bathrooms,
+                'floorSize': villa.surface ? {
+                    '@type': 'QuantitativeValue',
+                    'value': villa.surface,
+                    'unitCode': 'MTK'
+                } : undefined,
+                'amenityFeature': villa.amenities?.map(a => ({
+                    '@type': 'LocationFeatureSpecification',
+                    'name': a.name,
+                    'value': true
+                })),
+            },
+        } : {
+            'amenityFeature': villa.amenities?.map(a => ({
+                '@type': 'LocationFeatureSpecification',
+                'name': a.name,
+                'value': true
+            })),
+            'floorSize': villa.surface ? {
+                '@type': 'QuantitativeValue',
+                'value': villa.surface,
+                'unitCode': 'MTK'
+            } : undefined,
+            'numberOfRooms': villa.bedrooms,
+            'occupancy': {
+                '@type': 'QuantitativeValue',
+                'value': villa.guests
+            }
+        })
     };
 
     const collectionSegment = isRental ? 'rentals' : 'sales';

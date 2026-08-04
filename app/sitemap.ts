@@ -41,7 +41,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const pathWithLocale = `/${locale}${route.path}`
       sitemapEntries.push({
         url: `${baseUrl}${pathWithLocale}`,
-        lastModified: new Date(),
         changeFrequency: route.changeFreq,
         priority: route.priority,
         alternates: {
@@ -50,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             'en': `${baseUrl}/en${route.path}`,
             'es': `${baseUrl}/es${route.path}`,
             'pt': `${baseUrl}/pt${route.path}`,
+            'x-default': `${baseUrl}/fr${route.path}`,
           }
         }
       })
@@ -69,6 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             'en': `${baseUrl}/en/villas/${preferredId}`,
             'es': `${baseUrl}/es/villas/${preferredId}`,
             'pt': `${baseUrl}/pt/villas/${preferredId}`,
+            'x-default': `${baseUrl}/fr/villas/${preferredId}`,
           }
         }
       })
@@ -89,6 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             ...(post.slug.en ? { en: `${baseUrl}/en/blog/${post.slug.en}` } : {}),
             ...(post.slug.es ? { es: `${baseUrl}/es/blog/${post.slug.es}` } : {}),
             ...(post.slug.pt ? { pt: `${baseUrl}/pt/blog/${post.slug.pt}` } : {}),
+            ...(post.slug.fr ? { 'x-default': `${baseUrl}/fr/blog/${post.slug.fr}` } : {}),
           }
         }
       })

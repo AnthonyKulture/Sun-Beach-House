@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Collections } from '@/components/Collections';
+import { CollectionsHero, CollectionsIntro, VillaLinkIndex } from '@/components/CollectionsServerSections';
 
 import { getAlternates, getOpenGraph } from '@/utils/seo';
 
@@ -33,12 +34,17 @@ export const revalidate = 300;
 import { CmsService } from '@/services/cms'
 import { Suspense } from 'react';
 
-export default async function SalesPage() {
+export default async function SalesPage({ params }: { params: { lang: string } }) {
     const villas = await CmsService.getAllVillas();
-    
+
     return (
-        <Suspense>
-            <Collections mode="sale" initialVillas={villas} />
-        </Suspense>
+        <>
+            <CollectionsHero mode="sale" lang={params.lang} />
+            <Suspense>
+                <Collections mode="sale" initialVillas={villas} hideHero overlapHero hideIntro />
+            </Suspense>
+            <CollectionsIntro mode="sale" lang={params.lang} />
+            <VillaLinkIndex mode="sale" lang={params.lang} villas={villas} />
+        </>
     );
 }

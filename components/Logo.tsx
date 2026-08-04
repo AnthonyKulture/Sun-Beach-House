@@ -5,9 +5,10 @@ interface LogoProps {
     className?: string;
     style?: React.CSSProperties;
     variant?: 'blue' | 'beige' | 'darkgreen';
+    priority?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({ className = "", style, variant = 'blue' }) => {
+export const Logo: React.FC<LogoProps> = ({ className = "", style, variant = 'blue', priority = false }) => {
     let logoSrc = '/images/logo-sbh-blue.png';
     let filter = '';
 
@@ -25,7 +26,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", style, variant = 'bl
                 src={logoSrc}
                 alt="Sun Beach House"
                 fill
-                priority
+                priority={priority}
                 className="object-contain"
             />
         </div>
