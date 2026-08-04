@@ -1,0 +1,141 @@
+name: Publish editorial posts to Sanity
+
+# Publishes post.json files directly to Sanity as live documents (no "drafts." prefix).
+# Triggers manually — used to promote [~] articles drafted by the editorial routine.
+#
+# Required GitHub Secrets:
+#   SANITY_WRITE_TOKEN — Editor role token from https://www.sanity.io/manage
+#   GEMINI_API_KEY     — Google AI Studio key for cover image generation (optional)
+
+on:
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: >
+          Space-separated list of post slugs to publish.
+          Leave empty to publish all 7 Plan-2026-05 articles (#4–#10).
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install @sanity/client + dotenv
+        run: |
+          mkdir -p /tmp/sanity-import-deps
+          cd /tmp/sanity-import-deps
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund --silent @sanity/client@^7 dotenv@^17
+
+      - name: Build file list
+        id: files
+        run: |
+          set -euo pipefail
+          SLUGS="${{ inputs.slugs }}"
+          if [ -z "$SLUGS" ]; then
+            SLUGS="gustavia-guide-saint-barth chef-prive-villa-saint-barth pointe-milou-coucher-soleil-saint-barth 5-questions-louer-villa-saint-barth mariage-saint-barthelemy-organiser saint-barth-quand-il-pleut une-journee-saint-barth-par-valerie"
+          fi
+          FILES_LIST=""
+          for slug in $SLUGS; do
+            f="editorial/posts/$slug/post.json"
+            if [ -f "$f" ]; then
+              FILES_LIST="${FILES_LIST}${f}"$'\n'
+            else
+              echo "::warning::post.json not found for slug '$slug' — skipping"
+            fi
+          done
+          {
+            echo "files<<EOF"
+            printf '%s' "$FILES_LIST"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "Files to publish:"
+          printf '%s' "$FILES_LIST"
+
+      - name: Generate images and publish to Sanity
+        if: steps.files.outputs.files != ''
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: i6dkdu7j
+          NEXT_PUBLIC_SANITY_DATASET: production
+          NODE_PATH: /tmp/sanity-import-deps/node_modules
+        run: |
+          set -euo pipefail
+          if [ -z "${SANITY_WRITE_TOKEN:-}" ]; then
+            echo "::error::SANITY_WRITE_TOKEN secret is not set."
+            exit 1
+          fi
+          FAILED=0
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            echo "::group::Publishing $file"
+
+            # ── 1. Generate cover image (best-effort) ────────────────────────
+            IMAGE_FLAG=""
+            IMAGE_PATH=""
+            if [ -n "${GEMINI_API_KEY:-}" ]; then
+              echo "  Generating cover image with Gemini…"
+              if IMAGE_PATH=$(node sbh-cms/scripts/generate-image.js --file="$file" 2>/tmp/img-gen.log); then
+                IMAGE_FLAG="--image=${IMAGE_PATH}"
+                echo "::notice::Image generated: ${IMAGE_PATH}"
+              else
+                echo "::warning file=$file::Image generation failed ($(tail -1 /tmp/img-gen.log)) — publishing without cover image"
+              fi
+            else
+              echo "  GEMINI_API_KEY not set — skipping image generation"
+            fi
+
+            # ── 2. Publish directly to Sanity (no drafts. prefix) ───────────
+            # shellcheck disable=SC2086
+            if node sbh-cms/scripts/import-post.js \
+                --file="$file" \
+                --publish \
+                --force-with-flags \
+                ${IMAGE_FLAG}; then
+              echo "::notice::✓ Published $file"
+            else
+              echo "::error file=$file::Publish failed for $file"
+              FAILED=$((FAILED + 1))
+            fi
+
+            # ── 3. Cleanup temp image ─────────────────────────────────────────
+            [ -n "${IMAGE_PATH}" ] && rm -f "${IMAGE_PATH}" || true
+
+            echo "::endgroup::"
+          done <<< "${{ steps.files.outputs.files }}"
+
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::$FAILED article(s) failed to publish. Check the logs above."
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Editorial publish summary"
+            echo ""
+            if [ -n "${{ steps.files.outputs.files }}" ]; then
+              echo "### Articles submitted for publication"
+              echo '```'
+              echo "${{ steps.files.outputs.files }}"
+              echo '```'
+            else
+              echo "> ⚠️ No files were found to publish."
+            fi
+            echo ""
+            echo "View in Studio: https://i6dkdu7j.sanity.studio/structure/post"
+          } >> "$GITHUB_STEP_SUMMARY"
