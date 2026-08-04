@@ -80,37 +80,37 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
 ## Plan 2026-08 (10 articles — en cours d'exécution)
 
-Plan stratégique « Préparer la saison 2026-2027 » : trois clusters pillar-and-spoke — Accès (comment arriver + services aéroport), Quartiers (Saint-Jean, Flamands, Corossol — complètent Gustavia et Pointe Milou déjà en ligne), Immobilier (pilier achat + fiscalité + investissement locatif, attaque du mot-clé primaire « vente villa saint barthélemy » encore jamais traité). Cadence 2/semaine (Lun + Jeu 09:00 Europe/Paris), démarrage semaine du 10 août 2026.
+Plan stratégique « Préparer la saison 2026-2027 » : alternance Lundi = evergreen/pilier (accès, immobilier, quartier, restaurants), Jeudi = événement culturel réel de la saison (fêtes patronales, Cata Cup, réveillon, Music Festival, carnaval). Les événements sont vérifiés : Fête de Saint-Barthélemy 24 août + Saint-Louis Corossol 25 août (Journal de Saint-Barth), Cata Cup 16-23 novembre 2026 (stbarthcatacup.com), Music Festival janvier (saintbarthmusicfestival.com), Mardi Gras février 2027. Cadence 2/semaine (Lun + Jeu 09:00 Europe/Paris), démarrage semaine du 10 août 2026 — l'article #1 doit sortir AVANT le 24 août.
 
 L'agent doit toujours prendre le sujet `[ ]` suivant dans l'ordre ci-dessous (#1 → #10) avant tout autre sujet du backlog général.
 
 | # | Sem | Jour | Titre | Slug FR | Primary keyword |
 |---|-----|------|-------|---------|-----------------|
-| 1 | S1 | Lun | Comment venir à Saint-Barth : vols, ferries, jet privé | `comment-venir-saint-barth` | comment venir à saint barth |
-| 2 | S1 | Jeu | Saint-Jean : la plage, l'aéroport, les villas iconiques | `saint-jean-saint-barth-guide` | villa saint jean saint barth |
+| 1 | S1 | Lun | Fête de Saint-Barthélemy et Saint-Louis : deux jours de traditions (24-25 août) | `fete-saint-barthelemy-aout-traditions` | fête saint barthélemy août |
+| 2 | S1 | Jeu | Comment venir à Saint-Barth : vols, ferries, jet privé | `comment-venir-saint-barth` | comment venir à saint barth |
 | 3 | S2 | Lun | Acheter une villa à Saint-Barthélemy : démarches, notaire, financement | `acheter-villa-saint-barthelemy` | acheter villa saint barthélemy |
-| 4 | S2 | Jeu | Service VIP aéroport : guide complet SBH / SXM / SJU / ANU | `service-vip-aeroport-saint-barth` | transfert aéroport saint barth |
-| 5 | S3 | Lun | Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur | `statut-fiscal-saint-barthelemy` | fiscalité saint barthélemy |
-| 6 | S3 | Jeu | Flamands : la plus grande plage de l'île | `flamands-plage-saint-barth` | plage flamands saint barth |
-| 7 | S4 | Lun | Investissement locatif saisonnier à Saint-Barth : rendements, gestion | `investissement-locatif-saint-barth` | investissement locatif saint barth |
-| 8 | S4 | Jeu | Spa en villa à Saint-Barth : soins et bien-être à domicile | `spa-massage-villa-saint-barth` | spa villa saint barth |
-| 9 | S5 | Lun | Corossol : authenticité préservée, ce qu'on y trouve | `corossol-saint-barth-village` | corossol saint barth |
-| 10 | S5 | Jeu | Restaurants de Saint-Barth : les tables de la saison 2026-2027 | `restaurants-saint-barth-guide` | restaurant saint barth |
+| 4 | S2 | Jeu | St Barth Cata Cup 2026 : la régate de Formule 18 à Saint-Jean (16-23 nov) | `st-barth-cata-cup-2026` | st barth cata cup 2026 |
+| 5 | S3 | Lun | Saint-Jean : la plage, l'aéroport, les villas iconiques | `saint-jean-saint-barth-guide` | villa saint jean saint barth |
+| 6 | S3 | Jeu | Réveillon du Nouvel An à Saint-Barth : yachts, dîners, feux d'artifice | `reveillon-nouvel-an-saint-barth` | nouvel an saint barth |
+| 7 | S4 | Lun | Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur | `statut-fiscal-saint-barthelemy` | fiscalité saint barthélemy |
+| 8 | S4 | Jeu | St Barth Music Festival 2027 : concerts à Gustavia et Lorient (janvier) | `st-barth-music-festival-2027` | st barth music festival 2027 |
+| 9 | S5 | Lun | Restaurants de Saint-Barth : les tables de la saison 2026-2027 | `restaurants-saint-barth-guide` | restaurant saint barth |
+| 10 | S5 | Jeu | Carnaval de Saint-Barth 2027 : Mardi gras à Gustavia (février) | `carnaval-saint-barth-2027` | carnaval saint barth |
 
-Maillage interne prévu : #2/#6/#9 (quartiers) → pilier immobilier #3 + `/rentals` ; #4 (VIP aéroport) → pilier accès #1 + `/conciergerie` ; #5/#7 (fiscal, investissement) → pilier #3 + `/sales` ; #8/#10 → `/conciergerie` et articles chef privé / Gustavia déjà en ligne.
+Maillage interne prévu : #1/#10 (fêtes, carnaval) → article Gustavia + `/destinations` ; #4 (Cata Cup) → guide Saint-Jean #5 + `/rentals` ; #6 (réveillon) → articles haute saison + Noël déjà en ligne + `/conciergerie` ; #3/#7 (immobilier) → `/sales` ; #2 (accès) → `/conciergerie` ; #8 → article Gustavia + `/rentals` ; #9 → article chef privé + `/conciergerie`.
 
 Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
-- [ ] #1 Comment venir à Saint-Barth
-- [ ] #2 Saint-Jean guide
+- [ ] #1 Fêtes patronales août
+- [ ] #2 Comment venir à Saint-Barth
 - [ ] #3 Acheter une villa
-- [ ] #4 Service VIP aéroport
-- [ ] #5 Statut fiscal
-- [ ] #6 Flamands
-- [ ] #7 Investissement locatif
-- [ ] #8 Spa en villa
-- [ ] #9 Corossol
-- [ ] #10 Restaurants saison 2026-2027
+- [ ] #4 St Barth Cata Cup 2026
+- [ ] #5 Saint-Jean guide
+- [ ] #6 Réveillon Nouvel An
+- [ ] #7 Statut fiscal
+- [ ] #8 St Barth Music Festival 2027
+- [ ] #9 Restaurants saison 2026-2027
+- [ ] #10 Carnaval 2027
 
 ---
 
@@ -122,41 +122,46 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Location villa luxe à Saint-Barth en 2026 : calendrier, tarifs et démarches (slug: louer-villa-luxe-saint-barth-2026, mai 2026)
 - [ ] Guide complet de la haute saison à Saint-Barth : dates, événements, météo, taxes (→ Plan 2026-05 #1)
 - [ ] Bucket Regatta 2027 : dates 17-21 mars, parcours, comment réserver une villa à temps (→ Plan 2026-05 #2)
-- [ ] Les Voiles de Saint-Barth 2026 : ce qu'il faut savoir avant de venir
-- [ ] St Barth Music Festival 2026 : programme et logistique (concerts Gustavia / Lorient)
+- [ ] Fête de Saint-Barthélemy (24 août) et Saint-Louis à Corossol (25 août) : traditions vivantes (→ Plan 2026-08 #1)
+- [ ] St Barth Cata Cup 2026 : régate Formule 18 à Saint-Jean, 16-23 novembre (→ Plan 2026-08 #4)
+- [ ] Réveillon du Nouvel An à Saint-Barth : yachts, dîners, feux d'artifice (→ Plan 2026-08 #6)
+- [ ] Carnaval de Saint-Barth 2027 : Mardi gras à Gustavia (→ Plan 2026-08 #10)
+- [ ] St Barth Film Festival : cinéma caribéen à Gustavia, Lorient et Flamands (fin avril)
+- [ ] Les Voiles de Saint-Barth 2027 : ce qu'il faut savoir avant de venir
+- [ ] St Barth Music Festival 2027 : programme et logistique (concerts Gustavia / Lorient) (→ Plan 2026-08 #8)
 - [ ] Saint-Barth en mai-juin : pourquoi c'est la meilleure période pour beaucoup
 - [ ] Taxe de séjour et droit de quai à Saint-Barthélemy : ce qu'il faut comprendre (pilier fiscal pour acquéreurs et locataires)
 - [x] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
 
 ### Quartiers / Destinations
 - [x] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4, août 2026)
-- [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #2)
-- [ ] Corossol : authenticité préservée, ce qu'on y trouve (→ Plan 2026-08 #9)
+- [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #5)
+- [ ] Corossol : authenticité préservée, ce qu'on y trouve
 - [x] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6, août 2026)
 - [ ] Lurin : retraite confidentielle, biens d'exception
-- [ ] Flamands : la plus grande plage de l'île (→ Plan 2026-08 #6)
+- [ ] Flamands : la plus grande plage de l'île
 
 ### Services & Conciergerie
 - [x] Chef privé à Saint-Barth : comment ça marche, à quoi s'attendre (→ Plan 2026-05 #5, août 2026)
 - [x] Mariage à Saint-Barthélemy : organiser un événement privé (→ Plan 2026-05 #8, août 2026)
-- [ ] Service VIP aéroport : guide complet SBH / SXM / SJU / ANU (→ Plan 2026-08 #4)
+- [ ] Service VIP aéroport : guide complet SBH / SXM / SJU / ANU
 - [ ] Charter yacht à la journée depuis Saint-Barth : destinations possibles
 - [ ] Transferts privés : comment arriver à Saint-Barth confortablement
-- [ ] Spa en villa à Saint-Barth : prestations disponibles (→ Plan 2026-08 #8)
+- [ ] Spa en villa à Saint-Barth : prestations disponibles
 
 ### Immobilier & Investissement
 - [ ] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3)
-- [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #5)
-- [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion (→ Plan 2026-08 #7)
+- [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #7)
+- [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion
 - [ ] Rénovation à Saint-Barth : contraintes d'urbanisme et artisans locaux
 
 ### Guides pratiques
 - [x] Louer une villa à Saint-Barth : 5 questions à se poser avant de réserver (→ Plan 2026-05 #7, août 2026)
 - [x] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9, août 2026)
 - [x] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10, août 2026)
-- [ ] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #1)
+- [ ] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #2)
 - [ ] Que mettre dans sa valise pour Saint-Barth
-- [ ] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #10)
+- [ ] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #9)
 - [ ] Plages secrètes de Saint-Barth
 - [ ] Activités nautiques à Saint-Barth : surf, kite, plongée, paddle
 
