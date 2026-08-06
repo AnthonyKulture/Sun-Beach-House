@@ -12,7 +12,7 @@ name: Import editorial posts to Sanity
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'claude/*']
     paths:
       - 'editorial/posts/**/post.json'
   workflow_dispatch:
