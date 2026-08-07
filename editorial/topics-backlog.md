@@ -106,7 +106,7 @@ Maillage interne prévu : #1/#10 (fêtes, carnaval) → article Gustavia + `/des
 Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
 - [x] #1 Fêtes patronales août
-- [~] #2 Comment venir à Saint-Barth
+- [x] #2 Comment venir à Saint-Barth
 - [ ] #3 Acheter une villa
 - [ ] #4 St Barth Cata Cup 2026
 - [ ] #5 Saint-Jean guide
@@ -163,7 +163,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Louer une villa à Saint-Barth : 5 questions à se poser avant de réserver (→ Plan 2026-05 #7, août 2026)
 - [x] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9, août 2026)
 - [x] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10, août 2026)
-- [~] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #2)
+- [x] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #2, août 2026)
 - [ ] Que mettre dans sa valise pour Saint-Barth
 - [ ] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #9)
 - [ ] Plages secrètes de Saint-Barth
