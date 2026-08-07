@@ -107,7 +107,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
 - [x] #1 Fêtes patronales août
 - [x] #2 Comment venir à Saint-Barth
-- [ ] #3 Acheter une villa
+- [~] #3 Acheter une villa
 - [ ] #4 St Barth Cata Cup 2026
 - [ ] #5 Saint-Jean guide
 - [ ] #6 Réveillon Nouvel An
@@ -154,7 +154,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] Spa en villa à Saint-Barth : prestations disponibles
 
 ### Immobilier & Investissement
-- [ ] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3)
+- [~] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3)
 - [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #7)
 - [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion
 - [ ] Rénovation à Saint-Barth : contraintes d'urbanisme et artisans locaux
