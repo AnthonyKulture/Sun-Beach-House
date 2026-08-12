@@ -7,6 +7,7 @@ import { schemaTypes } from './schemaTypes'
 import { Logo } from './components/Logo'
 import { GeneratePDFAction } from './actions/generatePDFAction'
 import { GeneratePDFWithPricingAction } from './actions/generatePDFWithPricingAction'
+import { UnpublishAndDeindexAction } from './actions/unpublishAndDeindexAction'
 import { ShareSelectionTool } from './tools/ShareSelectionTool'
 import { EnvelopeIcon } from '@sanity/icons'
 
@@ -285,9 +286,9 @@ export default defineConfig({
 
   document: {
     actions: (prev, context) => {
-      // Add both PDF generation actions for villa documents
+      // Add both PDF generation actions + the unpublish/deindex action for villa documents
       if (context.schemaType === 'villa') {
-        return [...prev, GeneratePDFAction, GeneratePDFWithPricingAction]
+        return [...prev, GeneratePDFAction, GeneratePDFWithPricingAction, UnpublishAndDeindexAction]
       }
       return prev
     },

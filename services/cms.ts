@@ -230,7 +230,8 @@ export const CmsService = {
   },
 
   getVillaById: async (id: string): Promise<Villa | undefined> => {
-    const query = `*[_type == "villa" && _id == $id][0] { ${villaFields} }`;
+    // Exclude draft documents so unpublished villas are never surfaced on the site or sitemap
+    const query = `*[_type == "villa" && _id == $id && !(_id in path("drafts.**"))][0] { ${villaFields} }`;
     try {
       const doc = await fetchSanity(query, { id });
       return doc ? mapSanityVilla(doc) : undefined;
@@ -241,7 +242,8 @@ export const CmsService = {
   },
 
   getVillaBySlug: async (slug: string): Promise<Villa | undefined> => {
-    const query = `*[_type == "villa" && slug.current == $slug][0] { ${villaFields} }`;
+    // Exclude draft documents so unpublished villas are never surfaced on the site or sitemap
+    const query = `*[_type == "villa" && slug.current == $slug && !(_id in path("drafts.**"))][0] { ${villaFields} }`;
     try {
       const doc = await fetchSanity(query, { slug });
       return doc ? mapSanityVilla(doc) : undefined;
