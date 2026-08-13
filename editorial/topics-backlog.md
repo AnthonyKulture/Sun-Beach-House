@@ -109,7 +109,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [x] #2 Comment venir à Saint-Barth
 - [x] #3 Acheter une villa
 - [~] #4 St Barth Cata Cup 2026
-- [ ] #5 Saint-Jean guide
+- [~] #5 Saint-Jean guide
 - [ ] #6 Réveillon Nouvel An
 - [ ] #7 Statut fiscal
 - [ ] #8 St Barth Music Festival 2027
@@ -139,7 +139,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 
 ### Quartiers / Destinations
 - [x] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4, août 2026)
-- [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #5)
+- [~] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #5)
 - [ ] Corossol : authenticité préservée, ce qu'on y trouve
 - [x] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6, août 2026)
 - [ ] Lurin : retraite confidentielle, biens d'exception
