@@ -21,8 +21,10 @@ export async function generateMetadata(
     if (!villa) {
         return {
             title: 'Villa Introuvable | Sun Beach House',
+            robots: { index: false, follow: false },
         };
     }
+
 
     const preferredId = villa.slug || villa.id;
     const locationName = villa.location?.name || 'St. Barth';

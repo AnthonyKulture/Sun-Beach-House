@@ -106,10 +106,10 @@ Maillage interne prévu : #1/#10 (fêtes, carnaval) → article Gustavia + `/des
 Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 
 - [x] #1 Fêtes patronales août
-- [~] #2 Comment venir à Saint-Barth
-- [ ] #3 Acheter une villa
-- [ ] #4 St Barth Cata Cup 2026
-- [ ] #5 Saint-Jean guide
+- [x] #2 Comment venir à Saint-Barth
+- [x] #3 Acheter une villa
+- [~] #4 St Barth Cata Cup 2026
+- [~] #5 Saint-Jean guide
 - [ ] #6 Réveillon Nouvel An
 - [ ] #7 Statut fiscal
 - [ ] #8 St Barth Music Festival 2027
@@ -127,7 +127,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] Guide complet de la haute saison à Saint-Barth : dates, événements, météo, taxes (→ Plan 2026-05 #1)
 - [ ] Bucket Regatta 2027 : dates 17-21 mars, parcours, comment réserver une villa à temps (→ Plan 2026-05 #2)
 - [x] Fête de Saint-Barthélemy (24 août) et Saint-Louis à Corossol (25 août) : traditions vivantes (→ Plan 2026-08 #1, août 2026)
-- [ ] St Barth Cata Cup 2026 : régate Formule 18 à Saint-Jean, 16-23 novembre (→ Plan 2026-08 #4)
+- [~] St Barth Cata Cup 2026 : régate Formule 18 à Saint-Jean, 16-23 novembre (→ Plan 2026-08 #4)
 - [ ] Réveillon du Nouvel An à Saint-Barth : yachts, dîners, feux d'artifice (→ Plan 2026-08 #6)
 - [ ] Carnaval de Saint-Barth 2027 : Mardi gras à Gustavia (→ Plan 2026-08 #10)
 - [ ] St Barth Film Festival : cinéma caribéen à Gustavia, Lorient et Flamands (fin avril)
@@ -139,7 +139,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 
 ### Quartiers / Destinations
 - [x] Gustavia : guide complet (shopping, restaurants, vie nocturne) (→ Plan 2026-05 #4, août 2026)
-- [ ] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #5)
+- [~] Saint-Jean : la plage, l'aéroport, les villas iconiques (→ Plan 2026-08 #5)
 - [ ] Corossol : authenticité préservée, ce qu'on y trouve
 - [x] Pointe Milou : pourquoi les couchers de soleil y sont les plus beaux (→ Plan 2026-05 #6, août 2026)
 - [ ] Lurin : retraite confidentielle, biens d'exception
@@ -154,7 +154,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] Spa en villa à Saint-Barth : prestations disponibles
 
 ### Immobilier & Investissement
-- [ ] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3)
+- [x] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3, août 2026)
 - [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #7)
 - [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion
 - [ ] Rénovation à Saint-Barth : contraintes d'urbanisme et artisans locaux
@@ -163,7 +163,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Louer une villa à Saint-Barth : 5 questions à se poser avant de réserver (→ Plan 2026-05 #7, août 2026)
 - [x] Saint-Barth sous la pluie : 8 choses à faire quand le ciel se couvre (→ Plan 2026-05 #9, août 2026)
 - [x] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10, août 2026)
-- [~] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #2)
+- [x] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #2, août 2026)
 - [ ] Que mettre dans sa valise pour Saint-Barth
 - [ ] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #9)
 - [ ] Plages secrètes de Saint-Barth
