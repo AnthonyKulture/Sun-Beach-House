@@ -112,7 +112,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [~] #5 Saint-Jean guide
 - [~] #6 Réveillon Nouvel An
 - [~] #7 Statut fiscal
-- [ ] #8 St Barth Music Festival 2027
+- [~] #8 St Barth Music Festival 2027
 - [ ] #9 Restaurants saison 2026-2027
 - [ ] #10 Carnaval 2027
 
@@ -132,7 +132,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [ ] Carnaval de Saint-Barth 2027 : Mardi gras à Gustavia (→ Plan 2026-08 #10)
 - [ ] St Barth Film Festival : cinéma caribéen à Gustavia, Lorient et Flamands (fin avril)
 - [ ] Les Voiles de Saint-Barth 2027 : ce qu'il faut savoir avant de venir
-- [ ] St Barth Music Festival 2027 : programme et logistique (concerts Gustavia / Lorient) (→ Plan 2026-08 #8)
+- [~] St Barth Music Festival 2027 : programme et logistique (concerts Gustavia / Lorient) (→ Plan 2026-08 #8)
 - [ ] Saint-Barth en mai-juin : pourquoi c'est la meilleure période pour beaucoup
 - [ ] Taxe de séjour et droit de quai à Saint-Barthélemy : ce qu'il faut comprendre (pilier fiscal pour acquéreurs et locataires)
 - [x] Réserver pour Noël à Saint-Barth : 6 à 12 mois à l'avance, mode d'emploi (→ Plan 2026-05 #3)
