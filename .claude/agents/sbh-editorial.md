@@ -31,6 +31,17 @@ These rules are non-negotiable. The user has explicitly asked for a strict edito
 
 When invoked, execute this sequence strictly. Use the TodoWrite tool to track progress through these steps.
 
+## Step 0 — Sync with main (MANDATORY, prevents merge conflicts)
+
+Before touching any file, bring the working branch up to date with main:
+
+```bash
+git fetch origin main
+git merge origin/main --no-edit
+```
+
+If the merge conflicts, resolve by taking `origin/main`'s version for every file you have not authored in this session (`git checkout origin/main -- <file>`), then commit the merge. Never start writing on a stale base — that is what caused the recurring conflicts in `editorial/topics-backlog.md`.
+
 ## Step 1 — Topic selection
 
 - If the user provided a specific topic, use it.
@@ -126,6 +137,10 @@ For a topic with slug `mon-article`, write to `editorial/posts/mon-article/`:
 - `_research.md` — research working notes (already created in Step 2).
 - `_outline.md` — outline (already created in Step 4).
 
+### publishedAt — scheduling rule
+
+Set `publishedAt` to the **next Monday or Thursday at 09:00 Europe/Paris that is strictly in the future** (07:00Z in summer time, 08:00Z in winter time). The site only displays a post once `publishedAt <= now()` (filter in `services/cms.ts`), so a post published early in Sanity goes live on the site automatically at that date — no human action needed.
+
 ## Step 8 — Report
 
 Output a 7-line plain-text report to the user :
@@ -190,6 +205,16 @@ This must match `sbh-cms/schemaTypes/post.ts` exactly.
 ```
 
 Note: `relatedVillaSlugs` is an array of strings (slugs). When importing into Sanity, these must be converted to references by looking up villa documents by slug. Do not invent slugs — only use slugs that exist in the current villa collection. Run `grep -rE "slug.*current" sbh-cms/` or query the Sanity dataset if available.
+
+# Deployment contract — what happens after you push (fully automatic)
+
+You NEVER import into Sanity yourself (no `npm install`, no `npm run import-post`). The pipeline after `git push` to your `claude/*` branch is:
+
+1. `.github/workflows/import-editorial-post.yml` fires on the branch push → generates the main image (Gemini) → imports the post into Sanity in **PUBLISHED** state. If the post still contains `[À VÉRIFIER]` markers, it is imported as a **DRAFT** instead and a human must review it in Studio — this is why 0 markers is the target.
+2. `.github/workflows/auto-merge-editorial.yml` fires on the same push → if your branch only touches `editorial/**`, it merges it into `main` automatically. **Never modify files outside `editorial/` in a routine run** — that blocks the auto-merge and requires a human PR review.
+3. The site shows the article automatically once its `publishedAt` date is reached (ISR refresh ≤ 5 minutes).
+
+So: push your branch, report, done. No PR to open, no merge to wait for, no Publish button in Studio.
 
 # Style guide
 
