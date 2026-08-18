@@ -92,10 +92,29 @@ Translate the French version faithfully. Native quality, not Google-translate.
 - **EN** : warm but informative. American spelling unless the topic is European-specific.
 - **ES** : castellano international, vouvoiement (usted).
 - **PT** : português europeu.
-- Each language gets its own SEO title (≤ 60 chars) and meta description (≤ 155 chars).
+- Each language gets its own SEO title (≤ 70 chars — HARD LIMIT) and meta description / seoDescription (≤ 170 chars — HARD LIMIT).
 - Each language gets its own slug — translate the keyword phrase, kebab-case.
 - Footnote markers `[^source-N]` stay identical across languages.
 - `[À VÉRIFIER]` markers stay identical across languages.
+
+## Step 6b — Self-validate field lengths (MANDATORY before Step 7)
+
+Before writing `post.json`, run this Python check on every language variant:
+
+```python
+fields = {
+  "excerpt.XX":      (text, 170),   # HARD LIMIT — CI fails above 170
+  "seoTitle.XX":     (text, 70),    # HARD LIMIT — CI fails above 70
+  "seoDescription.XX": (text, 170), # HARD LIMIT — CI fails above 170
+  "title.XX":        (text, 120),   # soft limit
+}
+for name, (value, limit) in fields.items():
+    length = len(value)
+    status = "✓" if length <= limit else f"✗ TOO LONG ({length} > {limit}) — MUST SHORTEN"
+    print(f"{name}: {length} chars {status}")
+```
+
+If any field is over its limit, **shorten it before continuing**. Never write a post.json with fields that exceed HARD LIMITs — the CI import will fail and require a hotfix commit.
 
 ## Step 7 — Write output files
 
@@ -139,7 +158,7 @@ This must match `sbh-cms/schemaTypes/post.ts` exactly.
     "pt": { "_type": "slug", "current": "kebab-case-pt" }
   },
   "excerpt": {
-    "fr": "Résumé court (≤ 155 chars)",
+    "fr": "Résumé court (≤ 170 chars — HARD LIMIT enforced by CI)",
     "en": "...", "es": "...", "pt": "..."
   },
   "body": {
