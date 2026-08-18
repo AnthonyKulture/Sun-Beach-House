@@ -111,7 +111,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [~] #4 St Barth Cata Cup 2026
 - [~] #5 Saint-Jean guide
 - [~] #6 Réveillon Nouvel An
-- [ ] #7 Statut fiscal
+- [~] #7 Statut fiscal
 - [ ] #8 St Barth Music Festival 2027
 - [ ] #9 Restaurants saison 2026-2027
 - [ ] #10 Carnaval 2027
@@ -155,7 +155,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 
 ### Immobilier & Investissement
 - [x] Acheter une villa à Saint-Barthélemy : démarches, fiscalité, notariat (→ Plan 2026-08 #3, août 2026)
-- [ ] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #7)
+- [~] Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur (→ Plan 2026-08 #7)
 - [ ] Investissement locatif saisonnier à Saint-Barth : rendements, gestion
 - [ ] Rénovation à Saint-Barth : contraintes d'urbanisme et artisans locaux
 
