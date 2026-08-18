@@ -47,3 +47,6 @@ out
 
 # Attachments
 attachments/
+
+# Agent worktrees created by Claude Code subagents
+.claude/worktrees/

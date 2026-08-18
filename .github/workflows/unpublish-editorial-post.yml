@@ -1,0 +1,85 @@
+name: Unpublish editorial post from Sanity
+
+# Manual counterpart to import-editorial-post.yml.
+#
+# Removing an article used to require opening Sanity Studio and clicking through
+# the document actions. This workflow does it from the Actions tab: give it the
+# French slug, it deletes the published document (the site stops serving it) and
+# keeps a draft so the content is recoverable.
+#
+# Typical use: an article was scheduled by mistake, or its topic was dropped from
+# the editorial plan before its publishedAt date.
+#
+# Note: the post.json stays in the repo. Pushing a change to it would re-import
+# and re-publish the article — so also drop or update the topic in
+# editorial/topics-backlog.md when retiring a subject for good.
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'French slug, e.g. st-barth-cata-cup-2026 (no "post-" prefix)'
+        required: true
+        type: string
+      delete_draft:
+        description: 'Also delete the draft (removes the post from Sanity entirely)'
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: 'Report what would happen without writing anything'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  unpublish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install @sanity/client + dotenv
+        run: |
+          mkdir -p /tmp/sanity-import-deps
+          cd /tmp/sanity-import-deps
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund --silent @sanity/client@^7 dotenv@^17
+
+      - name: Unpublish post
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: i6dkdu7j
+          NEXT_PUBLIC_SANITY_DATASET: production
+          NODE_PATH: /tmp/sanity-import-deps/node_modules
+        run: |
+          set -euo pipefail
+          if [ -z "${SANITY_WRITE_TOKEN:-}" ]; then
+            echo "::error::SANITY_WRITE_TOKEN secret is not set."
+            exit 1
+          fi
+          FLAGS=""
+          [ "${{ inputs.delete_draft }}" = "true" ] && FLAGS="$FLAGS --delete-draft"
+          [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
+          # shellcheck disable=SC2086
+          node sbh-cms/scripts/unpublish-post.js --slug="${{ inputs.slug }}" $FLAGS
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Unpublish editorial post"
+            echo ""
+            echo "- Slug: \`${{ inputs.slug }}\`"
+            echo "- Delete draft: \`${{ inputs.delete_draft }}\`"
+            echo "- Dry run: \`${{ inputs.dry_run }}\`"
+            echo ""
+            echo "Remember: the post.json is still in the repo. Re-pushing a change to it"
+            echo "would re-import and re-publish the article."
+          } >> "$GITHUB_STEP_SUMMARY"

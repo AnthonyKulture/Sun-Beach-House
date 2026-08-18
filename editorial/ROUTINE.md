@@ -34,6 +34,22 @@ Seule exception nécessitant un humain : si l'article contient des marqueurs
 `[À VÉRIFIER]`, il est importé en **brouillon** Sanity → vérifier dans le
 Studio puis cliquer Publish.
 
+## Retirer un article programmé
+
+Un article importé est publié dans Sanity mais n'apparaît qu'à sa date
+`publishedAt`. Pour l'annuler avant cette date (sujet abandonné, publication par
+erreur), lancer le workflow **« Unpublish editorial post from Sanity »** depuis
+l'onglet Actions de GitHub, avec le slug français en entrée (par exemple
+`st-barth-cata-cup-2026`). Le document publié est supprimé, le brouillon est
+conservé — donc rien n'est perdu et l'article reste republiable.
+
+Option `dry_run` pour vérifier avant d'agir, option `delete_draft` pour retirer
+l'article complètement de Sanity.
+
+Attention : le `post.json` reste dans le dépôt. Si un futur commit le modifie,
+l'import le republiera. Pour abandonner un sujet définitivement, mettre aussi à
+jour sa ligne dans `topics-backlog.md`.
+
 ---
 
 ## PROMPT DE LA ROUTINE (copier tel quel dans la tâche planifiée)
