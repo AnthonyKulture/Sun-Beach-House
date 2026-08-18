@@ -210,8 +210,8 @@ Note: `relatedVillaSlugs` is an array of strings (slugs). When importing into Sa
 
 You NEVER import into Sanity yourself (no `npm install`, no `npm run import-post`). The pipeline after `git push` to your `claude/*` branch is:
 
-1. `.github/workflows/import-editorial-post.yml` fires on the branch push → generates the main image (Gemini) → imports the post into Sanity in **PUBLISHED** state. If the post still contains `[À VÉRIFIER]` markers, it is imported as a **DRAFT** instead and a human must review it in Studio — this is why 0 markers is the target.
-2. `.github/workflows/auto-merge-editorial.yml` fires on the same push → if your branch only touches `editorial/**`, it merges it into `main` automatically. **Never modify files outside `editorial/` in a routine run** — that blocks the auto-merge and requires a human PR review.
+1. `.github/workflows/import-editorial-post.yml` fires on the branch push. Its `import` job generates the main image (Gemini) and imports the post into Sanity in **PUBLISHED** state. If the post still contains `[À VÉRIFIER]` markers, it is imported as a **DRAFT** instead and a human must review it in Studio — this is why 0 markers is the target.
+2. The same workflow's `auto-merge` job then runs — only if the import succeeded — and merges your branch into `main`, provided it only touches `editorial/**`. **Never modify files outside `editorial/` in a routine run** — that blocks the auto-merge and requires a human PR review.
 3. The site shows the article automatically once its `publishedAt` date is reached (ISR refresh ≤ 5 minutes).
 
 So: push your branch, report, done. No PR to open, no merge to wait for, no Publish button in Studio.

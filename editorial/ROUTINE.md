@@ -23,11 +23,14 @@ l'ordre des articles reste correct même si un run échoue ou est relancé.
 ## Pipeline automatique (aucune intervention humaine)
 
 1. La routine rédige l'article et pousse sur sa branche `claude/*`.
-2. Le workflow `import-editorial-post.yml` importe le post dans Sanity en
-   état **publié** (avec image générée par Gemini). Le site ne l'affiche qu'à
-   partir de sa date `publishedAt` (filtre dans `services/cms.ts`).
-3. Le workflow `auto-merge-editorial.yml` merge la branche dans `main`
-   automatiquement (uniquement si elle ne touche que `editorial/`).
+2. Le workflow `import-editorial-post.yml` se déclenche. Son job `import`
+   importe le post dans Sanity en état **publié** (avec image générée par
+   Gemini). Le site ne l'affiche qu'à partir de sa date `publishedAt` (filtre
+   dans `services/cms.ts`).
+3. Le job `auto-merge` du même workflow s'exécute ensuite — **seulement si
+   l'import a réussi** — et merge la branche dans `main` (uniquement si elle ne
+   touche que `editorial/`). Un article qui n'a pas pu être importé n'atteint
+   donc jamais `main`.
 4. L'article apparaît sur le site à 09:00 le jour prévu (ISR ≤ 5 min).
 
 Seule exception nécessitant un humain : si l'article contient des marqueurs
@@ -107,6 +110,12 @@ mise en ligne prévue.
 
 ## Historique
 
+- **v2.2 (18/08/2026)** : import et auto-merge fusionnés dans un seul workflow,
+  séquencés (`needs`). En workflows séparés déclenchés par le même push, ils
+  tournaient en parallèle : quand le merge gagnait la course, il déplaçait `main`
+  sous les pieds de la détection de fichiers de l'import, qui ne trouvait alors
+  plus rien à importer. Effet de bord utile du séquencement : un article qui
+  échoue à l'import n'atteint jamais `main`.
 - **v2.1 (18/08/2026)** : correction d'un bug qui faisait échouer l'import en
   silence — la détection des fichiers modifiés utilisait un clone superficiel
   (`fetch-depth: 2`), donc le moindre commit de merge la cassait et le workflow
