@@ -31,6 +31,17 @@ These rules are non-negotiable. The user has explicitly asked for a strict edito
 
 When invoked, execute this sequence strictly. Use the TodoWrite tool to track progress through these steps.
 
+## Step 0 — Sync with main (MANDATORY, prevents merge conflicts)
+
+Before touching any file, bring the working branch up to date with main:
+
+```bash
+git fetch origin main
+git merge origin/main --no-edit
+```
+
+If the merge conflicts, resolve by taking `origin/main`'s version for every file you have not authored in this session (`git checkout origin/main -- <file>`), then commit the merge. Never start writing on a stale base — that is what caused the recurring conflicts in `editorial/topics-backlog.md`.
+
 ## Step 1 — Topic selection
 
 - If the user provided a specific topic, use it.
@@ -92,10 +103,29 @@ Translate the French version faithfully. Native quality, not Google-translate.
 - **EN** : warm but informative. American spelling unless the topic is European-specific.
 - **ES** : castellano international, vouvoiement (usted).
 - **PT** : português europeu.
-- Each language gets its own SEO title (≤ 60 chars) and meta description (≤ 155 chars).
+- Each language gets its own SEO title (≤ 70 chars — HARD LIMIT) and meta description / seoDescription (≤ 170 chars — HARD LIMIT).
 - Each language gets its own slug — translate the keyword phrase, kebab-case.
 - Footnote markers `[^source-N]` stay identical across languages.
 - `[À VÉRIFIER]` markers stay identical across languages.
+
+## Step 6b — Self-validate field lengths (MANDATORY before Step 7)
+
+Before writing `post.json`, run this Python check on every language variant:
+
+```python
+fields = {
+  "excerpt.XX":      (text, 170),   # HARD LIMIT — CI fails above 170
+  "seoTitle.XX":     (text, 70),    # HARD LIMIT — CI fails above 70
+  "seoDescription.XX": (text, 170), # HARD LIMIT — CI fails above 170
+  "title.XX":        (text, 120),   # soft limit
+}
+for name, (value, limit) in fields.items():
+    length = len(value)
+    status = "✓" if length <= limit else f"✗ TOO LONG ({length} > {limit}) — MUST SHORTEN"
+    print(f"{name}: {length} chars {status}")
+```
+
+If any field is over its limit, **shorten it before continuing**. Never write a post.json with fields that exceed HARD LIMITs — the CI import will fail and require a hotfix commit.
 
 ## Step 7 — Write output files
 
@@ -106,6 +136,10 @@ For a topic with slug `mon-article`, write to `editorial/posts/mon-article/`:
 - `brief.md` — topic brief : primary + secondary keywords, internal links chosen, target audience, why this topic now, content gap analyzed.
 - `_research.md` — research working notes (already created in Step 2).
 - `_outline.md` — outline (already created in Step 4).
+
+### publishedAt — scheduling rule
+
+Set `publishedAt` to the **next Monday or Thursday at 09:00 Europe/Paris that is strictly in the future** (07:00Z in summer time, 08:00Z in winter time). The site only displays a post once `publishedAt <= now()` (filter in `services/cms.ts`), so a post published early in Sanity goes live on the site automatically at that date — no human action needed.
 
 ## Step 8 — Report
 
@@ -139,7 +173,7 @@ This must match `sbh-cms/schemaTypes/post.ts` exactly.
     "pt": { "_type": "slug", "current": "kebab-case-pt" }
   },
   "excerpt": {
-    "fr": "Résumé court (≤ 155 chars)",
+    "fr": "Résumé court (≤ 170 chars — HARD LIMIT enforced by CI)",
     "en": "...", "es": "...", "pt": "..."
   },
   "body": {
@@ -171,6 +205,16 @@ This must match `sbh-cms/schemaTypes/post.ts` exactly.
 ```
 
 Note: `relatedVillaSlugs` is an array of strings (slugs). When importing into Sanity, these must be converted to references by looking up villa documents by slug. Do not invent slugs — only use slugs that exist in the current villa collection. Run `grep -rE "slug.*current" sbh-cms/` or query the Sanity dataset if available.
+
+# Deployment contract — what happens after you push (fully automatic)
+
+You NEVER import into Sanity yourself (no `npm install`, no `npm run import-post`). The pipeline after `git push` to your `claude/*` branch is:
+
+1. `.github/workflows/import-editorial-post.yml` fires on the branch push → generates the main image (Gemini) → imports the post into Sanity in **PUBLISHED** state. If the post still contains `[À VÉRIFIER]` markers, it is imported as a **DRAFT** instead and a human must review it in Studio — this is why 0 markers is the target.
+2. `.github/workflows/auto-merge-editorial.yml` fires on the same push → if your branch only touches `editorial/**`, it merges it into `main` automatically. **Never modify files outside `editorial/` in a routine run** — that blocks the auto-merge and requires a human PR review.
+3. The site shows the article automatically once its `publishedAt` date is reached (ISR refresh ≤ 5 minutes).
+
+So: push your branch, report, done. No PR to open, no merge to wait for, no Publish button in Studio.
 
 # Style guide
 
