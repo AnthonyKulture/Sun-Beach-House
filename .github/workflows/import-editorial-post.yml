@@ -38,8 +38,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          # fetch-depth: 2 lets us diff HEAD vs HEAD~1 to find newly added post.json files
-          fetch-depth: 2
+          # Full history: the detection step below diffs against github.event.before
+          # and against origin/main. With a shallow clone those commits are often
+          # absent (any merge commit already breaks depth 2), the diff errors out,
+          # and the import silently skips every post. Full history is cheap here.
+          fetch-depth: 0
 
       - name: Setup Node 20
         uses: actions/setup-node@v4
@@ -57,18 +60,32 @@ jobs:
         id: changed
         run: |
           set -euo pipefail
+          PATHSPEC='editorial/posts/*/post.json'
+          HEAD_SHA="${{ github.sha }}"
+
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             FILES="${{ inputs.file }}"
+          elif [ "${{ github.ref_name }}" != "main" ]; then
+            # Routine branch (claude/*): import every post that differs from main.
+            # Using the merge-base — instead of the previous push — keeps the branch
+            # correct across sync merges, force-pushes and multi-push sessions.
+            # Imports are idempotent (createOrReplace), so re-importing is harmless.
+            git fetch origin main --quiet
+            FILES=$(git diff --name-only --diff-filter=AM \
+              origin/main..."$HEAD_SHA" -- "$PATHSPEC")
           else
             BASE_SHA="${{ github.event.before }}"
-            HEAD_SHA="${{ github.sha }}"
-            # First push to a branch sends 40 zeros as "before" — handle that case
-            if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
-              FILES=$(git diff --name-only --diff-filter=AM \
-                $(git hash-object -t tree /dev/null) "$HEAD_SHA" -- 'editorial/posts/*/post.json' || true)
-            else
-              FILES=$(git diff --name-only --diff-filter=AM "$BASE_SHA" "$HEAD_SHA" -- 'editorial/posts/*/post.json' || true)
+            EMPTY_TREE=$(git hash-object -t tree /dev/null)
+            # A first push sends 40 zeros as "before"; a force-push or a rewritten
+            # history can send a SHA that no longer exists. Fall back to the empty
+            # tree so detection degrades to "import everything" rather than
+            # silently importing nothing.
+            if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] \
+               || ! git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then
+              echo "::warning::Base commit ${BASE_SHA} unavailable — falling back to full scan."
+              BASE_SHA="$EMPTY_TREE"
             fi
+            FILES=$(git diff --name-only --diff-filter=AM "$BASE_SHA" "$HEAD_SHA" -- "$PATHSPEC")
           fi
           {
             echo "files<<EOF"
@@ -76,6 +93,13 @@ jobs:
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
           if [ -z "$FILES" ]; then
+            # The workflow's path filter means a push event only lands here when a
+            # post.json actually changed — so an empty result is a detection bug,
+            # not a no-op. Surface it instead of exiting quietly green.
+            if [ "${{ github.event_name }}" = "push" ]; then
+              echo "::error::Push touched a post.json but detection found no file to import. Check the detection logic above."
+              exit 1
+            fi
             echo "::notice::No post.json files added or modified."
           else
             echo "::notice::Files to import:"

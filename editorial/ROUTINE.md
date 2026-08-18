@@ -5,17 +5,20 @@ articles du blog Sun Beach House, et la marche à suivre pour la (ré)installer.
 
 ## Cadence
 
-**2 exécutions par semaine** — chaque run produit 1 article :
+**2 exécutions par semaine** — chaque run produit 1 article.
 
-| Run | Génération (heure locale Paris) | Mise en ligne automatique |
-|-----|--------------------------------|---------------------------|
-| Lundi | 08:00 | le jour même à 09:00 |
-| Jeudi | 08:00 | le jour même à 09:00 |
+L'interface des tâches planifiées ne permet de choisir **qu'un seul jour** par
+tâche. Il faut donc créer **deux tâches distinctes**, avec exactement le même
+prompt (celui de la section suivante) :
 
-Dans l'interface Claude Code (claude.ai/code → scheduled tasks), créer **une**
-tâche planifiée avec le cron `0 8 * * 1,4` (Europe/Paris) — ou deux tâches
-`0 8 * * 1` et `0 8 * * 4` si l'interface ne prend pas les listes de jours —
-avec le prompt ci-dessous.
+| Tâche | Jour | Heure (Europe/Paris) | Mise en ligne de l'article |
+|-------|------|----------------------|----------------------------|
+| `sbh-editorial-lundi` | Lundi | 08:00 | le jour même à 09:00 |
+| `sbh-editorial-jeudi` | Jeudi | 08:00 | le jour même à 09:00 |
+
+Les deux tâches sont interchangeables : chacune prend simplement le premier
+sujet `[ ]` restant dans le backlog. Rien n'est codé en dur côté jour, donc
+l'ordre des articles reste correct même si un run échoue ou est relancé.
 
 ## Pipeline automatique (aucune intervention humaine)
 
@@ -88,6 +91,11 @@ mise en ligne prévue.
 
 ## Historique
 
+- **v2.1 (18/08/2026)** : correction d'un bug qui faisait échouer l'import en
+  silence — la détection des fichiers modifiés utilisait un clone superficiel
+  (`fetch-depth: 2`), donc le moindre commit de merge la cassait et le workflow
+  finissait vert sans rien importer. Historique complet + détection basée sur la
+  merge-base avec main + erreur explicite si rien n'est détecté.
 - **v2 (18/08/2026)** : auto-merge dans main + publication Sanity automatique +
   mise en ligne programmée à `publishedAt`. Sélection de sujet générique (plus
   de nom de plan codé en dur dans le prompt). Synchro main en ÉTAPE 0.
