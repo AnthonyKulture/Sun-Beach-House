@@ -1,17 +1,20 @@
-name: Import editorial posts to Sanity
+name: Editorial pipeline (import to Sanity, then merge to main)
 
-# Auto-runs after each push (main or claude/* routine branches) that adds or
-# modifies an editorial post. The sbh-editorial routine pushes
-# editorial/posts/{slug}/post.json. This workflow imports each post into Sanity
-# in PUBLISHED state — the site only shows it once its publishedAt date is
-# reached (services/cms.ts filters publishedAt <= now()), so publishing early
-# acts as scheduling. If the post still contains [À VÉRIFIER] markers, it is
-# imported as a DRAFT instead and a human must review + Publish in Studio.
+# The whole path from "the routine pushed an article" to "it is live on the site",
+# in two sequenced jobs:
 #
-# Note: the companion workflow auto-merge-editorial.yml merges editorial-only
-# claude/* branches into main automatically. Its push to main uses GITHUB_TOKEN,
-# which does NOT re-trigger this workflow — the import already ran on the
-# branch push, so nothing is imported twice.
+#   1. import     — imports each changed post.json into Sanity in PUBLISHED state.
+#                   The site only shows a post once its publishedAt date is reached
+#                   (services/cms.ts filters publishedAt <= now()), so publishing
+#                   early is how scheduling works. A post that still carries
+#                   [À VÉRIFIER] markers is imported as a DRAFT instead, for a human
+#                   to review and Publish in Studio.
+#   2. auto-merge — merges the routine's editorial-only branch into main, but only
+#                   once the import succeeded.
+#
+# Both jobs live in one workflow on purpose. They used to be two workflows on the
+# same push trigger: they raced, and a merge that landed first moved main out from
+# under the import's file detection, which then found nothing to import.
 #
 # Required GitHub Secrets:
 #   SANITY_WRITE_TOKEN — Editor role token from https://www.sanity.io/manage
@@ -20,9 +23,12 @@ name: Import editorial posts to Sanity
 
 on:
   push:
-    branches: [main, 'claude/*']
+    branches: [main, 'claude/**']
+    # Deliberately wider than post.json: a branch push carrying only the backlog
+    # update still has to reach the auto-merge job. The import job treats "no
+    # post.json changed" as a no-op.
     paths:
-      - 'editorial/posts/**/post.json'
+      - 'editorial/**'
   workflow_dispatch:
     inputs:
       file:
@@ -65,25 +71,21 @@ jobs:
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             FILES="${{ inputs.file }}"
-          elif [ "${{ github.ref_name }}" != "main" ]; then
-            # Routine branch (claude/*): import every post that differs from main.
-            # Using the merge-base — instead of the previous push — keeps the branch
-            # correct across sync merges, force-pushes and multi-push sessions.
-            # Imports are idempotent (createOrReplace), so re-importing is harmless.
-            git fetch origin main --quiet
-            FILES=$(git diff --name-only --diff-filter=AM \
-              origin/main..."$HEAD_SHA" -- "$PATHSPEC")
           else
+            # Detect from the push range. Deliberately NOT from the merge-base with
+            # main: the auto-merge job below moves main, so a merge-base diff would
+            # come back empty whenever a branch push has already been merged.
             BASE_SHA="${{ github.event.before }}"
-            EMPTY_TREE=$(git hash-object -t tree /dev/null)
-            # A first push sends 40 zeros as "before"; a force-push or a rewritten
-            # history can send a SHA that no longer exists. Fall back to the empty
-            # tree so detection degrades to "import everything" rather than
-            # silently importing nothing.
             if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] \
                || ! git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then
-              echo "::warning::Base commit ${BASE_SHA} unavailable — falling back to full scan."
-              BASE_SHA="$EMPTY_TREE"
+              # First push of a branch, force-push, or rewritten history: the push
+              # range is unusable. Fall back to the merge-base with main, then to
+              # the empty tree, so detection degrades to "import more" rather than
+              # "import nothing". Imports are idempotent (createOrReplace).
+              echo "::warning::Push base ${BASE_SHA} unusable — falling back to the merge-base with main."
+              git fetch origin main --quiet || true
+              BASE_SHA=$(git merge-base origin/main "$HEAD_SHA" 2>/dev/null \
+                || git hash-object -t tree /dev/null)
             fi
             FILES=$(git diff --name-only --diff-filter=AM "$BASE_SHA" "$HEAD_SHA" -- "$PATHSPEC")
           fi
@@ -93,14 +95,11 @@ jobs:
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
           if [ -z "$FILES" ]; then
-            # The workflow's path filter means a push event only lands here when a
-            # post.json actually changed — so an empty result is a detection bug,
-            # not a no-op. Surface it instead of exiting quietly green.
-            if [ "${{ github.event_name }}" = "push" ]; then
-              echo "::error::Push touched a post.json but detection found no file to import. Check the detection logic above."
-              exit 1
-            fi
-            echo "::notice::No post.json files added or modified."
+            # Legitimately empty when a push only touched editorial prose or the
+            # backlog. A detection *failure* now surfaces as a git error under
+            # `set -e` instead of being swallowed, so an empty list here is a
+            # genuine no-op rather than the silent skip this workflow used to do.
+            echo "::notice::No post.json added or modified in this push — nothing to import."
           else
             echo "::notice::Files to import:"
             echo "$FILES"
@@ -184,4 +183,100 @@ jobs:
             echo "1. Open https://i6dkdu7j.sanity.studio → Blog / Magazine"
             echo "2. Resolve the [À VÉRIFIER] items listed in \`verificationNotes\`"
             echo "3. Click **Publish**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # Merge the routine's branch into main — only after the import above succeeded.
+  #
+  # This ran as its own workflow at first, triggered by the same push. Both
+  # started at once, and when the merge won the race it moved main out from under
+  # the import's file detection, which then found nothing to import. Sequencing
+  # them with `needs` removes the race and adds a useful invariant: an article
+  # that cannot be imported into Sanity never reaches main.
+  #
+  # Conflicting hunks (in practice the tracking checklists in
+  # editorial/topics-backlog.md) resolve in favor of the branch, which carries the
+  # freshest tracking state for its own article.
+  #
+  # The push to main below uses GITHUB_TOKEN, which deliberately does not
+  # re-trigger this workflow — the import already ran, so nothing imports twice.
+  # ────────────────────────────────────────────────────────────────────────────
+  auto-merge:
+    needs: import
+    if: github.event_name == 'push' && github.ref_name != 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: auto-merge-editorial-main
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the branch only touches editorial content
+        id: guard
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          CHANGED=$(git diff --name-only origin/main...HEAD)
+          if [ -z "$CHANGED" ]; then
+            echo "::notice::Branch has no changes vs main — nothing to merge."
+            echo "safe=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Files changed vs main:"
+          echo "$CHANGED"
+          NON_EDITORIAL=$(echo "$CHANGED" | grep -v '^editorial/' || true)
+          if [ -n "$NON_EDITORIAL" ]; then
+            echo "::notice::Branch touches non-editorial files — auto-merge skipped, open a PR for review:"
+            echo "$NON_EDITORIAL"
+            echo "safe=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "safe=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Merge into main (favor branch on conflicts)
+        if: steps.guard.outputs.safe == 'yes'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="${GITHUB_REF_NAME}"
+          HEAD_SHA="${GITHUB_SHA}"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git checkout -B main origin/main
+            if git merge --no-ff -X theirs "$HEAD_SHA" \
+                 -m "auto-merge(editorial): ${BRANCH} → main"; then
+              if git push origin main; then
+                echo "::notice::Auto-merged ${BRANCH} into main (attempt ${attempt})."
+                exit 0
+              fi
+              echo "Push race detected, retrying (${attempt}/3)…"
+              sleep 5
+            else
+              git merge --abort || true
+              echo "::error::Merge of ${BRANCH} into main failed even with -X theirs. Manual merge required."
+              exit 1
+            fi
+          done
+          echo "::error::Could not push main after 3 attempts (concurrent pushes). Re-run this workflow."
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Auto-merge editorial"
+            echo ""
+            case "${{ steps.guard.outputs.safe }}" in
+              yes)  echo "✅ Branch \`${GITHUB_REF_NAME}\` merged into \`main\` after a successful import." ;;
+              no)   echo "⚠️ Branch touches non-editorial files — merge it via a normal PR." ;;
+              skip) echo "ℹ️ No changes vs main — nothing to do." ;;
+              *)    echo "❓ Guard step did not run." ;;
+            esac
           } >> "$GITHUB_STEP_SUMMARY"
