@@ -1,87 +1,59 @@
-# Brief éditorial — Statut fiscal de Saint-Barthélemy
+# Brief — Statut fiscal de Saint-Barthélemy : ce que ça change pour un acquéreur
 
-**Slug FR** : `statut-fiscal-saint-barthelemy`
-**Catégorie Sanity** : `immobilier`
-**Plan 2026-08** : sujet #7
-**Publication** : 20/08/2026, 09h00 Europe/Paris (`2026-08-20T07:00:00Z`)
-**Note de calendrier** : ce créneau était initialement attribué au sujet #4 (St Barth Cata Cup 2026), retiré du
-calendrier par le propriétaire du dépôt car déjà traité. L'article #7 prend ce créneau ; la règle habituelle de
-calcul de la date de publication n'a donc pas été appliquée.
+## Sujet et positionnement
+
+Article « immobilier & investissement » du Plan 2026-08 (#7), complémentaire à l'article pilier #3 (acheter-villa-saint-barthelemy). Angle informatif et prudent : le sujet touche au juridique et au fiscal, la rigueur prime sur le style. Aucun conseil fiscal personnalisé n'est donné — l'article renvoie systématiquement au notaire et au conseil spécialisé pour toute situation individuelle.
+
+Ce sujet est le prolongement naturel du pilier #3 : là où l'article #3 couvrait le **parcours transactionnel** (notaire, droits d'enregistrement, urbanisme), le présent article approfondit le **régime fiscal du territoire** (impôt sur le revenu, IFI, droits de succession, règle des cinq ans, plus-value immobilière).
 
 ## Mots-clés
 
-- **Primaire** : `fiscalité saint barthélemy`
-  - Placé dans : H1 (« Statut fiscal de Saint-Barthélemy »), première phrase du corps, H2 n° 1
-    (« Fiscalité de Saint-Barthélemy : une compétence propre, un code à part »), slug, meta description.
-- **Secondaires / LSI** :
-  - `statut fiscal saint barth`
-  - `résidence fiscale saint barthélemy`
-  - `droits d'enregistrement saint barth`
-  - `taxe de séjour saint barthélemy`
-  - `droit de quai saint barth`
+- Primaire : fiscalité saint barthélemy
+- Secondaires : statut fiscal saint barth acquéreur, impôt saint barthélemy, IFI saint barthélemy, règle des cinq ans saint barth, droits enregistrement saint barthélemy
+- Intention de recherche : commercial-investigation (l'internaute compare et s'informe avant de prendre contact avec une agence ou un notaire)
 
-**Intention de recherche** : informationnelle dominante, avec une forte composante
-*commercial-investigation* — l'internaute compare des juridictions avant un achat, et cherche à savoir ce qui
-s'appliquera à lui. Requêtes voisines détectées en recherche : « Saint-Barthélemy fait-elle partie de l'UE »,
-« taxe foncière Saint-Barth », « devenir résident fiscal Saint-Barthélemy », « TVA Saint-Barthélemy ».
+## Audience cible
 
-## Public visé
+Acquéreur potentiel (résident français ou étranger) envisageant l'achat ou le transfert de résidence à Saint-Barthélemy, en phase de recherche d'information avant tout contact avec une agence ou un notaire. Profil haut de gamme, sensible à la rigueur factuelle, méfiant envers les contenus marketing.
 
-Acquéreur étranger ou métropolitain en phase de recherche, souvent en amont de tout contact avec un notaire.
-Profil analytique : il veut comprendre un cadre avant d'engager une démarche. Il arrive avec deux idées reçues à
-corriger — que l'achat d'un bien ouvrirait un statut fiscal local, et que « pas d'impôts » signifierait
-« aucun prélèvement ». L'article répond aux deux, sans jamais glisser vers le conseil personnalisé.
+Sous-profil secondaire : résident fiscal français qui souhaite comprendre l'impact du statut SBH sur sa propre fiscalité avant d'acheter (IFI, revenus locatifs, plus-value).
 
 ## Pourquoi ce sujet maintenant
 
-1. **Article pilier manquant.** Le Plan 2026-08 a publié le 07/08/2026 « Acheter une villa à Saint-Barthélemy :
-   démarches, notaire, financement » (#3), qui traite volontairement la fiscalité de façon prudente et renvoie à
-   un article dédié. Ce texte comble ce vide et devient la page de référence du cluster immobilier.
-2. **Saisonnalité d'acquisition.** Les recherches immobilières s'intensifient à l'approche de la saison
-   2026-2027 ; l'article se positionne avant le pic de décembre.
-3. **Sujet à fort risque de désinformation.** Le champ est dominé par des contenus commerciaux imprécis. Un texte
-   sourcé sur Légifrance, le Code des contributions, la douane et la presse locale a une valeur E-E-A-T élevée.
+- L'article #3 (acheter-villa-saint-barthelemy) est déjà publié et renvoie explicitement à l'article #7 pour la dimension fiscale. Ce dernier complète le duo immobilier du Plan 2026-08.
+- La saison haute approche (octobre-décembre) : la fenêtre de réflexion patrimoniale d'un acquéreur étranger commence souvent dès septembre.
+- Il n'existe à ce jour aucun contenu du blog Sun Beach House sur le régime fiscal de l'île. Le sujet est très recherché et mal couvert par des sources fiables (la plupart des contenus visibles sont des blogs d'agences immobilières ou de cabinets de gestion de patrimoine sans recoupement officiel).
 
-## Analyse du *content gap*
+## Analyse de l'écart de contenu (content gap)
 
-Les pages qui se positionnent aujourd'hui sur `fiscalité saint barthélemy` sont majoritairement des pages de
-cabinets (comptables, avocats, gestion de patrimoine) et de portails d'annonces. Trois manques récurrents :
+Les résultats de recherche sur « fiscalité saint barthélemy acquéreur » sont dominés par des sources non officielles (cyriljarnias.com, Luxury Ones, Carsalade Law Firm, SBH Capital Partners) qui fournissent parfois des chiffres sans citer les textes législatifs précis. Sun Beach House peut se différencier en proposant un contenu strictement ancré sur des sources officielles (Légifrance, Code des contributions, rapports Sénat, douane.gouv.fr) avec un ton prudent qui renvoie systématiquement au professionnel compétent.
 
-- **La règle des cinq ans est mentionnée mais rarement expliquée** : critères alternatifs du Code des
-  contributions, appréciation au 1er janvier, déclenchement à l'issue de la cinquième année de date à date,
-  applicabilité depuis le 15 juillet 2007, cas des personnes morales. Notre article détaille les cinq points.
-- **La fiscalité de détention est réduite à « pas de taxe foncière »**, en omettant les prélèvements qui touchent
-  réellement un propriétaire : TED et surtout CFAE, due par les SCI — point décisif pour un acquéreur qui
-  structure son achat via une société civile immobilière.
-- **La taxe de séjour et le droit de quai sont traités séparément du sujet immobilier**, alors qu'ils pèsent
-  concrètement sur un projet locatif ou un chantier de rénovation.
+## Décisions de prudence éditoriale (0 [À VÉRIFIER])
 
-Différenciateur assumé : nous publions un barème de plus-value **uniquement** là où deux sources indépendantes le
-corroborent, et nous signalons explicitement les points à faire chiffrer par un notaire.
+1. **Règle des cinq ans** : citée avec précision depuis l'article LO6214-4 CGCT (Légifrance), texte officiel directement consultable. Condition : résidence effective pendant cinq ans consécutifs, évaluée au 1er janvier de l'année fiscale.
 
-## Maillage interne retenu (5)
+2. **Avantages résidents (IR, taxe foncière, IFI, droits de succession)** : décrits comme réservés aux résidents fiscalement établis à Saint-Barthélemy, avec renvoi systématique au conseil fiscal pour les critères exacts et les interactions avec la fiscalité du pays d'origine.
 
-| Phrase d'ancrage (FR) | Cible |
-|---|---|
-| démarches d'acquisition d'une villa à Saint-Barthélemy | `/fr/blog/acheter-villa-saint-barthelemy` |
-| notre sélection de villas à la vente à Saint-Barthélemy | `/fr/sales` |
-| villas que nous proposons en location saisonnière | `/fr/rentals` |
-| conciergerie sur place | `/fr/conciergerie` |
-| Valérie Kerckhofs, fondatrice de Sun Beach House | `/fr/about` |
+3. **Absence de taxe foncière effective** : présentée comme la conséquence de l'absence de base cadastrale et de taux voté — fait documenté par le rapport du Sénat de 1996.
 
-Équivalents traduits : `/en/blog/buying-villa-saint-barthelemy`, `/es/blog/comprar-villa-saint-barthelemy`,
-`/pt/blog/comprar-villa-saint-barthelemy`, puis `/xx/sales`, `/xx/rentals`, `/xx/conciergerie`, `/xx/about`.
+4. **Taux de plus-value (35 % / 20 %)** : cités avec référence à l'article 100 du Code des contributions et recoupement par Outremers360 et France1ère. Toujours accompagnés d'un renvoi au notaire pour le barème en vigueur à la date de la transaction.
 
-`relatedVillaSlugs` : `[]`. Aucun slug de villa n'est versionné dans `sbh-cms/` (les documents villa vivent dans le
-jeu de données Sanity) ; conformément à la règle « ne jamais inventer de slug », le tableau reste vide.
+5. **IFI pour résidents métropolitains** : l'article ne statue pas définitivement sur l'inclusion ou non du bien SBH dans la base IFI d'un résident fiscal français — question non résolue dans les sources officielles. L'article se contente d'indiquer que la question doit être traitée avec un conseil fiscal spécialisé. Aucun [À VÉRIFIER] n'est posé car le texte ne contient pas d'affirmation factuelle sur ce point.
 
-## Garde-fous appliqués
+6. **Prélèvements sociaux (CSG/CRDS)** : mentionnés comme relevant de la compétence exclusive de l'État, s'appliquant même pour les résidents SBH sur certains revenus du patrimoine. Source : Quante (expert-comptable spécialisé). Nuance maintenue dans l'article.
 
-- Aucun conseil fiscal personnalisé. L'article décrit un cadre normatif et renvoie explicitement, dans le corps
-  (fin de la section « Ce qui relève encore de la France et de l'Union européenne ») et dans la conclusion, vers un
-  notaire et un conseil fiscal habilité — dans les quatre langues.
-- Tout taux publié est corroboré par deux sources indépendantes. Les chiffres à source unique ont été retirés
-  plutôt que reformulés de façon vague (liste dans `sources.md`).
-- Zéro marqueur `[À VÉRIFIER]`.
-- Longueur FR : 2 163 mots (hors bibliographie). EN 2 029, ES 2 255, PT 2 195 — l'expansion es/pt est naturelle et
-  ne correspond à aucun ajout de contenu.
+7. **Exit tax (CGI art. 167 bis)** : mentionné brièvement, pour mémoire, comme applicable aux détenteurs de valeurs mobilières importantes quittant la France pour Saint-Barth. Hors du périmètre principal mais important à signaler.
+
+## Liens internes retenus
+
+1. `/fr/sales` — ancre : « notre sélection de villas à la vente à Saint-Barthélemy » — lien vers le portefeuille de ventes.
+2. `/fr/conciergerie` — ancre : « notre service de conciergerie » — accompagnement et conseil.
+3. `/fr/blog/acheter-villa-saint-barthelemy` — ancre : « Acheter une villa à Saint-Barthélemy : démarches, notaire et financement » — article connexe déjà publié (lien interne fort, sujet complémentaire).
+
+## relatedVillaSlugs
+
+Laissé vide (`[]`) : aucun slug de villa spécifique n'a pu être vérifié dans le jeu de données Sanity actuel depuis cet environnement. Conformément à la consigne, aucun slug n'a été inventé.
+
+## Contraintes de recherche rencontrées
+
+WebFetch a retourné `EGRESS_BLOCKED` sur la plupart des domaines testés. La recherche a reposé sur les extraits renvoyés par WebSearch, avec recoupement systématique par au moins deux requêtes indépendantes par fait. Dix sources ont été retenues (six officielles, deux de presse reconnue, une professionnelle spécialisée, une notariale) — largement au-dessus du minimum de trois exigé.
