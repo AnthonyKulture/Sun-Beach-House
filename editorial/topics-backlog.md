@@ -113,7 +113,7 @@ Suivi d'exécution (`[ ]` → `[~]` en cours → `[x]` publié) :
 - [~] #6 Réveillon Nouvel An
 - [~] #7 Statut fiscal
 - [~] #8 St Barth Music Festival 2027
-- [ ] #9 Restaurants saison 2026-2027
+- [~] #9 Restaurants saison 2026-2027
 - [ ] #10 Carnaval 2027
 
 ---
@@ -165,7 +165,7 @@ Sujets disponibles une fois le Plan 2026-05 terminé.
 - [x] Une journée à Saint-Barth, par Valérie (storytelling fondatrice) (→ Plan 2026-05 #10, août 2026)
 - [x] Comment venir à Saint-Barth : vols, bateaux, options (→ Plan 2026-08 #2, août 2026)
 - [ ] Que mettre dans sa valise pour Saint-Barth
-- [ ] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #9)
+- [~] Restaurants étoilés et incontournables de Saint-Barth (→ Plan 2026-08 #9)
 - [ ] Plages secrètes de Saint-Barth
 - [ ] Activités nautiques à Saint-Barth : surf, kite, plongée, paddle
 
