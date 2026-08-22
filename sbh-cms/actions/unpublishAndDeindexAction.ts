@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { DocumentActionComponent, useClient } from 'sanity'
 import { TrashIcon } from '@sanity/icons'
+import { getApiUrl } from './shared'
 
 /**
  * "Retirer du site" — Custom Sanity Document Action for Villa documents.
@@ -36,11 +37,7 @@ export const UnpublishAndDeindexAction: DocumentActionComponent = (props) => {
         .commit({ visibility: 'async' })
 
       // Step 2 — Notify the Next.js API route to trigger Google deindexing
-      const previewUrl = (
-        (window as any).__SANITY_STUDIO_PREVIEW_URL__ ||
-        import.meta.env.SANITY_STUDIO_PREVIEW_URL ||
-        'https://www.sun-beach-house.com'
-      ).replace(/\/$/, '')
+      const previewUrl = getApiUrl()
 
       try {
         const res = await fetch(`${previewUrl}/api/deindex-villa`, {

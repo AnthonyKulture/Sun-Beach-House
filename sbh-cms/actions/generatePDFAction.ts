@@ -1,6 +1,6 @@
 import { DocumentActionComponent } from 'sanity'
 import { DownloadIcon } from '@sanity/icons'
-import { downloadPdfBlob } from './shared'
+import { downloadPdfBlob, getApiUrl } from './shared'
 
 export const GeneratePDFAction: DocumentActionComponent = (props) => {
     const { id } = props
@@ -13,7 +13,7 @@ export const GeneratePDFAction: DocumentActionComponent = (props) => {
             props.onComplete()
 
             try {
-                const apiUrl = (process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000').replace(/\/$/, '')
+                const apiUrl = getApiUrl()
                 const url = `${apiUrl}/api/generate-pdf?villaId=${villaId}&lang=en&includePricing=false&t=${Date.now()}`
                 const response = await fetch(url)
 

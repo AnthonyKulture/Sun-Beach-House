@@ -64,6 +64,12 @@ async function translateVillaForPDF(villa: Villa): Promise<void> {
 }
 
 export async function GET(request: NextRequest) {
+    const origin = request.headers.get('origin') || 'https://sbh-admin.sanity.studio';
+    const CORS_HEADERS = {
+        'Access-Control-Allow-Origin': origin,
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
     try {
         const searchParams = request.nextUrl.searchParams;
         const villaId = searchParams.get('villaId');
@@ -71,12 +77,12 @@ export async function GET(request: NextRequest) {
         const includePricing = searchParams.get('includePricing') === 'true';
 
         if (!villaId) {
-            return NextResponse.json({ error: 'Villa ID is required' }, { status: 400 });
+            return NextResponse.json({ error: 'Villa ID is required' }, { status: 400, headers: CORS_HEADERS });
         }
 
         const villa = await CmsService.getVillaById(villaId);
         if (!villa) {
-            return NextResponse.json({ error: 'Villa not found' }, { status: 404 });
+            return NextResponse.json({ error: 'Villa not found' }, { status: 404, headers: CORS_HEADERS });
         }
 
         if (lang === 'en') {
@@ -92,13 +98,6 @@ export async function GET(request: NextRequest) {
         const pdfBuffer = await renderToBuffer(pdfDocument);
         const fileName = generatePDFFileName(villa);
 
-        const origin = request.headers.get('origin') || 'https://sbh-admin.sanity.studio';
-        const CORS_HEADERS = {
-            'Access-Control-Allow-Origin': origin,
-            'Access-Control-Allow-Methods': 'GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        };
-
         return new NextResponse(pdfBuffer as unknown as BodyInit, {
             status: 200,
             headers: {
@@ -112,7 +111,7 @@ export async function GET(request: NextRequest) {
         console.error('PDF Generation Error:', error);
         return NextResponse.json(
             { error: 'Failed to generate PDF' },
-            { status: 500 }
+            { status: 500, headers: CORS_HEADERS }
         );
     }
 }

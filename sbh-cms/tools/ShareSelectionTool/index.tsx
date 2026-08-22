@@ -17,6 +17,7 @@ import {
 } from '@sanity/ui'
 import { EnvelopeIcon, SearchIcon, CheckmarkCircleIcon, ArrowRightIcon, ArrowLeftIcon, ErrorOutlineIcon } from '@sanity/icons'
 import { useClient } from 'sanity'
+import { getApiUrl } from '../../actions/shared'
 
 const POPULAR_AMENITIES = [
     "Piscine Chauffée",
@@ -231,10 +232,11 @@ export function ShareSelectionTool() {
             const deduplicated = res.reduce((acc, villa) => {
                 const isDraft = villa._id.startsWith('drafts.')
                 const publishedId = isDraft ? villa._id.replace('drafts.', '') : villa._id
-                if (isDraft) {
-                    acc[publishedId] = villa
-                } else if (!acc[publishedId]) {
-                    acc[publishedId] = villa
+                const existing = acc[publishedId]
+                acc[publishedId] = {
+                    ...(isDraft ? villa : (existing || villa)),
+                    _id: publishedId,
+                    hasPublished: (existing?.hasPublished ?? false) || !isDraft,
                 }
                 return acc
             }, {} as Record<string, any>)
@@ -295,7 +297,7 @@ export function ShareSelectionTool() {
         setErrorMessage('')
 
         try {
-            const apiUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+            const apiUrl = getApiUrl()
             const response = await fetch(`${apiUrl}/api/send-selection`, {
                 method: 'POST',
                 headers: {
@@ -516,8 +518,11 @@ export function ShareSelectionTool() {
                                                     </Box>
                                                 )}
                                                 <Box padding={3} style={{ backgroundColor: '#fff' }}>
-                                                    <Box marginBottom={2}>
+                                                    <Box marginBottom={2} style={{ display: 'flex', gap: 4 }}>
                                                         <Badge tone="default">{villa.listingType === 'sale' ? (lang === 'en' ? 'Sale' : lang === 'es' ? 'Venta' : lang === 'pt' ? 'Venda' : 'Vente') : (lang === 'en' ? 'Rent' : lang === 'es' ? 'Alquiler' : lang === 'pt' ? 'Aluguel' : 'Location')}</Badge>
+                                                        {!villa.hasPublished && (
+                                                            <Badge tone="caution">Hors ligne — le client recevra un lien privé</Badge>
+                                                        )}
                                                     </Box>
                                                     <Heading as="h4" size={2} style={{ marginBottom: '8px', color: '#2D2D2D' }}>{villa.name}</Heading>
                                                     <Text size={1} weight="semibold" style={{ color: '#A05C4D', textTransform: 'uppercase' }}>
@@ -540,7 +545,7 @@ export function ShareSelectionTool() {
                                          `Bien cordialement,\nValérie Kerckhofs\nSun Beach House\n\nFaire de chaque séjour à Saint-Barthélemy un moment unique.`}
                                     </Text>
                                     <a href="https://www.sun-beach-house.com" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-                                        <img src={`${process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'}/signature.png?v=2`} alt="Signature Sun Beach House" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0', border: 'none' }} />
+                                        <img src={`${getApiUrl()}/signature.png?v=2`} alt="Signature Sun Beach House" style={{ width: '100%', maxWidth: '600px', height: 'auto', display: 'block', margin: '0', border: 'none' }} />
                                     </a>
                                 </Box>
                             </Box>
@@ -681,8 +686,11 @@ export function ShareSelectionTool() {
                                             <div style={{ color: 'green', display: 'flex' }}><CheckmarkCircleIcon /></div>
                                         </Box>
                                     )}
-                                    <Box style={{ position: 'absolute', bottom: 8, left: 8 }}>
+                                    <Box style={{ position: 'absolute', bottom: 8, left: 8, display: 'flex', gap: 4 }}>
                                         <Badge tone="default">{villa.listingType === 'sale' ? 'Vente' : 'Location'}</Badge>
+                                        {!villa.hasPublished && (
+                                            <Badge tone="caution">Hors ligne — lien privé</Badge>
+                                        )}
                                     </Box>
                                 </Box>
                                 <Box padding={3}>
