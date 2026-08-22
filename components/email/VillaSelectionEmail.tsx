@@ -14,9 +14,11 @@ import {
 import { Villa } from '@/types';
 import * as React from 'react';
 
+type EmailVilla = Villa & { shareUrl?: string };
+
 interface VillaSelectionEmailProps {
     message: string;
-    villas: Villa[];
+    villas: EmailVilla[];
     baseUrl: string;
     lang?: 'fr' | 'en' | 'pt' | 'es';
 }
@@ -135,7 +137,7 @@ export const VillaSelectionEmail = ({
                         <Text style={sectionTitle}>{t.section[currentLang]}</Text>
 
                         {villas.map((villa) => {
-                            const villaUrl = `${baseUrl}/${currentLang}/villas/${villa.id}`;
+                            const villaUrl = villa.shareUrl || `${baseUrl}/${currentLang}/villas/${villa.id}`;
 
                             return (
                                 <Section key={villa.id} style={villaCard}>

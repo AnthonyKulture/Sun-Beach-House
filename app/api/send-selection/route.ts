@@ -5,6 +5,8 @@ import React from 'react';
 import VillaSelectionEmail from '@/components/email/VillaSelectionEmail';
 import { CmsService } from '@/services/cms';
 import { getProxyImageURL } from '@/utils/email-images';
+import { signPreviewToken } from '@/utils/previewToken';
+import type { Villa } from '@/types';
 
 // The Resend instance will be created inside the POST handler
 // to prevent breaking the OPTIONS preflight request if the key is missing or loaded late.
@@ -45,11 +47,22 @@ export async function POST(request: Request) {
             );
         }
 
-        // Récupérer toutes les villas depuis Sanity pour garantir des données à jour (y compris les brouillons)
-        const allVillas = await CmsService.getAllVillas(true);
+        const requestedIds: string[] = villaIds.map((id: string) => id.replace(/^drafts\./, ''));
 
-        // Filtrer pour ne garder que les villas sélectionnées
-        const selectedVillas = allVillas.filter(v => villaIds.includes(v.id));
+        let allVillas: Villa[];
+        let publishedIds: Set<string>;
+        try {
+            [allVillas, publishedIds] = await Promise.all([
+                CmsService.getAllVillasWithDrafts(),
+                CmsService.getPublishedVillaIds().then(ids => new Set(ids)),
+            ]);
+        } catch (draftError) {
+            console.error('Lecture des brouillons impossible, repli sur les villas publiées:', draftError);
+            allVillas = await CmsService.getAllVillas();
+            publishedIds = new Set(allVillas.map(v => v.id));
+        }
+
+        const selectedVillas = allVillas.filter(v => requestedIds.includes(v.id));
 
         if (selectedVillas.length === 0) {
             return NextResponse.json(
@@ -60,11 +73,26 @@ export async function POST(request: Request) {
 
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sun-beach-house.com';
 
+        const hasUnpublished = selectedVillas.some(v => !publishedIds.has(v.id));
+        if (hasUnpublished && !process.env.PREVIEW_LINK_SECRET) {
+            return NextResponse.json(
+                { error: 'PREVIEW_LINK_SECRET n\'est pas configurée : impossible de générer des liens privés pour les villas non publiées.' },
+                { status: 500, headers: corsHeaders }
+            );
+        }
+
         // Transform Sanity images to brand proxy URLs for email deliverability
-        const villasWithProxiedImages = selectedVillas.map(villa => ({
-            ...villa,
-            mainImage: getProxyImageURL(villa.mainImage)
-        }));
+        const villasWithProxiedImages = selectedVillas.map(villa => {
+            const isPublished = publishedIds.has(villa.id);
+            const target = villa.slug || villa.id;
+            return {
+                ...villa,
+                mainImage: getProxyImageURL(villa.mainImage),
+                shareUrl: isPublished
+                    ? `${baseUrl}/${lang}/villas/${target}`
+                    : `${baseUrl}/${lang}/villas/preview/${target}?t=${signPreviewToken(target)}`,
+            };
+        });
 
         // Générer le HTML de l'email avec React Email
         const html = await render(

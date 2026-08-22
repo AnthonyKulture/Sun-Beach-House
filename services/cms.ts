@@ -29,6 +29,40 @@ const fetchSanity = async (query: string, params?: Record<string, unknown>) => {
   return data.result;
 };
 
+// Authenticated, uncached endpoint — server-only, required to read draft documents
+const SANITY_AUTH_API_URL = `https://${PROJECT_ID}.api.sanity.io/v${API_VERSION}/data/query/${DATASET}`;
+
+const fetchSanityAuthenticated = async (
+  query: string,
+  params?: Record<string, unknown>,
+  perspective: 'previewDrafts' | 'published' = 'previewDrafts'
+) => {
+  const token = process.env.SANITY_API_READ_TOKEN;
+  if (!token) {
+    throw new Error('SANITY_API_READ_TOKEN is not configured');
+  }
+
+  const url = new URL(SANITY_AUTH_API_URL);
+  url.searchParams.set('query', query);
+  url.searchParams.set('perspective', perspective);
+
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      url.searchParams.set(`$${key}`, JSON.stringify(value));
+    });
+  }
+
+  const response = await fetch(url.toString(), {
+    headers: { Authorization: `Bearer ${token}` },
+    cache: 'no-store',
+  });
+  if (!response.ok) {
+    throw new Error(`Sanity API error: ${response.status}`);
+  }
+  const data = await response.json();
+  return data.result;
+};
+
 // Helper to build optimized Sanity image URLs with CDN parameters
 // Automatically delivers WebP/AVIF, resizes to requested width, and compresses
 const buildImageUrl = (ref: string, width = 1600, quality = 85) => {
@@ -227,6 +261,32 @@ export const CmsService = {
       console.error('Erreur getVillasByLocation:', error);
       return [];
     }
+  },
+
+  /**
+   * Server-only: every villa including unpublished drafts (previewDrafts perspective).
+   * Powers the back-office selection email — never call from public pages.
+   */
+  getAllVillasWithDrafts: async (): Promise<Villa[]> => {
+    const query = `*[_type == "villa"] | order(name asc) { ${villaFields} }`;
+    const docs = await fetchSanityAuthenticated(query);
+    return (docs as SanityVillaDoc[]).map(mapSanityVilla);
+  },
+
+  /** Server-only: ids of villas that have a published version. */
+  getPublishedVillaIds: async (): Promise<string[]> => {
+    const query = `*[_type == "villa"]._id`;
+    const ids = await fetchSanityAuthenticated(query, undefined, 'published');
+    return ids as string[];
+  },
+
+  /**
+   * Server-only: resolve a villa (draft included) by id or slug for signed preview links.
+   */
+  getVillaPreviewByIdOrSlug: async (idOrSlug: string): Promise<Villa | undefined> => {
+    const query = `*[_type == "villa" && (_id == $key || slug.current == $key)][0] { ${villaFields} }`;
+    const doc = await fetchSanityAuthenticated(query, { key: idOrSlug });
+    return doc ? mapSanityVilla(doc) : undefined;
   },
 
   getVillaById: async (id: string): Promise<Villa | undefined> => {

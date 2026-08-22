@@ -186,6 +186,12 @@ const nextConfig = {
                 ]
             },
             {
+                source: '/:lang/villas/preview/:path*',
+                headers: [
+                    { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
+                ]
+            },
+            {
                 source: '/:path*',
                 headers: [
                     {
